@@ -1,0 +1,144 @@
+{
+  "id": "jeddah",
+  "name": "Jeddah (Hijaz)",
+  "nameAr": "",
+  "order": 1,
+  "scenes": [
+    {
+      "id": "al-balad-rawashin",
+      "title": "Old Jeddah street with wooden rawashin balconies and cats",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "al-balad-rawashin/outline.svg",
+        "regions": "al-balad-rawashin/regions.png",
+        "palette": "al-balad-rawashin/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A Jeddah street cat on a windowsill; a girl below in a Hijazi tulle dress and gold headscarf"
+      }
+    },
+    {
+      "id": "corniche-fountain",
+      "title": "Kids on the Corniche watching King Fahd's Fountain and boats",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "corniche-fountain/outline.svg",
+        "regions": "corniche-fountain/regions.png",
+        "palette": "corniche-fountain/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A boy in a T-shirt and shorts with a scooter waving at the fountain"
+      }
+    },
+    {
+      "id": "red-sea-reef",
+      "title": "Snorkelers above a Red Sea coral reef full of fish",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "red-sea-reef/outline.svg",
+        "regions": "red-sea-reef/regions.png",
+        "palette": "red-sea-reef/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "A hawksbill sea turtle gliding past a clownfish; snorkelers in wetsuits above"
+      }
+    },
+    {
+      "id": "fish-market",
+      "title": "Morning fish market with fishermen and seagulls",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "fish-market/outline.svg",
+        "regions": "fish-market/regions.png",
+        "palette": "fish-market/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A fisherman in a sarong-style izar and white skullcap holding a big hamour"
+      }
+    },
+    {
+      "id": "jeddah-sculptures",
+      "title": "Playing among the giant sculptures of the Corniche",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "jeddah-sculptures/outline.svg",
+        "regions": "jeddah-sculptures/regions.png",
+        "palette": "jeddah-sculptures/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Children in casual clothes playing hide and seek around the giant bike sculpture"
+      }
+    },
+    {
+      "id": "dhow-sail",
+      "title": "Traditional dhow sailing past the city at sunset",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "dhow-sail/outline.svg",
+        "regions": "dhow-sail/regions.png",
+        "palette": "dhow-sail/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A sailor in a Hijazi sidriya vest, izar and turban at the dhow tiller"
+      }
+    },
+    {
+      "id": "hijazi-wedding",
+      "title": "Hijazi wedding with mizmar dancers and lanterns",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hijazi-wedding/outline.svg",
+        "regions": "hijazi-wedding/regions.png",
+        "palette": "hijazi-wedding/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "Mizmar dancers in white thobes with embroidered vests and headwraps twirling sticks"
+      }
+    },
+    {
+      "id": "floating-mosque",
+      "title": "Floating Mosque by the sea with pelicans",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "floating-mosque/outline.svg",
+        "regions": "floating-mosque/regions.png",
+        "palette": "floating-mosque/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "A pelican landing on the pier beside a family in modern thobe and abaya"
+      }
+    }
+  ]
+}

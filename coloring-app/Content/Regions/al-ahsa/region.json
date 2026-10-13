@@ -1,0 +1,144 @@
+{
+  "id": "al-ahsa",
+  "name": "Al-Ahsa (Eastern Province)",
+  "nameAr": "",
+  "order": 2,
+  "scenes": [
+    {
+      "id": "palm-oasis",
+      "title": "Date harvest in the world's largest palm oasis",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "palm-oasis/outline.svg",
+        "regions": "palm-oasis/regions.png",
+        "palette": "palm-oasis/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A date farmer in a white thobe and headwrap climbing a palm with a woven basket"
+      }
+    },
+    {
+      "id": "qaisariah-souq",
+      "title": "Lantern-lit Qaisariah Souq with cloth and spice stalls",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "qaisariah-souq/outline.svg",
+        "regions": "qaisariah-souq/regions.png",
+        "palette": "qaisariah-souq/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A grandmother in a colorful Hasawi dress and gold-trimmed thawb choosing fabric"
+      }
+    },
+    {
+      "id": "jabal-qarah-caves",
+      "title": "Kids exploring the cool caves of Jabal Al-Qarah",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "jabal-qarah-caves/outline.svg",
+        "regions": "jabal-qarah-caves/regions.png",
+        "palette": "jabal-qarah-caves/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Kids in sneakers and caps with a flashlight exploring the cool cave"
+      }
+    },
+    {
+      "id": "al-ahsa-pottery",
+      "title": "Potter's workshop with children shaping clay jars",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "al-ahsa-pottery/outline.svg",
+        "regions": "al-ahsa-pottery/regions.png",
+        "palette": "al-ahsa-pottery/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A potter in a thobe and ghutra teaching a girl in a Hasawi dress to shape a clay jar"
+      }
+    },
+    {
+      "id": "bisht-weaving",
+      "title": "Bisht cloak weavers at work with golden thread",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "bisht-weaving/outline.svg",
+        "regions": "bisht-weaving/regions.png",
+        "palette": "bisht-weaving/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A bisht weaver in a white thobe and ghutra at the loom with golden thread"
+      }
+    },
+    {
+      "id": "yellow-lake",
+      "title": "Birds and reeds at Al-Asfar (Yellow) Lake",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "yellow-lake/outline.svg",
+        "regions": "yellow-lake/regions.png",
+        "palette": "yellow-lake/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "Flamingos and a heron among the reeds; a boy in a tracksuit with binoculars"
+      }
+    },
+    {
+      "id": "ibrahim-palace",
+      "title": "Horse riders at Ibrahim Palace",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "ibrahim-palace/outline.svg",
+        "regions": "ibrahim-palace/regions.png",
+        "palette": "ibrahim-palace/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A black Arabian horse with a tasselled bridle ridden by a boy in a thobe and bisht"
+      }
+    },
+    {
+      "id": "hofuf-train",
+      "title": "Old Hofuf railway station with a steam train arriving",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hofuf-train/outline.svg",
+        "regions": "hofuf-train/regions.png",
+        "palette": "hofuf-train/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a school uniform with a backpack waving at the train driver"
+      }
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "riyadh",
+  "name": "Riyadh (Najd)",
+  "nameAr": "",
+  "order": 0,
+  "scenes": [
+    {
+      "id": "masmak-fort",
+      "title": "Boys on camels racing past Masmak Fort at sunset",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "masmak-fort/outline.svg",
+        "regions": "masmak-fort/regions.png",
+        "palette": "masmak-fort/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A young Najdi boy in a white thobe, red-and-white shemagh and brown bisht racing on a decorated camel"
+      }
+    },
+    {
+      "id": "kingdom-tower-skyline",
+      "title": "Kids flying kites over the Riyadh skyline with Kingdom Tower",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "kingdom-tower-skyline/outline.svg",
+        "regions": "kingdom-tower-skyline/regions.png",
+        "palette": "kingdom-tower-skyline/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a modern abaya with a colorful backpack flying a kite"
+      }
+    },
+    {
+      "id": "ardah-dance",
+      "title": "Ardah sword-dance celebration with drummers and flags",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "ardah-dance/outline.svg",
+        "regions": "ardah-dance/regions.png",
+        "palette": "ardah-dance/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "Ardah dancers in white thobes, gold-trimmed bishts and shemaghs holding swords and drums"
+      }
+    },
+    {
+      "id": "diriyah-mudbrick",
+      "title": "Family walking through the mud-brick alleys of Diriyah",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "diriyah-mudbrick/outline.svg",
+        "regions": "diriyah-mudbrick/regions.png",
+        "palette": "diriyah-mudbrick/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A father in a thobe and ghutra walking with a girl in an embroidered Najdi dress"
+      }
+    },
+    {
+      "id": "riyadh-season-fair",
+      "title": "Ferris wheel and fireworks at a Riyadh Season fair",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "riyadh-season-fair/outline.svg",
+        "regions": "riyadh-season-fair/regions.png",
+        "palette": "riyadh-season-fair/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Teen cousins in jeans and hoodies holding cotton candy"
+      }
+    },
+    {
+      "id": "desert-picnic",
+      "title": "Desert picnic with tents, a campfire and a falcon",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "desert-picnic/outline.svg",
+        "regions": "desert-picnic/regions.png",
+        "palette": "desert-picnic/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A hooded saker falcon on its handler's gloved arm; the handler wears a thobe and shemagh"
+      }
+    },
+    {
+      "id": "date-market",
+      "title": "Busy date souq with baskets and a friendly shopkeeper",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "date-market/outline.svg",
+        "regions": "date-market/regions.png",
+        "palette": "date-market/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A smiling old shopkeeper in a white thobe, taqiyah cap and ghutra weighing dates"
+      }
+    },
+    {
+      "id": "camel-festival",
+      "title": "Decorated camels at a camel beauty festival",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "camel-festival/outline.svg",
+        "regions": "camel-festival/regions.png",
+        "palette": "camel-festival/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A prize camel with embroidered saddle blankets and tassels, led by a Bedouin in a bisht"
+      }
+    }
+  ]
+}

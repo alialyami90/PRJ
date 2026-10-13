@@ -1,0 +1,10 @@
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+.build/
+.DS_Store
+*.swp
+# Generated from Content/ by Scripts/sync_scenes.py
+SaudiColoring/Resources/Scenes/**/*.png
+SaudiColoring/Resources/Scenes/**/*.svg

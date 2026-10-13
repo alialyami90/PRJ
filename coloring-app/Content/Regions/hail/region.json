@@ -1,0 +1,144 @@
+{
+  "id": "hail",
+  "name": "Hail",
+  "nameAr": "",
+  "order": 7,
+  "scenes": [
+    {
+      "id": "jubbah-rock-art",
+      "title": "Children discovering ancient rock carvings at Jubbah",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "jubbah-rock-art/outline.svg",
+        "regions": "jubbah-rock-art/regions.png",
+        "palette": "jubbah-rock-art/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Children in caps and sneakers tracing an ancient ibex carving"
+      }
+    },
+    {
+      "id": "aarif-fort",
+      "title": "Aarif Fort on the hill above the old town",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "aarif-fort/outline.svg",
+        "regions": "aarif-fort/regions.png",
+        "palette": "aarif-fort/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A boy in a thobe and shemagh ringing the fort bell"
+      }
+    },
+    {
+      "id": "hail-rally",
+      "title": "Desert rally cars and buggies jumping over dunes",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hail-rally/outline.svg",
+        "regions": "hail-rally/regions.png",
+        "palette": "hail-rally/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A rally driver in a racing suit and helmet beside the buggy"
+      }
+    },
+    {
+      "id": "nafud-dunes",
+      "title": "Sandboarding down the red Nafud dunes",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "nafud-dunes/outline.svg",
+        "regions": "nafud-dunes/regions.png",
+        "palette": "nafud-dunes/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a tracksuit sandboarding down the red dune"
+      }
+    },
+    {
+      "id": "hatim-tai",
+      "title": "Hatim Al-Tai welcoming guests with a feast of generosity",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hatim-tai/outline.svg",
+        "regions": "hatim-tai/regions.png",
+        "palette": "hatim-tai/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "Hatim Al-Tai in a bisht and turban serving guests from a giant coffee pot"
+      }
+    },
+    {
+      "id": "qishlah-palace",
+      "title": "Horse parade in front of Al-Qishlah Palace",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "qishlah-palace/outline.svg",
+        "regions": "qishlah-palace/regions.png",
+        "palette": "qishlah-palace/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "White Arabian horses with embroidered saddles ridden by men in bishts"
+      }
+    },
+    {
+      "id": "hail-farm",
+      "title": "Wheat and peach farms with tractors",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hail-farm/outline.svg",
+        "regions": "hail-farm/regions.png",
+        "palette": "hail-farm/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A farmer in overalls and a cap on a tractor with peach baskets"
+      }
+    },
+    {
+      "id": "falconry",
+      "title": "Falconer and his falcon at dawn",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "falconry/outline.svg",
+        "regions": "falconry/regions.png",
+        "palette": "falconry/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A peregrine falcon taking off from a falconer in a bisht and shemagh at dawn"
+      }
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "tabuk",
+  "name": "Tabuk & NEOM coast",
+  "nameAr": "",
+  "order": 5,
+  "scenes": [
+    {
+      "id": "hisma-arches",
+      "title": "Rock arches of the Hisma desert with hikers",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hisma-arches/outline.svg",
+        "regions": "hisma-arches/regions.png",
+        "palette": "hisma-arches/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Hikers in backpacks and caps waving from under a rock arch"
+      }
+    },
+    {
+      "id": "red-sea-islands",
+      "title": "Turtles and dolphins near the Red Sea islands",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "red-sea-islands/outline.svg",
+        "regions": "red-sea-islands/regions.png",
+        "palette": "red-sea-islands/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "Dolphins jumping beside a boat; a dugong below"
+      }
+    },
+    {
+      "id": "hejaz-railway",
+      "title": "Old Hejaz Railway station and locomotive",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hejaz-railway/outline.svg",
+        "regions": "hejaz-railway/regions.png",
+        "palette": "hejaz-railway/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A station master in a thobe, shemagh and old-fashioned cap beside the steam engine"
+      }
+    },
+    {
+      "id": "tabuk-castle",
+      "title": "Tabuk Castle with pilgrims and their camels",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "tabuk-castle/outline.svg",
+        "regions": "tabuk-castle/regions.png",
+        "palette": "tabuk-castle/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "Pilgrims' camels resting by the castle; a guide in a bisht pouring coffee"
+      }
+    },
+    {
+      "id": "wadi-disah",
+      "title": "Wadi Al-Disah canyon with palms and a river",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "wadi-disah/outline.svg",
+        "regions": "wadi-disah/regions.png",
+        "palette": "wadi-disah/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A boy in a thobe and headwrap wading in the stream with a goat"
+      }
+    },
+    {
+      "id": "snow-mountain",
+      "title": "Rare snow day on Jabal Al-Lawz with kids making a snowman",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "snow-mountain/outline.svg",
+        "regions": "snow-mountain/regions.png",
+        "palette": "snow-mountain/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Kids in puffer jackets and beanies building a snowman"
+      }
+    },
+    {
+      "id": "flower-fields",
+      "title": "Spring flower fields with a shepherd girl",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "flower-fields/outline.svg",
+        "regions": "flower-fields/regions.png",
+        "palette": "flower-fields/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A shepherd girl in a long embroidered dress and headscarf with lambs"
+      }
+    },
+    {
+      "id": "neom-future",
+      "title": "Futuristic coastal city with flying taxis",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "neom-future/outline.svg",
+        "regions": "neom-future/regions.png",
+        "palette": "neom-future/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a futuristic jumpsuit next to a friendly robot"
+      }
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "jazan",
+  "name": "Jazan & Farasan",
+  "nameAr": "",
+  "order": 6,
+  "scenes": [
+    {
+      "id": "farasan-islands",
+      "title": "Fishing boats and flamingos at the Farasan Islands",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "farasan-islands/outline.svg",
+        "regions": "farasan-islands/regions.png",
+        "palette": "farasan-islands/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "Flamingos wading; a fisherman in a modern shirt and cap on his boat"
+      }
+    },
+    {
+      "id": "fifa-mountains",
+      "title": "Terraced Fifa Mountains with a village on the peak",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "fifa-mountains/outline.svg",
+        "regions": "fifa-mountains/regions.png",
+        "palette": "fifa-mountains/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A farmer in a colorful wrap, jacket and flower headband on the terraces"
+      }
+    },
+    {
+      "id": "mango-harvest",
+      "title": "Mango harvest at a Jazan farm",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "mango-harvest/outline.svg",
+        "regions": "mango-harvest/regions.png",
+        "palette": "mango-harvest/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "Kids in T-shirts picking mangoes with a farmer in a straw hat"
+      }
+    },
+    {
+      "id": "coffee-terraces",
+      "title": "Coffee farmers picking beans on mountain terraces",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "coffee-terraces/outline.svg",
+        "regions": "coffee-terraces/regions.png",
+        "palette": "coffee-terraces/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A coffee farmer in a wrap and headwrap with a woven coffee basket"
+      }
+    },
+    {
+      "id": "heritage-village",
+      "title": "Jazan heritage village with straw-roofed huts",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "heritage-village/outline.svg",
+        "regions": "heritage-village/regions.png",
+        "palette": "heritage-village/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A woman in a bright Jazani dress and jasmine crown weaving a straw hat"
+      }
+    },
+    {
+      "id": "jazan-port",
+      "title": "Jazan port with cargo ships and cranes",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "jazan-port/outline.svg",
+        "regions": "jazan-port/regions.png",
+        "palette": "jazan-port/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A crane operator in a hard hat and hi-vis vest waving"
+      }
+    },
+    {
+      "id": "sabya-market",
+      "title": "Market day with jasmine garlands and fuul pots",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "sabya-market/outline.svg",
+        "regions": "sabya-market/regions.png",
+        "palette": "sabya-market/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A vendor in a wrap and jacket with jasmine garlands around his neck"
+      }
+    },
+    {
+      "id": "mangroves",
+      "title": "Kayaking through the mangrove forests",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "mangroves/outline.svg",
+        "regions": "mangroves/regions.png",
+        "palette": "mangroves/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "A heron and crabs in the mangrove roots; kids in life jackets kayaking"
+      }
+    }
+  ]
+}

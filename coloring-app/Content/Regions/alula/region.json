@@ -1,0 +1,144 @@
+{
+  "id": "alula",
+  "name": "AlUla",
+  "nameAr": "",
+  "order": 4,
+  "scenes": [
+    {
+      "id": "hegra-tombs",
+      "title": "Camel caravan passing the carved tombs of Hegra",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hegra-tombs/outline.svg",
+        "regions": "hegra-tombs/regions.png",
+        "palette": "hegra-tombs/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A camel caravan with tasselled saddles; a Bedouin guide in a bisht and shemagh"
+      }
+    },
+    {
+      "id": "elephant-rock",
+      "title": "Family picnic under Elephant Rock at night with stars",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "elephant-rock/outline.svg",
+        "regions": "elephant-rock/regions.png",
+        "palette": "elephant-rock/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A family in cozy jackets roasting marshmallows under the stars"
+      }
+    },
+    {
+      "id": "old-town-alula",
+      "title": "Old Town mud houses and the hilltop castle",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "old-town-alula/outline.svg",
+        "regions": "old-town-alula/regions.png",
+        "palette": "old-town-alula/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A boy in a thobe and shemagh carrying water jars through the old town"
+      }
+    },
+    {
+      "id": "hot-air-balloons",
+      "title": "Hot-air balloons floating over sandstone canyons",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "hot-air-balloons/outline.svg",
+        "regions": "hot-air-balloons/regions.png",
+        "palette": "hot-air-balloons/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a hoodie and sunglasses waving from a balloon basket"
+      }
+    },
+    {
+      "id": "dadan-lion-tombs",
+      "title": "Explorers looking up at the Dadan lion tombs",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "dadan-lion-tombs/outline.svg",
+        "regions": "dadan-lion-tombs/regions.png",
+        "palette": "dadan-lion-tombs/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A storyteller in a bisht pointing at the lion carvings for children in thobes"
+      }
+    },
+    {
+      "id": "oasis-walk",
+      "title": "Shaded palm oasis walk with a stream and frogs",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "oasis-walk/outline.svg",
+        "regions": "oasis-walk/regions.png",
+        "palette": "oasis-walk/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "Frogs and a kingfisher by the stream; kids in casual clothes on the path"
+      }
+    },
+    {
+      "id": "maraya-mirror",
+      "title": "Maraya mirror building reflecting the desert",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "maraya-mirror/outline.svg",
+        "regions": "maraya-mirror/regions.png",
+        "palette": "maraya-mirror/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a modern dress taking a selfie with her reflection"
+      }
+    },
+    {
+      "id": "star-gazing",
+      "title": "Astronomer kids with a telescope under the Milky Way",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "star-gazing/outline.svg",
+        "regions": "star-gazing/regions.png",
+        "palette": "star-gazing/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "A desert fox peeking at kids in sweaters with a telescope"
+      }
+    }
+  ]
+}

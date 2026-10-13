@@ -1,0 +1,87 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this is
+
+"Saudi Colors" — a kids' coloring book app for iPad (primary) and iPhone, native SwiftUI, iOS/iPadOS 17+. Content is 8 Saudi regions/cultures × 8 scenes each (64 scenes). Every scene is a full scene (place + people/animals + activity), never an isolated object. Three coloring modes on every scene: **Fill** (tap a region), **Freestyle** (finger/Pencil brush), **Paint by Number** (numbered regions with a suggested palette). Monetised with ads.
+
+The Xcode project is generated, not committed: `project.yml` (XcodeGen) is the source of truth for targets and settings.
+
+## Commands
+
+```bash
+brew install xcodegen                 # once
+xcodegen generate                     # produces SaudiColoring.xcodeproj (git-ignored)
+open SaudiColoring.xcodeproj
+
+# Build / test from the CLI (iPad simulator is the default destination)
+xcodebuild -project SaudiColoring.xcodeproj -scheme SaudiColoring \
+  -destination 'platform=iOS Simulator,name=iPad Pro 13-inch (M4)' build
+xcodebuild -project SaudiColoring.xcodeproj -scheme SaudiColoring \
+  -destination 'platform=iOS Simulator,name=iPad Pro 13-inch (M4)' test
+
+# Single test class / method
+xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests
+xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStopsAtOutline
+
+# Content checks (no Xcode needed)
+python3 Scripts/validate_content.py   # every region.json has 8 scenes, asset paths exist for non-todo scenes
+python3 Scripts/sync_scenes.py        # copies approved scene assets from Content/ into Resources/Scenes/
+swiftlint                             # if installed; config in .swiftlint.yml
+```
+
+Re-run `xcodegen generate` after adding or moving Swift files or resources; Xcode will not pick them up otherwise.
+
+## Architecture
+
+```
+SaudiColoring/
+  App/          entry point, root navigation, DI container (AppEnvironment)
+  Models/       Region, Scene, Palette, ColoringDocument (pure value types, Codable)
+  Engine/       the coloring engine — no SwiftUI here
+  Features/     one folder per screen; each has a View + ViewModel (@Observable)
+  Services/     Ads, Persistence, Analytics behind protocols; concrete impls injected by App/
+  Resources/    Scenes/<region>/<scene>/, Assets, Localization (en + ar), Fonts, Sounds
+Content/        source-of-truth scene art + region.json manifests (not shipped as-is)
+docs/           content plan, monetization, App Store notes
+Scripts/        content validation / sync
+Tests/          unit tests; the Engine is the main thing worth testing
+```
+
+### Scene asset contract
+
+Each scene ships three files, produced from the master art in `Content/`:
+
+- `outline.svg` (or `outline.pdf` as a vector asset) — the black line art shown on top of everything.
+- `regions.png` — an index map the same size as the outline where every fillable region is a unique flat colour (`regionId` = RGB packed to Int). The engine never flood-fills the rendered image; it looks up the region id at the touch point in this map. That makes Fill and Paint-by-Number O(1) per tap and leak-proof.
+- `palette.json` — `[{ "regionId": 0xRRGGBB, "number": 3, "color": "#F4A62A" }]`, the paint-by-number answer key. Fill mode uses it only as a suggested palette.
+
+`Content/Regions/<region>/region.json` lists the 8 scenes, their titles (en/ar), an `era` (`traditional` | `modern`), a `character` (`type`: person in the region's own dress, or a local animal; plus a `description`), and production `status` (`todo` → `sketched` → `vectorized` → `approved`). `Scripts/sync_scenes.py` only copies `approved` scenes into `Resources/`.
+
+### Engine (`Engine/`)
+
+- `RegionMap` — loads `regions.png` into a `[UInt32]` buffer; `regionId(at:)`.
+- `ColoringState` — `[regionId: Color]` for fill/PBN plus a `[Stroke]` list for freestyle, with an undo stack. Everything the user does is a `ColoringAction`; views never mutate state directly.
+- `CanvasRenderer` — composites: fill layer (regions coloured via the map) → freestyle stroke layer → outline on top. Used by both the live canvas and the thumbnail/share export.
+- Modes are strategies over the same `ColoringState`: `FillTool`, `BrushTool`, `PaintByNumberTool`. PBN is Fill plus the overlay of numbers and a "correct colour" check.
+
+Keep the engine free of SwiftUI/UIKit view types so it stays unit-testable; it may use CoreGraphics.
+
+### Persistence
+
+One `ColoringDocument` per (scene, user) saved as JSON in Application Support plus a cached PNG thumbnail. No accounts, no backend, nothing leaves the device except ad SDK traffic.
+
+### Ads & the Kids Category (read before touching `Services/Ads`)
+
+This app is for kids, so on the App Store it must go in the **Kids Category** and comply with App Review guideline 1.3 and 5.1.4: no behavioural/targeted ads, no third-party analytics or ad SDKs that collect identifying data, no IDFA, and a parental gate before anything that leaves the app (links, purchases, settings that affect ads). In practice that means contextual-only ads from a COPPA-compliant network (e.g. Google AdMob with `tagForChildDirectedTreatment` + `maxAdContentRating = G`, or a kids-specialist network like SuperAwesome/Kidoz), and the `AdService` protocol must stay swappable so the network can be changed without touching Features. Never show interstitials mid-stroke; ad slots are the home/gallery banner and an optional rewarded "unlock a new palette" after a scene is finished. Ad revenue reporting the user wants to measure comes from the network's dashboard, not in-app.
+
+### Localization
+
+Arabic is a first-class language: all strings go through `Localizable.xcstrings`, layout must be RTL-safe (use leading/trailing, never left/right), and region/scene names carry `nameAr`/`titleAr` in the manifests.
+
+## Conventions
+
+- iPad first: design layouts for regular width (sidebar + canvas), then adapt to compact. Test on iPad simulators before iPhone.
+- Touch targets ≥ 60pt in kid-facing UI; no text-only buttons for children (icon + label).
+- No em-dashes in user-facing copy; keep strings short, simple, and friendly for ages 4–9.

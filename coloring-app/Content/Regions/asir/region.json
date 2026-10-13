@@ -1,0 +1,144 @@
+{
+  "id": "asir",
+  "name": "Asir (Abha)",
+  "nameAr": "",
+  "order": 3,
+  "scenes": [
+    {
+      "id": "flower-men",
+      "title": "Flower-men of Rijal Almaa wearing herb crowns on a mountain path",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "flower-men/outline.svg",
+        "regions": "flower-men/regions.png",
+        "palette": "flower-men/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "Rijal Almaa men in colorful wraps and jackets wearing crowns of basil and marigold"
+      }
+    },
+    {
+      "id": "al-qatt-houses",
+      "title": "Painting colorful Al-Qatt Al-Asiri patterns on a house",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "al-qatt-houses/outline.svg",
+        "regions": "al-qatt-houses/regions.png",
+        "palette": "al-qatt-houses/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A grandmother in a black-and-red Asiri dress and straw hat painting Al-Qatt patterns with a girl"
+      }
+    },
+    {
+      "id": "abha-fog",
+      "title": "Foggy terraces of Abha with sheep and a shepherd",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "abha-fog/outline.svg",
+        "regions": "abha-fog/regions.png",
+        "palette": "abha-fog/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "animal",
+        "description": "A shepherd's sheep and goats; the shepherd in a wrap, leather belt and wide straw hat"
+      }
+    },
+    {
+      "id": "cable-car",
+      "title": "Cable car over green mountains to Al-Souda",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "cable-car/outline.svg",
+        "regions": "cable-car/regions.png",
+        "palette": "cable-car/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A family in jackets and jeans inside the cable car pointing at the view"
+      }
+    },
+    {
+      "id": "baboons-road",
+      "title": "Baboons watching cars on the mountain road",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "baboons-road/outline.svg",
+        "regions": "baboons-road/regions.png",
+        "palette": "baboons-road/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "animal",
+        "description": "A hamadryas baboon family sitting on the roadside watching a passing car"
+      }
+    },
+    {
+      "id": "honey-bees",
+      "title": "Beekeeper collecting Sidr honey in the mountains",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "honey-bees/outline.svg",
+        "regions": "honey-bees/regions.png",
+        "palette": "honey-bees/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A beekeeper in a wrap and straw hat with a sidr honey jar, bees buzzing around"
+      }
+    },
+    {
+      "id": "stone-village",
+      "title": "Stone tower houses of Rijal Almaa village",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "stone-village/outline.svg",
+        "regions": "stone-village/regions.png",
+        "palette": "stone-village/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A boy in an embroidered jacket and headwrap leading a donkey up the stone steps"
+      }
+    },
+    {
+      "id": "asir-market",
+      "title": "Tuesday market with pottery, baskets and spices",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "todo",
+      "assets": {
+        "outline": "asir-market/outline.svg",
+        "regions": "asir-market/regions.png",
+        "palette": "asir-market/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A woman in a colorful Asiri dress with silver jewelry selling baskets"
+      }
+    }
+  ]
+}
