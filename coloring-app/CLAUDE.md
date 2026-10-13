@@ -28,6 +28,7 @@ xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStop
 # Content checks (no Xcode needed)
 python3 Scripts/validate_content.py   # every region.json has 8 scenes, asset paths exist for non-todo scenes
 python3 Scripts/sync_scenes.py        # copies approved scene assets from Content/ into Resources/Scenes/
+python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene in Resources/SampleScene/ (needs Pillow)
 swiftlint                             # if installed; config in .swiftlint.yml
 ```
 
@@ -63,7 +64,9 @@ Each scene ships three files, produced from the master art in `Content/`:
 
 - `RegionMap` — loads `regions.png` into a `[UInt32]` buffer; `regionId(at:)`.
 - `ColoringState` — `[regionId: Color]` for fill/PBN plus a `[Stroke]` list for freestyle, with an undo stack. Everything the user does is a `ColoringAction`; views never mutate state directly.
-- `CanvasRenderer` — composites: fill layer (regions coloured via the map) → freestyle stroke layer → outline on top. Used by both the live canvas and the thumbnail/share export.
+- `CanvasRenderer` — composites: fill layer (regions coloured via the map) → freestyle stroke layer → outline on top. The outline is drawn from the map's `0x000000` pixels, so `outline.svg` is not needed at runtime yet. Used by both the live canvas and the thumbnail/share export.
+- `SceneAssets` — loads `regions.png` + `palette.json` for a scene from `Scenes/<region>/<scene>/` in the bundle, falling back to `SampleScene/` (generated placeholder art) so every scene is playable before its art is approved. Both folders are folder references in `project.yml`; anything else under `SaudiColoring/` is flattened into the bundle root.
+- `CanvasGeometry` — aspect-fit mapping between screen points and image pixels. `RegionMap.regionId(near:radius:)` lets a tap that lands on an outline fill the nearest region.
 - Modes are strategies over the same `ColoringState`: `FillTool`, `BrushTool`, `PaintByNumberTool`. PBN is Fill plus the overlay of numbers and a "correct colour" check.
 
 Keep the engine free of SwiftUI/UIKit view types so it stays unit-testable; it may use CoreGraphics.
@@ -79,6 +82,8 @@ This app is for kids, so on the App Store it must go in the **Kids Category** an
 ### Localization
 
 Arabic is a first-class language: all strings go through `Localizable.xcstrings`, layout must be RTL-safe (use leading/trailing, never left/right), and region/scene names carry `nameAr`/`titleAr` in the manifests.
+
+CI (`.github/workflows/coloring-app.yml`) runs the content checks on Linux and `xcodebuild test` on a macOS runner's iPad simulator for every PR that touches `coloring-app/`.
 
 ## Conventions
 

@@ -1,0 +1,61 @@
+import SwiftUI
+
+/// Big round swatches a small finger can hit: the scene's suggested colours first, then a fixed crayon box.
+struct ColorTray: View {
+    let suggested: [String]
+    @Binding var selection: String
+
+    static let crayons = [
+        "#E53935", "#FB8C00", "#FDD835", "#43A047", "#00897B", "#1E88E5",
+        "#3949AB", "#8E24AA", "#D81B60", "#6D4C41", "#9E9E9E", "#212121", "#FFFFFF",
+    ]
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(suggested, id: \.self) { swatch($0) }
+                if !suggested.isEmpty {
+                    Divider().frame(height: 48)
+                }
+                ForEach(Self.crayons.filter { !suggested.contains($0) }, id: \.self) { swatch($0) }
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+        }
+        .background(.bar)
+    }
+
+    private func swatch(_ hex: String) -> some View {
+        let isSelected = hex == selection
+        return Button {
+            selection = hex
+        } label: {
+            Circle()
+                .fill(Color(hex: hex))
+                .overlay(Circle().strokeBorder(.black.opacity(0.25), lineWidth: 2))
+                .overlay(Circle().strokeBorder(.primary, lineWidth: isSelected ? 5 : 0).padding(-8))
+                .frame(width: 60, height: 60)
+                .scaleEffect(isSelected ? 1.1 : 1)
+                .animation(.spring(duration: 0.2), value: isSelected)
+                .padding(8)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text("Colour \(hex)"))
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+}
+
+extension Color {
+    /// "#RRGGBB" → Color; unparseable strings render as white paper.
+    init(hex: String) {
+        let rgb = SceneColor.rgb(fromHex: hex) ?? 0xFFFFFF
+        self.init(.sRGB,
+                  red: Double(rgb >> 16 & 0xFF) / 255,
+                  green: Double(rgb >> 8 & 0xFF) / 255,
+                  blue: Double(rgb & 0xFF) / 255)
+    }
+}
+
+#Preview {
+    ColorTray(suggested: ["#7EC8E3", "#FFC93C"], selection: .constant("#FFC93C"))
+}

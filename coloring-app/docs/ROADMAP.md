@@ -1,11 +1,11 @@
 # Roadmap
 
 ## M1 — Playable prototype (1 region, 2 scenes)
-- [ ] XcodeGen project builds on iPad simulator
+- [ ] XcodeGen project builds on iPad simulator (CI: `.github/workflows/coloring-app.yml`)
 - [ ] Region/scene gallery
-- [ ] Fill mode working on the region-map engine
+- [x] Fill mode working on the region-map engine (renderer, colour tray, outline-tolerant taps)
 - [ ] Freestyle brush with undo
-- [ ] Save/restore a coloring document
+- [x] Save/restore a coloring document
 
 ## M2 — Full modes + content pipeline
 - [ ] Paint-by-Number overlay and correctness check

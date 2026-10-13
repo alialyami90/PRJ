@@ -1,0 +1,60 @@
+name: Coloring app
+
+on:
+  pull_request:
+    paths: ["coloring-app/**", ".github/workflows/coloring-app.yml"]
+  push:
+    branches: [main]
+    paths: ["coloring-app/**", ".github/workflows/coloring-app.yml"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: coloring-app
+
+jobs:
+  content:
+    name: Content checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 Scripts/validate_content.py
+      - name: Sample scene is up to date
+        run: |
+          pip install --quiet pillow
+          python3 Scripts/make_sample_scene.py
+          git diff --exit-code -- SaudiColoring/Resources/SampleScene/palette.json SaudiColoring/Resources/SampleScene/outline.svg
+
+  ios:
+    name: Build and test (iPad simulator)
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - run: xcodegen generate
+      - name: Pick an iPad simulator
+        id: sim
+        run: |
+          udid=$(xcrun simctl list devices available --json | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          ipads = [d for runtime, ds in sorted(devices.items()) if "iOS" in runtime for d in ds if d["name"].startswith("iPad")]
+          print(ipads[-1]["udid"])')
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+      - name: Test
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project SaudiColoring.xcodeproj -scheme SaudiColoring \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO | tee xcodebuild.log | grep -E "error:|warning: .*SaudiColoring|Test Case .* (passed|failed)|\*\* (BUILD|TEST)"
+      - name: Keep the full log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild-log
+          path: coloring-app/xcodebuild.log

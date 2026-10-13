@@ -24,7 +24,8 @@ struct SceneCatalog: Codable {
     static func loadFromBundle() -> SceneCatalog {
         guard let url = Bundle.main.url(forResource: "catalog", withExtension: "json", subdirectory: "Scenes"),
               let data = try? Data(contentsOf: url),
-              let regions = try? JSONDecoder().decode([Region].self, from: data)
+              let regions = try? JSONDecoder().decode([Region].self, from: data),
+              !regions.isEmpty // no scene approved yet: keep the sample so the app is still playable
         else { return .sample }
         return SceneCatalog(regions: regions.sorted { $0.order < $1.order })
     }
