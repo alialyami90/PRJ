@@ -28,7 +28,7 @@ xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStop
 # Content checks (no Xcode needed)
 python3 Scripts/validate_content.py   # every region.json has 8 scenes, asset paths exist for non-todo scenes
 python3 Scripts/sync_scenes.py        # copies approved scene assets from Content/ into Resources/Scenes/
-python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene in Resources/SampleScene/ (needs Pillow)
+python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) and placeholder AppIcon (needs Pillow)
 swiftlint                             # if installed; config in .swiftlint.yml
 ```
 
