@@ -19,7 +19,7 @@ final class SceneAssetsTests: XCTestCase {
     }
 
     func testPaletteDecodesTheOnDiskArrayFormat() throws {
-        let json = #"[{"regionId": 16711680, "number": 2, "color": "#FF0000"}, {"regionId": 255, "number": 1, "color": "#0000FF"}, {"regionId": 65280, "number": 2, "color": "#FF0000"}]"#
+        let json = ##"[{"regionId": 16711680, "number": 2, "color": "#FF0000"}, {"regionId": 255, "number": 1, "color": "#0000FF"}, {"regionId": 65280, "number": 2, "color": "#FF0000"}]"##
         let palette = try Palette.decode(from: Data(json.utf8))
         XCTAssertEqual(palette.entry(for: 0xFF0000)?.number, 2)
         XCTAssertEqual(palette.swatches, [.init(number: 1, color: "#0000FF"), .init(number: 2, color: "#FF0000")])
