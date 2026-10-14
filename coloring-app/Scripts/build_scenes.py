@@ -4,7 +4,7 @@
 Each build writes outline.svg, regions.png, palette.json and preview.png next to its
 scene.py. Exits non-zero if any scene fails to build. Needs Pillow.
 """
-import runpy
+import subprocess
 import sys
 from pathlib import Path
 
@@ -14,10 +14,11 @@ failed = []
 for scene in sorted(ROOT.glob("*/*/scene.py")):
     if only and scene.parent.parent.name not in only:
         continue
-    try:
-        runpy.run_path(str(scene), run_name="__main__")
-    except Exception as e:  # report and keep going so one bad scene doesn't hide the rest
-        failed.append(f"{scene.parent.parent.name}/{scene.parent.name}: {e!r}")
+    # One process per scene: every region has its own _figures module of the same name.
+    r = subprocess.run([sys.executable, "-B", str(scene)], capture_output=True, text=True)
+    print(r.stdout, end="")
+    if r.returncode:  # report and keep going so one bad scene doesn't hide the rest
+        failed.append(f"{scene.parent.parent.name}/{scene.parent.name}: {r.stderr.strip().splitlines()[-1]}")
 if failed:
     print("FAILED:\n  " + "\n  ".join(failed))
     sys.exit(1)
