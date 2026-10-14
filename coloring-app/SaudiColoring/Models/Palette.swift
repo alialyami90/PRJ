@@ -13,14 +13,28 @@ struct PaletteEntry: Codable, Hashable {
 struct Palette: Codable {
     let entries: [PaletteEntry]
 
+    /// palette.json on disk is a bare array of entries.
+    static func decode(from data: Data) throws -> Palette {
+        Palette(entries: try JSONDecoder().decode([PaletteEntry].self, from: data))
+    }
+
     func entry(for regionId: UInt32) -> PaletteEntry? {
         entries.first { $0.regionId == regionId }
     }
 
-    /// Distinct colours in number order, used as the colour tray in PBN mode.
-    var swatches: [(number: Int, color: String)] {
+    /// Distinct colours in number order, used as the colour tray in PBN mode
+    /// and as the "suggested" row in Fill mode.
+    var swatches: [Swatch] {
         var seen = Set<Int>()
-        return entries.compactMap { seen.insert($0.number).inserted ? ($0.number, $0.color) : nil }
-            .sorted { $0.number < $1.number }
+        var result: [Swatch] = []
+        for entry in entries where seen.insert(entry.number).inserted {
+            result.append(Swatch(number: entry.number, color: entry.color))
+        }
+        return result.sorted { $0.number < $1.number }
+    }
+
+    struct Swatch: Hashable {
+        let number: Int
+        let color: String
     }
 }

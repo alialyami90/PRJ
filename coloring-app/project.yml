@@ -6,7 +6,7 @@ options:
   xcodeVersion: "16.0"
 settings:
   base:
-    SWIFT_VERSION: "5.10"
+    SWIFT_VERSION: "5.0" # language mode; Xcode only accepts 4.0, 4.2, 5.0, 6.0
     TARGETED_DEVICE_FAMILY: "1,2"
     SUPPORTS_MACCATALYST: NO
     DEVELOPMENT_LANGUAGE: en
@@ -16,6 +16,16 @@ targets:
     platform: iOS
     sources:
       - path: SaudiColoring
+        excludes:
+          - "Resources/Scenes"
+          - "Resources/Scenes/**"
+          - "Resources/SampleScene"
+          - "Resources/SampleScene/**"
+      # Folder references keep the <region>/<scene>/ layout in the bundle (SceneAssets looks files up by subdirectory).
+      - path: SaudiColoring/Resources/Scenes
+        type: folder
+      - path: SaudiColoring/Resources/SampleScene
+        type: folder
     info:
       path: SaudiColoring/App/Info.plist
       properties:
@@ -41,6 +51,9 @@ targets:
     platform: iOS
     sources:
       - path: Tests/SaudiColoringTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: SaudiColoring
 # packages:

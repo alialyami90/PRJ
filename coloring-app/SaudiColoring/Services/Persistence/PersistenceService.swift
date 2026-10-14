@@ -12,9 +12,9 @@ final class FilePersistenceService: PersistenceService {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
-    init() {
-        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        root = base.appendingPathComponent("Documents", isDirectory: true)
+    init(root: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("Documents", isDirectory: true)) {
+        self.root = root
     }
 
     private func url(_ regionId: String, _ sceneId: String) -> URL {

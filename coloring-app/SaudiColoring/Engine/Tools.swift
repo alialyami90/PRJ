@@ -14,9 +14,13 @@ struct FillTool: ColoringTool {
     let mode: ColoringMode = .fill
     let map: RegionMap
     var color: String
+    /// Image pixels a tap may miss by (e.g. landing on an outline) and still fill the nearest region.
+    var tolerance: Int = 0
 
     func began(at point: CGPoint, state: ColoringState) {
-        guard let id = map.regionId(at: point) else { return }
+        guard let id = map.regionId(near: point, radius: tolerance) else { return }
+        // Re-tapping a region with the colour it already has is not a new undo step.
+        guard state.document.fills[id] != color else { return }
         state.dispatch(.fill(regionId: id, color: color))
     }
     func moved(to point: CGPoint, state: ColoringState) {}

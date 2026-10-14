@@ -1,0 +1,97 @@
+[
+  {
+    "regionId": 998001,
+    "number": 1,
+    "color": "#7EC8E3"
+  },
+  {
+    "regionId": 1996002,
+    "number": 2,
+    "color": "#FFC93C"
+  },
+  {
+    "regionId": 2994003,
+    "number": 3,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 3992004,
+    "number": 4,
+    "color": "#E8B86D"
+  },
+  {
+    "regionId": 4990005,
+    "number": 5,
+    "color": "#F2D49B"
+  },
+  {
+    "regionId": 5988006,
+    "number": 6,
+    "color": "#C68B59"
+  },
+  {
+    "regionId": 6986007,
+    "number": 7,
+    "color": "#B5764A"
+  },
+  {
+    "regionId": 7984008,
+    "number": 7,
+    "color": "#B5764A"
+  },
+  {
+    "regionId": 8982009,
+    "number": 8,
+    "color": "#8C5A3C"
+  },
+  {
+    "regionId": 9980010,
+    "number": 8,
+    "color": "#8C5A3C"
+  },
+  {
+    "regionId": 10978011,
+    "number": 9,
+    "color": "#6B3E26"
+  },
+  {
+    "regionId": 11976012,
+    "number": 10,
+    "color": "#3D2817"
+  },
+  {
+    "regionId": 12974013,
+    "number": 10,
+    "color": "#3D2817"
+  },
+  {
+    "regionId": 13972014,
+    "number": 11,
+    "color": "#E0C9A6"
+  },
+  {
+    "regionId": 14970015,
+    "number": 12,
+    "color": "#8B5A2B"
+  },
+  {
+    "regionId": 15968016,
+    "number": 13,
+    "color": "#4CAF50"
+  },
+  {
+    "regionId": 188801,
+    "number": 13,
+    "color": "#4CAF50"
+  },
+  {
+    "regionId": 1186802,
+    "number": 13,
+    "color": "#4CAF50"
+  },
+  {
+    "regionId": 2184803,
+    "number": 13,
+    "color": "#4CAF50"
+  }
+]
