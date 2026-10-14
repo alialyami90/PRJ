@@ -35,6 +35,7 @@ python3 Scripts/sync_scenes.py        # copies vectorized + approved scenes from
 python3 Scripts/sync_scenes.py --approved-only  # release builds: approved scenes only
 python3 Scripts/build_scenes.py [region...]  # rebuilds every scene's art: illustrator art/ if present, else its scene.py sketch (needs Pillow + numpy)
 python3 Scripts/import_illustration.py Content/Regions/<r>/<s>  # imports one scene's illustrator art/line.png + art/color.png
+python3 Scripts/adopt_line_art.py <new_line.png> Content/Regions/<r>/<s>  # redrawn line art with no colour file: crops its frame, scales it, colours it from the old art/color.png (then import)
 python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) and placeholder AppIcon (needs Pillow)
 swiftlint                             # if installed; config in .swiftlint.yml
 ```
