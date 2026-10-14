@@ -1,0 +1,19 @@
+# Raw illustration packs. The processed art already lives in
+# coloring-app/Content, and the raw packs are too large for GitHub
+# (the Rev2 zip alone is ~200 MB, over the 100 MB file limit).
+Images/
+*.zip
+
+# Xcode build output and per-user state
+DerivedData/
+build/
+xcuserdata/
+*.xcuserstate
+*.ipa
+*.dSYM/
+*.dSYM.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
