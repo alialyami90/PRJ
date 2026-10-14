@@ -6,10 +6,13 @@ import Foundation
 struct RegionMap {
     let width: Int
     let height: Int
-    /// 0xRRGGBB per pixel, row-major. 0x000000 is reserved for "outline / not fillable".
+    /// 0xRRGGBB per pixel, row-major. 0x000000 (outline) and 0xFFFFFF (paper) are not regions.
     let pixels: [UInt32]
 
     static let outline: UInt32 = 0x000000
+    /// White the child cannot colour: shapes too small for a finger, and the shine on a pupil that the
+    /// line art leaves open to the face (Scripts/import_illustration.py). Always drawn as paper.
+    static let paper: UInt32 = 0xFFFFFF
 
     init(width: Int, height: Int, pixels: [UInt32]) {
         precondition(pixels.count == width * height)
@@ -44,16 +47,19 @@ struct RegionMap {
         self.init(width: w, height: h, pixels: px)
     }
 
-    /// Region id at an image-space point, or nil when outside the image or on the outline.
+    /// Region id at an image-space point, or nil when outside the image, on the outline or on paper.
     func regionId(at point: CGPoint) -> UInt32? {
         guard point.x >= 0, point.y >= 0 else { return nil }
         let x = Int(point.x), y = Int(point.y)
         guard x < width, y < height else { return nil }
         let id = pixels[y * width + x]
-        return id == Self.outline ? nil : id
+        return Self.isRegion(id) ? id : nil
     }
 
-    /// The region at `point`, or, when the point is on the outline, the nearest region within
+    /// False for the outline and paper.
+    static func isRegion(_ id: UInt32) -> Bool { id != outline && id != paper }
+
+    /// The region at `point`, or, when the point is on the outline or paper, the nearest region within
     /// `radius` pixels. Kids' taps land on the lines all the time.
     func regionId(near point: CGPoint, radius: Int) -> UInt32? {
         if let id = regionId(at: point) { return id }
@@ -64,7 +70,7 @@ struct RegionMap {
         for y in max(0, cy - radius)...min(height - 1, cy + radius) {
             for x in max(0, cx - radius)...min(width - 1, cx + radius) {
                 let id = pixels[y * width + x]
-                guard id != Self.outline else { continue }
+                guard Self.isRegion(id) else { continue }
                 let d = (x - cx) * (x - cx) + (y - cy) * (y - cy)
                 if d <= radius * radius, d < (best?.distance ?? .max) { best = (d, id) }
             }
@@ -74,6 +80,6 @@ struct RegionMap {
 
     /// All distinct region ids, for building masks and PBN completion checks.
     var regionIds: Set<UInt32> {
-        Set(pixels).subtracting([Self.outline])
+        Set(pixels).subtracting([Self.outline, Self.paper])
     }
 }

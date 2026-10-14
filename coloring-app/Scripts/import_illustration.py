@@ -6,9 +6,12 @@
 Reads <scene>/art/line.png (black lines on white) and <scene>/art/color.png (the same
 lines with every shape filled one flat colour), both 2048x1536, and writes next to them:
 
-- regions.png   every closed white area of the line art as one region, a unique RGB each
+- regions.png   every closed white area of the line art as one region, a unique RGB each;
+                0xFFFFFF (paper: stays white, never coloured) for light shapes too small to tap and
+                for eye highlights, 0x000000 for the lines and for dark shapes too small or filled black
+                in color.png
 - palette.json  each region's colour = the most common colour inside it in color.png
-- outline.png   the line art, with the shapes too small to tap burned in black
+- outline.png   the line art, with the 0x000000 shapes burned in black
 - preview.png   1024x768 coloured preview
 
 It also points the scene's `outline` asset in region.json at outline.png. A scene with
@@ -28,9 +31,16 @@ from scene_kit import H, MAX_COLOURS, MAX_REGIONS, MIN_REGION_PX, W  # noqa: E40
 
 INK_LEVEL = 128        # line art pixels darker than this are outline
 DARK_FILL = 40         # a shape filled (near) black in color.png is drawn as solid ink
+MERGE_PX = 30          # a shape too small to tap joins a region of its own colour this close (a bit of leaf),
+DARK_SMALL = 100       # ...or else is solid ink when darker than this (hair, shoes), paper white when lighter
+                       # (teeth, the shine in an eye)
 SAME_COLOUR = 12       # colours closer than this (sum of RGB differences) are one paint (export drift)
 MIXED_SHARE = 0.15     # a second colour this big inside one region means a gap in the lines,
 MIXED_PX = 4 * MIN_REGION_PX  # ...as does any second colour this many px (a gap into a huge sky)
+PAPER = 0xFFFFFF       # regions.png id of white the child cannot colour (same value in RegionMap.swift)
+SOLID_INK = 7          # ink at least 2x this thick is a solid black area (pupil, hair, mouth), not a line
+HIGHLIGHT_GAP = 4      # a white gap up to 2x this wide running along solid black is a highlight
+DIRS = ((1, 0), (-1, 0), (0, 1), (0, -1))
 
 
 def label(free):
@@ -68,6 +78,33 @@ def label(free):
         r = roots.setdefault(find(k), len(roots) + 1)
         labels[ys[k], s[k]:e[k]] = r
     return labels, len(roots)
+
+
+def shifted(a, dy, dx, fill):
+    out = np.full_like(a, fill)
+    h, w = a.shape
+    out[max(dy, 0):h + min(dy, 0), max(dx, 0):w + min(dx, 0)] = a[max(-dy, 0):h + min(-dy, 0), max(-dx, 0):w + min(-dx, 0)]
+    return out
+
+
+def grow(mask, times):
+    for _ in range(times):
+        mask = mask | shifted(mask, 1, 0, False) | shifted(mask, -1, 0, False) | shifted(mask, 0, 1, False) | shifted(mask, 0, -1, False)
+    return mask
+
+
+def shrink(mask, times):
+    for _ in range(times):
+        mask = mask & shifted(mask, 1, 0, True) & shifted(mask, -1, 0, True) & shifted(mask, 0, 1, True) & shifted(mask, 0, -1, True)
+    return mask
+
+
+def highlights(ink):
+    """White gaps narrower than 2 * HIGHLIGHT_GAP px that run along solid black: the shine on a pupil,
+    a strand of hair. The line art often leaves them open to the face, so they would take its colour."""
+    solid = grow(shrink(ink, SOLID_INK), SOLID_INK + 6)  # within 6 px of black at least 15 px thick
+    narrow = shrink(grow(ink, HIGHLIGHT_GAP), HIGHLIGHT_GAP)  # gaps closed by thickening the lines
+    return solid & narrow & ~ink
 
 
 def hexcolour(c):
@@ -130,21 +167,21 @@ def import_scene(scene_dir):
     for lab, i in zip(uniq.tolist(), nz[idx].tolist()):
         first_px[lab] = divmod(i, W)
 
-    burn, keep = [], []
+    burn, paper, small, keep = [], [], [], []
     for lab in range(1, n + 1):
         col = best[lab][0]
         r, g, b = col >> 16, col >> 8 & 0xFF, col & 0xFF
-        if areas[lab] < MIN_REGION_PX or max(r, g, b) < DARK_FILL:
+        if max(r, g, b) < DARK_FILL:
             burn.append(lab)
+            continue
+        if areas[lab] < MIN_REGION_PX:
+            small.append(lab)
             continue
         keep.append(lab)
         mixed = second.get(lab, 0)
         if mixed >= MIXED_PX or (mixed >= MIN_REGION_PX and mixed >= MIXED_SHARE * areas[lab]):
             y, x = first_px[lab]
             problems.append(f"gap? region from ({x},{y}) holds two colours")
-    small = sum(1 for lab in burn if areas[lab] < MIN_REGION_PX and areas[lab] >= 50)
-    if small:
-        problems.append(f"{small} shape(s) under {MIN_REGION_PX}px drawn as solid ink")
 
     # One paint per group of near-identical colours; the biggest area names the group.
     by_area = {}
@@ -167,11 +204,38 @@ def import_scene(scene_dir):
     used = set()
     for i, lab in enumerate(keep, 1):
         rid = (i * 0x0F3A71) & 0xFFFFFF
-        assert rid and rid not in used
+        assert rid and rid != PAPER and rid not in used
         used.add(rid)
         region_id[lab] = rid
         colour_of[lab] = paint_of(best[lab][0])
     order = [col for _, col in paints]
+
+    # Shapes too small to tap: join the region of the same paint they sit next to, so they colour with it;
+    # failing that, solid ink if dark and paper if light.
+    by_label = np.argsort(flat, kind="stable")
+    starts = np.searchsorted(flat[by_label], np.arange(n + 2))
+    unmerged = 0
+    for lab in small:
+        px = by_label[starts[lab]:starts[lab + 1]]
+        ys, xs = px // W, px % W
+        y0, y1 = max(ys.min() - MERGE_PX, 0), min(ys.max() + MERGE_PX + 1, H)
+        x0, x1 = max(xs.min() - MERGE_PX, 0), min(xs.max() + MERGE_PX + 1, W)
+        window = labels[y0:y1, x0:x1]
+        near = grow(window == lab, MERGE_PX)
+        paint = paint_of(best[lab][0])
+        cands, hits = np.unique(window[near], return_counts=True)
+        same = [(h, c) for c, h in zip(cands.tolist(), hits.tolist()) if region_id[c] and colour_of[c] == paint]
+        if same:
+            target = max(same)[1]
+            region_id[lab], colour_of[lab] = region_id[target], colour_of[target]
+            continue
+        col = best[lab][0]
+        luma = 0.299 * (col >> 16) + 0.587 * (col >> 8 & 0xFF) + 0.114 * (col & 0xFF)
+        (burn if luma < DARK_SMALL else paper).append(lab)
+        unmerged += areas[lab] >= 50
+    if unmerged:
+        problems.append(f"{unmerged} shape(s) under {MIN_REGION_PX}px drawn as solid ink or left white")
+
     palette = [{"regionId": int(region_id[lab]), "number": order.index(int(colour_of[lab])) + 1,
                 "color": hexcolour(int(colour_of[lab]))} for lab in keep]
 
@@ -179,16 +243,22 @@ def import_scene(scene_dir):
         problems.append(f"{len(keep)} regions (max {MAX_REGIONS})")
     if len(order) > MAX_COLOURS:
         problems.append(f"{len(order)} distinct colours (max {MAX_COLOURS})")
-    black = int((region_id[labels] == 0).sum())
+    black = int((region_id[labels] == 0).sum())  # light small shapes still count here; they become paper below
     if black > W * H * 0.2:
         problems.append(f"{100 * black // (W * H)}% of the canvas is outline (very heavy lines?)")
 
+    region_id[paper] = PAPER
     ids = region_id[labels]
+    # Only in light shapes: next to black hair, a dark shape's narrow gaps are more of the same hair.
+    rgb_of = np.stack([colour_of >> 16, colour_of >> 8 & 0xFF, colour_of & 0xFF], axis=-1)
+    light = rgb_of @ np.array([0.299, 0.587, 0.114]) >= DARK_SMALL
+    ids[highlights(ink) & (ids != 0) & light[labels]] = PAPER
     regions = np.stack([ids >> 16, ids >> 8 & 0xFF, ids & 0xFF], axis=-1).astype(np.uint8)
     Image.fromarray(regions, "RGB").save(scene_dir / "regions.png", optimize=True)
     outline = np.where(~ink & (ids == 0), 0, line).astype(np.uint8)  # keep the artist's anti-aliasing
     Image.fromarray(outline, "L").save(scene_dir / "outline.png", optimize=True)
-    col = colour_of[labels]
+    colour_of[paper] = PAPER
+    col = np.where(ids == PAPER, PAPER, colour_of[labels])
     preview = np.stack([col >> 16, col >> 8 & 0xFF, col & 0xFF], axis=-1).astype(np.uint8)
     Image.fromarray(preview, "RGB").resize((1024, 768), Image.LANCZOS).save(scene_dir / "preview.png", optimize=True)
     (scene_dir / "palette.json").write_text(json.dumps(palette, indent=2) + "\n", encoding="utf-8")

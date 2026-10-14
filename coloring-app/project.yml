@@ -57,6 +57,17 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: SaudiColoring
+  # Screenshots of the main screens with demo progress (see Tests/SaudiColoringUITests/ScreenshotTests.swift).
+  SaudiColoringUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: Tests/SaudiColoringUITests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: SaudiColoring
 # packages:
 #   GoogleMobileAds:
 #     url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
@@ -70,3 +81,12 @@ schemes:
     test:
       targets:
         - SaudiColoringTests
+  # Not part of the regular test run: `xcodebuild test -scheme Screenshots` (see .github/workflows/screenshots.yml).
+  Screenshots:
+    build:
+      targets:
+        SaudiColoring: all
+        SaudiColoringUITests: [test]
+    test:
+      targets:
+        - SaudiColoringUITests

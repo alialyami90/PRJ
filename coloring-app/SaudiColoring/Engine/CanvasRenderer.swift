@@ -15,7 +15,7 @@ struct CanvasRenderer {
     /// Tint for unfilled regions Paint by Number is pointing at (the selected number's regions).
     var hint: UInt32 = 0xCFE6FF
 
-    /// Per pixel: 0 for outline, otherwise 1 + the index of its region in `regionIds`.
+    /// Per pixel: 0 for outline, 1 + the index of its region in `regionIds`, or 1 + regionIds.count for paper.
     /// Precomputed once so a re-render is a table lookup per pixel.
     private let pixelSlots: [UInt16]
     private let regionIds: [UInt32]
@@ -24,7 +24,7 @@ struct CanvasRenderer {
         self.map = map
         let ids = map.regionIds.sorted()
         precondition(ids.count < Int(UInt16.max), "too many regions for one scene")
-        var slotFor: [UInt32: UInt16] = [RegionMap.outline: 0]
+        var slotFor: [UInt32: UInt16] = [RegionMap.outline: 0, RegionMap.paper: UInt16(ids.count + 1)]
         for (i, id) in ids.enumerated() { slotFor[id] = UInt16(i + 1) }
         regionIds = ids
         pixelSlots = map.pixels.map { slotFor[$0] ?? 0 }
@@ -39,7 +39,7 @@ struct CanvasRenderer {
             bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
         ), let data = ctx.data else { return nil }
 
-        var palette = [UInt32](repeating: paper, count: regionIds.count + 1)
+        var palette = [UInt32](repeating: paper, count: regionIds.count + 2) // the last slot is paper
         palette[0] = ink
         for (i, id) in regionIds.enumerated() {
             if let hex = document.fills[id], let rgb = SceneColor.rgb(fromHex: hex) {

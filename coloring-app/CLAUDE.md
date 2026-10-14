@@ -25,12 +25,17 @@ xcodebuild -project SaudiColoring.xcodeproj -scheme SaudiColoring \
 xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests
 xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStopsAtOutline
 
+# Screenshots of the main screens with demo progress (Debug build launched with -demoContent)
+TEST_RUNNER_SCREENSHOTS_DIR=$PWD/docs/screenshots xcodebuild -project SaudiColoring.xcodeproj -scheme Screenshots \
+  -destination 'platform=iOS Simulator,name=iPad Pro 13-inch (M4)' test
+
 # Content checks (no Xcode needed)
 python3 Scripts/validate_content.py   # 9 regions, every region.json has 8 scenes, asset paths exist for non-todo scenes
 python3 Scripts/sync_scenes.py        # copies vectorized + approved scenes from Content/ into Resources/Scenes/ (needs Pillow)
 python3 Scripts/sync_scenes.py --approved-only  # release builds: approved scenes only
 python3 Scripts/build_scenes.py [region...]  # rebuilds every scene's art: illustrator art/ if present, else its scene.py sketch (needs Pillow + numpy)
 python3 Scripts/import_illustration.py Content/Regions/<r>/<s>  # imports one scene's illustrator art/line.png + art/color.png
+python3 Scripts/adopt_line_art.py <new_line.png> Content/Regions/<r>/<s>  # redrawn line art with no colour file: crops its frame, scales it, colours it from the old art/color.png (then import)
 python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) and placeholder AppIcon (needs Pillow)
 swiftlint                             # if installed; config in .swiftlint.yml
 ```
@@ -58,10 +63,10 @@ Tests/          unit tests; the Engine is the main thing worth testing
 Each scene ships three files, produced from the master art in `Content/`:
 
 - `outline.png` (imported illustrator art) or `outline.svg` (placeholder sketches) — the black line art shown on top of everything.
-- `regions.png` — an index map the same size as the outline where every fillable region is a unique flat colour (`regionId` = RGB packed to Int). The engine never flood-fills the rendered image; it looks up the region id at the touch point in this map. That makes Fill and Paint-by-Number O(1) per tap and leak-proof.
+- `regions.png` — an index map the same size as the outline where every fillable region is a unique flat colour (`regionId` = RGB packed to Int). `0x000000` is outline and `0xFFFFFF` is paper: white that is drawn but never filled (`RegionMap.paper`). The engine never flood-fills the rendered image; it looks up the region id at the touch point in this map. That makes Fill and Paint-by-Number O(1) per tap and leak-proof.
 - `palette.json` — `[{ "regionId": 0xRRGGBB, "number": 3, "color": "#F4A62A" }]`, the paint-by-number answer key. Fill mode uses it only as a suggested palette.
 
-Final scene art comes from an illustrator (brief: the "Saudi Colors Illustration Brief" doc). Per scene they deliver `art/line.png` (black lines on white) and `art/color.png` (same lines, every closed shape one flat colour), both 2048×1536, into `Content/Regions/<region>/<scene>/art/`. `Scripts/import_illustration.py` labels every closed white area of the line art as a region, takes its colour from the majority colour in `color.png` (ignoring the anti-aliased pixels next to lines), burns shapes under 1200 px and near-black fills into the outline, and writes `regions.png`, `palette.json`, `outline.png` (the line art, anti-aliasing kept) and `preview.png`. It warns, rather than fails, on gaps in the lines (a region holding two clearly different colours), more than 90 regions or more than 18 colours, so the page can go back to the illustrator. Edit the art, never the generated files.
+Final scene art comes from an illustrator (brief: the "Saudi Colors Illustration Brief" doc). Per scene they deliver `art/line.png` (black lines on white) and `art/color.png` (same lines, every closed shape one flat colour), both 2048×1536, into `Content/Regions/<region>/<scene>/art/`. `Scripts/import_illustration.py` labels every closed white area of the line art as a region, takes its colour from the majority colour in `color.png` (ignoring the anti-aliased pixels next to lines), and writes `regions.png`, `palette.json`, `outline.png` (the line art, anti-aliasing kept) and `preview.png`. Shapes under 1200 px join a same-coloured region within 30 px, else become ink (dark) or paper (light); near-black fills become ink; narrow white gaps beside solid black (the shine on a pupil, often open to the face) become paper. It warns, rather than fails, on gaps in the lines (a region holding two clearly different colours), more than 90 regions or more than 18 colours, so the page can go back to the illustrator. Edit the art, never the generated files.
 
 Until a scene's art arrives it shows a placeholder sketch: its `scene.py` lists shapes in painter's order using `Scripts/scene_kit.py` (plus that region's own `_figures.py`) and writes `outline.svg`, `regions.png`, `palette.json` and `preview.png`. A scene with `art/` ignores its `scene.py`. `Scripts/build_scenes.py` rebuilds both kinds.
 

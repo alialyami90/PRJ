@@ -22,4 +22,12 @@ final class RegionMapTests: XCTestCase {
     func testRegionIdsExcludeOutline() {
         XCTAssertEqual(map.regionIds, [0xFF0000, 0x0000FF])
     }
+
+    func testPaperIsNotARegion() {
+        // red | paper | blue: paper cannot be tapped or filled, and a tap on it finds the nearest region.
+        let map = RegionMap(width: 3, height: 1, pixels: [0xFF0000, RegionMap.paper, 0x0000FF])
+        XCTAssertNil(map.regionId(at: CGPoint(x: 1, y: 0)))
+        XCTAssertNotNil(map.regionId(near: CGPoint(x: 1, y: 0), radius: 1))
+        XCTAssertEqual(map.regionIds, [0xFF0000, 0x0000FF])
+    }
 }
