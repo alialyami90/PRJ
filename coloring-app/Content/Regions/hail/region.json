@@ -9,9 +9,9 @@
       "title": "Children discovering ancient rock carvings at Jubbah",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "jubbah-rock-art/outline.svg",
+        "outline": "jubbah-rock-art/outline.png",
         "regions": "jubbah-rock-art/regions.png",
         "palette": "jubbah-rock-art/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Aarif Fort on the hill above the old town",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "aarif-fort/outline.svg",
+        "outline": "aarif-fort/outline.png",
         "regions": "aarif-fort/regions.png",
         "palette": "aarif-fort/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Desert rally cars and buggies jumping over dunes",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hail-rally/outline.svg",
+        "outline": "hail-rally/outline.png",
         "regions": "hail-rally/regions.png",
         "palette": "hail-rally/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Sandboarding down the red Nafud dunes",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "nafud-dunes/outline.svg",
+        "outline": "nafud-dunes/outline.png",
         "regions": "nafud-dunes/regions.png",
         "palette": "nafud-dunes/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Hatim Al-Tai welcoming guests with a feast of generosity",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hatim-tai/outline.svg",
+        "outline": "hatim-tai/outline.png",
         "regions": "hatim-tai/regions.png",
         "palette": "hatim-tai/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Horse parade in front of Al-Qishlah Palace",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "qishlah-palace/outline.svg",
+        "outline": "qishlah-palace/outline.png",
         "regions": "qishlah-palace/regions.png",
         "palette": "qishlah-palace/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Wheat and peach farms with tractors",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hail-farm/outline.svg",
+        "outline": "hail-farm/outline.png",
         "regions": "hail-farm/regions.png",
         "palette": "hail-farm/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Falconer and his falcon at dawn",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "falconry/outline.svg",
+        "outline": "falconry/outline.png",
         "regions": "falconry/regions.png",
         "palette": "falconry/palette.json"
       },

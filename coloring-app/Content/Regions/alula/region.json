@@ -9,9 +9,9 @@
       "title": "Camel caravan passing the carved tombs of Hegra",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hegra-tombs/outline.svg",
+        "outline": "hegra-tombs/outline.png",
         "regions": "hegra-tombs/regions.png",
         "palette": "hegra-tombs/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Family picnic under Elephant Rock at night with stars",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "elephant-rock/outline.svg",
+        "outline": "elephant-rock/outline.png",
         "regions": "elephant-rock/regions.png",
         "palette": "elephant-rock/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Old Town mud houses and the hilltop castle",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "old-town-alula/outline.svg",
+        "outline": "old-town-alula/outline.png",
         "regions": "old-town-alula/regions.png",
         "palette": "old-town-alula/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Hot-air balloons floating over sandstone canyons",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hot-air-balloons/outline.svg",
+        "outline": "hot-air-balloons/outline.png",
         "regions": "hot-air-balloons/regions.png",
         "palette": "hot-air-balloons/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Explorers looking up at the Dadan lion tombs",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "dadan-lion-tombs/outline.svg",
+        "outline": "dadan-lion-tombs/outline.png",
         "regions": "dadan-lion-tombs/regions.png",
         "palette": "dadan-lion-tombs/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Shaded palm oasis walk with a stream and frogs",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "oasis-walk/outline.svg",
+        "outline": "oasis-walk/outline.png",
         "regions": "oasis-walk/regions.png",
         "palette": "oasis-walk/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Maraya mirror building reflecting the desert",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "maraya-mirror/outline.svg",
+        "outline": "maraya-mirror/outline.png",
         "regions": "maraya-mirror/regions.png",
         "palette": "maraya-mirror/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Astronomer kids with a telescope under the Milky Way",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "star-gazing/outline.svg",
+        "outline": "star-gazing/outline.png",
         "regions": "star-gazing/regions.png",
         "palette": "star-gazing/palette.json"
       },

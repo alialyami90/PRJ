@@ -1,0 +1,144 @@
+{
+  "id": "najran",
+  "name": "Najran",
+  "nameAr": "نجران",
+  "order": 8,
+  "scenes": [
+    {
+      "id": "al-aan-palace",
+      "title": "Al-Aan Palace above the palm-filled valley",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "al-aan-palace/outline.png",
+        "regions": "al-aan-palace/regions.png",
+        "palette": "al-aan-palace/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A Najrani boy in a long white thobe, headwrap and dark shoulder cloak carrying a woven date basket, with his father and a donkey"
+      }
+    },
+    {
+      "id": "palm-basket-workshop",
+      "title": "Palm-leaf basket workshop in Aba Al-Saud souq",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "palm-basket-workshop/outline.png",
+        "regions": "palm-basket-workshop/regions.png",
+        "palette": "palm-basket-workshop/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A grandmother in a black Najrani mukammam dress with a red embroidered chest panel weaving a palm-leaf basket with two children"
+      }
+    },
+    {
+      "id": "al-ukhdood",
+      "title": "Young explorers at Al-Ukhdood archaeological site",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "al-ukhdood/outline.png",
+        "regions": "al-ukhdood/regions.png",
+        "palette": "al-ukhdood/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in modern hiking clothes and a sunhat looking at a big pottery replica beside low stone walls, with a guide"
+      }
+    },
+    {
+      "id": "hima-rock-art",
+      "title": "Hima rock-art discovery",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "hima-rock-art/outline.png",
+        "regions": "hima-rock-art/regions.png",
+        "palette": "hima-rock-art/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A boy in a T-shirt and cap pointing at an ancient ibex petroglyph on a sandstone boulder, with a girl and a guide"
+      }
+    },
+    {
+      "id": "najrani-pottery",
+      "title": "Potter making a traditional Najrani coffee pot",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "najrani-pottery/outline.png",
+        "regions": "najrani-pottery/regions.png",
+        "palette": "najrani-pottery/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A smiling potter in a Najrani thobe and headcloth shaping a clay jamna coffee pot while two children watch"
+      }
+    },
+    {
+      "id": "najran-dam",
+      "title": "Family outing at the Najran dam overlook",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "najran-dam/outline.png",
+        "regions": "najran-dam/regions.png",
+        "palette": "najran-dam/palette.json"
+      },
+      "era": "modern",
+      "character": {
+        "type": "person",
+        "description": "A girl in a tracksuit with a backpack looking through binoculars at the Najran dam, with her mother and brother"
+      }
+    },
+    {
+      "id": "tower-houses-harvest",
+      "title": "Date harvest among Najran mudbrick tower houses",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "tower-houses-harvest/outline.png",
+        "regions": "tower-houses-harvest/regions.png",
+        "palette": "tower-houses-harvest/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A Najrani farmer in a white thobe and woven belt lowering a basket of dates to two children beside mudbrick tower houses"
+      }
+    },
+    {
+      "id": "courtyard-bread",
+      "title": "Traditional bread and hospitality in a Najrani courtyard",
+      "titleAr": "",
+      "difficulty": "easy",
+      "status": "vectorized",
+      "assets": {
+        "outline": "courtyard-bread/outline.png",
+        "regions": "courtyard-bread/regions.png",
+        "palette": "courtyard-bread/palette.json"
+      },
+      "era": "traditional",
+      "character": {
+        "type": "person",
+        "description": "A grandmother in a black Najrani mukammam dress arranging round wheat breads and raqsh with a girl and grandfather"
+      }
+    }
+  ]
+}

@@ -9,9 +9,9 @@
       "title": "Boys on camels racing past Masmak Fort at sunset",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "masmak-fort/outline.svg",
+        "outline": "masmak-fort/outline.png",
         "regions": "masmak-fort/regions.png",
         "palette": "masmak-fort/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Kids flying kites over the Riyadh skyline with Kingdom Tower",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "kingdom-tower-skyline/outline.svg",
+        "outline": "kingdom-tower-skyline/outline.png",
         "regions": "kingdom-tower-skyline/regions.png",
         "palette": "kingdom-tower-skyline/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Ardah sword-dance celebration with drummers and flags",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "ardah-dance/outline.svg",
+        "outline": "ardah-dance/outline.png",
         "regions": "ardah-dance/regions.png",
         "palette": "ardah-dance/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Family walking through the mud-brick alleys of Diriyah",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "diriyah-mudbrick/outline.svg",
+        "outline": "diriyah-mudbrick/outline.png",
         "regions": "diriyah-mudbrick/regions.png",
         "palette": "diriyah-mudbrick/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Ferris wheel and fireworks at a Riyadh Season fair",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "riyadh-season-fair/outline.svg",
+        "outline": "riyadh-season-fair/outline.png",
         "regions": "riyadh-season-fair/regions.png",
         "palette": "riyadh-season-fair/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Desert picnic with tents, a campfire and a falcon",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "desert-picnic/outline.svg",
+        "outline": "desert-picnic/outline.png",
         "regions": "desert-picnic/regions.png",
         "palette": "desert-picnic/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Busy date souq with baskets and a friendly shopkeeper",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "date-market/outline.svg",
+        "outline": "date-market/outline.png",
         "regions": "date-market/regions.png",
         "palette": "date-market/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Decorated camels at a camel beauty festival",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "camel-festival/outline.svg",
+        "outline": "camel-festival/outline.png",
         "regions": "camel-festival/regions.png",
         "palette": "camel-festival/palette.json"
       },

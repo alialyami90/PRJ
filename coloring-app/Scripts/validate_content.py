@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate Content/Regions/*/region.json manifests.
 
-Checks: exactly 8 regions, 8 scenes per region, unique ids, and that every
+Checks: exactly 9 regions, 8 scenes per region, unique ids, and that every
 scene whose status is not "todo" has its asset files on disk.
 """
 import json
@@ -15,8 +15,8 @@ CHARACTER_TYPES = {"person", "animal"}
 
 errors = []
 regions = sorted(p for p in ROOT.iterdir() if p.is_dir())
-if len(regions) != 8:
-    errors.append(f"expected 8 regions, found {len(regions)}")
+if len(regions) != 9:
+    errors.append(f"expected 9 regions, found {len(regions)}")
 
 seen_scene_ids = set()
 for rdir in regions:

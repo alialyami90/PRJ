@@ -1,4 +1,4 @@
-# Content Plan: 8 regions × 8 scenes
+# Content Plan: 9 regions × 8 scenes
 
 Every scene is a full *scene* (place + people/animals + activity), never an isolated object. Target age 4–9. Keep lines bold and regions large enough for small fingers; 20–60 fill regions per scene.
 
@@ -112,6 +112,19 @@ Status per scene lives in `Content/Regions/<region>/region.json` (`todo` → `sk
 | 7 | **hail-farm**: Wheat and peach farms with tractors | modern | 🧕 A farmer in overalls and a cap on a tractor with peach baskets |
 | 8 | **falconry**: Falconer and his falcon at dawn | traditional | 🐪 A peregrine falcon taking off from a falconer in a bisht and shemagh at dawn |
 
+## Najran (`najran`)
+
+| # | Scene | Era | Character |
+|---|---|---|---|
+| 1 | **al-aan-palace**: Al-Aan Palace above the palm-filled valley | traditional | 🧕 A Najrani boy in a long white thobe, headwrap and dark shoulder cloak carrying a woven date basket, with his father and a donkey |
+| 2 | **palm-basket-workshop**: Palm-leaf basket workshop in Aba Al-Saud souq | traditional | 🧕 A grandmother in a black Najrani mukammam dress with a red embroidered chest panel weaving a palm-leaf basket with two children |
+| 3 | **al-ukhdood**: Young explorers at Al-Ukhdood archaeological site | modern | 🧕 A girl in modern hiking clothes and a sunhat looking at a big pottery replica beside low stone walls, with a guide |
+| 4 | **hima-rock-art**: Hima rock-art discovery | modern | 🧕 A boy in a T-shirt and cap pointing at an ancient ibex petroglyph on a sandstone boulder, with a girl and a guide |
+| 5 | **najrani-pottery**: Potter making a traditional Najrani coffee pot | traditional | 🧕 A smiling potter in a Najrani thobe and headcloth shaping a clay jamna coffee pot while two children watch |
+| 6 | **najran-dam**: Family outing at the Najran dam overlook | modern | 🧕 A girl in a tracksuit with a backpack looking through binoculars at the Najran dam, with her mother and brother |
+| 7 | **tower-houses-harvest**: Date harvest among Najran mudbrick tower houses | traditional | 🧕 A Najrani farmer in a white thobe and woven belt lowering a basket of dates to two children beside mudbrick tower houses |
+| 8 | **courtyard-bread**: Traditional bread and hospitality in a Najrani courtyard | traditional | 🧕 A grandmother in a black Najrani mukammam dress arranging round wheat breads and raqsh with a girl and grandfather |
+
 ## Era tally
 
 | Region | Traditional | Modern |
@@ -124,3 +137,4 @@ Status per scene lives in `Content/Regions/<region>/region.json` (`todo` → `sk
 | Tabuk & NEOM coast | 4 | 4 |
 | Jazan & Farasan | 4 | 4 |
 | Hail | 4 | 4 |
+| Najran | 6 | 2 |

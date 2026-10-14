@@ -9,9 +9,9 @@
       "title": "Flower-men of Rijal Almaa wearing herb crowns on a mountain path",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "flower-men/outline.svg",
+        "outline": "flower-men/outline.png",
         "regions": "flower-men/regions.png",
         "palette": "flower-men/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Painting colorful Al-Qatt Al-Asiri patterns on a house",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "al-qatt-houses/outline.svg",
+        "outline": "al-qatt-houses/outline.png",
         "regions": "al-qatt-houses/regions.png",
         "palette": "al-qatt-houses/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Foggy terraces of Abha with sheep and a shepherd",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "abha-fog/outline.svg",
+        "outline": "abha-fog/outline.png",
         "regions": "abha-fog/regions.png",
         "palette": "abha-fog/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Cable car over green mountains to Al-Souda",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "cable-car/outline.svg",
+        "outline": "cable-car/outline.png",
         "regions": "cable-car/regions.png",
         "palette": "cable-car/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Baboons watching cars on the mountain road",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "baboons-road/outline.svg",
+        "outline": "baboons-road/outline.png",
         "regions": "baboons-road/regions.png",
         "palette": "baboons-road/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Beekeeper collecting Sidr honey in the mountains",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "honey-bees/outline.svg",
+        "outline": "honey-bees/outline.png",
         "regions": "honey-bees/regions.png",
         "palette": "honey-bees/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Stone tower houses of Rijal Almaa village",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "stone-village/outline.svg",
+        "outline": "stone-village/outline.png",
         "regions": "stone-village/regions.png",
         "palette": "stone-village/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Tuesday market with pottery, baskets and spices",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "asir-market/outline.svg",
+        "outline": "asir-market/outline.png",
         "regions": "asir-market/regions.png",
         "palette": "asir-market/palette.json"
       },
