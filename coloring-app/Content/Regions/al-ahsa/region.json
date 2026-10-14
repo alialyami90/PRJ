@@ -9,7 +9,7 @@
       "title": "Date harvest in the world's largest palm oasis",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "palm-oasis/outline.svg",
         "regions": "palm-oasis/regions.png",
@@ -26,7 +26,7 @@
       "title": "Lantern-lit Qaisariah Souq with cloth and spice stalls",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "qaisariah-souq/outline.svg",
         "regions": "qaisariah-souq/regions.png",
@@ -43,7 +43,7 @@
       "title": "Kids exploring the cool caves of Jabal Al-Qarah",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "jabal-qarah-caves/outline.svg",
         "regions": "jabal-qarah-caves/regions.png",
@@ -60,7 +60,7 @@
       "title": "Potter's workshop with children shaping clay jars",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "al-ahsa-pottery/outline.svg",
         "regions": "al-ahsa-pottery/regions.png",
@@ -77,7 +77,7 @@
       "title": "Bisht cloak weavers at work with golden thread",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "bisht-weaving/outline.svg",
         "regions": "bisht-weaving/regions.png",
@@ -94,7 +94,7 @@
       "title": "Birds and reeds at Al-Asfar (Yellow) Lake",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "yellow-lake/outline.svg",
         "regions": "yellow-lake/regions.png",
@@ -111,7 +111,7 @@
       "title": "Horse riders at Ibrahim Palace",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "ibrahim-palace/outline.svg",
         "regions": "ibrahim-palace/regions.png",
@@ -128,7 +128,7 @@
       "title": "Old Hofuf railway station with a steam train arriving",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "hofuf-train/outline.svg",
         "regions": "hofuf-train/regions.png",

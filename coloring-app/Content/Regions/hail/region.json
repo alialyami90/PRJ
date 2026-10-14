@@ -9,7 +9,7 @@
       "title": "Children discovering ancient rock carvings at Jubbah",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "jubbah-rock-art/outline.svg",
         "regions": "jubbah-rock-art/regions.png",
@@ -26,7 +26,7 @@
       "title": "Aarif Fort on the hill above the old town",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "aarif-fort/outline.svg",
         "regions": "aarif-fort/regions.png",
@@ -43,7 +43,7 @@
       "title": "Desert rally cars and buggies jumping over dunes",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "hail-rally/outline.svg",
         "regions": "hail-rally/regions.png",
@@ -60,7 +60,7 @@
       "title": "Sandboarding down the red Nafud dunes",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "nafud-dunes/outline.svg",
         "regions": "nafud-dunes/regions.png",
@@ -77,7 +77,7 @@
       "title": "Hatim Al-Tai welcoming guests with a feast of generosity",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "hatim-tai/outline.svg",
         "regions": "hatim-tai/regions.png",
@@ -94,7 +94,7 @@
       "title": "Horse parade in front of Al-Qishlah Palace",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "qishlah-palace/outline.svg",
         "regions": "qishlah-palace/regions.png",
@@ -111,7 +111,7 @@
       "title": "Wheat and peach farms with tractors",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "hail-farm/outline.svg",
         "regions": "hail-farm/regions.png",
@@ -128,7 +128,7 @@
       "title": "Falconer and his falcon at dawn",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "falconry/outline.svg",
         "regions": "falconry/regions.png",
