@@ -9,9 +9,9 @@
       "title": "Fishing boats and flamingos at the Farasan Islands",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "farasan-islands/outline.svg",
+        "outline": "farasan-islands/outline.png",
         "regions": "farasan-islands/regions.png",
         "palette": "farasan-islands/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Terraced Fifa Mountains with a village on the peak",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "fifa-mountains/outline.svg",
+        "outline": "fifa-mountains/outline.png",
         "regions": "fifa-mountains/regions.png",
         "palette": "fifa-mountains/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Mango harvest at a Jazan farm",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "mango-harvest/outline.svg",
+        "outline": "mango-harvest/outline.png",
         "regions": "mango-harvest/regions.png",
         "palette": "mango-harvest/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Coffee farmers picking beans on mountain terraces",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "coffee-terraces/outline.svg",
+        "outline": "coffee-terraces/outline.png",
         "regions": "coffee-terraces/regions.png",
         "palette": "coffee-terraces/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Jazan heritage village with straw-roofed huts",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "heritage-village/outline.svg",
+        "outline": "heritage-village/outline.png",
         "regions": "heritage-village/regions.png",
         "palette": "heritage-village/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Jazan port with cargo ships and cranes",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "jazan-port/outline.svg",
+        "outline": "jazan-port/outline.png",
         "regions": "jazan-port/regions.png",
         "palette": "jazan-port/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Market day with jasmine garlands and fuul pots",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "sabya-market/outline.svg",
+        "outline": "sabya-market/outline.png",
         "regions": "sabya-market/regions.png",
         "palette": "sabya-market/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Kayaking through the mangrove forests",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "mangroves/outline.svg",
+        "outline": "mangroves/outline.png",
         "regions": "mangroves/regions.png",
         "palette": "mangroves/palette.json"
       },

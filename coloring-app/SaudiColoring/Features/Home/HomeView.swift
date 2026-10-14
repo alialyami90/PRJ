@@ -8,9 +8,7 @@ struct HomeView: View {
     var body: some View {
         NavigationSplitView {
             List(env.catalog.regions, selection: $selectedRegion) { region in
-                Label(region.name, systemImage: "map")
-                    .font(.title2)
-                    .frame(minHeight: 60)
+                RegionRow(region: region)
                     .tag(region)
             }
             .navigationTitle("Saudi Colors")
@@ -25,6 +23,28 @@ struct HomeView: View {
                 ContentUnavailableView("Pick a place", systemImage: "map")
             }
         }
+    }
+}
+
+private struct RegionRow: View {
+    let region: Region
+
+    var body: some View {
+        HStack(spacing: 16) {
+            Group {
+                if let cover = BundleImages.cover(regionId: region.id) {
+                    Image(uiImage: cover).resizable().scaledToFill()
+                } else {
+                    Image(systemName: "map").font(.title).frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(.yellow.opacity(0.3))
+                }
+            }
+            .frame(width: 96, height: 72)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            Text(region.name)
+                .font(.title3.bold())
+        }
+        .frame(minHeight: 80)
     }
 }
 

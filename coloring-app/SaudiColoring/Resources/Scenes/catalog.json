@@ -1,0 +1,506 @@
+[
+  {
+    "id": "al-ahsa",
+    "name": "Al-Ahsa (Eastern Province)",
+    "nameAr": "",
+    "order": 2,
+    "scenes": [
+      {
+        "id": "palm-oasis",
+        "title": "Date harvest in the world's largest palm oasis",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "qaisariah-souq",
+        "title": "Lantern-lit Qaisariah Souq with cloth and spice stalls",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "jabal-qarah-caves",
+        "title": "Kids exploring the cool caves of Jabal Al-Qarah",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "al-ahsa-pottery",
+        "title": "Potter's workshop with children shaping clay jars",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "bisht-weaving",
+        "title": "Bisht cloak weavers at work with golden thread",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "yellow-lake",
+        "title": "Birds and reeds at Al-Asfar (Yellow) Lake",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "ibrahim-palace",
+        "title": "Horse riders at Ibrahim Palace",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hofuf-train",
+        "title": "Old Hofuf railway station with a steam train arriving",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "alula",
+    "name": "AlUla",
+    "nameAr": "",
+    "order": 4,
+    "scenes": [
+      {
+        "id": "hegra-tombs",
+        "title": "Camel caravan passing the carved tombs of Hegra",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "elephant-rock",
+        "title": "Family picnic under Elephant Rock at night with stars",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "old-town-alula",
+        "title": "Old Town mud houses and the hilltop castle",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hot-air-balloons",
+        "title": "Hot-air balloons floating over sandstone canyons",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "dadan-lion-tombs",
+        "title": "Explorers looking up at the Dadan lion tombs",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "oasis-walk",
+        "title": "Shaded palm oasis walk with a stream and frogs",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "maraya-mirror",
+        "title": "Maraya mirror building reflecting the desert",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "star-gazing",
+        "title": "Astronomer kids with a telescope under the Milky Way",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "asir",
+    "name": "Asir (Abha)",
+    "nameAr": "",
+    "order": 3,
+    "scenes": [
+      {
+        "id": "flower-men",
+        "title": "Flower-men of Rijal Almaa wearing herb crowns on a mountain path",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "al-qatt-houses",
+        "title": "Painting colorful Al-Qatt Al-Asiri patterns on a house",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "abha-fog",
+        "title": "Foggy terraces of Abha with sheep and a shepherd",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "cable-car",
+        "title": "Cable car over green mountains to Al-Souda",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "baboons-road",
+        "title": "Baboons watching cars on the mountain road",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "honey-bees",
+        "title": "Beekeeper collecting Sidr honey in the mountains",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "stone-village",
+        "title": "Stone tower houses of Rijal Almaa village",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "asir-market",
+        "title": "Tuesday market with pottery, baskets and spices",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "hail",
+    "name": "Hail",
+    "nameAr": "",
+    "order": 7,
+    "scenes": [
+      {
+        "id": "jubbah-rock-art",
+        "title": "Children discovering ancient rock carvings at Jubbah",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "aarif-fort",
+        "title": "Aarif Fort on the hill above the old town",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hail-rally",
+        "title": "Desert rally cars and buggies jumping over dunes",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "nafud-dunes",
+        "title": "Sandboarding down the red Nafud dunes",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hatim-tai",
+        "title": "Hatim Al-Tai welcoming guests with a feast of generosity",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "qishlah-palace",
+        "title": "Horse parade in front of Al-Qishlah Palace",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hail-farm",
+        "title": "Wheat and peach farms with tractors",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "falconry",
+        "title": "Falconer and his falcon at dawn",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "jazan",
+    "name": "Jazan & Farasan",
+    "nameAr": "",
+    "order": 6,
+    "scenes": [
+      {
+        "id": "farasan-islands",
+        "title": "Fishing boats and flamingos at the Farasan Islands",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "fifa-mountains",
+        "title": "Terraced Fifa Mountains with a village on the peak",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "mango-harvest",
+        "title": "Mango harvest at a Jazan farm",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "coffee-terraces",
+        "title": "Coffee farmers picking beans on mountain terraces",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "heritage-village",
+        "title": "Jazan heritage village with straw-roofed huts",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "jazan-port",
+        "title": "Jazan port with cargo ships and cranes",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "sabya-market",
+        "title": "Market day with jasmine garlands and fuul pots",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "mangroves",
+        "title": "Kayaking through the mangrove forests",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "jeddah",
+    "name": "Jeddah (Hijaz)",
+    "nameAr": "",
+    "order": 1,
+    "scenes": [
+      {
+        "id": "al-balad-rawashin",
+        "title": "Old Jeddah street with wooden rawashin balconies and cats",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "corniche-fountain",
+        "title": "Kids on the Corniche watching King Fahd's Fountain and boats",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "red-sea-reef",
+        "title": "Snorkelers above a Red Sea coral reef full of fish",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "fish-market",
+        "title": "Morning fish market with fishermen and seagulls",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "jeddah-sculptures",
+        "title": "Playing among the giant sculptures of the Corniche",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "dhow-sail",
+        "title": "Traditional dhow sailing past the city at sunset",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hijazi-wedding",
+        "title": "Hijazi wedding with mizmar dancers and lanterns",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "floating-mosque",
+        "title": "Floating Mosque by the sea with pelicans",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "najran",
+    "name": "Najran",
+    "nameAr": "نجران",
+    "order": 8,
+    "scenes": [
+      {
+        "id": "al-aan-palace",
+        "title": "Al-Aan Palace above the palm-filled valley",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "palm-basket-workshop",
+        "title": "Palm-leaf basket workshop in Aba Al-Saud souq",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "al-ukhdood",
+        "title": "Young explorers at Al-Ukhdood archaeological site",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hima-rock-art",
+        "title": "Hima rock-art discovery",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "najrani-pottery",
+        "title": "Potter making a traditional Najrani coffee pot",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "najran-dam",
+        "title": "Family outing at the Najran dam overlook",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "tower-houses-harvest",
+        "title": "Date harvest among Najran mudbrick tower houses",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "courtyard-bread",
+        "title": "Traditional bread and hospitality in a Najrani courtyard",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "riyadh",
+    "name": "Riyadh (Najd)",
+    "nameAr": "",
+    "order": 0,
+    "scenes": [
+      {
+        "id": "masmak-fort",
+        "title": "Boys on camels racing past Masmak Fort at sunset",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "kingdom-tower-skyline",
+        "title": "Kids flying kites over the Riyadh skyline with Kingdom Tower",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "ardah-dance",
+        "title": "Ardah sword-dance celebration with drummers and flags",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "diriyah-mudbrick",
+        "title": "Family walking through the mud-brick alleys of Diriyah",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "riyadh-season-fair",
+        "title": "Ferris wheel and fireworks at a Riyadh Season fair",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "desert-picnic",
+        "title": "Desert picnic with tents, a campfire and a falcon",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "date-market",
+        "title": "Busy date souq with baskets and a friendly shopkeeper",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "camel-festival",
+        "title": "Decorated camels at a camel beauty festival",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "tabuk",
+    "name": "Tabuk & NEOM coast",
+    "nameAr": "",
+    "order": 5,
+    "scenes": [
+      {
+        "id": "hisma-arches",
+        "title": "Rock arches of the Hisma desert with hikers",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "red-sea-islands",
+        "title": "Turtles and dolphins near the Red Sea islands",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "hejaz-railway",
+        "title": "Old Hejaz Railway station and locomotive",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "tabuk-castle",
+        "title": "Tabuk Castle with pilgrims and their camels",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "wadi-disah",
+        "title": "Wadi Al-Disah canyon with palms and a river",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "snow-mountain",
+        "title": "Rare snow day on Jabal Al-Lawz with kids making a snowman",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "flower-fields",
+        "title": "Spring flower fields with a shepherd girl",
+        "titleAr": "",
+        "difficulty": "easy"
+      },
+      {
+        "id": "neom-future",
+        "title": "Futuristic coastal city with flying taxis",
+        "titleAr": "",
+        "difficulty": "easy"
+      }
+    ]
+  }
+]

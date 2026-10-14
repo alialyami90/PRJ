@@ -11,6 +11,8 @@ Rebuild with `python3 Scripts/build_scenes.py` (all), `python3 Scripts/import_il
 
 Illustrator file rules (from the brief): pure black lines on white, outer lines about 14 px and inner 7 to 9 px, every shape closed, no colorable shape under about 40×40 px, 25 to 90 shapes, at most 18 flat colours, no gradients.
 
-Update `status` in `region.json` as a scene progresses; only `approved` scenes get synced into the app by `Scripts/sync_scenes.py`.
+Each region folder also holds `cover.png` (1024×768 colour cover, shown in the app's region list).
+
+Update `status` in `region.json` as a scene progresses; `Scripts/sync_scenes.py` ships `vectorized` and `approved` scenes into the app (`--approved-only` for a release build).
 
 Art direction: bold outlines, friendly faces, no small details a 4-year-old's finger can't hit. Avoid text inside the drawing (it would need translating).

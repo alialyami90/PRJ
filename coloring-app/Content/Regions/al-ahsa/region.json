@@ -9,9 +9,9 @@
       "title": "Date harvest in the world's largest palm oasis",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "palm-oasis/outline.svg",
+        "outline": "palm-oasis/outline.png",
         "regions": "palm-oasis/regions.png",
         "palette": "palm-oasis/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Lantern-lit Qaisariah Souq with cloth and spice stalls",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "qaisariah-souq/outline.svg",
+        "outline": "qaisariah-souq/outline.png",
         "regions": "qaisariah-souq/regions.png",
         "palette": "qaisariah-souq/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Kids exploring the cool caves of Jabal Al-Qarah",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "jabal-qarah-caves/outline.svg",
+        "outline": "jabal-qarah-caves/outline.png",
         "regions": "jabal-qarah-caves/regions.png",
         "palette": "jabal-qarah-caves/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Potter's workshop with children shaping clay jars",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "al-ahsa-pottery/outline.svg",
+        "outline": "al-ahsa-pottery/outline.png",
         "regions": "al-ahsa-pottery/regions.png",
         "palette": "al-ahsa-pottery/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Bisht cloak weavers at work with golden thread",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "bisht-weaving/outline.svg",
+        "outline": "bisht-weaving/outline.png",
         "regions": "bisht-weaving/regions.png",
         "palette": "bisht-weaving/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Birds and reeds at Al-Asfar (Yellow) Lake",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "yellow-lake/outline.svg",
+        "outline": "yellow-lake/outline.png",
         "regions": "yellow-lake/regions.png",
         "palette": "yellow-lake/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Horse riders at Ibrahim Palace",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "ibrahim-palace/outline.svg",
+        "outline": "ibrahim-palace/outline.png",
         "regions": "ibrahim-palace/regions.png",
         "palette": "ibrahim-palace/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Old Hofuf railway station with a steam train arriving",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hofuf-train/outline.svg",
+        "outline": "hofuf-train/outline.png",
         "regions": "hofuf-train/regions.png",
         "palette": "hofuf-train/palette.json"
       },

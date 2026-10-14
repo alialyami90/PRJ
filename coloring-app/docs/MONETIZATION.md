@@ -28,3 +28,19 @@ Measuring revenue: eCPM and fill come from the network dashboard; the app only r
 ## Implementation rule
 
 Everything ad-related goes through `Services/Ads/AdService` (a protocol). Features never import an ad SDK directly, so the network can be swapped or disabled (e.g. for a paid tier) without touching UI code.
+
+## What is built
+
+- `AdService` protocol with `NoOpAdService` (no ads; rewards are free) and `AdMobAdService` (compiled only when the GoogleMobileAds package is present). The live app picks AdMob automatically once the package is added.
+- `AdMobAdService` sets `tagForChildDirectedTreatment`, `tagForUnderAgeOfConsent` and `maxAdContentRating = .general` before the SDK starts, and uses Google's public test ad units until real ones are set.
+- `InterstitialPolicy`: at most one interstitial per 3 finished pages, never in the first 2 minutes, and only when the child taps "More pictures" on the "You did it!" screen, never mid-page.
+- Gallery banner (`Features/Ads/AdBannerView.swift`) at the bottom of each region's page grid, never on the canvas.
+- Rewarded "Get more colours": after the parental gate (`Features/Parent/ParentalGate.swift`, a times-table sum), a rewarded ad unlocks 10 bonus crayons for good (`RewardStore`).
+
+## Turning AdMob on
+
+1. Create the app in the AdMob console, mark it as directed to children, and create banner, interstitial and rewarded units.
+2. In `project.yml`, uncomment the `GoogleMobileAds` package and dependency, and set `GADApplicationIdentifier` to the app's id.
+3. Pass the real unit ids to `AdMobAdService(units:)` in `AppEnvironment.liveAds()`.
+4. Add Google's `SKAdNetworkItems` to `project.yml` and fill in the App Store privacy label for AdMob's data use.
+

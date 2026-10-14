@@ -32,6 +32,13 @@ jobs:
           pip install --quiet numpy
           python3 Scripts/build_scenes.py > /dev/null
           git diff --exit-code -- 'Content/Regions/*/*/palette.json' 'Content/Regions/*/*/outline.svg'
+      - name: App bundle scenes are in sync with Content/
+        run: |
+          python3 Scripts/sync_scenes.py
+          git diff --exit-code -- SaudiColoring/Resources/Scenes/catalog.json 'SaudiColoring/Resources/Scenes/*/*/palette.json'
+          # thumb.png and cover.png may differ by Pillow version; only a missing or extra scene fails.
+          extra=$(git ls-files --others --deleted --exclude-standard -- SaudiColoring/Resources/Scenes)
+          test -z "$extra" || { echo "$extra"; exit 1; }
 
   ios:
     name: Build and test (iPad simulator)

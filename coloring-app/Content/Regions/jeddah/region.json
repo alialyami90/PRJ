@@ -9,9 +9,9 @@
       "title": "Old Jeddah street with wooden rawashin balconies and cats",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "al-balad-rawashin/outline.svg",
+        "outline": "al-balad-rawashin/outline.png",
         "regions": "al-balad-rawashin/regions.png",
         "palette": "al-balad-rawashin/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Kids on the Corniche watching King Fahd's Fountain and boats",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "corniche-fountain/outline.svg",
+        "outline": "corniche-fountain/outline.png",
         "regions": "corniche-fountain/regions.png",
         "palette": "corniche-fountain/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Snorkelers above a Red Sea coral reef full of fish",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "red-sea-reef/outline.svg",
+        "outline": "red-sea-reef/outline.png",
         "regions": "red-sea-reef/regions.png",
         "palette": "red-sea-reef/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Morning fish market with fishermen and seagulls",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "fish-market/outline.svg",
+        "outline": "fish-market/outline.png",
         "regions": "fish-market/regions.png",
         "palette": "fish-market/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Playing among the giant sculptures of the Corniche",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "jeddah-sculptures/outline.svg",
+        "outline": "jeddah-sculptures/outline.png",
         "regions": "jeddah-sculptures/regions.png",
         "palette": "jeddah-sculptures/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Traditional dhow sailing past the city at sunset",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "dhow-sail/outline.svg",
+        "outline": "dhow-sail/outline.png",
         "regions": "dhow-sail/regions.png",
         "palette": "dhow-sail/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Hijazi wedding with mizmar dancers and lanterns",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hijazi-wedding/outline.svg",
+        "outline": "hijazi-wedding/outline.png",
         "regions": "hijazi-wedding/regions.png",
         "palette": "hijazi-wedding/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Floating Mosque by the sea with pelicans",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "floating-mosque/outline.svg",
+        "outline": "floating-mosque/outline.png",
         "regions": "floating-mosque/regions.png",
         "palette": "floating-mosque/palette.json"
       },

@@ -38,6 +38,25 @@ final class FillToolTests: XCTestCase {
         XCTAssertFalse(state.canUndo)
     }
 
+    func testPageIsCompleteWhenEveryRegionHasAColour() {
+        let state = makeState()
+        let tool = FillTool(map: map, color: "#00FF00")
+        tool.began(at: CGPoint(x: 0, y: 0), state: state)
+        XCTAssertFalse(FillTool.isComplete(regionIds: map.regionIds, document: state.document))
+        tool.began(at: CGPoint(x: 4, y: 0), state: state)
+        XCTAssertTrue(FillTool.isComplete(regionIds: map.regionIds, document: state.document))
+    }
+
+    func testModeAndCompletionAreNotUndoSteps() {
+        let state = makeState()
+        state.setMode(.paintByNumber)
+        state.markCompleted(at: Date(timeIntervalSince1970: 1))
+        state.markCompleted(at: Date(timeIntervalSince1970: 2))
+        XCTAssertEqual(state.document.mode, .paintByNumber)
+        XCTAssertEqual(state.document.completedAt, Date(timeIntervalSince1970: 1))
+        XCTAssertFalse(state.canUndo)
+    }
+
     func testNearestRegionPrefersTheCloserSide() {
         // 7x1: red, outline x5, blue. A tap at x=2 is closer to red.
         let wide = RegionMap(width: 7, height: 1, pixels: [0xFF0000, 0, 0, 0, 0, 0, 0x0000FF])

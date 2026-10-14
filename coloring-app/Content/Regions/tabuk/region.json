@@ -9,9 +9,9 @@
       "title": "Rock arches of the Hisma desert with hikers",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hisma-arches/outline.svg",
+        "outline": "hisma-arches/outline.png",
         "regions": "hisma-arches/regions.png",
         "palette": "hisma-arches/palette.json"
       },
@@ -26,9 +26,9 @@
       "title": "Turtles and dolphins near the Red Sea islands",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "red-sea-islands/outline.svg",
+        "outline": "red-sea-islands/outline.png",
         "regions": "red-sea-islands/regions.png",
         "palette": "red-sea-islands/palette.json"
       },
@@ -43,9 +43,9 @@
       "title": "Old Hejaz Railway station and locomotive",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "hejaz-railway/outline.svg",
+        "outline": "hejaz-railway/outline.png",
         "regions": "hejaz-railway/regions.png",
         "palette": "hejaz-railway/palette.json"
       },
@@ -60,9 +60,9 @@
       "title": "Tabuk Castle with pilgrims and their camels",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "tabuk-castle/outline.svg",
+        "outline": "tabuk-castle/outline.png",
         "regions": "tabuk-castle/regions.png",
         "palette": "tabuk-castle/palette.json"
       },
@@ -77,9 +77,9 @@
       "title": "Wadi Al-Disah canyon with palms and a river",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "wadi-disah/outline.svg",
+        "outline": "wadi-disah/outline.png",
         "regions": "wadi-disah/regions.png",
         "palette": "wadi-disah/palette.json"
       },
@@ -94,9 +94,9 @@
       "title": "Rare snow day on Jabal Al-Lawz with kids making a snowman",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "snow-mountain/outline.svg",
+        "outline": "snow-mountain/outline.png",
         "regions": "snow-mountain/regions.png",
         "palette": "snow-mountain/palette.json"
       },
@@ -111,9 +111,9 @@
       "title": "Spring flower fields with a shepherd girl",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "flower-fields/outline.svg",
+        "outline": "flower-fields/outline.png",
         "regions": "flower-fields/regions.png",
         "palette": "flower-fields/palette.json"
       },
@@ -128,9 +128,9 @@
       "title": "Futuristic coastal city with flying taxis",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "sketched",
+      "status": "vectorized",
       "assets": {
-        "outline": "neom-future/outline.svg",
+        "outline": "neom-future/outline.png",
         "regions": "neom-future/regions.png",
         "palette": "neom-future/palette.json"
       },

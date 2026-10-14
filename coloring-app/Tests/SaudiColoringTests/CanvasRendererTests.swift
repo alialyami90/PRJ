@@ -1,4 +1,5 @@
 import CoreGraphics
+import ImageIO
 import XCTest
 @testable import SaudiColoring
 
@@ -48,6 +49,28 @@ final class CanvasRendererTests: XCTestCase {
             0x00FF00, 0x000000, 0x00FF00,
             0x00FF00, 0x000000, 0x00FF00,
         ])
+    }
+
+    func testHighlightTintsOnlyUnfilledRegions() throws {
+        var doc = document()
+        doc.fills[0x0000FF] = "#12AB34"
+        let renderer = CanvasRenderer(map: map)
+        let pixels = try XCTUnwrap(renderer.render(doc, highlight: [0xFF0000, 0x0000FF])).rgbPixels()
+        XCTAssertEqual(pixels, [
+            renderer.hint, 0x000000, 0x12AB34,
+            renderer.hint, 0x000000, 0x12AB34,
+        ])
+    }
+
+    func testThumbnailIsAPNGAtMostTheRequestedWidth() throws {
+        let assets = try SceneAssets.load(regionId: "riyadh", sceneId: "masmak-fort")
+        let image = try XCTUnwrap(CanvasRenderer(map: assets.map).render(document()))
+        let png = try XCTUnwrap(CanvasRenderer.thumbnailPNG(of: image, maxWidth: 256))
+        XCTAssertEqual(Array(png.prefix(4)), [0x89, 0x50, 0x4E, 0x47])
+        let source = try XCTUnwrap(CGImageSourceCreateWithData(png as CFData, nil))
+        let thumb = try XCTUnwrap(CGImageSourceCreateImageAtIndex(source, 0, nil))
+        XCTAssertEqual(thumb.width, 256)
+        XCTAssertEqual(thumb.height, 192)
     }
 
     func testRendersTheSampleSceneAtFullSize() throws {

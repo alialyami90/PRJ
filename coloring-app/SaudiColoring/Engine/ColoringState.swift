@@ -42,6 +42,17 @@ final class ColoringState {
         document.updatedAt = .now
     }
 
+    /// Which mode the child last used on this page; not an undo step.
+    func setMode(_ mode: ColoringMode) {
+        document.mode = mode
+    }
+
+    /// Records that the page was finished, once; not an undo step.
+    func markCompleted(at date: Date = .now) {
+        guard document.completedAt == nil else { return }
+        document.completedAt = date
+    }
+
     private func apply(_ action: ColoringAction) {
         switch action {
         case let .fill(regionId, color): document.fills[regionId] = color
@@ -50,6 +61,7 @@ final class ColoringState {
         case .reset:
             document.fills.removeAll()
             document.strokes.removeAll()
+            document.completedAt = nil
         case .undo, .redo: break
         }
     }

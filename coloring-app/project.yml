@@ -37,13 +37,14 @@ targets:
         CFBundleLocalizations: [en, ar]
         NSUserTrackingUsageDescription: ""
         SKAdNetworkItems: []
-        GADApplicationIdentifier: "ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY"
+        # Google's test app id; replace with the app's own from the AdMob console before release.
+        GADApplicationIdentifier: "ca-app-pub-3940256099942544~1458002511"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.alialyami.saudicolors
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: 1
-    # Uncomment when wiring ads:
+    # Uncomment to turn on AdMob (Services/Ads/AdMobAdService.swift compiles once the package is present):
     # dependencies:
     #   - package: GoogleMobileAds
   SaudiColoringTests:
@@ -59,7 +60,7 @@ targets:
 # packages:
 #   GoogleMobileAds:
 #     url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
-#     from: "11.0.0"
+#     exactVersion: "11.13.0" # AdMobAdService is written against the 11.x API
 schemes:
   SaudiColoring:
     build:

@@ -1,5 +1,7 @@
 import CoreGraphics
 import Foundation
+import ImageIO
+import UniformTypeIdentifiers
 
 /// Composites a coloring document into a bitmap the size of the scene:
 /// fill layer (regions coloured via the map) → freestyle strokes → outline on top.
@@ -10,6 +12,8 @@ struct CanvasRenderer {
     var paper: UInt32 = 0xFFFFFF
     /// Colour of the outline pixels (region id 0x000000 in the map).
     var ink: UInt32 = 0x000000
+    /// Tint for unfilled regions Paint by Number is pointing at (the selected number's regions).
+    var hint: UInt32 = 0xCFE6FF
 
     /// Per pixel: 0 for outline, otherwise 1 + the index of its region in `regionIds`.
     /// Precomputed once so a re-render is a table lookup per pixel.
@@ -26,7 +30,8 @@ struct CanvasRenderer {
         pixelSlots = map.pixels.map { slotFor[$0] ?? 0 }
     }
 
-    func render(_ document: ColoringDocument) -> CGImage? {
+    /// - Parameter highlight: regions to tint with `hint` while they are still unfilled.
+    func render(_ document: ColoringDocument, highlight: Set<UInt32> = []) -> CGImage? {
         let w = map.width, h = map.height
         guard let ctx = CGContext(
             data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: 0,
@@ -37,7 +42,11 @@ struct CanvasRenderer {
         var palette = [UInt32](repeating: paper, count: regionIds.count + 1)
         palette[0] = ink
         for (i, id) in regionIds.enumerated() {
-            if let hex = document.fills[id], let rgb = SceneColor.rgb(fromHex: hex) { palette[i + 1] = rgb }
+            if let hex = document.fills[id], let rgb = SceneColor.rgb(fromHex: hex) {
+                palette[i + 1] = rgb
+            } else if highlight.contains(id) {
+                palette[i + 1] = hint
+            }
         }
 
         let rowBytes = ctx.bytesPerRow
@@ -99,5 +108,24 @@ struct CanvasRenderer {
                 }
             }
         }
+    }
+
+    /// A small PNG of a rendered page for the gallery, at most `maxWidth` pixels wide.
+    static func thumbnailPNG(of image: CGImage, maxWidth: Int = 512) -> Data? {
+        let scale = min(1, Double(maxWidth) / Double(image.width))
+        let w = max(1, Int(Double(image.width) * scale)), h = max(1, Int(Double(image.height) * scale))
+        guard let ctx = CGContext(
+            data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: 0,
+            space: CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
+        ) else { return nil }
+        ctx.interpolationQuality = .high
+        ctx.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
+        guard let small = ctx.makeImage() else { return nil }
+        let data = NSMutableData()
+        guard let dest = CGImageDestinationCreateWithData(data as CFMutableData, UTType.png.identifier as CFString, 1, nil) else { return nil }
+        CGImageDestinationAddImage(dest, small, nil)
+        guard CGImageDestinationFinalize(dest) else { return nil }
+        return data as Data
     }
 }

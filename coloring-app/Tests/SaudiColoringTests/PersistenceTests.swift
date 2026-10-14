@@ -16,8 +16,18 @@ final class PersistenceTests: XCTestCase {
         XCTAssertEqual(loaded.fills, doc.fills)
         XCTAssertEqual(loaded.strokes, doc.strokes)
 
+        try service.saveThumbnail(Data([1, 2, 3]), regionId: "riyadh", sceneId: "masmak-fort")
+        XCTAssertEqual(service.thumbnail(regionId: "riyadh", sceneId: "masmak-fort"), Data([1, 2, 3]))
+
         service.delete(regionId: "riyadh", sceneId: "masmak-fort")
         XCTAssertNil(service.load(regionId: "riyadh", sceneId: "masmak-fort"))
+        XCTAssertNil(service.thumbnail(regionId: "riyadh", sceneId: "masmak-fort"))
+    }
+
+    func testDocumentsSavedBeforeCompletedAtExistStillLoad() throws {
+        let json = ##"{"regionId":"riyadh","sceneId":"masmak-fort","mode":"fill","fills":[],"strokes":[],"updatedAt":0}"##
+        let doc = try JSONDecoder().decode(ColoringDocument.self, from: Data(json.utf8))
+        XCTAssertNil(doc.completedAt)
     }
 }
 

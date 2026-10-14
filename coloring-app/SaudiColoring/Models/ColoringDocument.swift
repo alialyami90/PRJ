@@ -9,6 +9,8 @@ struct ColoringDocument: Codable {
     var fills: [UInt32: String] = [:]
     var strokes: [Stroke] = []
     var updatedAt: Date = .now
+    /// Set the first time the page is finished (every region coloured, or every number painted).
+    var completedAt: Date?
 
     var isEmpty: Bool { fills.isEmpty && strokes.isEmpty }
 }
