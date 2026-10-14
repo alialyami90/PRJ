@@ -55,8 +55,8 @@ Tests/          unit tests; the Engine is the main thing worth testing
 ### Scene asset contract
 
 Each scene ships three files, produced from the master art in `Content/`:
+
 - `outline.png` (imported illustrator art) or `outline.svg` (placeholder sketches) — the black line art shown on top of everything.
-- `outline.svg` (or `outline.pdf` as a vector asset) — the black line art shown on top of everything.
 - `regions.png` — an index map the same size as the outline where every fillable region is a unique flat colour (`regionId` = RGB packed to Int). The engine never flood-fills the rendered image; it looks up the region id at the touch point in this map. That makes Fill and Paint-by-Number O(1) per tap and leak-proof.
 - `palette.json` — `[{ "regionId": 0xRRGGBB, "number": 3, "color": "#F4A62A" }]`, the paint-by-number answer key. Fill mode uses it only as a suggested palette.
 
