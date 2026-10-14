@@ -28,6 +28,7 @@ xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStop
 # Content checks (no Xcode needed)
 python3 Scripts/validate_content.py   # every region.json has 8 scenes, asset paths exist for non-todo scenes
 python3 Scripts/sync_scenes.py        # copies approved scene assets from Content/ into Resources/Scenes/
+python3 Scripts/build_scenes.py [region...]  # rebuilds scene art from each Content/Regions/<r>/<s>/scene.py (needs Pillow)
 python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) and placeholder AppIcon (needs Pillow)
 swiftlint                             # if installed; config in .swiftlint.yml
 ```
@@ -57,6 +58,8 @@ Each scene ships three files, produced from the master art in `Content/`:
 - `outline.svg` (or `outline.pdf` as a vector asset) — the black line art shown on top of everything.
 - `regions.png` — an index map the same size as the outline where every fillable region is a unique flat colour (`regionId` = RGB packed to Int). The engine never flood-fills the rendered image; it looks up the region id at the touch point in this map. That makes Fill and Paint-by-Number O(1) per tap and leak-proof.
 - `palette.json` — `[{ "regionId": 0xRRGGBB, "number": 3, "color": "#F4A62A" }]`, the paint-by-number answer key. Fill mode uses it only as a suggested palette.
+
+Scene art is code: each `Content/Regions/<region>/<scene>/scene.py` lists shapes in painter's order using `Scripts/scene_kit.py` (plus that region's own `_figures.py` helpers) and writes `outline.svg`, `regions.png`, `palette.json` and `preview.png` next to itself. The build absorbs regions under 1200 px into the outline and caps a scene at 90 regions and 18 paint-by-number colours. Edit the `scene.py`, never the generated files.
 
 `Content/Regions/<region>/region.json` lists the 8 scenes, their titles (en/ar), an `era` (`traditional` | `modern`), a `character` (`type`: person in the region's own dress, or a local animal; plus a `description`), and production `status` (`todo` → `sketched` → `vectorized` → `approved`). `Scripts/sync_scenes.py` only copies `approved` scenes into `Resources/`.
 
