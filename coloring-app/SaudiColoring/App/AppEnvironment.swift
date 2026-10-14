@@ -20,7 +20,10 @@ final class AppEnvironment {
     }
 
     static func live() -> AppEnvironment {
-        AppEnvironment(
+        #if DEBUG
+        if DemoContent.isRequested { return DemoContent.environment() }
+        #endif
+        return AppEnvironment(
             catalog: SceneCatalog.loadFromBundle(),
             ads: liveAds(),
             persistence: FilePersistenceService(),

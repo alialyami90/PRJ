@@ -25,6 +25,10 @@ xcodebuild -project SaudiColoring.xcodeproj -scheme SaudiColoring \
 xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests
 xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStopsAtOutline
 
+# Screenshots of the main screens with demo progress (Debug build launched with -demoContent)
+TEST_RUNNER_SCREENSHOTS_DIR=$PWD/docs/screenshots xcodebuild -project SaudiColoring.xcodeproj -scheme Screenshots \
+  -destination 'platform=iOS Simulator,name=iPad Pro 13-inch (M4)' test
+
 # Content checks (no Xcode needed)
 python3 Scripts/validate_content.py   # 9 regions, every region.json has 8 scenes, asset paths exist for non-todo scenes
 python3 Scripts/sync_scenes.py        # copies vectorized + approved scenes from Content/ into Resources/Scenes/ (needs Pillow)

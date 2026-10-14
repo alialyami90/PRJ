@@ -1,0 +1,92 @@
+name: App screenshots
+
+# Runs the Screenshots scheme on an iPad simulator and commits the PNGs to coloring-app/docs/screenshots/
+# on the branch it ran on (a push by this workflow does not start another run).
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "coloring-app/**"
+      - "!coloring-app/docs/screenshots/**"
+      - ".github/workflows/screenshots.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: coloring-app
+
+jobs:
+  screenshots:
+    name: iPad screenshots
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - run: xcodegen generate
+      - name: Pick an iPad simulator (the largest iPad Pro if there is one)
+        id: sim
+        run: |
+          udid=$(xcrun simctl list devices available --json | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          ipads = [d for runtime, ds in sorted(devices.items()) if "iOS" in runtime for d in ds if d["name"].startswith("iPad")]
+          best = [d for d in ipads if d["name"].startswith("iPad Pro 13")] or [d for d in ipads if d["name"].startswith("iPad Pro")] or ipads
+          print(best[-1]["name"], file=sys.stderr)
+          print(best[-1]["udid"])')
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+      - name: Boot it with a clean status bar
+        run: |
+          xcrun simctl boot "${{ steps.sim.outputs.udid }}" || true
+          xcrun simctl bootstatus "${{ steps.sim.outputs.udid }}" -b
+          xcrun simctl status_bar "${{ steps.sim.outputs.udid }}" override --time "9:41" \
+            --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
+      - name: Take the screenshots
+        env:
+          TEST_RUNNER_SCREENSHOTS_DIR: ${{ github.workspace }}/coloring-app/docs/screenshots
+        run: |
+          set -o pipefail
+          rm -rf docs/screenshots && mkdir -p docs/screenshots
+          # Optimised so the demo pages are ready quickly; still a Debug build, which -demoContent needs.
+          xcodebuild test \
+            -project SaudiColoring.xcodeproj -scheme Screenshots \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -resultBundlePath Screenshots.xcresult \
+            SWIFT_OPTIMIZATION_LEVEL=-O CODE_SIGNING_ALLOWED=NO \
+            | tee xcodebuild.log | grep -E "error:|Test Case .* (passed|failed)|\*\* (BUILD|TEST)"
+      - name: Take them from the result bundle if the test could not write files
+        if: always() && hashFiles('coloring-app/Screenshots.xcresult/Info.plist') != ''
+        run: |
+          ls docs/screenshots/*.png 2>/dev/null && exit 0
+          xcrun xcresulttool export attachments --path Screenshots.xcresult --output-path attachments
+          python3 - <<'PY'
+          import json, re, shutil
+          for test in json.load(open("attachments/manifest.json")):
+              for a in test.get("attachments", []):
+                  name = re.sub(r"_\d+_[0-9A-Fa-f-]{36}(?=\.png$)", "", a["suggestedHumanReadableName"])
+                  shutil.copy(f"attachments/{a['exportedFileName']}", f"docs/screenshots/{name}")
+          PY
+          ls docs/screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots
+          path: |
+            coloring-app/docs/screenshots
+            coloring-app/xcodebuild.log
+      - name: Commit the screenshots to this branch
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/screenshots
+          git diff --cached --quiet && exit 0
+          git commit -m "Update app screenshots"
+          git push origin "HEAD:${{ github.ref_name }}"
