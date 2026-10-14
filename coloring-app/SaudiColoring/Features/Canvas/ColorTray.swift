@@ -1,13 +1,23 @@
 import SwiftUI
 
-/// Big round swatches a small finger can hit: the scene's suggested colours first, then a fixed crayon box.
+/// Big round swatches a small finger can hit: the scene's suggested colours first, then a fixed crayon box,
+/// then the bonus colours (or, while they are locked, a button to unlock them).
 struct ColorTray: View {
     let suggested: [String]
     @Binding var selection: String
+    var bonus: [String] = []
+    /// Shown instead of the bonus colours while they are locked.
+    var onUnlockBonus: (() -> Void)?
 
     static let crayons = [
         "#E53935", "#FB8C00", "#FDD835", "#43A047", "#00897B", "#1E88E5",
         "#3949AB", "#8E24AA", "#D81B60", "#6D4C41", "#9E9E9E", "#212121", "#FFFFFF",
+    ]
+
+    /// Unlocked by a rewarded ad after finishing a page (see RewardStore).
+    static let bonusColors = [
+        "#FF8A80", "#FFD180", "#FFFF8D", "#B9F6CA", "#84FFFF", "#82B1FF", "#B388FF", "#FF80AB",
+        "#C0A062", "#B0BEC5",
     ]
 
     var body: some View {
@@ -18,6 +28,20 @@ struct ColorTray: View {
                     Divider().frame(height: 48)
                 }
                 ForEach(Self.crayons.filter { !suggested.contains($0) }, id: \.self) { swatch($0) }
+                if !bonus.isEmpty || onUnlockBonus != nil {
+                    Divider().frame(height: 48)
+                }
+                ForEach(bonus.filter { !suggested.contains($0) }, id: \.self) { swatch($0) }
+                if let onUnlockBonus {
+                    Button(action: onUnlockBonus) {
+                        Label("More colours", systemImage: "lock.fill")
+                            .font(.headline)
+                            .frame(minWidth: 60, minHeight: 60)
+                            .padding(.horizontal, 12)
+                            .background(.yellow.opacity(0.35), in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+                }
             }
             .padding(.horizontal)
             .padding(.vertical, 8)

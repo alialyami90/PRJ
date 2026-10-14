@@ -8,6 +8,7 @@ struct SaudiColoringApp: App {
         WindowGroup {
             HomeView()
                 .environment(environment)
+                .task { environment.ads.start() }
         }
     }
 }

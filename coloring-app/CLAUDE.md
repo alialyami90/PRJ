@@ -74,7 +74,11 @@ Until a scene's art arrives it shows a placeholder sketch: its `scene.py` lists 
 - `CanvasRenderer` — composites: fill layer (regions coloured via the map) → freestyle stroke layer → outline on top. The outline is drawn from the map's `0x000000` pixels, so `outline.svg` is not needed at runtime yet. Used by both the live canvas and the thumbnail/share export.
 - `SceneAssets` — loads `regions.png` + `palette.json` for a scene from `Scenes/<region>/<scene>/` in the bundle, falling back to `SampleScene/` (generated placeholder art) so every scene is playable before its art is approved. Both folders are folder references in `project.yml`; anything else under `SaudiColoring/` is flattened into the bundle root.
 - `CanvasGeometry` — aspect-fit mapping between screen points and image pixels. `RegionMap.regionId(near:radius:)` lets a tap that lands on an outline fill the nearest region.
+- `RegionMap.labels()` — where Paint by Number writes each number: the point deepest inside each region (a chamfer distance transform, one pass over the map), computed once when PBN is first opened.
+- `CanvasRenderer.render(_:highlight:)` tints the unfilled regions of the selected PBN number; `CanvasRenderer.thumbnailPNG(of:)` makes the gallery thumbnail.
 - Modes are strategies over the same `ColoringState`: `FillTool`, `BrushTool`, `PaintByNumberTool`. PBN is Fill plus the overlay of numbers and a "correct colour" check.
+
+The canvas (`Features/Canvas/`) is `CanvasView` (modes, trays, "You did it!") over `PageView`, a `UIScrollView` whose zoomed content view is in image pixels, so touch points need no conversion. Pinch zooms in every mode; one finger pans in Fill/PBN and draws in Freestyle, where two fingers pan. PBN numbers are `CATextLayer`s re-rasterised at the current zoom.
 
 Keep the engine free of SwiftUI/UIKit view types so it stays unit-testable; it may use CoreGraphics.
 
