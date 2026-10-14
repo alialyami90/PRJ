@@ -9,7 +9,7 @@
       "title": "Boys on camels racing past Masmak Fort at sunset",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "masmak-fort/outline.svg",
         "regions": "masmak-fort/regions.png",
@@ -26,7 +26,7 @@
       "title": "Kids flying kites over the Riyadh skyline with Kingdom Tower",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "kingdom-tower-skyline/outline.svg",
         "regions": "kingdom-tower-skyline/regions.png",
@@ -43,7 +43,7 @@
       "title": "Ardah sword-dance celebration with drummers and flags",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "ardah-dance/outline.svg",
         "regions": "ardah-dance/regions.png",
@@ -60,7 +60,7 @@
       "title": "Family walking through the mud-brick alleys of Diriyah",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "diriyah-mudbrick/outline.svg",
         "regions": "diriyah-mudbrick/regions.png",
@@ -77,7 +77,7 @@
       "title": "Ferris wheel and fireworks at a Riyadh Season fair",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "riyadh-season-fair/outline.svg",
         "regions": "riyadh-season-fair/regions.png",
@@ -94,7 +94,7 @@
       "title": "Desert picnic with tents, a campfire and a falcon",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "desert-picnic/outline.svg",
         "regions": "desert-picnic/regions.png",
@@ -111,7 +111,7 @@
       "title": "Busy date souq with baskets and a friendly shopkeeper",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "date-market/outline.svg",
         "regions": "date-market/regions.png",
@@ -128,7 +128,7 @@
       "title": "Decorated camels at a camel beauty festival",
       "titleAr": "",
       "difficulty": "easy",
-      "status": "todo",
+      "status": "sketched",
       "assets": {
         "outline": "camel-festival/outline.svg",
         "regions": "camel-festival/regions.png",
