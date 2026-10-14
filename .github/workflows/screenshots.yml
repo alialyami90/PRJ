@@ -1,7 +1,8 @@
 name: App screenshots
 
-# Runs the Screenshots scheme on an iPad simulator and commits the PNGs to coloring-app/docs/screenshots/
-# on the branch it ran on (a push by this workflow does not start another run).
+# Runs the Screenshots scheme on an iPad simulator and pushes the PNGs, in coloring-app/docs/screenshots/,
+# to the branch screenshots/<branch it ran on>. Copy them into a PR in a commit of your own: a commit made
+# by this workflow on a PR branch leaves the PR's checks waiting for approval.
 on:
   workflow_dispatch:
   push:
@@ -91,12 +92,12 @@ jobs:
           path: |
             coloring-app/docs/screenshots
             coloring-app/xcodebuild.log
-      - name: Commit the screenshots to this branch
+      - name: Push them to screenshots/${{ github.ref_name }}
         if: always()
         run: |
+          ls docs/screenshots/*.png > /dev/null 2>&1 || exit 0
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/screenshots
-          git diff --cached --quiet && exit 0
-          git commit -m "Update app screenshots"
-          git push origin "HEAD:${{ github.ref_name }}"
+          git commit -m "App screenshots for ${{ github.sha }}" || true
+          git push --force origin "HEAD:refs/heads/screenshots/${{ github.ref_name }}"
