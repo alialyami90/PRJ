@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-"Saudi Colors" — a kids' coloring book app for iPad (primary) and iPhone, native SwiftUI, iOS/iPadOS 17+. Content is 8 Saudi regions/cultures × 8 scenes each (64 scenes). Every scene is a full scene (place + people/animals + activity), never an isolated object. Three coloring modes on every scene: **Fill** (tap a region), **Freestyle** (finger/Pencil brush), **Paint by Number** (numbered regions with a suggested palette). Monetised with ads.
+"Saudi Colors" — a kids' coloring book app for iPad (primary) and iPhone, native SwiftUI, iOS/iPadOS 17+. Content is 9 Saudi regions/cultures × 8 scenes each (72 scenes). Every scene is a full scene (place + people/animals + activity), never an isolated object. Three coloring modes on every scene: **Fill** (tap a region), **Freestyle** (finger/Pencil brush), **Paint by Number** (numbered regions with a suggested palette). Monetised with ads.
 
 The Xcode project is generated, not committed: `project.yml` (XcodeGen) is the source of truth for targets and settings.
 
@@ -26,8 +26,9 @@ xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests
 xcodebuild ... test -only-testing:SaudiColoringTests/FloodFillTests/testFillStopsAtOutline
 
 # Content checks (no Xcode needed)
-python3 Scripts/validate_content.py   # every region.json has 8 scenes, asset paths exist for non-todo scenes
-python3 Scripts/sync_scenes.py        # copies approved scene assets from Content/ into Resources/Scenes/
+python3 Scripts/validate_content.py   # 9 regions, every region.json has 8 scenes, asset paths exist for non-todo scenes
+python3 Scripts/sync_scenes.py        # copies vectorized + approved scenes from Content/ into Resources/Scenes/ (needs Pillow)
+python3 Scripts/sync_scenes.py --approved-only  # release builds: approved scenes only
 python3 Scripts/build_scenes.py [region...]  # rebuilds every scene's art: illustrator art/ if present, else its scene.py sketch (needs Pillow + numpy)
 python3 Scripts/import_illustration.py Content/Regions/<r>/<s>  # imports one scene's illustrator art/line.png + art/color.png
 python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) and placeholder AppIcon (needs Pillow)
@@ -64,7 +65,7 @@ Final scene art comes from an illustrator (brief: the "Saudi Colors Illustration
 
 Until a scene's art arrives it shows a placeholder sketch: its `scene.py` lists shapes in painter's order using `Scripts/scene_kit.py` (plus that region's own `_figures.py`) and writes `outline.svg`, `regions.png`, `palette.json` and `preview.png`. A scene with `art/` ignores its `scene.py`. `Scripts/build_scenes.py` rebuilds both kinds.
 
-`Content/Regions/<region>/region.json` lists the 8 scenes, their titles (en/ar), an `era` (`traditional` | `modern`), a `character` (`type`: person in the region's own dress, or a local animal; plus a `description`), and production `status` (`todo` → `sketched` → `vectorized` → `approved`). `Scripts/sync_scenes.py` only copies `approved` scenes into `Resources/`.
+`Content/Regions/<region>/region.json` lists the 8 scenes, their titles (en/ar), an `era` (`traditional` | `modern`), a `character` (`type`: person in the region's own dress, or a local animal; plus a `description`), and production `status` (`todo` → `sketched` → `vectorized` → `approved`). A scene is `vectorized` once its real art is imported and `approved` once the owner has checked it in the app (see `docs/ART_REVIEW.md`). `Scripts/sync_scenes.py` copies `vectorized` and `approved` scenes into `Resources/Scenes/` (`--approved-only` for a release build): `regions.png`, `palette.json`, a 512×384 line-art `thumb.png` for the gallery, and each region's `cover.png`. The synced files are committed so any checkout builds with the real pages; CI fails if they drift from `Content/`.
 
 ### Engine (`Engine/`)
 

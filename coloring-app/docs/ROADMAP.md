@@ -11,7 +11,8 @@
 - [ ] Paint-by-Number overlay and correctness check
 - [ ] `Scripts/sync_scenes.py` + `validate_content.py` in use
 - [ ] Arabic localization, RTL check
-- [ ] 8 regions × 8 scenes sketched (see docs/CONTENT_PLAN.md)
+- [x] 9 regions × 8 scenes with real art imported (see docs/CONTENT_PLAN.md, docs/ART_REVIEW.md)
+- [ ] Fix the pages flagged in docs/ART_REVIEW.md, then mark scenes `approved`
 
 ## M3 — Ads + App Store
 - [ ] AdService with a child-directed AdMob implementation (see docs/MONETIZATION.md)
