@@ -27,8 +27,9 @@ jobs:
           pip install --quiet pillow
           python3 Scripts/make_sample_scene.py
           git diff --exit-code -- SaudiColoring/Resources/SampleScene/palette.json SaudiColoring/Resources/SampleScene/outline.svg
-      - name: Scene art is up to date with its scene.py
+      - name: Scene art is up to date with its art/ or scene.py
         run: |
+          pip install --quiet numpy
           python3 Scripts/build_scenes.py > /dev/null
           git diff --exit-code -- 'Content/Regions/*/*/palette.json' 'Content/Regions/*/*/outline.svg'
 
