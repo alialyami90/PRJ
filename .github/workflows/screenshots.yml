@@ -74,6 +74,16 @@ jobs:
                   shutil.copy(f"attachments/{a['exportedFileName']}", f"docs/screenshots/{name}")
           PY
           ls docs/screenshots
+      - name: Turn them the right way up
+        if: always()
+        run: |
+          # The simulator hands back the portrait framebuffer even when the app is in landscape.
+          for f in docs/screenshots/*.png; do
+            [ -e "$f" ] || continue
+            w=$(sips -g pixelWidth "$f" | awk '/pixelWidth/ {print $2}')
+            h=$(sips -g pixelHeight "$f" | awk '/pixelHeight/ {print $2}')
+            if [ "$w" -lt "$h" ]; then sips -r 270 "$f" > /dev/null; fi
+          done
       - uses: actions/upload-artifact@v4
         if: always()
         with:

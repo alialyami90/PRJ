@@ -64,7 +64,7 @@ enum DemoContent {
         }
         let document = ColoringDocument(
             regionId: page.regionId, sceneId: page.sceneId, mode: .fill, fills: fills,
-            strokes: page.rainbow ? rainbow(width: map.width, height: map.height) : [],
+            strokes: page.rainbow ? rainbow(in: map) : [],
             updatedAt: Date(timeIntervalSinceNow: -3600),
             completedAt: page.completed ? Date(timeIntervalSinceNow: -3600) : nil
         )
@@ -87,12 +87,23 @@ enum DemoContent {
         return sum.mapValues { $0.n > 0 ? Double($0.x) / Double($0.n) : Double(map.width) }
     }
 
-    /// Six arcs in the top right corner.
-    private static func rainbow(width: Int, height: Int) -> [Stroke] {
+    /// Six arcs in the sky: centred on the shape that covers most of the top of the page.
+    private static func rainbow(in map: RegionMap) -> [Stroke] {
+        var top: [UInt32: (x: Int, y: Int, n: Int)] = [:]
+        for y in stride(from: 0, to: map.height * 3 / 10, by: 4) {
+            for x in stride(from: 0, to: map.width, by: 4) {
+                let id = map.pixels[y * map.width + x]
+                guard id != RegionMap.outline else { continue }
+                let s = top[id] ?? (0, 0, 0)
+                top[id] = (s.x + x, s.y + y, s.n + 1)
+            }
+        }
+        guard let sky = top.values.max(by: { $0.n < $1.n }) else { return [] }
         let colors = ["#E53935", "#FB8C00", "#FDD835", "#43A047", "#1E88E5", "#8E24AA"]
-        let cx = Double(width) * 0.8, cy = Double(height) * 0.32, band = 26.0
+        let outer = 230.0, band = 26.0
+        let cx = Double(sky.x) / Double(sky.n), cy = max(Double(sky.y) / Double(sky.n), outer + 40)
         return colors.enumerated().map { i, color in
-            let r = 230 - Double(i) * band
+            let r = outer - Double(i) * band
             let points = stride(from: 0.0, through: Double.pi, by: Double.pi / 40).map {
                 Stroke.Point(x: cx + r * cos($0), y: cy - r * sin($0))
             }
