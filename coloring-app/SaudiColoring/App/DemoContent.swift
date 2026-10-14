@@ -93,7 +93,7 @@ enum DemoContent {
         for y in stride(from: 0, to: map.height * 3 / 10, by: 4) {
             for x in stride(from: 0, to: map.width, by: 4) {
                 let id = map.pixels[y * map.width + x]
-                guard id != RegionMap.outline else { continue }
+                guard RegionMap.isRegion(id) else { continue }
                 let s = top[id] ?? (0, 0, 0)
                 top[id] = (s.x + x, s.y + y, s.n + 1)
             }

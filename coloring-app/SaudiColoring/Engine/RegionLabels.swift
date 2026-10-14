@@ -10,7 +10,7 @@ struct RegionLabel: Equatable {
 }
 
 extension RegionMap {
-    /// For every region, the pixel farthest from its edge (the outline, another region or the image border).
+    /// For every region, the pixel farthest from its edge (the outline, paper, another region or the image border).
     /// A two-pass chamfer distance transform, so one pass over the map whatever the region count.
     /// Concave shapes (a crescent, an L) get a point inside them, unlike a centroid.
     func labels() -> [UInt32: RegionLabel] {
@@ -32,7 +32,7 @@ extension RegionMap {
                     for x in 0..<w {
                         let i = y * w + x
                         let own = id[i]
-                        guard own != Self.outline else { continue }
+                        guard Self.isRegion(own) else { continue }
                         d[i] = min(min(at(x - 1, y, own) + straight, at(x, y - 1, own) + straight),
                                    min(at(x - 1, y - 1, own) + diagonal, at(x + 1, y - 1, own) + diagonal))
                     }
@@ -41,7 +41,7 @@ extension RegionMap {
                     for x in stride(from: w - 1, through: 0, by: -1) {
                         let i = y * w + x
                         let own = id[i]
-                        guard own != Self.outline else { continue }
+                        guard Self.isRegion(own) else { continue }
                         d[i] = min(d[i], min(min(at(x + 1, y, own) + straight, at(x, y + 1, own) + straight),
                                              min(at(x + 1, y + 1, own) + diagonal, at(x - 1, y + 1, own) + diagonal)))
                     }
@@ -52,7 +52,7 @@ extension RegionMap {
         var best: [UInt32: (index: Int, value: Int32)] = [:]
         for i in 0..<(w * h) {
             let own = pixels[i]
-            guard own != Self.outline else { continue }
+            guard Self.isRegion(own) else { continue }
             if dist[i] > best[own]?.value ?? -1 { best[own] = (i, dist[i]) }
         }
         return best.mapValues { b in

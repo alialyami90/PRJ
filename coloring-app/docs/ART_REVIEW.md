@@ -10,8 +10,8 @@ Sorted from busiest. Paint by Number on these pages means a lot of small numbers
 
 | Page | Pack id | Regions | Also |
 |---|---|---|---|
-| asir/flower-men: Flower-men of Rijal Almaa wearing herb crowns on a mountain path | asir_01 | 208 | heavy outline (20%+ of the page is black) |
-| jazan/fifa-mountains: Terraced Fifa Mountains with a village on the peak | jazan_02 | 179 | heavy outline (20%+ of the page is black) |
+| asir/flower-men: Flower-men of Rijal Almaa wearing herb crowns on a mountain path | asir_01 | 208 |  |
+| jazan/fifa-mountains: Terraced Fifa Mountains with a village on the peak | jazan_02 | 179 |  |
 | al-ahsa/qaisariah-souq: Lantern-lit Qaisariah Souq with cloth and spice stalls | al_ahsa_02 | 167 |  |
 | asir/asir-market: Tuesday market with pottery, baskets and spices | asir_08 | 162 |  |
 | jazan/coffee-terraces: Coffee farmers picking beans on mountain terraces | jazan_04 | 161 | heavy outline (20%+ of the page is black) |
@@ -53,45 +53,29 @@ Sorted from busiest. Paint by Number on these pages means a lot of small numbers
 | hail/aarif-fort: Aarif Fort on the hill above the old town | hail_02 | 91 |  |
 | tabuk/wadi-disah: Wadi Al-Disah canyon with palms and a river | tabuk_05 | 91 |  |
 
-## Heavy outlines (4 pages)
+## Heavy outlines (2 pages)
 
-20% or more of the page is black line. Usually many tiny shapes that were burned into the outline; the page reads as dark and busy.
+20% or more of the page is black line, counting tiny dark shapes drawn as ink; the page reads as dark and busy.
 
 | Page | Pack id |
 |---|---|
 | al-ahsa/ibrahim-palace: Horse riders at Ibrahim Palace | al_ahsa_07 |
-| asir/flower-men: Flower-men of Rijal Almaa wearing herb crowns on a mountain path | asir_01 |
 | jazan/coffee-terraces: Coffee farmers picking beans on mountain terraces | jazan_04 |
-| jazan/fifa-mountains: Terraced Fifa Mountains with a village on the peak | jazan_02 |
 
-## Small shapes drawn as ink (every page)
+## Small shapes (every page)
 
-Every page has shapes under 1,200 px (about 40×40) that the importer fills solid black so a child can never miss-tap them: eyes, fingers, small window panes, palm-leaf tips. That is the intended behaviour, but where a page lists 40 or more, details like faces or patterns may have turned into black blobs; check those first.
+Every page has shapes under 1,200 px (about 40×40) that are too small for a child to tap on their own. The importer handles each one in this order:
 
-| Page | Shapes inked |
+1. It joins a fillable shape of the same colour (in `color.png`) within 30 px, so it colours with that shape, like a bit of leaf between two stems.
+2. If it is dark, it is drawn as solid ink, like hair or a shoe.
+3. If it is light, it stays paper white, like teeth or the shine in an eye.
+
+The shine on a pupil is often left open to the face in the line art, so it would have taken the face's colour. The importer keeps narrow white gaps beside solid black (pupils, hair, mouths) white too. Pages listing 40 or more shapes that could not join a neighbour are the ones to check first for faces or patterns that look odd.
+
+| Page | Shapes drawn as ink or left white |
 |---|---|
-| asir/flower-men | 93 |
-| jazan/coffee-terraces | 90 |
-| hail/qishlah-palace | 85 |
-| jazan/fifa-mountains | 79 |
-| najran/tower-houses-harvest | 77 |
-| hail/hail-rally | 66 |
-| jazan/sabya-market | 65 |
-| tabuk/hejaz-railway | 60 |
-| al-ahsa/ibrahim-palace | 58 |
-| jeddah/hijazi-wedding | 53 |
-| jazan/mangroves | 51 |
-| jeddah/al-balad-rawashin | 51 |
-| al-ahsa/palm-oasis | 50 |
-| al-ahsa/hofuf-train | 49 |
-| riyadh/masmak-fort | 46 |
-| najran/al-aan-palace | 43 |
-| jeddah/corniche-fountain | 42 |
-| asir/honey-bees | 41 |
-| hail/hail-farm | 40 |
-| jazan/farasan-islands | 40 |
-| jeddah/dhow-sail | 40 |
-| najran/palm-basket-workshop | 40 |
+| jazan/coffee-terraces | 53 |
+| jazan/sabya-market | 51 |
 
 ## Not checked by the importer
 

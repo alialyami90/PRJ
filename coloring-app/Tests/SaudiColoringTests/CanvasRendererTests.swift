@@ -22,6 +22,15 @@ final class CanvasRendererTests: XCTestCase {
         ])
     }
 
+    func testPaperStaysWhite() throws {
+        let map = RegionMap(width: 3, height: 1, pixels: [0xFF0000, RegionMap.paper, 0x000000])
+        var doc = document()
+        doc.fills[0xFF0000] = "#12AB34"
+        doc.fills[RegionMap.paper] = "#123456" // never a region; ignored
+        let pixels = try XCTUnwrap(CanvasRenderer(map: map).render(doc, highlight: [RegionMap.paper])).rgbPixels()
+        XCTAssertEqual(pixels, [0x12AB34, 0xFFFFFF, 0x000000])
+    }
+
     func testFilledRegionUsesDocumentColour() throws {
         var doc = document()
         doc.fills[0x0000FF] = "#12AB34"
