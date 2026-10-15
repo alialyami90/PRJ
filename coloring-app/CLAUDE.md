@@ -100,6 +100,7 @@ This app is for kids, so on the App Store it must go in the **Kids Category** an
 Arabic is a first-class language: all strings go through `Localizable.xcstrings`, layout must be RTL-safe (use leading/trailing, never left/right), and region/scene names carry `nameAr`/`titleAr` in the manifests.
 
 CI (`.github/workflows/coloring-app.yml`) runs the content checks on Linux and `xcodebuild test` on a macOS runner's iPad simulator for every PR that touches `coloring-app/`.
+`.github/workflows/testflight.yml` archives with Xcode 26 and uploads to TestFlight (cloud signing via an App Store Connect API key in repo secrets) on every push to `main` that touches the app, or on demand; setup in `docs/TESTFLIGHT.md`.
 
 ## Conventions
 

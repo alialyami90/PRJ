@@ -30,12 +30,16 @@ targets:
       path: SaudiColoring/App/Info.plist
       properties:
         CFBundleDisplayName: Saudi Colors
+        # XcodeGen writes 1.0 / 1 unless told; take them from the build settings so CI can set the build number.
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIRequiresFullScreen: false
         CFBundleLocalizations: [en, ar]
-        NSUserTrackingUsageDescription: ""
+        # Only standard HTTPS (exempt), so App Store Connect doesn't ask the export-compliance question per build.
+        ITSAppUsesNonExemptEncryption: false
         SKAdNetworkItems: []
         # Google's test app id; replace with the app's own from the AdMob console before release.
         GADApplicationIdentifier: "ca-app-pub-3940256099942544~1458002511"
