@@ -13,14 +13,14 @@ name: TestFlight
 #   APP_STORE_CONNECT_KEY        the whole text of the AuthKey_XXXXXXXXXX.p8 file
 #   APPLE_TEAM_ID                the 10-character Team ID from developer.apple.com > Membership
 #
-# Pull requests that change this file only archive (no secrets, no upload), to check the release build.
+# Pull requests that change this file or project.yml only archive (no secrets, no upload), to check the release build.
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths: ["coloring-app/**", ".github/workflows/testflight.yml"]
   pull_request:
-    paths: [".github/workflows/testflight.yml"]
+    paths: [".github/workflows/testflight.yml", "coloring-app/project.yml"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -79,6 +79,8 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild-archive.log | grep -E "error:|warning: .*SaudiColoring|\*\* ARCHIVE"
           /usr/libexec/PlistBuddy -c "Print :ApplicationProperties" "$RUNNER_TEMP/SaudiColoring.xcarchive/Info.plist"
+          built=$(/usr/libexec/PlistBuddy -c "Print :ApplicationProperties:CFBundleVersion" "$RUNNER_TEMP/SaudiColoring.xcarchive/Info.plist")
+          [ "$built" = "$BUILD_NUMBER" ] || { echo "::error::Built $built, expected build number $BUILD_NUMBER (CFBundleVersion must be \$(CURRENT_PROJECT_VERSION))"; exit 1; }
 
       - name: Sign and upload to App Store Connect
         if: env.UPLOAD == 'true'
