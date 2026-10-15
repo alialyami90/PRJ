@@ -84,6 +84,25 @@ jobs:
           fi
           exit $bad
 
+      - name: Check the API key with App Store Connect
+        if: env.UPLOAD == 'true'
+        env:
+          KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          KEY: ${{ secrets.APP_STORE_CONNECT_KEY }}
+          BUNDLE_ID: com.alialyami.saudicolors
+        run: |
+          export KEY_ID=$(printf '%s' "$KEY_ID" | tr -d '[:space:]')
+          export ISSUER_ID=$(printf '%s' "$ISSUER_ID" | tr -d '[:space:]')
+          export KEY_PATH="$RUNNER_TEMP/check.p8"
+          printf '%s\n' "$KEY" > "$KEY_PATH"
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --quiet pyjwt cryptography
+          status=0
+          "$RUNNER_TEMP/venv/bin/python" Scripts/check_asc_key.py || status=$?
+          rm -f "$KEY_PATH"
+          exit $status
+
       - run: brew install xcodegen
       - run: xcodegen generate
 
