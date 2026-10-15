@@ -50,7 +50,7 @@ jobs:
           sudo xcode-select -s "$xcode"
           xcodebuild -version
 
-      - name: Check the App Store Connect secrets are set
+      - name: Check the App Store Connect secrets are set and look right
         if: env.UPLOAD == 'true'
         env:
           KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
@@ -58,12 +58,31 @@ jobs:
           KEY: ${{ secrets.APP_STORE_CONNECT_KEY }}
           TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
-          missing=""
-          [ -n "$KEY_ID" ] || missing="$missing APP_STORE_CONNECT_KEY_ID"
-          [ -n "$ISSUER_ID" ] || missing="$missing APP_STORE_CONNECT_ISSUER_ID"
-          [ -n "$KEY" ] || missing="$missing APP_STORE_CONNECT_KEY"
-          [ -n "$TEAM_ID" ] || missing="$missing APPLE_TEAM_ID"
-          [ -z "$missing" ] || { echo "::error::Missing repository secrets:$missing"; exit 1; }
+          # Only the shape of each value is checked and reported, never the value.
+          trim() { printf '%s' "$1" | tr -d '[:space:]'; }
+          KEY_ID=$(trim "$KEY_ID"); ISSUER_ID=$(trim "$ISSUER_ID"); TEAM_ID=$(trim "$TEAM_ID")
+          bad=0
+          problem() { echo "::error::$1"; bad=1; }
+          [ -n "$KEY_ID" ] || problem "APP_STORE_CONNECT_KEY_ID is not set"
+          [ -n "$ISSUER_ID" ] || problem "APP_STORE_CONNECT_ISSUER_ID is not set"
+          [ -n "$KEY" ] || problem "APP_STORE_CONNECT_KEY is not set"
+          [ -n "$TEAM_ID" ] || problem "APPLE_TEAM_ID is not set"
+          uuid='^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$'
+          if [ -n "$KEY_ID" ] && ! [[ "$KEY_ID" =~ ^[A-Z0-9]{10}$ ]]; then
+            if [[ "$KEY_ID" =~ $uuid ]]; then problem "APP_STORE_CONNECT_KEY_ID holds the Issuer ID (the long one with dashes); the Key ID is the 10-character one in the key's row"
+            else problem "APP_STORE_CONNECT_KEY_ID should be 10 capital letters and digits (it has ${#KEY_ID} characters)"; fi
+          fi
+          if [ -n "$ISSUER_ID" ] && ! [[ "$ISSUER_ID" =~ $uuid ]]; then
+            problem "APP_STORE_CONNECT_ISSUER_ID should look like 69a6de7f-xxxx-xxxx-xxxx-xxxxxxxxxxxx, shown above the Team Keys list (it has ${#ISSUER_ID} characters)"
+          fi
+          if [ -n "$TEAM_ID" ] && ! [[ "$TEAM_ID" =~ ^[A-Z0-9]{10}$ ]]; then
+            problem "APPLE_TEAM_ID should be 10 capital letters and digits (it has ${#TEAM_ID} characters)"
+          fi
+          if [ -n "$KEY" ]; then
+            grep -q -- '-----BEGIN PRIVATE KEY-----' <<<"$KEY" && grep -q -- '-----END PRIVATE KEY-----' <<<"$KEY" \
+              || problem "APP_STORE_CONNECT_KEY should be the whole .p8 file, from -----BEGIN PRIVATE KEY----- to -----END PRIVATE KEY-----"
+          fi
+          exit $bad
 
       - run: brew install xcodegen
       - run: xcodegen generate
@@ -91,6 +110,10 @@ jobs:
           TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           set -o pipefail
+          # Copying from a web page often brings a stray space or line break along.
+          KEY_ID=$(printf '%s' "$KEY_ID" | tr -d '[:space:]')
+          ISSUER_ID=$(printf '%s' "$ISSUER_ID" | tr -d '[:space:]')
+          TEAM_ID=$(printf '%s' "$TEAM_ID" | tr -d '[:space:]')
           key_path="$RUNNER_TEMP/AuthKey_$KEY_ID.p8"
           printf '%s\n' "$KEY" > "$key_path"
           cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
