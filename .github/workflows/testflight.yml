@@ -5,7 +5,7 @@ name: TestFlight
 #
 # Signing needs no certificate or profile in the repo: the archive is built unsigned and `xcodebuild -exportArchive`
 # signs it through the App Store Connect API key (-allowProvisioningUpdates), creating the App Store profile if needed.
-# The key must have the Admin role, which cloud signing requires.
+# `xcrun altool` then uploads the .ipa with the same key. The key must have the Admin role, which cloud signing requires.
 #
 # Repository secrets (Settings > Secrets and variables > Actions):
 #   APP_STORE_CONNECT_KEY_ID     the key's Key ID
@@ -120,7 +120,7 @@ jobs:
           built=$(/usr/libexec/PlistBuddy -c "Print :ApplicationProperties:CFBundleVersion" "$RUNNER_TEMP/SaudiColoring.xcarchive/Info.plist")
           [ "$built" = "$BUILD_NUMBER" ] || { echo "::error::Built $built, expected build number $BUILD_NUMBER (CFBundleVersion must be \$(CURRENT_PROJECT_VERSION))"; exit 1; }
 
-      - name: Sign and upload to App Store Connect
+      - name: Sign with the cloud-managed distribution certificate
         if: env.UPLOAD == 'true'
         env:
           KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
@@ -133,7 +133,9 @@ jobs:
           KEY_ID=$(printf '%s' "$KEY_ID" | tr -d '[:space:]')
           ISSUER_ID=$(printf '%s' "$ISSUER_ID" | tr -d '[:space:]')
           TEAM_ID=$(printf '%s' "$TEAM_ID" | tr -d '[:space:]')
-          key_path="$RUNNER_TEMP/AuthKey_$KEY_ID.p8"
+          # Where altool looks for the key in the upload step.
+          mkdir -p ~/.appstoreconnect/private_keys
+          key_path=~/.appstoreconnect/private_keys/AuthKey_$KEY_ID.p8
           printf '%s\n' "$KEY" > "$key_path"
           cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
@@ -141,7 +143,7 @@ jobs:
           <plist version="1.0">
           <dict>
             <key>method</key><string>app-store-connect</string>
-            <key>destination</key><string>upload</string>
+            <key>destination</key><string>export</string>
             <key>signingStyle</key><string>automatic</string>
             <key>teamID</key><string>$TEAM_ID</string>
             <key>uploadSymbols</key><true/>
@@ -158,12 +160,25 @@ jobs:
             -authenticationKeyID "$KEY_ID" \
             -authenticationKeyIssuerID "$ISSUER_ID" \
             2>&1 | tee xcodebuild-export.log
-          rm -f "$key_path"
+          ls "$RUNNER_TEMP"/export/*.ipa
+
+      - name: Upload to App Store Connect
+        if: env.UPLOAD == 'true'
+        env:
+          KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          KEY_ID=$(printf '%s' "$KEY_ID" | tr -d '[:space:]')
+          ISSUER_ID=$(printf '%s' "$ISSUER_ID" | tr -d '[:space:]')
+          xcrun altool --upload-app --type ios --file "$(ls "$RUNNER_TEMP"/export/*.ipa | head -1)" \
+            --apiKey "$KEY_ID" --apiIssuer "$ISSUER_ID" --output-format normal \
+            2>&1 | tee xcodebuild-upload.log
           echo "Uploaded build $BUILD_NUMBER. It appears in TestFlight once App Store Connect has processed it." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Remove the API key
         if: always()
-        run: rm -f "$RUNNER_TEMP"/AuthKey_*.p8
+        run: rm -rf ~/.appstoreconnect "$RUNNER_TEMP"/AuthKey_*.p8
 
       - name: Keep the logs on failure
         if: failure()
