@@ -35,6 +35,8 @@ targets:
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIRequiresFullScreen: false
         CFBundleLocalizations: [en, ar]
+        # Only standard HTTPS (exempt), so App Store Connect doesn't ask the export-compliance question per build.
+        ITSAppUsesNonExemptEncryption: false
         NSUserTrackingUsageDescription: ""
         SKAdNetworkItems: []
         # Google's test app id; replace with the app's own from the AdMob console before release.

@@ -6,6 +6,7 @@ A coloring book for kids (iPad first, iPhone too) built around the cities and cu
 - `docs/CONTENT_PLAN.md` — the 72 scenes.
 - `docs/MONETIZATION.md` — ads and App Store Kids Category constraints.
 - `docs/ROADMAP.md` — milestones to a first App Store release.
+- `docs/TESTFLIGHT.md` — how builds reach TestFlight, and the one-time App Store Connect setup.
 
 Quick start: `brew install xcodegen && xcodegen generate && open SaudiColoring.xcodeproj`.
 
