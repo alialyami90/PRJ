@@ -21,7 +21,8 @@ BUNDLE_ID = os.environ["BUNDLE_ID"]
 with open(os.environ["KEY_PATH"]) as f:
     PRIVATE_KEY = f.read()
 
-URL = f"https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]={BUNDLE_ID}&fields[apps]=bundleId"
+API = "https://api.appstoreconnect.apple.com/v1"
+URL = f"{API}/apps?filter[bundleId]={BUNDLE_ID}&fields[apps]=bundleId"
 
 
 def token(team_key):
@@ -34,8 +35,8 @@ def token(team_key):
     return jwt.encode(claims, PRIVATE_KEY, algorithm="ES256", headers={"kid": KEY_ID, "typ": "JWT"})
 
 
-def get(team_key):
-    request = urllib.request.Request(URL, headers={"Authorization": f"Bearer {token(team_key)}"})
+def get(team_key, url=URL):
+    request = urllib.request.Request(url, headers={"Authorization": f"Bearer {token(team_key)}"})
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             return response.status, json.load(response)
@@ -56,6 +57,11 @@ except Exception:
 status, body = get(team_key=True)
 if status == 200:
     if not body["data"]:
+        _, registered = get(True, f"{API}/bundleIds?filter[identifier]={BUNDLE_ID}&fields[bundleIds]=identifier")
+        _, apps = get(True, f"{API}/apps?fields[apps]=bundleId&limit=200")
+        others = sorted(a["attributes"]["bundleId"] for a in (apps or {}).get("data", []))
+        print(f"Bundle ID {BUNDLE_ID} registered on developer.apple.com: {'yes' if registered and registered['data'] else 'no'}")
+        print(f"Apps this key can see in App Store Connect: {', '.join(others) or 'none'}")
         fail(f"The key works, but App Store Connect has no app with bundle ID {BUNDLE_ID}. "
              "Create the app record (Apps > + > New App) with that bundle ID.")
     print(f"App Store Connect accepted the Team key and found the app {BUNDLE_ID}.")
