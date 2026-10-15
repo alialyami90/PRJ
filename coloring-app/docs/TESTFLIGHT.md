@@ -8,8 +8,8 @@ The build number is `<run number>.<attempt>` (for example `12.1`), so every uplo
 
 ## One-time setup (account holder, in a browser)
 
-1. **Register the bundle ID.** developer.apple.com > Certificates, Identifiers & Profiles > Identifiers > **+** > App IDs > App. Description `Saudi Colors`, Bundle ID **Explicit** `com.alialyami.saudicolors`. No capabilities needed. Continue, Register.
-2. **Create the app record.** appstoreconnect.apple.com > Apps > **+** > New App. Platform iOS, name `Saudi Colors` (or any free name), primary language, bundle ID `com.alialyami.saudicolors`, SKU `saudicolors`, User Access Full Access.
+1. **Register the bundle ID.** developer.apple.com > Certificates, Identifiers & Profiles > Identifiers > **+** > App IDs > App. Description `Saudi Colors`, Bundle ID **Explicit** `com.yamiapps.saudicolors`. No capabilities needed. Continue, Register.
+2. **Create the app record.** appstoreconnect.apple.com > Apps > **+** > New App. Platform iOS, name `Saudi Colors` (or any free name), primary language, bundle ID `com.yamiapps.saudicolors`, SKU `saudicolors`, User Access Full Access.
 3. **Accept the agreements.** App Store Connect > Business: accept any pending agreement, or uploads are refused.
 4. **Create the API key.** App Store Connect > Users and Access > Integrations > App Store Connect API > Team Keys > **+**. Name `GitHub TestFlight`, Access **Admin** (cloud signing needs it). Download the `.p8` file; Apple lets you download it only once. Note the **Key ID** next to it and the **Issuer ID** above the list.
 5. **Find the Team ID.** developer.apple.com > Account > Membership details > Team ID (10 characters).

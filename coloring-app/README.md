@@ -12,7 +12,7 @@ Quick start: `brew install xcodegen && xcodegen generate && open SaudiColoring.x
 
 ## Screenshots
 
-Taken on an iPad simulator by `.github/workflows/screenshots.yml` (the `Screenshots` scheme, with demo progress). It runs on every push to a `claude/` branch that changes the app, or on demand, and pushes fresh PNGs to the branch `screenshots/<that branch>`.
+Taken on an iPad simulator by `.github/workflows/screenshots.yml` (the `Screenshots` scheme, with demo progress). It runs on demand (Actions > App screenshots > Run workflow, on the branch you want) and pushes fresh PNGs to the branch `screenshots/<that branch>`.
 
 | | |
 |---|---|

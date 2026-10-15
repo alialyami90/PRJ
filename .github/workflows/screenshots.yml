@@ -3,14 +3,10 @@ name: App screenshots
 # Runs the Screenshots scheme on an iPad simulator and pushes the PNGs, in coloring-app/docs/screenshots/,
 # to the branch screenshots/<branch it ran on>. Copy them into a PR in a commit of your own: a commit made
 # by this workflow on a PR branch leaves the PR's checks waiting for approval.
+# On demand only (Actions > App screenshots > Run workflow, pick the branch): each run is 7+ macOS minutes,
+# and running on every push used up the account's Actions minutes.
 on:
   workflow_dispatch:
-  push:
-    branches: ["claude/**"]
-    paths:
-      - "coloring-app/**"
-      - "!coloring-app/docs/screenshots/**"
-      - ".github/workflows/screenshots.yml"
 
 permissions:
   contents: write

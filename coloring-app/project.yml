@@ -1,6 +1,6 @@
 name: SaudiColoring
 options:
-  bundleIdPrefix: com.alialyami
+  bundleIdPrefix: com.yamiapps
   deploymentTarget:
     iOS: "17.0"
   xcodeVersion: "16.0"
@@ -45,7 +45,7 @@ targets:
         GADApplicationIdentifier: "ca-app-pub-3940256099942544~1458002511"
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.alialyami.saudicolors
+        PRODUCT_BUNDLE_IDENTIFIER: com.yamiapps.saudicolors
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: 1
     # Uncomment to turn on AdMob (Services/Ads/AdMobAdService.swift compiles once the package is present):
