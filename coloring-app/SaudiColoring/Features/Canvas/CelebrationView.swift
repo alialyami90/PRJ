@@ -1,57 +1,86 @@
 import SwiftUI
 
-/// Shown once when a page is finished.
+/// Shown once when a page is finished: the stamp presses down onto the card, then three big choices.
 struct CelebrationView: View {
+    let theme: AppTheme
     /// Nil once the bonus colours are unlocked.
     let onUnlockBonus: (() -> Void)?
     let onKeepColoring: () -> Void
     let onMorePictures: () -> Void
-    @State private var appeared = false
+    @State private var stamped = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    init(onUnlockBonus: (() -> Void)?, onKeepColoring: @escaping () -> Void, onMorePictures: @escaping () -> Void) {
+    init(theme: AppTheme = .saudi, onUnlockBonus: (() -> Void)?, onKeepColoring: @escaping () -> Void, onMorePictures: @escaping () -> Void) {
+        self.theme = theme
         self.onUnlockBonus = onUnlockBonus
         self.onKeepColoring = onKeepColoring
         self.onMorePictures = onMorePictures
     }
 
     var body: some View {
-        VStack(spacing: 24) {
-            HStack(spacing: 12) {
-                ForEach(0..<3) { i in
-                    Image(systemName: "star.fill")
-                        .font(.system(size: i == 1 ? 72 : 52))
-                        .foregroundStyle(.yellow)
-                        .shadow(color: .orange.opacity(0.5), radius: 6)
-                        .scaleEffect(appeared ? 1 : 0.2)
-                        .rotationEffect(.degrees(appeared ? 0 : -90))
-                        .animation(.spring(duration: 0.6, bounce: 0.5).delay(0.15 * Double(i)), value: appeared)
+        VStack(spacing: 0) {
+            ZStack {
+                theme.ground
+                VStack(spacing: 0) {
+                    Spacer(minLength: 0)
+                    SaduBand().frame(height: 34)
+                }
+                FinishedStamp(theme: theme, size: 132)
+                    .rotationEffect(.degrees(stamped ? -10 : -30))
+                    .scaleEffect(stamped ? 1 : (reduceMotion ? 1 : 1.9))
+                    .opacity(stamped ? 1 : 0)
+                    .offset(y: -10)
+            }
+            .frame(height: 210)
+
+            VStack(spacing: 22) {
+                Text("You did it!")
+                    .font(.system(size: 46, weight: .heavy, design: .rounded))
+                    .foregroundStyle(theme.ink)
+                VStack(spacing: 12) {
+                    if let onUnlockBonus {
+                        big("Get more colors", systemImage: "paintpalette.fill", fill: theme.accent, text: theme.onAccent, action: onUnlockBonus)
+                    }
+                    big("Keep coloring", systemImage: "paintbrush.fill", fill: theme.ground, text: .white, action: onKeepColoring)
+                    big("More pictures", systemImage: "square.grid.2x2.fill", fill: theme.ink.opacity(0.08), text: theme.ink, action: onMorePictures)
                 }
             }
-            Text("You did it!")
-                .font(.system(size: 44, weight: .heavy, design: .rounded))
-            VStack(spacing: 14) {
-                if let onUnlockBonus {
-                    big("Get more colours", systemImage: "paintpalette.fill", tint: .orange, action: onUnlockBonus)
-                }
-                big("Keep coloring", systemImage: "paintbrush.fill", tint: .accentColor, action: onKeepColoring)
-                big("More pictures", systemImage: "square.grid.2x2.fill", tint: .green, action: onMorePictures)
+            .padding(.horizontal, 36)
+            .padding(.top, 26)
+            .padding(.bottom, 34)
+        }
+        .frame(maxWidth: 460)
+        .background(theme.tint)
+        .clipShape(RoundedRectangle(cornerRadius: 34, style: .continuous))
+        .shadow(color: .black.opacity(0.25), radius: 30, y: 14)
+        .padding()
+        .onAppear {
+            withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .spring(duration: 0.45, bounce: 0.45).delay(0.15)) {
+                stamped = true
             }
         }
-        .padding(40)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 32))
-        .shadow(radius: 20)
-        .padding()
-        .onAppear { appeared = true }
+        .sensoryFeedback(.success, trigger: stamped)
     }
 
-    private func big(_ title: LocalizedStringKey, systemImage: String, tint: Color, action: @escaping () -> Void) -> some View {
+    private func big(_ title: LocalizedStringKey, systemImage: String, fill: Color, text: Color, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Label(title, systemImage: systemImage)
                 .font(.title2.bold())
-                .frame(maxWidth: 360, minHeight: 60)
+                .fontDesign(.rounded)
+                .foregroundStyle(text)
+                .frame(maxWidth: .infinity, minHeight: 64)
+                .background(fill, in: Capsule())
+                .contentShape(Capsule())
         }
-        .buttonStyle(.borderedProminent)
-        .tint(tint)
+        .buttonStyle(CelebrationButtonStyle())
+    }
+}
+
+private struct CelebrationButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.96 : 1)
+            .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
     }
 }
 

@@ -35,7 +35,7 @@ Everything ad-related goes through `Services/Ads/AdService` (a protocol). Featur
 - `AdMobAdService` sets `tagForChildDirectedTreatment`, `tagForUnderAgeOfConsent` and `maxAdContentRating = .general` before the SDK starts, and uses Google's public test ad units until real ones are set.
 - `InterstitialPolicy`: at most one interstitial per 3 finished pages, never in the first 2 minutes, and only when the child taps "More pictures" on the "You did it!" screen, never mid-page.
 - Gallery banner (`Features/Ads/AdBannerView.swift`) at the bottom of each region's page grid, never on the canvas.
-- Rewarded "Get more colours": after the parental gate (`Features/Parent/ParentalGate.swift`, a times-table sum), a rewarded ad unlocks 10 bonus crayons for good (`RewardStore`).
+- Rewarded "Get more colors": after the parental gate (`Features/Parent/ParentalGate.swift`, a times-table sum), a rewarded ad unlocks 10 bonus crayons for good (`RewardStore`).
 
 ## Turning AdMob on
 

@@ -2,7 +2,7 @@
   {
     "id": "al-ahsa",
     "name": "Al-Ahsa (Eastern Province)",
-    "nameAr": "",
+    "nameAr": "الأحساء (المنطقة الشرقية)",
     "order": 2,
     "scenes": [
       {
@@ -58,7 +58,7 @@
   {
     "id": "alula",
     "name": "AlUla",
-    "nameAr": "",
+    "nameAr": "العلا",
     "order": 4,
     "scenes": [
       {
@@ -114,7 +114,7 @@
   {
     "id": "asir",
     "name": "Asir (Abha)",
-    "nameAr": "",
+    "nameAr": "عسير (أبها)",
     "order": 3,
     "scenes": [
       {
@@ -170,7 +170,7 @@
   {
     "id": "hail",
     "name": "Hail",
-    "nameAr": "",
+    "nameAr": "حائل",
     "order": 6,
     "scenes": [
       {
@@ -226,7 +226,7 @@
   {
     "id": "jazan",
     "name": "Jazan & Farasan",
-    "nameAr": "",
+    "nameAr": "جازان وفرسان",
     "order": 5,
     "scenes": [
       {
@@ -282,7 +282,7 @@
   {
     "id": "jeddah",
     "name": "Jeddah (Hijaz)",
-    "nameAr": "",
+    "nameAr": "جدة (الحجاز)",
     "order": 1,
     "scenes": [
       {
@@ -394,7 +394,7 @@
   {
     "id": "riyadh",
     "name": "Riyadh (Najd)",
-    "nameAr": "",
+    "nameAr": "الرياض (نجد)",
     "order": 0,
     "scenes": [
       {

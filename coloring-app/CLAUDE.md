@@ -37,7 +37,8 @@ python3 Scripts/build_scenes.py [region...]  # rebuilds every scene's art: illus
 python3 Scripts/import_illustration.py Content/Regions/<r>/<s>  # imports one scene's illustrator art/line.png + art/color.png
 python3 Scripts/adopt_line_art.py <new_line.png> Content/Regions/<r>/<s>  # redrawn line art with no colour file: crops its frame, scales it, colours it from the old art/color.png (then import)
 python3 Scripts/paint_shapes.py Content/Regions/<r>/<s>  # line art with no colour file and a new composition: colours every shape from art/paint.json into art/color.png (then import)
-python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) and placeholder AppIcon (needs Pillow)
+python3 Scripts/make_sample_scene.py  # regenerates the placeholder scene (Resources/SampleScene/) (needs Pillow)
+python3 Scripts/make_app_icon.py      # draws the app icon: half-coloured palm over a Sadu band (needs Pillow)
 swiftlint                             # if installed; config in .swiftlint.yml
 ```
 

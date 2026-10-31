@@ -1,0 +1,603 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T19:35:21+00:00",
+  "title": "Design System: Saudi Colors",
+  "extensions": {
+    "platform": "iOS / iPadOS 17+, SwiftUI, iPad-first",
+    "units": "Values in px are iOS points (1px = 1pt).",
+    "sources": [
+      "SaudiColoring/Features/Theme/AppTheme.swift",
+      "SaudiColoring/Features/Theme/SaduBand.swift",
+      "SaudiColoring/Features/Theme/JourneyMarks.swift",
+      "Scripts/make_app_icon.py"
+    ],
+    "appearance": {
+      "dark": {
+        "palm-green": "#11563F",
+        "rail-green": "#0B3A2C",
+        "rail-selected": "#17604A",
+        "date-gold": "#E8B04B",
+        "sage-ground": "#0F1A15",
+        "palm-ink": "#EDF2EC",
+        "on-gold": "#1E1513",
+        "sadu": "unchanged"
+      },
+      "note": "Palm green and rail green are deliberately the same in dark mode because their navigation bars render in the dark appearance (toolbarColorScheme .dark)."
+    },
+    "colorMeta": {
+      "palm-green": {
+        "role": "primary",
+        "displayName": "Palm Green",
+        "canonical": "#11563F",
+        "oklch": "oklch(40.5% 0.077 165.6)",
+        "purpose": "Header bands, gallery and canvas bars, selected mode, seal body. Same in light and dark.",
+        "tonalRamp": [
+          "#000F08",
+          "#012D1F",
+          "#044F38",
+          "#2F6F57",
+          "#529177",
+          "#75B59A",
+          "#99DABD",
+          "#C0FFE3"
+        ]
+      },
+      "rail-green": {
+        "role": "primary",
+        "displayName": "Deep Rail Green",
+        "canonical": "#0B3A2C",
+        "oklch": "oklch(31.3% 0.056 168.7)",
+        "purpose": "The journey rail and its bar; app control tint. Same in light and dark.",
+        "tonalRamp": [
+          "#000F09",
+          "#002D20",
+          "#1F4C3D",
+          "#406C5C",
+          "#618D7C",
+          "#83B19F",
+          "#A6D5C3",
+          "#CBFBE8"
+        ]
+      },
+      "rail-selected": {
+        "role": "primary",
+        "displayName": "Selected Stop Green",
+        "canonical": "#17604A",
+        "oklch": "oklch(43.9% 0.079 168.3)",
+        "purpose": "Trailing pill behind the selected rail row.",
+        "tonalRamp": [
+          "#000F09",
+          "#012D20",
+          "#034E3A",
+          "#2A7059",
+          "#4E9279",
+          "#71B59C",
+          "#95DAC0",
+          "#C0FFE6"
+        ]
+      },
+      "date-gold": {
+        "role": "secondary",
+        "displayName": "Date Gold",
+        "canonical": "#E2A63B",
+        "oklch": "oklch(76.4% 0.138 78.0)",
+        "purpose": "Caravan route, stops, seal ring, Get more colours. Dark appearance: date-gold-dark.",
+        "tonalRamp": [
+          "#120900",
+          "#332100",
+          "#593C01",
+          "#805904",
+          "#AB7708",
+          "#D49929",
+          "#FABD55",
+          "#FFECCF"
+        ]
+      },
+      "date-gold-dark": {
+        "role": "secondary",
+        "displayName": "Date Gold (dark)",
+        "canonical": "#E8B04B",
+        "oklch": "oklch(79.1% 0.133 79.3)",
+        "purpose": "Dark-appearance value of date-gold.",
+        "tonalRamp": [
+          "#120900",
+          "#332102",
+          "#573C05",
+          "#7E5A0C",
+          "#A87915",
+          "#D19A31",
+          "#F7BE5B",
+          "#FEECCF"
+        ]
+      },
+      "sage-ground": {
+        "role": "neutral",
+        "displayName": "Sage Ground",
+        "canonical": "#EDF2EC",
+        "oklch": "oklch(95.6% 0.010 140.5)",
+        "purpose": "Gallery and canvas ground, celebration card body. Dark appearance: sage-ground-dark.",
+        "tonalRamp": [
+          "#090C08",
+          "#232622",
+          "#3F433F",
+          "#5E635E",
+          "#7F847E",
+          "#A2A7A1",
+          "#C6CBC5",
+          "#EBF0EA"
+        ]
+      },
+      "sage-ground-dark": {
+        "role": "neutral",
+        "displayName": "Sage Ground (dark)",
+        "canonical": "#0F1A15",
+        "oklch": "oklch(20.5% 0.019 164.7)",
+        "purpose": "Dark-appearance value of sage-ground.",
+        "tonalRamp": [
+          "#040E09",
+          "#1D2823",
+          "#39453F",
+          "#58655E",
+          "#78867F",
+          "#9BA9A2",
+          "#BFCDC6",
+          "#E4F3EB"
+        ]
+      },
+      "palm-ink": {
+        "role": "neutral",
+        "displayName": "Palm Ink",
+        "canonical": "#13261E",
+        "oklch": "oklch(24.9% 0.030 165.4)",
+        "purpose": "Text and lines on the sage ground. Dark appearance: palm-ink-dark.",
+        "tonalRamp": [
+          "#010F08",
+          "#172A22",
+          "#33473E",
+          "#52675D",
+          "#72887E",
+          "#95ABA1",
+          "#B8D0C4",
+          "#DDF5EA"
+        ]
+      },
+      "palm-ink-dark": {
+        "role": "neutral",
+        "displayName": "Palm Ink (dark)",
+        "canonical": "#EDF2EC",
+        "oklch": "oklch(95.6% 0.010 140.5)",
+        "purpose": "Dark-appearance value of palm-ink.",
+        "tonalRamp": [
+          "#090C08",
+          "#232622",
+          "#3F433F",
+          "#5E635E",
+          "#7F847E",
+          "#A2A7A1",
+          "#C6CBC5",
+          "#EBF0EA"
+        ]
+      },
+      "palm-ink-wash": {
+        "role": "neutral",
+        "displayName": "Ink Wash",
+        "canonical": "#13261E14",
+        "oklch": "oklch(24.9% 0.030 165.4)",
+        "purpose": "Palm ink at 8% alpha: the quiet More pictures button.",
+        "tonalRamp": [
+          "#010F08",
+          "#172A22",
+          "#33473E",
+          "#52675D",
+          "#72887E",
+          "#95ABA1",
+          "#B8D0C4",
+          "#DDF5EA"
+        ]
+      },
+      "on-gold": {
+        "role": "neutral",
+        "displayName": "On Gold",
+        "canonical": "#1E1513",
+        "oklch": "oklch(20.6% 0.015 32.7)",
+        "purpose": "Text and star on date gold.",
+        "tonalRamp": [
+          "#110907",
+          "#2C2220",
+          "#4A3F3D",
+          "#6A5E5C",
+          "#8B7F7C",
+          "#AEA29F",
+          "#D3C6C3",
+          "#F9EBE8"
+        ]
+      },
+      "sadu-red": {
+        "role": "tertiary",
+        "displayName": "Sadu Red",
+        "canonical": "#9E2B25",
+        "oklch": "oklch(46.8% 0.152 27.7)",
+        "purpose": "Ground of the Al-Sadu band. Fixed in both appearances.",
+        "tonalRamp": [
+          "#1F0000",
+          "#4D0103",
+          "#800308",
+          "#A6332C",
+          "#CE584D",
+          "#F67B6E",
+          "#FDB4AA",
+          "#FEE9E6"
+        ]
+      },
+      "sadu-wool": {
+        "role": "tertiary",
+        "displayName": "Sadu Wool",
+        "canonical": "#F3EADF",
+        "oklch": "oklch(94.1% 0.018 73.1)",
+        "purpose": "Selvedge lines and alternate diamonds in the Sadu band.",
+        "tonalRamp": [
+          "#100A04",
+          "#2A241C",
+          "#484138",
+          "#686056",
+          "#898177",
+          "#ACA499",
+          "#D0C8BD",
+          "#F6EDE2"
+        ]
+      },
+      "sadu-black": {
+        "role": "tertiary",
+        "displayName": "Sadu Black",
+        "canonical": "#1E1513",
+        "oklch": "oklch(20.6% 0.015 32.7)",
+        "purpose": "Teeth and diamond eyes in the Sadu band.",
+        "tonalRamp": [
+          "#110907",
+          "#2C2220",
+          "#4A3F3D",
+          "#6A5E5C",
+          "#8B7F7C",
+          "#AEA29F",
+          "#D3C6C3",
+          "#F9EBE8"
+        ]
+      },
+      "sadu-gold": {
+        "role": "tertiary",
+        "displayName": "Sadu Gold",
+        "canonical": "#D9A13A",
+        "oklch": "oklch(74.4% 0.133 78.9)",
+        "purpose": "Alternate diamonds in the Sadu band.",
+        "tonalRamp": [
+          "#120900",
+          "#332102",
+          "#573C05",
+          "#7F590C",
+          "#A97815",
+          "#D19A31",
+          "#F8BE5B",
+          "#FEECCF"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "purpose": "Text on green, scene card paper, seal inner disc and rings.",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Region English name on the header band; 50pt @ScaledMetric relative to largeTitle, SF Rounded heavy, minimum scale 0.6."
+      },
+      "display-arabic": {
+        "displayName": "Display Arabic",
+        "purpose": "Region Arabic name, trailing on the header band at 0.82 of display, bold, minimum scale 0.5."
+      },
+      "celebration": {
+        "displayName": "Celebration",
+        "purpose": "You did it! on the celebration card; 46pt fixed, rounded heavy."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "SwiftUI .title2 bold rounded: celebration buttons and the Try number bubble."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "SwiftUI .title3 heavy rounded: region names on the rail."
+      },
+      "title-mode": {
+        "displayName": "Title (mode)",
+        "purpose": "SwiftUI .title3 bold rounded: Fill / Paint / Numbers labels."
+      },
+      "card-title": {
+        "displayName": "Card title",
+        "purpose": "SwiftUI .headline rounded: scene titles (two lines reserved), More colours."
+      },
+      "body-strong": {
+        "displayName": "Body strong",
+        "purpose": "SwiftUI .title3 semibold or .headline in the standard design: area name and N of 8 done on the header."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "SwiftUI .subheadline semibold: the rail subtitle (area and Arabic name)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "page-lift",
+        "value": "0 6px 24px rgba(0,0,0,0.15)",
+        "swiftui": "black 15%, radius 12, y 6",
+        "purpose": "The coloring page on the canvas."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 6px 20px rgba(19,38,30,0.16)",
+        "swiftui": "palm ink 16%, radius 10, y 6",
+        "purpose": "Scene cards in the gallery."
+      },
+      {
+        "name": "segment-glow",
+        "value": "0 3px 12px rgba(17,86,63,0.35)",
+        "swiftui": "palm green 35%, radius 6, y 3",
+        "purpose": "Selected mode capsule."
+      },
+      {
+        "name": "bead",
+        "value": "0 2px 6px rgba(0,0,0,0.25)",
+        "swiftui": "black 25%, radius 3, y 2",
+        "purpose": "Route stops."
+      },
+      {
+        "name": "seal",
+        "value": "0 2.4px 9.6px rgba(0,0,0,0.22)",
+        "swiftui": "black 22%, radius 8% of size, y 4% of size (values shown for 60pt)",
+        "purpose": "Finished seal."
+      },
+      {
+        "name": "bubble",
+        "value": "0 4px 16px rgba(0,0,0,0.2)",
+        "swiftui": "black 20%, radius 8, y 4",
+        "purpose": "Try number hint bubble."
+      },
+      {
+        "name": "dialog",
+        "value": "0 14px 60px rgba(0,0,0,0.25)",
+        "swiftui": "black 25%, radius 30, y 14",
+        "purpose": "Celebration card."
+      }
+    ],
+    "motion": [
+      {
+        "name": "mode-slide",
+        "value": "spring(duration: 0.3, bounce: 0.2)",
+        "purpose": "Selected mode capsule slides (matched geometry). Reduce Motion: no animation."
+      },
+      {
+        "name": "seal-drop",
+        "value": "spring(duration: 0.45, bounce: 0.45), delay 0.15s; from scale 1.9, -30deg, opacity 0 to scale 1, -10deg",
+        "purpose": "Seal presses onto the celebration card, with success haptic. Reduce Motion: easeOut 0.2s, no scale."
+      },
+      {
+        "name": "press-stop",
+        "value": "easeOut 0.15s, scale 0.97",
+        "purpose": "Rail row press."
+      },
+      {
+        "name": "press-card",
+        "value": "spring(duration: 0.25, bounce: 0.4), scale 0.96",
+        "purpose": "Scene card press."
+      },
+      {
+        "name": "press-button",
+        "value": "easeOut 0.15s, scale 0.96",
+        "purpose": "Celebration buttons."
+      },
+      {
+        "name": "swatch-select",
+        "value": "spring(duration: 0.2), scale 1.1",
+        "purpose": "Colour and number swatch selection. Not yet gated on Reduce Motion."
+      },
+      {
+        "name": "stop-select",
+        "value": "spring(duration: 0.3), 24pt to 30pt",
+        "purpose": "Selected route stop grows. Not yet gated on Reduce Motion."
+      },
+      {
+        "name": "celebration-in",
+        "value": "spring(duration: 0.4), opacity + scale from 0.9",
+        "purpose": "Celebration overlay appears. Not yet gated on Reduce Motion."
+      },
+      {
+        "name": "hint-in",
+        "value": "spring(duration: 0.3), move from top + opacity, auto-hide after 1.5s",
+        "purpose": "Try number bubble. Not yet gated on Reduce Motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "horizontalSizeClass compact (iPhone)",
+        "purpose": "Rail first; a region opens over it."
+      },
+      {
+        "name": "regular",
+        "value": "horizontalSizeClass regular (iPad)",
+        "purpose": "Split view: rail sidebar 300 / 350 / 420pt (min / ideal / max) beside the gallery."
+      },
+      {
+        "name": "gallery-column",
+        "value": "240px",
+        "purpose": "Adaptive grid minimum column width."
+      },
+      {
+        "name": "mode-switch-max",
+        "value": "720px",
+        "purpose": "Mode switch maximum width."
+      },
+      {
+        "name": "celebration-max",
+        "value": "460px",
+        "purpose": "Celebration card maximum width."
+      }
+    ],
+    "openItems": [
+      "Paint by Number: the selected number drawn on the page is system blue and the other numbers are 40% grey (`PageView.swift`), and the shapes still waiting for the selected number are tinted light blue (`CanvasRenderer.hint`, 0xCFE6FF). Neither belongs to the Rihla palette yet; palm green or date gold are the natural replacements.",
+      "Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, the \"Try number\" bubble slide, the celebration overlay scale-in, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.",
+      "Dark appearance: palm green on the dark sage ground is about 2.1:1. It matters only where green is a line or icon on the ground (the selected brush tile outline, the placeholder icon for a missing thumbnail).",
+      "The parental gate is the stock system sheet on purpose; its person icon and bordered answer buttons take the app tint (rail green) from the environment."
+    ]
+  },
+  "components": [
+    {
+      "name": "Al-Sadu Band",
+      "kind": "custom",
+      "refersTo": "sadu-band",
+      "description": "The one ornament: red ground, cream selvedges, black teeth, wool and gold diamonds. Header bottoms 30pt, tray top 12pt, celebration 34pt, rail covers 10pt.",
+      "html": "<div class=\"ds-sadu\" role=\"presentation\"><svg viewBox=\"0 0 240 30\" preserveAspectRatio=\"xMinYMid slice\" aria-hidden=\"true\"><defs><pattern id=\"ds-sadu-teeth\" width=\"6.6\" height=\"30\" patternUnits=\"userSpaceOnUse\"><polygon points=\"0,2.7 6.6,2.7 3.3,7.65\" fill=\"#1E1513\"/><polygon points=\"0,27.3 6.6,27.3 3.3,22.35\" fill=\"#1E1513\"/></pattern><pattern id=\"ds-sadu-chain\" width=\"33\" height=\"30\" patternUnits=\"userSpaceOnUse\"><polygon points=\"0.66,15 8.25,8.4 15.84,15 8.25,21.6\" fill=\"#F3EADF\"/><polygon points=\"5.48,15 8.25,12.49 11.02,15 8.25,17.51\" fill=\"#1E1513\"/><polygon points=\"17.16,15 24.75,8.4 32.34,15 24.75,21.6\" fill=\"#D9A13A\"/><polygon points=\"21.98,15 24.75,12.49 27.52,15 24.75,17.51\" fill=\"#1E1513\"/></pattern></defs><rect width=\"240\" height=\"30\" fill=\"#9E2B25\"/><rect width=\"240\" height=\"2.7\" fill=\"#F3EADF\"/><rect y=\"27.3\" width=\"240\" height=\"2.7\" fill=\"#F3EADF\"/><rect width=\"240\" height=\"30\" fill=\"url(#ds-sadu-teeth)\"/><rect width=\"240\" height=\"30\" fill=\"url(#ds-sadu-chain)\"/></svg></div>",
+      "css": ".ds-sadu{height:30px;width:100%;overflow:hidden;background:#9E2B25}.ds-sadu svg{display:block;width:100%;height:100%}"
+    },
+    {
+      "name": "Region Header Band",
+      "kind": "card",
+      "refersTo": "header-band",
+      "description": "Palm green band with the region's English and Arabic names, progress diamonds and count, Sadu band hanging below.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-header-row\"><div><div class=\"ds-header-title\">Riyadh</div><div class=\"ds-header-area\">Najd</div></div><div class=\"ds-header-ar\" lang=\"ar\" dir=\"rtl\">الرياض</div></div><div class=\"ds-header-progress\"><span class=\"ds-dia on\"></span><span class=\"ds-dia on\"></span><span class=\"ds-dia on\"></span><span class=\"ds-dia\"></span><span class=\"ds-dia\"></span><span class=\"ds-dia\"></span><span class=\"ds-dia\"></span><span class=\"ds-dia\"></span><span class=\"ds-header-count\">3 of 8 done</span></div></header><div class=\"ds-header-sadu\"></div>",
+      "css": ".ds-header{background:#11563F;color:#fff;padding:8px 28px 22px;font-family:ui-rounded,'SF Pro Rounded',system-ui,sans-serif}.ds-header-row{display:flex;justify-content:space-between;align-items:center;gap:20px}.ds-header-title{font-size:50px;font-weight:800;line-height:1}.ds-header-area{font:600 20px system-ui,sans-serif;opacity:.82;margin-top:4px}.ds-header-ar{font-size:41px;font-weight:700}.ds-header-progress{display:flex;align-items:center;gap:8px;margin-top:14px}.ds-dia{width:13px;height:13px;transform:rotate(45deg);border:2.9px solid rgba(255,255,255,.45);box-sizing:border-box;margin:0 2.5px}.ds-dia.on{background:#fff;border-color:#fff}.ds-header-count{font:600 17px system-ui,sans-serif;opacity:.9;margin-left:12px}.ds-header-sadu{height:30px;background:#9E2B25 linear-gradient(#F3EADF 0 9%,transparent 9% 91%,#F3EADF 91%)}"
+    },
+    {
+      "name": "Journey Rail Stop",
+      "kind": "nav",
+      "refersTo": "rail-stop-row-selected",
+      "description": "A region on the rail: dotted gold route, gold stop bead, cover with Sadu strip, names, eight diamonds. Selected row shown.",
+      "html": "<nav class=\"ds-rail\"><button class=\"ds-stop sel\"><span class=\"ds-route\"><span class=\"ds-bead\"></span></span><span class=\"ds-cover\"></span><span class=\"ds-stop-text\"><span class=\"ds-stop-name\">Riyadh</span><span class=\"ds-stop-sub\">Najd · الرياض</span></span></button><button class=\"ds-stop\"><span class=\"ds-route\"><span class=\"ds-bead\"></span></span><span class=\"ds-cover\"></span><span class=\"ds-stop-text\"><span class=\"ds-stop-name\">Makkah</span><span class=\"ds-stop-sub\">Hijaz · مكة</span></span></button></nav>",
+      "css": ".ds-rail{background:#0B3A2C;width:350px;padding:8px 0}.ds-stop{all:unset;cursor:pointer;display:flex;align-items:center;gap:14px;padding:13px 24px 13px 0;position:relative;width:calc(100% - 10px);transition:transform .15s ease-out}.ds-stop:active{transform:scale(.97)}.ds-stop.sel{background:#17604A;border-radius:0 22px 22px 0}.ds-stop:focus-visible{outline:3px solid #E2A63B;outline-offset:-3px}.ds-route{width:48px;align-self:stretch;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#E2A63B 2px,transparent 2.5px) center/4px 11px repeat-y}.ds-bead{width:24px;height:24px;border-radius:50%;background:#E2A63B;border:3px solid #fff;box-sizing:border-box;box-shadow:0 2px 6px rgba(0,0,0,.25)}.ds-stop.sel .ds-bead{width:30px;height:30px}.ds-cover{width:100px;height:75px;border-radius:14px;background:#C9B48A;border:1px solid rgba(255,255,255,.25);box-sizing:border-box}.ds-stop.sel .ds-cover{border:3px solid #fff}.ds-stop-text{display:flex;flex-direction:column;gap:3px}.ds-stop-name{font:800 20px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;color:#fff}.ds-stop-sub{font:600 15px system-ui,sans-serif;color:rgba(255,255,255,.72)}"
+    },
+    {
+      "name": "Mode Switch",
+      "kind": "chip",
+      "refersTo": "mode-switch-segment-selected",
+      "description": "Fill / Paint / Numbers as one capsule track; the chosen mode fills palm green.",
+      "html": "<div class=\"ds-modes\" role=\"tablist\"><button class=\"ds-mode on\" role=\"tab\" aria-selected=\"true\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M12 2.5S5 10.2 5 14.6a7 7 0 0 0 14 0C19 10.2 12 2.5 12 2.5z\" fill=\"currentColor\"/></svg>Fill</button><button class=\"ds-mode\" role=\"tab\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M20.7 3.3a1 1 0 0 0-1.4 0l-9 9 2.4 2.4 9-9a1 1 0 0 0 0-1.4zM8.8 13.6c-2 0-3.3 1.4-3.3 3.3 0 1.2-.8 2.1-2 2.6 1.1.9 2.6 1.5 4.2 1.5 2.6 0 4.5-1.9 4.5-4.4z\" fill=\"currentColor\"/></svg>Paint</button><button class=\"ds-mode\" role=\"tab\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4\" fill=\"currentColor\"/><text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"800\" fill=\"#fff\">#</text></svg>Numbers</button></div>",
+      "css": ".ds-modes{display:flex;gap:4px;padding:5px;background:#fff;border-radius:9999px;box-shadow:inset 0 0 0 1px rgba(19,38,30,.12);max-width:720px}.ds-mode{all:unset;cursor:pointer;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border-radius:9999px;font:700 20px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;color:#13261E;transition:background .3s,color .3s}.ds-mode:hover{background:rgba(19,38,30,.05)}.ds-mode:focus-visible{outline:3px solid #E2A63B;outline-offset:2px}.ds-mode.on{background:#11563F;color:#fff;box-shadow:0 3px 12px rgba(17,86,63,.35)}"
+    },
+    {
+      "name": "Gold Button",
+      "kind": "button",
+      "refersTo": "button-gold",
+      "description": "Get more colours on the celebration card; shown only while bonus colours are locked.",
+      "html": "<button class=\"ds-btn ds-btn-gold\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><path d=\"M12 3a9 9 0 0 0 0 18c1.1 0 1.7-.7 1.7-1.6 0-.5-.2-.8-.5-1.2-.3-.3-.5-.7-.5-1.1 0-.9.8-1.6 1.7-1.6h2A4.6 4.6 0 0 0 21 11c0-4.4-4-8-9-8zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z\" fill=\"currentColor\"/></svg>Get more colours</button>",
+      "css": ".ds-btn{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border-radius:9999px;font:700 22px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;transition:transform .15s ease-out}.ds-btn:active{transform:scale(.96)}.ds-btn:focus-visible{outline:3px solid #11563F;outline-offset:3px}.ds-btn-gold{background:#E2A63B;color:#1E1513}.ds-btn-gold:hover{background:#D49929}"
+    },
+    {
+      "name": "Green Button",
+      "kind": "button",
+      "refersTo": "button-green",
+      "description": "Keep coloring on the celebration card.",
+      "html": "<button class=\"ds-btn ds-btn-green\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><path d=\"M20.7 3.3a1 1 0 0 0-1.4 0l-9 9 2.4 2.4 9-9a1 1 0 0 0 0-1.4zM8.8 13.6c-2 0-3.3 1.4-3.3 3.3 0 1.2-.8 2.1-2 2.6 1.1.9 2.6 1.5 4.2 1.5 2.6 0 4.5-1.9 4.5-4.4z\" fill=\"currentColor\"/></svg>Keep coloring</button>",
+      "css": ".ds-btn{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border-radius:9999px;font:700 22px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;transition:transform .15s ease-out}.ds-btn:active{transform:scale(.96)}.ds-btn:focus-visible{outline:3px solid #E2A63B;outline-offset:3px}.ds-btn-green{background:#11563F;color:#fff}.ds-btn-green:hover{background:#17604A}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "More pictures on the celebration card.",
+      "html": "<button class=\"ds-btn ds-btn-quiet\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><rect x=\"3\" y=\"3\" width=\"8\" height=\"8\" rx=\"2\" fill=\"currentColor\"/><rect x=\"13\" y=\"3\" width=\"8\" height=\"8\" rx=\"2\" fill=\"currentColor\"/><rect x=\"3\" y=\"13\" width=\"8\" height=\"8\" rx=\"2\" fill=\"currentColor\"/><rect x=\"13\" y=\"13\" width=\"8\" height=\"8\" rx=\"2\" fill=\"currentColor\"/></svg>More pictures</button>",
+      "css": ".ds-btn{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border-radius:9999px;font:700 22px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;transition:transform .15s ease-out}.ds-btn:active{transform:scale(.96)}.ds-btn:focus-visible{outline:3px solid #11563F;outline-offset:3px}.ds-btn-quiet{background:rgba(19,38,30,.08);color:#13261E}.ds-btn-quiet:hover{background:rgba(19,38,30,.13)}"
+    },
+    {
+      "name": "Scene Card",
+      "kind": "card",
+      "refersTo": "scene-card",
+      "description": "A page in the gallery: white paper, ink outline, card lift; a finished page wears the seal on its top trailing corner.",
+      "html": "<a class=\"ds-scene\" href=\"#\"><span class=\"ds-scene-art\"><span class=\"ds-seal\"><span class=\"ds-seal-ring\"></span><span class=\"ds-seal-core\">★</span></span></span><span class=\"ds-scene-title\">Diriyah at sunset</span></a>",
+      "css": ".ds-scene{display:flex;flex-direction:column;gap:10px;width:260px;text-decoration:none;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}.ds-scene:active{transform:scale(.96)}.ds-scene:focus-visible{outline:3px solid #11563F;outline-offset:4px;border-radius:18px}.ds-scene-art{position:relative;aspect-ratio:4/3;background:#fff;border-radius:18px;box-shadow:inset 0 0 0 2.5px rgba(19,38,30,.8),0 6px 20px rgba(19,38,30,.16)}.ds-scene-title{font:600 17px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;color:#13261E}.ds-seal{position:absolute;top:-14px;right:-12px;width:60px;height:60px;border-radius:50%;background:#11563F;box-shadow:0 0 0 3px #fff,0 2.4px 9.6px rgba(0,0,0,.22);transform:rotate(-12deg);display:grid;place-items:center}.ds-seal-ring{position:absolute;inset:5.4px;border-radius:50%;border:3px dashed #E2A63B}.ds-seal-core{width:33.6px;height:33.6px;border-radius:50%;background:#fff;color:#11563F;display:grid;place-items:center;font-size:18px;font-weight:900}"
+    },
+    {
+      "name": "Colour Swatch",
+      "kind": "input",
+      "refersTo": "color-swatch",
+      "description": "60pt paint circle in the tray; the selected one grows and gains a ring.",
+      "html": "<div class=\"ds-tray\"><button class=\"ds-swatch\" style=\"background:#E53935\" aria-label=\"Colour #E53935\"></button><button class=\"ds-swatch on\" style=\"background:#FDD835\" aria-label=\"Colour #FDD835\" aria-pressed=\"true\"></button><button class=\"ds-swatch\" style=\"background:#43A047\" aria-label=\"Colour #43A047\"></button></div>",
+      "css": ".ds-tray{display:flex;gap:28px;padding:16px 24px;background:#fff;border-top:12px solid #9E2B25}.ds-swatch{all:unset;cursor:pointer;width:60px;height:60px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25);transition:transform .2s,box-shadow .2s}.ds-swatch:hover{transform:scale(1.05)}.ds-swatch:focus-visible{outline:3px solid #11563F;outline-offset:3px}.ds-swatch.on{transform:scale(1.1);box-shadow:inset 0 0 0 2px rgba(0,0,0,.25),0 0 0 8px #fff,0 0 0 13px #1E1513}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Rihla, one caravan route across the Kingdom",
+    "overview": "Saudi Colors is a trip with nine stops. The whole app speaks one Saudi design language, chosen by the owner for every region alike: a deep palm green shell, a dotted date-gold caravan route with gold stops, and a calm sage-white ground behind the pages. Regions do not get their own palettes or ornaments. Their character lives in their pictures and their names, in English and Arabic; the chrome around them stays the same so that moving from Najd to Jazan feels like travel through one country, not a jump between apps.\n\nThe system has exactly one ornament: a strip of Al-Sadu weaving (red ground, black teeth, a chain of cream and gold diamonds), drawn in code so it stays sharp at any size. It sits where a woven edge would sit: along the bottom of every green header, along the top of the colour tray, at the foot of the celebration card, and as a thin selvedge on each region cover in the rail. Progress is told without reading: eight diamonds per region, gold stops that earn a star when a region is complete, and a green seal with a gold stitched ring pressed onto each finished page.\n\nThis is a native iPadOS / iOS 17+ SwiftUI app, iPad-first in landscape, used by children aged 4 to 9 who often cannot read. Density is low and targets are large (60pt minimum). Every child control pairs an SF Symbol with a short label. Display type is SF Rounded at heavy weight; everything else uses the system text styles so Dynamic Type and Arabic shaping come for free. The illustrated scene is always the hero: chrome frames it, the tray sits on plain paper so paint reads true, and nothing decorative is laid over the artwork. Grown-up surfaces (the parental gate) deliberately stay in the stock system sheet style, quiet and separate from play.",
+    "keyCharacteristics": [
+      "One unified Saudi look for all nine regions; variety comes from the scene art.",
+      "Deep green rail with a dotted gold route and gold stops (the journey).",
+      "Palm green header bands on a sage-white ground.",
+      "One ornament only: the Al-Sadu woven band.",
+      "Green seal with a gold stitched ring for finished pages.",
+      "SF Rounded heavy for display, system text styles elsewhere.",
+      "60pt minimum child targets, icon plus label, RTL safe, Reduce Motion honoured on the large moves."
+    ],
+    "rules": [
+      {
+        "name": "The One Saudi Look Rule",
+        "body": "Every region uses the same palette and the same ornament. Never introduce a per-region colour, header tint or pattern; a region's identity comes from its scene art and its names.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Green Bar Rule",
+        "body": "Palm green and rail green carry the same value in light and dark appearance on purpose. Their navigation bars are forced into the dark appearance (`toolbarColorScheme(.dark)`), so a separate dark-mode value would make the bar and the header band below it two different greens. Only the ground, the ink and the gold shift for dark mode.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Tray Rule",
+        "body": "Anything the child picks paint from (colour tray, number tray, brush sizes) sits on plain system background, never on green or sage, so the swatches look like the paint they will lay down.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rounded Is For Children Rule",
+        "body": "SF Rounded is used for text a child reads as a sign or a button. Text that grown-ups read (the parental gate, system dialogs) stays in the standard design.",
+        "section": "typography"
+      },
+      {
+        "name": "The Text Style Rule",
+        "body": "Outside the display sizes, use system text styles (`.title2`, `.title3`, `.headline`, `.subheadline`) with a weight, never fixed point sizes, so Dynamic Type works. The region display size is a `@ScaledMetric` tied to largeTitle.",
+        "section": "typography"
+      },
+      {
+        "name": "The Earned Lift Rule",
+        "body": "Only touchable or earned objects cast shadows. Bands, rails, trays and the ground stay flat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use palm green for every header band and its navigation bar, and rail green for the rail, with the same values in light and dark appearance.",
+      "Do put the Al-Sadu band only at a woven edge: header bottoms (30pt), the tray top (12pt), the celebration card (34pt) and rail covers (10pt).",
+      "Do show progress with shapes a pre-reader can count: eight diamonds per region, a starred gold stop, and the green seal on finished pages.",
+      "Do pair every child control with an SF Symbol and a short label, and keep child targets at 60pt or more.",
+      "Do use SF Rounded heavy for display and child-facing labels, and system text styles with a weight everywhere else.",
+      "Do keep paint pickers on plain system background so colours read true.",
+      "Do use leading and trailing (never left and right) and check every screen in Arabic RTL.",
+      "Do gate the large motion (mode slide, seal drop) on Reduce Motion."
+    ],
+    "donts": [
+      "Don't give a region its own palette, header colour or ornament; the variety lives in the pages.",
+      "Don't add a second ornament or scatter Sadu pattern as a background texture.",
+      "Don't lay chrome, gradients or decoration over the scene art; the child's picture is the hero.",
+      "Don't give the green bars a separate dark-mode value; the bar and the header below it would split into two greens.",
+      "Don't recolour the Sadu band for dark mode or for a region; its colours are the weave's own.",
+      "Don't style the parental gate in the Rihla look; grown-up screens stay in the system sheet style.",
+      "Don't use text-only buttons in child-facing UI.",
+      "Don't use em-dashes in any user-facing copy."
+    ]
+  }
+}

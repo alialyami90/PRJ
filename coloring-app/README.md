@@ -12,7 +12,7 @@ Quick start: `brew install xcodegen && xcodegen generate && open SaudiColoring.x
 
 ## Screenshots
 
-Taken on an iPad simulator by `.github/workflows/screenshots.yml` (the `Screenshots` scheme, with demo progress). It runs on demand (Actions > App screenshots > Run workflow, on the branch you want) and pushes fresh PNGs to the branch `screenshots/<that branch>`.
+Taken on iPad (landscape) and iPhone (portrait, `phone-*.png`) simulators by `.github/workflows/screenshots.yml` (the `Screenshots` scheme, with demo progress). It runs on demand (Actions > App screenshots > Run workflow, on the branch you want) and pushes fresh PNGs to the branch `screenshots/<that branch>`.
 
 | | |
 |---|---|
@@ -20,3 +20,9 @@ Taken on an iPad simulator by `.github/workflows/screenshots.yml` (the `Screensh
 | ![Fill](docs/screenshots/03-fill.png) | ![Paint](docs/screenshots/04-paint.png) |
 | ![Numbers](docs/screenshots/05-numbers.png) | ![You did it!](docs/screenshots/06-finished.png) |
 | ![Ask a grown-up](docs/screenshots/07-parental-gate.png) | |
+
+On iPhone:
+
+| | | |
+|---|---|---|
+| ![Home](docs/screenshots/phone-01-home.png) | ![Najran pages](docs/screenshots/phone-02-gallery.png) | ![Paint](docs/screenshots/phone-04-paint.png) |

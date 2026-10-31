@@ -17,7 +17,6 @@ struct NumberTray: View {
             }
             .onChange(of: selection) { proxy.scrollTo(selection, anchor: .center) }
         }
-        .background(.bar)
     }
 
     private func swatch(_ swatch: Palette.Swatch) -> some View {
