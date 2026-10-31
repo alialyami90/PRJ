@@ -28,6 +28,7 @@ enum BrushSize: Double, CaseIterable, Identifiable {
 struct BrushSizePicker: View {
     @Binding var size: BrushSize
     let color: String
+    var theme: RegionTheme = .of("")
 
     var body: some View {
         HStack(spacing: 8) {
@@ -40,7 +41,9 @@ struct BrushSizePicker: View {
                         .overlay(Circle().strokeBorder(.black.opacity(0.25), lineWidth: 1))
                         .frame(width: option.dot, height: option.dot)
                         .frame(width: 60, height: 60)
-                        .background(option == size ? Color.accentColor.opacity(0.2) : .clear, in: RoundedRectangle(cornerRadius: 14))
+                        .background(option == size ? theme.tint : .clear, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .strokeBorder(option == size ? theme.ground : .clear, lineWidth: 2.5))
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(Text(option.name))

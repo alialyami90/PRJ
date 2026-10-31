@@ -42,13 +42,9 @@ struct CanvasView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Picker("Mode", selection: $mode) {
-                Label("Fill", systemImage: "drop.fill").tag(ColoringMode.fill)
-                Label("Paint", systemImage: "paintbrush.pointed.fill").tag(ColoringMode.freestyle)
-                Label("Numbers", systemImage: "number.square.fill").tag(ColoringMode.paintByNumber)
-            }
-            .pickerStyle(.segmented)
-            .padding()
+            ModeSwitch(mode: $mode, theme: theme)
+                .padding(.horizontal)
+                .padding(.vertical, 12)
 
             pageArea
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -56,8 +52,12 @@ struct CanvasView: View {
 
             tray
         }
+        .background(theme.tint.ignoresSafeArea())
         .navigationTitle(scene.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(theme.ground, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button("Undo", systemImage: "arrow.uturn.backward") { state.dispatch(.undo) }.disabled(!state.canUndo)
@@ -73,6 +73,7 @@ struct CanvasView: View {
                 ZStack {
                     Color.black.opacity(0.25).ignoresSafeArea()
                     CelebrationView(
+                        theme: theme,
                         onUnlockBonus: celebrationUnlock,
                         onKeepColoring: { showCelebration = false },
                         onMorePictures: {
@@ -96,6 +97,8 @@ struct CanvasView: View {
     }
 
     // MARK: Views
+
+    private var theme: RegionTheme { region.theme }
 
     @ViewBuilder
     private var pageArea: some View {
@@ -122,8 +125,22 @@ struct CanvasView: View {
         }
     }
 
+    /// The trays sit on plain paper so colours read true, under a thin strip of the region's ornament.
     @ViewBuilder
     private var tray: some View {
+        if page != nil {
+            VStack(spacing: 0) {
+                MotifBand(theme: theme, surface: .paper)
+                    .frame(height: 12)
+                trayContent
+                    .frame(maxWidth: .infinity)
+            }
+            .background(Color(uiColor: .systemBackground).ignoresSafeArea(edges: .bottom))
+        }
+    }
+
+    @ViewBuilder
+    private var trayContent: some View {
         if let page {
             let suggested = page.assets.palette.swatches.map(\.color)
             let bonus = env.rewards.bonusColorsUnlocked ? ColorTray.bonusColors : []
@@ -132,11 +149,10 @@ struct CanvasView: View {
                 ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
             case .freestyle:
                 HStack(spacing: 0) {
-                    BrushSizePicker(size: $brushSize, color: color)
+                    BrushSizePicker(size: $brushSize, color: color, theme: theme)
                     Divider().frame(height: 48)
                     ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
                 }
-                .background(.bar)
             case .paintByNumber:
                 NumberTray(swatches: page.assets.palette.swatches,
                            finished: numbersTool(page).finishedNumbers(state),
@@ -164,9 +180,12 @@ struct CanvasView: View {
         if let tryNumber {
             Label("Try number \(tryNumber)", systemImage: "hand.point.up.left.fill")
                 .font(.title2.bold())
-                .padding(.horizontal, 20)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 22)
                 .padding(.vertical, 12)
-                .background(.thinMaterial, in: Capsule())
+                .background(theme.ground, in: Capsule())
+                .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
                 .padding(.top, 12)
                 .transition(.move(edge: .top).combined(with: .opacity))
         }

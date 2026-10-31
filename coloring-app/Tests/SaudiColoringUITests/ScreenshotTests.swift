@@ -54,13 +54,14 @@ final class ScreenshotTests: XCTestCase {
         app.launchArguments = ["-demoContent"]
         app.launch()
         XCUIDevice.shared.orientation = .landscapeLeft
-        XCTAssertTrue(app.staticTexts["Najran"].waitForExistence(timeout: 60))
+        XCTAssertTrue(app.buttons["Najran"].waitForExistence(timeout: 60))
         pause(2) // gallery thumbnails
         return app
     }
 
+    /// Taps the region's stop on the journey rail.
     private func showRegion(_ name: String, in app: XCUIApplication) {
-        app.staticTexts[name].firstMatch.tap()
+        app.buttons[name].firstMatch.tap()
         pause(2)
     }
 
