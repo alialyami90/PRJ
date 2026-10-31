@@ -1,0 +1,11 @@
+{
+ "keep": true,
+ "base": "#FFFFFF",
+ "colors": {"rail": "#F6D78B", "path": "#E3B98C", "side": "#8E9AA8", "skin": "#F5BF89"},
+ "fills": [
+  {"color": "rail", "at": [[990, 912], [1948, 925], [2038, 929], [896, 912]]},
+  {"color": "path", "at": [[373, 1132], [4, 1182], [2042, 1171]]},
+  {"color": "side", "at": [[824, 1436]]},
+  {"color": "skin", "at": [[355, 1008]]}
+ ]
+}

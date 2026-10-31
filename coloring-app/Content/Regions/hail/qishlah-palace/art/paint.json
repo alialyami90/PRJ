@@ -1,0 +1,12 @@
+{
+ "keep": true,
+ "colors": {"beard": "#4E342E", "white": "#FFFFFF", "horse": "#BA7549", "grey": "#B8C3CD", "beige": "#D8C3A5", "skin2": "#D9A066"},
+ "fills": [
+  {"color": "beard", "at": [[820, 510]]},
+  {"color": "white", "at": [[930, 450]]},
+  {"color": "horse", "at": [[500, 800], [450, 720], [480, 750]]},
+  {"color": "grey", "at": [[1620, 1100]]},
+  {"color": "beige", "at": [[1620, 850]]},
+  {"color": "skin2", "at": [[280, 650], [300, 810]]}
+ ]
+}

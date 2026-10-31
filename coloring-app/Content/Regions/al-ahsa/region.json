@@ -125,7 +125,7 @@
     },
     {
       "id": "hofuf-train",
-      "title": "Old Hofuf railway station with a steam train arriving",
+      "title": "Hofuf railway station with a modern passenger train arriving",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -137,7 +137,7 @@
       "era": "modern",
       "character": {
         "type": "person",
-        "description": "A girl in a school uniform with a backpack waving at the train driver"
+        "description": "A schoolgirl in a white hijab and her mother in an abaya waving to the train driver"
       }
     }
   ]

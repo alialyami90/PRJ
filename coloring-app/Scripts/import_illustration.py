@@ -40,6 +40,8 @@ MIXED_PX = 4 * MIN_REGION_PX  # ...as does any second colour this many px (a gap
 PAPER = 0xFFFFFF       # regions.png id of white the child cannot colour (same value in RegionMap.swift)
 SOLID_INK = 7          # ink at least 2x this thick is a solid black area (pupil, hair, mouth), not a line
 HIGHLIGHT_GAP = 4      # a white gap up to 2x this wide running along solid black is a highlight
+OWN_PX = 300           # a small shape that joins nothing but is painted a clear colour stays its own region
+NEAR_WHITE = 235       # ...unless it is painted (near) white: then it stays paper (teeth, eye whites)
 DIRS = ((1, 0), (-1, 0), (0, 1), (0, -1))
 
 
@@ -211,10 +213,11 @@ def import_scene(scene_dir):
     order = [col for _, col in paints]
 
     # Shapes too small to tap: join the region of the same paint they sit next to, so they colour with it;
-    # failing that, solid ink if dark and paper if light.
+    # failing that, its own small region if painted a clear colour and at least OWN_PX, else solid ink if dark and paper if light.
     by_label = np.argsort(flat, kind="stable")
     starts = np.searchsorted(flat[by_label], np.arange(n + 2))
     unmerged = 0
+    promoted = []
     for lab in small:
         px = by_label[starts[lab]:starts[lab + 1]]
         ys, xs = px // W, px % W
@@ -231,8 +234,17 @@ def import_scene(scene_dir):
             continue
         col = best[lab][0]
         luma = 0.299 * (col >> 16) + 0.587 * (col >> 8 & 0xFF) + 0.114 * (col & 0xFF)
+        if luma >= DARK_SMALL and min(col >> 16, col >> 8 & 0xFF, col & 0xFF) < NEAR_WHITE and areas[lab] >= OWN_PX:
+            promoted.append(lab)  # a small hand, fist or kite bow painted a real colour: keep it, small as it is
+            continue
         (burn if luma < DARK_SMALL else paper).append(lab)
         unmerged += areas[lab] >= 50
+    for i, lab in enumerate(promoted, len(keep) + 1):
+        rid = (i * 0x0F3A71) & 0xFFFFFF
+        assert rid and rid != PAPER and rid not in used
+        used.add(rid)
+        region_id[lab], colour_of[lab] = rid, paint_of(best[lab][0])
+    keep += promoted
     if unmerged:
         problems.append(f"{unmerged} shape(s) under {MIN_REGION_PX}px drawn as solid ink or left white")
 
