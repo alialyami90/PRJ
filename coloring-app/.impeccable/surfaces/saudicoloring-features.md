@@ -11,7 +11,7 @@ Scope: every child-facing screen of Saudi Colors (iPad first, iPhone too). Mode:
 
 Constraints: native SwiftUI controls and navigation (NavigationSplitView, stack push, sheet); 60pt targets; icon plus label; RTL-safe; Dynamic Type for adult-read text; Reduce Motion honoured. Accessibility labels used by the screenshot UI test must keep their words (region names, scene titles, Fill / Paint / Numbers, You did it!, Get more colours, Ask a grown-up).
 
-Decisions: owner chose one unified Saudi look for every region (no per-region palettes or ornaments). Open: Rihla route vs Al-Qatt room vs standard iOS; building Rihla meanwhile. Arabic app name undecided.
+Decisions: owner chose one unified Saudi look for every region (no per-region palettes or ornaments). Owner chose the Rihla route direction. Arabic app name undecided.
 
 ## Direction contract
 
