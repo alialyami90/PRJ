@@ -134,7 +134,7 @@ private struct StopRow: View {
 
     /// "Najd · الرياض": the area in brackets, then the Arabic name.
     private var subtitle: String {
-        [region.area, region.nameAr.isEmpty ? nil : region.nameAr].compactMap { $0 }.joined(separator: " · ")
+        [region.area, region.nameAr.isEmpty ? nil : region.shortNameAr].compactMap { $0 }.joined(separator: " · ")
     }
 
     private func cover(_ theme: AppTheme) -> some View {

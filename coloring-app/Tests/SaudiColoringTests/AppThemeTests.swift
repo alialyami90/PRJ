@@ -13,6 +13,9 @@ final class AppThemeTests: XCTestCase {
         XCTAssertEqual(riyadh.shortName, "Riyadh")
         XCTAssertEqual(riyadh.area, "Najd")
 
+        let ahsa = Region(id: "al-ahsa", name: "Al-Ahsa (Eastern Province)", nameAr: "الأحساء (المنطقة الشرقية)", order: 2, scenes: [])
+        XCTAssertEqual(ahsa.shortNameAr, "الأحساء")
+
         let najran = Region(id: "najran", name: "Najran", nameAr: "", order: 8, scenes: [])
         XCTAssertEqual(najran.shortName, "Najran")
         XCTAssertNil(najran.area)

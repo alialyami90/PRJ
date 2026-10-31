@@ -16,7 +16,9 @@ struct AppTheme {
     let onAccent: Color
 
     static let saudi = AppTheme(
-        ground: .hex(0x11563F, dark: 0x17694D),
+        // Same in dark mode: the navigation bars that carry it are drawn in the dark appearance,
+        // so a separate dark value would make the bar and the header below it different greens.
+        ground: .hex(0x11563F, dark: 0x11563F),
         tint: .hex(0xEDF2EC, dark: 0x0F1A15),
         accent: .hex(0xE2A63B, dark: 0xE8B04B),
         ink: .hex(0x13261E, dark: 0xEDF2EC),
@@ -27,9 +29,10 @@ struct AppTheme {
 /// The journey rail that holds every region.
 enum Shell {
     /// Deep palm green rail behind the route, a step darker than the headers.
-    static let rail = Color.hex(0x0B3A2C, dark: 0x082619)
+    /// One value in both appearances, so its dark navigation bar matches the list below it.
+    static let rail = Color.hex(0x0B3A2C, dark: 0x0B3A2C)
     /// A lighter green for the selected stop's row.
-    static let railSelected = Color.hex(0x17604A, dark: 0x134433)
+    static let railSelected = Color.hex(0x17604A, dark: 0x17604A)
     /// The dotted caravan route, date gold.
     static let route = Color.hex(0xE2A63B, dark: 0xE8B04B)
     /// Text on the rail.
@@ -58,6 +61,12 @@ extension Region {
     var shortName: String {
         guard let open = name.range(of: " (") else { return name }
         return String(name[..<open.lowerBound])
+    }
+
+    /// "الرياض (نجد)" → "الرياض": the Arabic name without the area, which `area` already shows.
+    var shortNameAr: String {
+        guard let open = nameAr.range(of: " (") else { return nameAr }
+        return String(nameAr[..<open.lowerBound])
     }
 
     /// "Riyadh (Najd)" → "Najd"; nil when the name has no brackets.

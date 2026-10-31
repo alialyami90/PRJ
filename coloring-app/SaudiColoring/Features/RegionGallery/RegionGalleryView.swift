@@ -75,7 +75,7 @@ private struct RegionHeader: View {
                 }
                 Spacer(minLength: 12)
                 if !region.nameAr.isEmpty {
-                    Text(region.nameAr)
+                    Text(region.shortNameAr)
                         .font(.system(size: titleSize * 0.82, weight: .bold, design: .rounded))
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
