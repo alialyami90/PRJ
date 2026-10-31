@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// Shown once when a page is finished: the region's stamp presses down onto the card, then three big choices.
+/// Shown once when a page is finished: the stamp presses down onto the card, then three big choices.
 struct CelebrationView: View {
-    let theme: RegionTheme
+    let theme: AppTheme
     /// Nil once the bonus colours are unlocked.
     let onUnlockBonus: (() -> Void)?
     let onKeepColoring: () -> Void
@@ -10,7 +10,7 @@ struct CelebrationView: View {
     @State private var stamped = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    init(theme: RegionTheme, onUnlockBonus: (() -> Void)?, onKeepColoring: @escaping () -> Void, onMorePictures: @escaping () -> Void) {
+    init(theme: AppTheme = .saudi, onUnlockBonus: (() -> Void)?, onKeepColoring: @escaping () -> Void, onMorePictures: @escaping () -> Void) {
         self.theme = theme
         self.onUnlockBonus = onUnlockBonus
         self.onKeepColoring = onKeepColoring
@@ -23,9 +23,9 @@ struct CelebrationView: View {
                 theme.ground
                 VStack(spacing: 0) {
                     Spacer(minLength: 0)
-                    MotifBand(theme: theme).frame(height: 34)
+                    SaduBand().frame(height: 34)
                 }
-                RegionStamp(theme: theme, size: 132)
+                FinishedStamp(theme: theme, size: 132)
                     .rotationEffect(.degrees(stamped ? -10 : -30))
                     .scaleEffect(stamped ? 1 : (reduceMotion ? 1 : 1.9))
                     .opacity(stamped ? 1 : 0)
@@ -85,5 +85,5 @@ private struct CelebrationButtonStyle: ButtonStyle {
 }
 
 #Preview {
-    CelebrationView(theme: .of("najran"), onUnlockBonus: {}, onKeepColoring: {}, onMorePictures: {})
+    CelebrationView(onUnlockBonus: {}, onKeepColoring: {}, onMorePictures: {})
 }

@@ -24,22 +24,22 @@ struct ProgressDiamonds: View {
     }
 }
 
-/// A stop on the journey rail: the region's colour, a star once every page is finished.
+/// A stop on the journey rail: a gold bead on the route, with a star once every page is finished.
 struct RouteStop: View {
-    let theme: RegionTheme
+    var theme: AppTheme = .saudi
     let complete: Bool
     let isSelected: Bool
 
     var body: some View {
         let size: CGFloat = isSelected ? 30 : 24
         Circle()
-            .fill(theme.ground)
+            .fill(theme.accent)
             .overlay(Circle().strokeBorder(.white, lineWidth: 3))
             .overlay {
                 if complete {
                     Image(systemName: "star.fill")
                         .font(.system(size: size * 0.42, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(theme.onAccent)
                 }
             }
             .frame(width: size, height: size)
@@ -49,9 +49,9 @@ struct RouteStop: View {
     }
 }
 
-/// The region's stamp for a finished page: a round seal in the region's colours with a star.
-struct RegionStamp: View {
-    let theme: RegionTheme
+/// The stamp on a finished page: a round green seal with a gold stitched ring and a star.
+struct FinishedStamp: View {
+    var theme: AppTheme = .saudi
     var size: CGFloat = 64
 
     var body: some View {
@@ -77,8 +77,8 @@ struct RegionStamp: View {
 
 #Preview {
     HStack(spacing: 24) {
-        RegionStamp(theme: .of("asir"))
-        RouteStop(theme: .of("jeddah"), complete: true, isSelected: true)
+        FinishedStamp()
+        RouteStop(complete: true, isSelected: true)
         ProgressDiamonds(finished: 3, total: 8, filled: .black, empty: .gray)
     }
     .padding()

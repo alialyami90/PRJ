@@ -1,14 +1,7 @@
 import XCTest
 @testable import SaudiColoring
 
-final class RegionThemeTests: XCTestCase {
-    /// Every shipped region wears its own ornament: nine regions, nine different motifs.
-    func testEveryRegionHasItsOwnMotif() {
-        let regions = SceneCatalog.loadFromBundle().regions
-        let motifs = regions.map { "\(RegionTheme.of($0.id).motif)" }
-        XCTAssertEqual(Set(motifs).count, regions.count, motifs.joined(separator: ", "))
-    }
-
+final class AppThemeTests: XCTestCase {
     func testEveryRegionHasAnArabicName() {
         for region in SceneCatalog.loadFromBundle().regions {
             XCTAssertFalse(region.nameAr.isEmpty, region.id)

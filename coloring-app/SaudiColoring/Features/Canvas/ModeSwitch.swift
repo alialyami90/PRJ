@@ -1,9 +1,9 @@
 import SwiftUI
 
-/// The three ways to colour, as one segmented row sized for small fingers. The chosen one takes the region's colour.
+/// The three ways to colour, as one segmented row sized for small fingers. The chosen one fills green.
 struct ModeSwitch: View {
     @Binding var mode: ColoringMode
-    let theme: RegionTheme
+    var theme: AppTheme = .saudi
     @Namespace private var selection
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -61,5 +61,5 @@ extension ColoringMode {
 }
 
 #Preview {
-    ModeSwitch(mode: .constant(.freestyle), theme: .of("jeddah")).padding()
+    ModeSwitch(mode: .constant(.freestyle)).padding()
 }

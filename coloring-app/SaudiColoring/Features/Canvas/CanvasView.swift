@@ -98,7 +98,7 @@ struct CanvasView: View {
 
     // MARK: Views
 
-    private var theme: RegionTheme { region.theme }
+    private var theme: AppTheme { .saudi }
 
     @ViewBuilder
     private var pageArea: some View {
@@ -125,12 +125,12 @@ struct CanvasView: View {
         }
     }
 
-    /// The trays sit on plain paper so colours read true, under a thin strip of the region's ornament.
+    /// The trays sit on plain paper so colours read true, under a thin strip of Sadu.
     @ViewBuilder
     private var tray: some View {
         if page != nil {
             VStack(spacing: 0) {
-                MotifBand(theme: theme, surface: .paper)
+                SaduBand()
                     .frame(height: 12)
                 trayContent
                     .frame(maxWidth: .infinity)

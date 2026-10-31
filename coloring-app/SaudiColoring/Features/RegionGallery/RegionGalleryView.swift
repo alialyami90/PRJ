@@ -1,7 +1,6 @@
 import SwiftUI
 
-/// The pages of one region, dressed in that region's colours and ornament:
-/// the child's own colouring once started, the line art before, the region's stamp once finished.
+/// The pages of one region: the child's own colouring once started, the line art before, a stamp once finished.
 struct RegionGalleryView: View {
     @Environment(AppEnvironment.self) private var env
     let region: Region
@@ -12,7 +11,7 @@ struct RegionGalleryView: View {
     }
 
     var body: some View {
-        let theme = region.theme
+        let theme = AppTheme.saudi
         ScrollView {
             VStack(spacing: 0) {
                 RegionHeader(region: region, finished: env.finishedCount(in: region))
@@ -53,14 +52,14 @@ struct RegionGalleryView: View {
     }
 }
 
-/// The region's name in both languages over its colour, how far the child has got, and its ornament band.
+/// The region's name in both languages on the green band, how far the child has got, and the Sadu band beneath.
 private struct RegionHeader: View {
     let region: Region
     let finished: Int
     @ScaledMetric(relativeTo: .largeTitle) private var titleSize: CGFloat = 50
 
     var body: some View {
-        let theme = region.theme
+        let theme = AppTheme.saudi
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 20) {
                 VStack(alignment: .leading, spacing: 4) {
@@ -98,7 +97,7 @@ private struct RegionHeader: View {
         .padding(.bottom, 22)
         .background(theme.ground)
         .overlay(alignment: .bottom) {
-            MotifBand(theme: theme)
+            SaduBand()
                 .frame(height: 30)
                 .offset(y: 30)
         }
@@ -123,7 +122,7 @@ private struct SceneCard: View {
     var body: some View {
         // Reading libraryVersion redraws the card after the canvas saves a new thumbnail.
         let _ = env.libraryVersion
-        let theme = region.theme
+        let theme = AppTheme.saudi
         let document = env.persistence.load(regionId: region.id, sceneId: scene.id)
         VStack(alignment: .leading, spacing: 10) {
             thumbnail(theme)
@@ -135,7 +134,7 @@ private struct SceneCard: View {
                 .shadow(color: theme.ink.opacity(0.16), radius: 10, y: 6)
                 .overlay(alignment: .topTrailing) {
                     if document?.completedAt != nil {
-                        RegionStamp(theme: theme, size: 60)
+                        FinishedStamp(theme: theme, size: 60)
                             .rotationEffect(.degrees(-12))
                             .offset(x: 12, y: -14)
                     }
@@ -150,7 +149,7 @@ private struct SceneCard: View {
     }
 
     @ViewBuilder
-    private func thumbnail(_ theme: RegionTheme) -> some View {
+    private func thumbnail(_ theme: AppTheme) -> some View {
         if let data = env.persistence.thumbnail(regionId: region.id, sceneId: scene.id), let image = UIImage(data: data) {
             Image(uiImage: image).resizable().scaledToFit()
         } else if let image = BundleImages.thumbnail(regionId: region.id, sceneId: scene.id) {

@@ -86,14 +86,14 @@ private struct StopRow: View {
     let isSelected: Bool
 
     var body: some View {
-        let theme = region.theme
+        let theme = AppTheme.saudi
         HStack(spacing: 0) {
             ZStack {
                 VStack(spacing: 0) {
                     RouteLine().opacity(isFirst ? 0 : 1)
                     RouteLine().opacity(isLast ? 0 : 1)
                 }
-                RouteStop(theme: theme, complete: finished == region.scenes.count && finished > 0, isSelected: isSelected)
+                RouteStop(complete: finished == region.scenes.count && finished > 0, isSelected: isSelected)
             }
             .frame(width: 48)
             .frame(maxHeight: .infinity)
@@ -137,7 +137,7 @@ private struct StopRow: View {
         [region.area, region.nameAr.isEmpty ? nil : region.nameAr].compactMap { $0 }.joined(separator: " · ")
     }
 
-    private func cover(_ theme: RegionTheme) -> some View {
+    private func cover(_ theme: AppTheme) -> some View {
         Group {
             if let cover = BundleImages.cover(regionId: region.id) {
                 Image(uiImage: cover).resizable().scaledToFill()
@@ -147,7 +147,7 @@ private struct StopRow: View {
         }
         .frame(width: 100, height: 75)
         .overlay(alignment: .bottom) {
-            MotifBand(theme: theme).frame(height: 12)
+            SaduBand().frame(height: 10)
         }
         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)

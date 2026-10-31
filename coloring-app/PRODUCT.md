@@ -29,17 +29,17 @@ Used in short sessions, landscape iPad by default, by small fingers. Fill and Nu
 ## Brand Commitments
 - Name: "Saudi Colors" (Arabic display name not yet decided).
 - Scene art is a bold black line, flat-colour cartoon style from an illustrator; the UI must frame it, never compete with it.
-- Brief from the owner (October 2026): the UI should come from Saudi culture and the design language of each region.
+- Brief from the owner (October 2026): the UI should come from Saudi culture and Saudi design language. The owner chose one unified Saudi look for every region, not a different look per region; the variety lives in the pages.
 
 ## Evidence on Hand
 - 72 scenes of real line art and region cover images in `SaudiColoring/Resources/Scenes/`.
 - Current screenshots in `docs/screenshots/` (stock iOS look, to be replaced).
-- Region Arabic names: only Najran is filled in the manifests; the rest are standard place names to add.
+- Arabic region names are in every `region.json` (added October 2026); Arabic scene titles are still empty.
 - No testimonials, ratings, press, or usage numbers exist. Do not invent them.
 
 ## Product Principles
 1. The child's picture is the hero; every screen exists to get them to it or to celebrate it.
-2. Each region should feel like its own place, so moving between regions feels like travel.
+2. Moving between regions should feel like travel through one Kingdom: one shared look, with each region's own pictures and names carrying its character.
 3. Respect over decoration: cultural forms are used as they are, never as costume or caricature.
 4. A four-year-old who cannot read must be able to use every child-facing screen.
 5. Grown-up things (gate, ads, unlocking) stay quiet and clearly separate from play.

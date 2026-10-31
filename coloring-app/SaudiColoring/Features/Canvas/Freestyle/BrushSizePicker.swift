@@ -28,7 +28,7 @@ enum BrushSize: Double, CaseIterable, Identifiable {
 struct BrushSizePicker: View {
     @Binding var size: BrushSize
     let color: String
-    var theme: RegionTheme = .of("")
+    var theme: AppTheme = .saudi
 
     var body: some View {
         HStack(spacing: 8) {
