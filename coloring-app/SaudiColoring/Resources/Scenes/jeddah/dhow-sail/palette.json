@@ -586,8 +586,8 @@
   },
   {
     "regionId": 323606,
-    "number": 9,
-    "color": "#BA7549"
+    "number": 6,
+    "color": "#F5BF89"
   },
   {
     "regionId": 1321607,
@@ -611,11 +611,16 @@
   },
   {
     "regionId": 5313611,
+    "number": 9,
+    "color": "#BA7549"
+  },
+  {
+    "regionId": 6311612,
     "number": 3,
     "color": "#1399AE"
   },
   {
-    "regionId": 6311612,
+    "regionId": 7309613,
     "number": 9,
     "color": "#BA7549"
   }

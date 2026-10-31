@@ -731,21 +731,26 @@
   },
   {
     "regionId": 12488419,
+    "number": 11,
+    "color": "#9E9E9E"
+  },
+  {
+    "regionId": 13486420,
     "number": 2,
     "color": "#E89D41"
   },
   {
-    "regionId": 13486420,
+    "regionId": 14484421,
     "number": 3,
     "color": "#BA7549"
   },
   {
-    "regionId": 14484421,
+    "regionId": 15482422,
     "number": 2,
     "color": "#E89D41"
   },
   {
-    "regionId": 15482422,
+    "regionId": 16480423,
     "number": 8,
     "color": "#F5BF89"
   }

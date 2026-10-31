@@ -661,16 +661,21 @@
   },
   {
     "regionId": 15293621,
+    "number": 7,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 16291622,
     "number": 8,
     "color": "#BCAAA4"
   },
   {
-    "regionId": 16291622,
+    "regionId": 512407,
     "number": 13,
     "color": "#E04D45"
   },
   {
-    "regionId": 512407,
+    "regionId": 1510408,
     "number": 6,
     "color": "#BA7549"
   }

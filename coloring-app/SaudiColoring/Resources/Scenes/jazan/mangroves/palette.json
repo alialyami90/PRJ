@@ -886,11 +886,16 @@
   },
   {
     "regionId": 9872018,
+    "number": 12,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 10870019,
     "number": 16,
     "color": "#A27BB5"
   },
   {
-    "regionId": 10870019,
+    "regionId": 11868020,
     "number": 1,
     "color": "#2FA7C4"
   }

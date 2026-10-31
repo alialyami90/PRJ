@@ -7,9 +7,9 @@ Reads <scene>/art/line.png (black lines on white) and <scene>/art/color.png (the
 lines with every shape filled one flat colour), both 2048x1536, and writes next to them:
 
 - regions.png   every closed white area of the line art as one region, a unique RGB each;
-                0xFFFFFF (paper: stays white, never coloured) for light shapes too small to tap and
-                for eye highlights, 0x000000 for the lines and for dark shapes too small or filled black
-                in color.png
+                0xFFFFFF (paper: stays white, never coloured) for light shapes too small to tap, for
+                eye whites and for eye highlights, 0x000000 for the lines and for dark shapes too small
+                or filled black in color.png
 - palette.json  each region's colour = the most common colour inside it in color.png
 - outline.png   the line art, with the 0x000000 shapes burned in black
 - preview.png   1024x768 coloured preview
@@ -42,6 +42,13 @@ SOLID_INK = 7          # ink at least 2x this thick is a solid black area (pupil
 HIGHLIGHT_GAP = 4      # a white gap up to 2x this wide running along solid black is a highlight
 OWN_PX = 300           # a small shape that joins nothing but is painted a clear colour stays its own region
 NEAR_WHITE = 235       # ...unless it is painted (near) white: then it stays paper (teeth, eye whites)
+PUPIL_CORE = (150, 2500)  # a pupil: solid black whose core (SOLID_INK px in from its edge) is this many px,
+PUPIL_FILL = (0.55, 0.88) # ...roughly oval (share of its bounding box; a window or block is ~1, a mouth or hair less)
+PUPIL_ASPECT = 3.0        # ...and not long and thin
+EYE_MAX_PX = 3 * MIN_REGION_PX  # an eye white is at most this big (a face, sky or wall is far bigger)
+EYE_SHARE = 0.12       # a shape with this share of its pixels hugging a pupil may be the white of an eye: it never
+                       # joins a neighbour (that is how a face swallowed its eyes), it stays a region of its own
+EYE_EDGE = 0.45        # ...and when this share of its edge is the pupil it surely is one: always paper
 DIRS = ((1, 0), (-1, 0), (0, 1), (0, -1))
 
 
@@ -109,6 +116,43 @@ def highlights(ink):
     return solid & narrow & ~ink
 
 
+def pupils(ink):
+    """Pixels within a few px of a pupil: solid, roughly oval black of an eye's size. Eye whites hug one.
+    The colour file (often carried over from older art) cannot be trusted to say which shapes are eye
+    whites, so they are found from the lines."""
+    core = shrink(ink, SOLID_INK)
+    cl, cn = label(core)
+    if not cn:
+        return np.zeros_like(ink)
+    ys, xs = np.nonzero(cl)
+    k = cl[ys, xs]
+    area = np.bincount(k, minlength=cn + 1)
+    y0, y1 = np.full(cn + 1, 1 << 30), np.zeros(cn + 1, np.int64)
+    x0, x1 = np.full(cn + 1, 1 << 30), np.zeros(cn + 1, np.int64)
+    np.minimum.at(y0, k, ys); np.maximum.at(y1, k, ys)
+    np.minimum.at(x0, k, xs); np.maximum.at(x1, k, xs)
+    h, w = np.maximum(y1 - y0 + 1, 1), np.maximum(x1 - x0 + 1, 1)
+    fill = area / (h * w)
+    aspect = np.maximum(h, w) / np.minimum(h, w)
+    ok = (area >= PUPIL_CORE[0]) & (area <= PUPIL_CORE[1]) & (fill >= PUPIL_FILL[0]) & (fill <= PUPIL_FILL[1]) & (aspect <= PUPIL_ASPECT)
+    ok[0] = False
+    return grow(ok[cl], SOLID_INK + 3)
+
+
+def eye_whites(ink, labels, areas):
+    """(sure, maybe): labels of shapes that are the white of an eye or the shine on a pupil, and of shapes
+    that may be (a strap beside a black buckle looks much the same to this test)."""
+    near = pupils(ink)
+    hug = np.bincount(labels[near & ~ink], minlength=len(areas))
+    edge = grow(ink, 2) & ~ink
+    rim = np.maximum(np.bincount(labels[edge], minlength=len(areas)), 1)
+    rim_hug = np.bincount(labels[edge & near], minlength=len(areas))
+    maybe = (hug >= EYE_SHARE * areas) & (areas <= EYE_MAX_PX)
+    maybe[0] = False
+    sure = maybe & (rim_hug >= EYE_EDGE * rim)
+    return set(np.nonzero(sure)[0].tolist()), set(np.nonzero(maybe & ~sure)[0].tolist())
+
+
 def hexcolour(c):
     return "#%06X" % c
 
@@ -169,12 +213,19 @@ def import_scene(scene_dir):
     for lab, i in zip(uniq.tolist(), nz[idx].tolist()):
         first_px[lab] = divmod(i, W)
 
+    # The white of an eye (and the shine on a pupil) stays paper whatever colour.png says, so filling a face
+    # never paints the eyes. Without this a small eye white painted like the face joined the face below.
+    eyes, maybe_eyes = eye_whites(ink, labels, areas)
+
     burn, paper, small, keep = [], [], [], []
     for lab in range(1, n + 1):
         col = best[lab][0]
         r, g, b = col >> 16, col >> 8 & 0xFF, col & 0xFF
         if max(r, g, b) < DARK_FILL:
             burn.append(lab)
+            continue
+        if lab in eyes:
+            paper.append(lab)
             continue
         if areas[lab] < MIN_REGION_PX:
             small.append(lab)
@@ -226,14 +277,18 @@ def import_scene(scene_dir):
         window = labels[y0:y1, x0:x1]
         near = grow(window == lab, MERGE_PX)
         paint = paint_of(best[lab][0])
+        col = best[lab][0]
+        luma = 0.299 * (col >> 16) + 0.587 * (col >> 8 & 0xFF) + 0.114 * (col & 0xFF)
+        if lab in maybe_eyes and luma >= DARK_SMALL:
+            # Perhaps an eye white: never part of the face, even when painted like it.
+            (promoted if areas[lab] >= OWN_PX else paper).append(lab)
+            continue
         cands, hits = np.unique(window[near], return_counts=True)
         same = [(h, c) for c, h in zip(cands.tolist(), hits.tolist()) if region_id[c] and colour_of[c] == paint]
         if same:
             target = max(same)[1]
             region_id[lab], colour_of[lab] = region_id[target], colour_of[target]
             continue
-        col = best[lab][0]
-        luma = 0.299 * (col >> 16) + 0.587 * (col >> 8 & 0xFF) + 0.114 * (col & 0xFF)
         if luma >= DARK_SMALL and min(col >> 16, col >> 8 & 0xFF, col & 0xFF) < NEAR_WHITE and areas[lab] >= OWN_PX:
             promoted.append(lab)  # a small hand, fist or kite bow painted a real colour: keep it, small as it is
             continue

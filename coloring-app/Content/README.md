@@ -4,7 +4,7 @@ Source of truth for scene art. One folder per region, one per scene. A scene fol
 
 - `outline.png` (imported art) or `outline.svg` (sketches) — black line art, 2048×1536 artboard (4:3, landscape, iPad-friendly).
 - `regions.png` — same size; every fillable area a unique flat RGB colour, outline pixels pure black `#000000`, no anti-aliasing.
-- `palette.json` — paint-by-number key (see `CLAUDE.md` → Scene asset contract).
+- `palette.json` — the suggested colour of each region (see `CLAUDE.md` → Scene asset contract).
 - `preview.png` — 1024×768 coloured-in preview for review.
 
 Rebuild with `python3 Scripts/build_scenes.py` (all), `python3 Scripts/import_illustration.py Content/Regions/<region>/<scene>` (one imported scene) or `python3 Content/Regions/<region>/<scene>/scene.py` (one sketch). Keep the illustrator's layered source files (.ai/.psd/.procreate) outside the repo.

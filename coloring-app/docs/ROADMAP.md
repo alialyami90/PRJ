@@ -8,7 +8,7 @@
 - [x] Save/restore a coloring document
 
 ## M2 — Full modes + content pipeline
-- [x] Paint-by-Number overlay and correctness check (numbers at each shape's centre, hint tint, auto next number)
+- [x] ~~Paint-by-Number mode~~ built, then removed after TestFlight (October 2026): two modes, Fill and Paint
 - [x] `Scripts/sync_scenes.py` + `validate_content.py` in use
 - [ ] Arabic localization, RTL check
 - [x] 8 regions × 8 scenes with real art imported (see docs/CONTENT_PLAN.md, docs/ART_REVIEW.md)

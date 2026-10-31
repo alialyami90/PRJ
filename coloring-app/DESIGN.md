@@ -227,7 +227,7 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 
 **The One Green Bar Rule.** Palm green and rail green carry the same value in light and dark appearance on purpose. Their navigation bars are forced into the dark appearance (`toolbarColorScheme(.dark)`), so a separate dark-mode value would make the bar and the header band below it two different greens. Only the ground, the ink and the gold shift for dark mode.
 
-**The Paper Tray Rule.** Anything the child picks paint from (colour tray, number tray, brush sizes) sits on plain system background, never on green or sage, so the swatches look like the paint they will lay down.
+**The Paper Tray Rule.** Anything the child picks paint from (colour tray, brush sizes) sits on plain system background, never on green or sage, so the swatches look like the paint they will lay down.
 
 ## Typography
 
@@ -240,7 +240,7 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 ### Hierarchy
 - **Display** (800, 50pt scaled with largeTitle, minimum scale 0.6, one line): the region's English name on the header band. Its Arabic name sits trailing at 0.82 of that size, weight 700 (display-arabic), minimum scale 0.5.
 - **Celebration** (800, 46pt fixed): "You did it!" on the celebration card.
-- **Headline** (700, title2, rounded): celebration buttons and the "Try number N" hint bubble. Paint by Number digits in the number tray use title2 bold in the standard (not rounded) design.
+- **Headline** (700, title2, rounded): celebration buttons.
 - **Title** (800, title3, rounded): region names on the rail. The mode switch labels use title3 at 700 (title-mode), minimum scale 0.7.
 - **Card title** (600, headline, rounded): scene titles under the cards (two lines reserved) and the "More colors" lock button.
 - **Body strong** (600, title3 or headline, standard design): the area name under the header title and the "N of 8 done" count.
@@ -272,7 +272,6 @@ Mostly flat colour fields (rail, header, ground) with soft, low shadows reserved
 - **Segment glow** (palm green 35%, radius 6, y 3): the selected mode capsule.
 - **Bead** (black 25%, radius 3, y 2): each route stop.
 - **Seal** (black 22%, radius 8% of size, y 4% of size): the finished seal.
-- **Bubble** (black 20%, radius 8, y 4): the "Try number" hint.
 - **Dialog** (black 25%, radius 30, y 14): the celebration card.
 
 ### Named Rules
@@ -294,7 +293,7 @@ Big, rounded and unmistakable: every child button is an SF Symbol plus a short l
 - **Page actions:** Undo, Redo and Start again as 76 by 60pt buttons, icon above a bold caption word, on a white rounded rectangle (18pt corners) with a hairline ink outline. At 40% opacity and disabled when there is nothing to do. Start again confirms with a system destructive dialog.
 
 ### Chips (if used)
-- **Mode switch:** a white system-background capsule track (5pt padding, 1pt ink hairline at 12%) holding Fill, Paint and Numbers with their symbols. The selected segment is a palm green capsule with white text that slides between options (matched geometry, 0.3s spring); with Reduce Motion it jumps without animation.
+- **Mode switch:** a white system-background capsule track (5pt padding, 1pt ink hairline at 12%) holding Fill and Paint with their symbols. The selected segment is a palm green capsule with white text that slides between options (matched geometry, 0.3s spring); with Reduce Motion it jumps without animation.
 - **More colors (locked):** headline rounded label with a lock symbol on a capsule of primary at 8% with a 1.5pt primary outline at 20%, 60pt minimum.
 
 ### Cards / Containers
@@ -350,7 +349,6 @@ Intentionally the stock system look: a medium-detent sheet, standard design type
 
 ### Open items (build state, not system rules)
 These are visible in the build today. They are recorded so future work closes them, not so they spread.
-- Paint by Number: the selected number drawn on the page is system blue and the other numbers are 40% grey (`PageView.swift`), and the shapes still waiting for the selected number are tinted light blue (`CanvasRenderer.hint`, 0xCFE6FF). Neither belongs to the Rihla palette yet; palm green or date gold are the natural replacements.
-- Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, the "Try number" bubble slide, the celebration overlay scale-in, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.
+- Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, the celebration overlay scale-in, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.
 - Dark appearance: palm green on the dark sage ground is about 2.1:1. It matters only where green is a line or icon on the ground (the selected brush tile outline, the placeholder icon for a missing thumbnail).
 - The parental gate is the stock system sheet on purpose; its person icon and bordered answer buttons take the app tint (rail green) from the environment.

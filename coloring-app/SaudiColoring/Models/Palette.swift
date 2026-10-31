@@ -1,10 +1,10 @@
 import Foundation
 
-/// One entry of a scene's palette.json: the paint-by-number answer key.
+/// One entry of a scene's palette.json: the colour each region is meant to be.
 struct PaletteEntry: Codable, Hashable {
     /// RGB of this region in regions.png, packed as 0xRRGGBB.
     let regionId: UInt32
-    /// The number shown to the child in Paint by Number mode.
+    /// Which of the scene's colours this is (1 = the most used); orders the suggested colours.
     let number: Int
     /// Suggested colour as "#RRGGBB".
     let color: String
@@ -22,8 +22,7 @@ struct Palette: Codable {
         entries.first { $0.regionId == regionId }
     }
 
-    /// Distinct colours in number order, used as the colour tray in PBN mode
-    /// and as the "suggested" row in Fill mode.
+    /// Distinct colours in number order: the "suggested" row of the colour tray.
     var swatches: [Swatch] {
         var seen = Set<Int>()
         var result: [Swatch] = []

@@ -27,7 +27,7 @@ final class CanvasRendererTests: XCTestCase {
         var doc = document()
         doc.fills[0xFF0000] = "#12AB34"
         doc.fills[RegionMap.paper] = "#123456" // never a region; ignored
-        let pixels = try XCTUnwrap(CanvasRenderer(map: map).render(doc, highlight: [RegionMap.paper])).rgbPixels()
+        let pixels = try XCTUnwrap(CanvasRenderer(map: map).render(doc)).rgbPixels()
         XCTAssertEqual(pixels, [0x12AB34, 0xFFFFFF, 0x000000])
     }
 
@@ -57,17 +57,6 @@ final class CanvasRendererTests: XCTestCase {
         XCTAssertEqual(pixels, [
             0x00FF00, 0x000000, 0x00FF00,
             0x00FF00, 0x000000, 0x00FF00,
-        ])
-    }
-
-    func testHighlightTintsOnlyUnfilledRegions() throws {
-        var doc = document()
-        doc.fills[0x0000FF] = "#12AB34"
-        let renderer = CanvasRenderer(map: map)
-        let pixels = try XCTUnwrap(renderer.render(doc, highlight: [0xFF0000, 0x0000FF])).rgbPixels()
-        XCTAssertEqual(pixels, [
-            renderer.hint, 0x000000, 0x12AB34,
-            renderer.hint, 0x000000, 0x12AB34,
         ])
     }
 

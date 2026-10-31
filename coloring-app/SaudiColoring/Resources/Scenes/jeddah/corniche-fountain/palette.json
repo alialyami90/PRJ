@@ -671,13 +671,13 @@
   },
   {
     "regionId": 512407,
-    "number": 12,
-    "color": "#E04D45"
+    "number": 7,
+    "color": "#F5BF89"
   },
   {
     "regionId": 1510408,
-    "number": 9,
-    "color": "#A27BB5"
+    "number": 12,
+    "color": "#E04D45"
   },
   {
     "regionId": 2508409,
@@ -696,31 +696,36 @@
   },
   {
     "regionId": 5502412,
+    "number": 9,
+    "color": "#A27BB5"
+  },
+  {
+    "regionId": 6500413,
     "number": 3,
     "color": "#1399AE"
   },
   {
-    "regionId": 6500413,
+    "regionId": 7498414,
     "number": 2,
     "color": "#F6D78B"
   },
   {
-    "regionId": 7498414,
+    "regionId": 8496415,
     "number": 7,
     "color": "#F5BF89"
   },
   {
-    "regionId": 8496415,
+    "regionId": 9494416,
     "number": 12,
     "color": "#E04D45"
   },
   {
-    "regionId": 9494416,
+    "regionId": 10492417,
     "number": 7,
     "color": "#F5BF89"
   },
   {
-    "regionId": 10492417,
+    "regionId": 11490418,
     "number": 6,
     "color": "#B8C3CD"
   }

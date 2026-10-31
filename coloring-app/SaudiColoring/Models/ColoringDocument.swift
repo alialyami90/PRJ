@@ -9,14 +9,19 @@ struct ColoringDocument: Codable {
     var fills: [UInt32: String] = [:]
     var strokes: [Stroke] = []
     var updatedAt: Date = .now
-    /// Set the first time the page is finished (every region coloured, or every number painted).
+    /// Set the first time the page is finished (every region coloured).
     var completedAt: Date?
 
     var isEmpty: Bool { fills.isEmpty && strokes.isEmpty }
 }
 
 enum ColoringMode: String, Codable, CaseIterable {
-    case fill, freestyle, paintByNumber
+    case fill, freestyle
+
+    /// Pages saved while Paint by Number existed (or any mode this build does not know) open in Fill.
+    init(from decoder: Decoder) throws {
+        self = ColoringMode(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .fill
+    }
 }
 
 struct Stroke: Codable, Hashable {

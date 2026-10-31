@@ -35,9 +35,6 @@ final class ScreenshotTests: XCTestCase {
         app.buttons["Paint"].tap()
         pause(1)
         snapshot("04-paint")
-        app.buttons["Numbers"].tap()
-        pause(5) // where each number goes is worked out the first time Numbers opens
-        snapshot("05-numbers")
     }
 
     func testFinishedPage() {
@@ -81,7 +78,7 @@ final class ScreenshotTests: XCTestCase {
                 .press(forDuration: 0.05, thenDragTo: window.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0.35)))
         }
         card.tap()
-        XCTAssertTrue(app.buttons["Numbers"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.buttons["Paint"].waitForExistence(timeout: 20))
         pause(3)
     }
 

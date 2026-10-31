@@ -883,5 +883,15 @@
     "regionId": 8874017,
     "number": 5,
     "color": "#A0703C"
+  },
+  {
+    "regionId": 9872018,
+    "number": 3,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 10870019,
+    "number": 3,
+    "color": "#FFFFFF"
   }
 ]

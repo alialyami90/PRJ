@@ -29,7 +29,7 @@ LINE = 8
 # Rules the build enforces (see Content/README.md for art direction).
 MIN_REGION_PX = 1200      # smaller visible regions are too small for a child's finger
 MAX_REGIONS = 90
-MAX_COLOURS = 18          # paint-by-number tray size
+MAX_COLOURS = 18          # suggested colours in the tray
 
 # ---------------------------------------------------------------- palette
 SKY, SKY_DUSK, SUN, CLOUD = "#8FD3F4", "#FFB38A", "#FFD34E", "#FFFFFF"
@@ -130,7 +130,7 @@ class Scene:
         self.items = []  # (kind, name, points, colour, width)
 
     def add(self, name, points, colour):
-        """A fillable region. `colour` is the paint-by-number answer."""
+        """A fillable region. `colour` is its suggested colour."""
         self.items.append(("region", name, [tuple(p) for p in points], colour, LINE))
         return self
 

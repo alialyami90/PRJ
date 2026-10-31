@@ -4,7 +4,7 @@ On 31 October 2026 every page was replaced by the owner's new line art (1448×10
 
 ## How the pages were coloured
 
-The new drawings carry no colours, and Paint by Number needs every shape to have the right one. Each page was coloured by looking at what it shows (sky, sand, walls, faces and hands, thobes and shemaghs, animals, water, plants) and recording it in the scene's `art/paint.json`, which `Scripts/paint_shapes.py` turns into `art/color.png`:
+The new drawings carry no colours, and every shape needs a sensible suggested colour. Each page was coloured by looking at what it shows (sky, sand, walls, faces and hands, thobes and shemaghs, animals, water, plants) and recording it in the scene's `art/paint.json`, which `Scripts/paint_shapes.py` turns into `art/color.png`:
 
 - New compositions (all of Riyadh, plus Al-Ahsa's palm oasis and Hofuf train) were painted from a blank page.
 - Redraws that trace the old composition (every other page) started from the old page's colours carried over by position (`Scripts/adopt_line_art.py`) with `"keep": true`, and every shape whose colour did not fit the picture was repainted.
@@ -12,6 +12,10 @@ The new drawings carry no colours, and Paint by Number needs every shape to have
 Then `Scripts/import_illustration.py` builds the scene as before. No page has a gap in its lines (a shape holding two colours) and every page is within 18 colours.
 
 The importer now keeps a small shape (300 to 1,200 px) as its own region when it is painted a clear colour and no same-coloured shape is close enough to join, so small hands, fists and kite bows no longer turn white. Smaller shapes, and small shapes painted white or near black, still become paper or ink.
+
+## Eye whites (fixed after TestFlight, 31 October 2026)
+
+Filling a face also filled the whites of the eyes. The line art was fine: every eye is closed. The colours carried over from the old pages painted many eye whites skin, and the importer then joined each small skin-painted eye white to the face beside it. The importer now finds eye whites from the lines (a shape hugging a pupil) and keeps them white, or as a shape of their own when it is less sure, on all 64 pages. A check that closes gaps of up to 8 px in the lines found no eye whose white is open to the face, so nothing here needs the illustrator.
 
 ## Things to look at in the app before approving
 
@@ -26,7 +30,7 @@ The importer now keeps a small shape (300 to 1,200 px) as its own region when it
 
 ## Too many shapes (57 pages over the 90-region guide)
 
-The new drawings are more detailed than the brief's 25 to 90 shapes. Paint by Number on these pages means a lot of small numbers; zoom helps.
+The new drawings are more detailed than the brief's 25 to 90 shapes; zoom helps with the small ones.
 
 | Page | Regions | Colours |
 |---|---|---|

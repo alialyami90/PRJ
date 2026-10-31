@@ -516,6 +516,11 @@
   },
   {
     "regionId": 3128808,
+    "number": 12,
+    "color": "#A86B3C"
+  },
+  {
+    "regionId": 4126809,
     "number": 2,
     "color": "#4CAF50"
   }
