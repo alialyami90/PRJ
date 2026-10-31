@@ -1,3 +1,4 @@
+import UIKit
 import XCTest
 
 /// Walks the main screens of a debug build started with demo progress (`-demoContent`, see
@@ -10,9 +11,13 @@ final class ScreenshotTests: XCTestCase {
         static let dam = "Family outing at the Najran dam overlook"
     }
 
+    /// iPad in landscape, iPhone in portrait: how each is mostly held.
+    private var isPhone: Bool { UIDevice.current.userInterfaceIdiom == .phone }
+    private var orientation: UIDeviceOrientation { isPhone ? .portrait : .landscapeLeft }
+
     override func setUp() {
         continueAfterFailure = false
-        XCUIDevice.shared.orientation = .landscapeLeft
+        XCUIDevice.shared.orientation = orientation
     }
 
     func testHomeAndGallery() {
@@ -53,7 +58,7 @@ final class ScreenshotTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["-demoContent"]
         app.launch()
-        XCUIDevice.shared.orientation = .landscapeLeft
+        XCUIDevice.shared.orientation = orientation
         XCTAssertTrue(app.buttons["Najran"].waitForExistence(timeout: 60))
         pause(2) // gallery thumbnails
         return app
@@ -69,8 +74,11 @@ final class ScreenshotTests: XCTestCase {
     private func open(_ title: String, region: String, in app: XCUIApplication) {
         showRegion(region, in: app)
         let card = app.staticTexts[title].firstMatch
-        for _ in 0..<6 where !(card.exists && card.isHittable) {
-            app.scrollViews.firstMatch.swipeUp()
+        // Drag on the trailing side of the window, where the gallery is on iPad and the whole screen is on iPhone.
+        let window = app.windows.firstMatch
+        for _ in 0..<8 where !(card.exists && card.isHittable) {
+            window.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0.75))
+                .press(forDuration: 0.05, thenDragTo: window.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0.35)))
         }
         card.tap()
         XCTAssertTrue(app.buttons["Numbers"].waitForExistence(timeout: 20))
@@ -82,14 +90,15 @@ final class ScreenshotTests: XCTestCase {
     }
 
     private func snapshot(_ name: String) {
+        let file = isPhone ? "phone-\(name)" : name
         let screenshot = XCUIScreen.main.screenshot()
         let attachment = XCTAttachment(screenshot: screenshot)
-        attachment.name = name
+        attachment.name = file
         attachment.lifetime = .keepAlways
         add(attachment)
         guard let dir = ProcessInfo.processInfo.environment["SCREENSHOTS_DIR"], !dir.isEmpty else { return }
         let folder = URL(fileURLWithPath: dir, isDirectory: true)
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        try? screenshot.pngRepresentation.write(to: folder.appendingPathComponent("\(name).png"))
+        try? screenshot.pngRepresentation.write(to: folder.appendingPathComponent("\(file).png"))
     }
 }
