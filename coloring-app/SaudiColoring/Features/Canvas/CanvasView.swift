@@ -5,6 +5,7 @@ import SwiftUI
 struct CanvasView: View {
     @Environment(AppEnvironment.self) private var env
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var sizeClass
     let region: Region
     let scene: ColoringScene
 
@@ -22,7 +23,6 @@ struct CanvasView: View {
     @State private var showCelebration = false
     @State private var showGate = false
     @State private var gatePassed = false
-    @State private var confirmReset = false
     /// "Try number 3" after a wrong Paint by Number tap.
     @State private var tryNumber: Int?
     @State private var tryNumberTask: Task<Void, Never>?
@@ -42,13 +42,9 @@ struct CanvasView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Picker("Mode", selection: $mode) {
-                Label("Fill", systemImage: "drop.fill").tag(ColoringMode.fill)
-                Label("Paint", systemImage: "paintbrush.pointed.fill").tag(ColoringMode.freestyle)
-                Label("Numbers", systemImage: "number.square.fill").tag(ColoringMode.paintByNumber)
-            }
-            .pickerStyle(.segmented)
-            .padding()
+            controls
+                .padding(.horizontal)
+                .padding(.vertical, 12)
 
             pageArea
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -56,23 +52,18 @@ struct CanvasView: View {
 
             tray
         }
+        .background(theme.tint.ignoresSafeArea())
         .navigationTitle(scene.title)
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .primaryAction) {
-                Button("Undo", systemImage: "arrow.uturn.backward") { state.dispatch(.undo) }.disabled(!state.canUndo)
-                Button("Redo", systemImage: "arrow.uturn.forward") { state.dispatch(.redo) }.disabled(!state.canRedo)
-                Button("Start again", systemImage: "trash") { confirmReset = true }.disabled(state.document.isEmpty)
-            }
-        }
-        .confirmationDialog("Start this picture again?", isPresented: $confirmReset, titleVisibility: .visible) {
-            Button("Start again", role: .destructive) { state.dispatch(.reset) }
-        }
+        .toolbarBackground(theme.ground, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .overlay {
             if showCelebration {
                 ZStack {
                     Color.black.opacity(0.25).ignoresSafeArea()
                     CelebrationView(
+                        theme: theme,
                         onUnlockBonus: celebrationUnlock,
                         onKeepColoring: { showCelebration = false },
                         onMorePictures: {
@@ -96,6 +87,30 @@ struct CanvasView: View {
     }
 
     // MARK: Views
+
+    private var theme: AppTheme { .saudi }
+
+    /// The mode switch and the page actions: side by side on iPad, the actions under the switch on iPhone.
+    @ViewBuilder
+    private var controls: some View {
+        let actions = PageActions(
+            canUndo: state.canUndo, canRedo: state.canRedo, canReset: !state.document.isEmpty,
+            onUndo: { state.dispatch(.undo) }, onRedo: { state.dispatch(.redo) }, onReset: { state.dispatch(.reset) },
+            theme: theme)
+        if sizeClass == .compact {
+            VStack(spacing: 10) {
+                ModeSwitch(mode: $mode, theme: theme)
+                actions
+            }
+        } else {
+            HStack(spacing: 16) {
+                ModeSwitch(mode: $mode, theme: theme)
+                    .frame(maxWidth: 640)
+                actions
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
 
     @ViewBuilder
     private var pageArea: some View {
@@ -122,8 +137,22 @@ struct CanvasView: View {
         }
     }
 
+    /// The trays sit on plain paper so colours read true, under a thin strip of Sadu.
     @ViewBuilder
     private var tray: some View {
+        if page != nil {
+            VStack(spacing: 0) {
+                SaduBand()
+                    .frame(height: 12)
+                trayContent
+                    .frame(maxWidth: .infinity)
+            }
+            .background(Color(uiColor: .systemBackground).ignoresSafeArea(edges: .bottom))
+        }
+    }
+
+    @ViewBuilder
+    private var trayContent: some View {
         if let page {
             let suggested = page.assets.palette.swatches.map(\.color)
             let bonus = env.rewards.bonusColorsUnlocked ? ColorTray.bonusColors : []
@@ -131,12 +160,20 @@ struct CanvasView: View {
             case .fill:
                 ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
             case .freestyle:
-                HStack(spacing: 0) {
-                    BrushSizePicker(size: $brushSize, color: color)
-                    Divider().frame(height: 48)
-                    ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
+                // On a phone the brush sizes get their own row, so the colours keep the full width.
+                if sizeClass == .compact {
+                    VStack(spacing: 0) {
+                        BrushSizePicker(size: $brushSize, color: color, theme: theme)
+                            .padding(.top, 6)
+                        ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
+                    }
+                } else {
+                    HStack(spacing: 0) {
+                        BrushSizePicker(size: $brushSize, color: color, theme: theme)
+                        Divider().frame(height: 48)
+                        ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
+                    }
                 }
-                .background(.bar)
             case .paintByNumber:
                 NumberTray(swatches: page.assets.palette.swatches,
                            finished: numbersTool(page).finishedNumbers(state),
@@ -164,9 +201,12 @@ struct CanvasView: View {
         if let tryNumber {
             Label("Try number \(tryNumber)", systemImage: "hand.point.up.left.fill")
                 .font(.title2.bold())
-                .padding(.horizontal, 20)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 22)
                 .padding(.vertical, 12)
-                .background(.thinMaterial, in: Capsule())
+                .background(theme.ground, in: Capsule())
+                .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
                 .padding(.top, 12)
                 .transition(.move(edge: .top).combined(with: .opacity))
         }

@@ -24,6 +24,10 @@ enum DemoContent {
         Page(regionId: "riyadh", sceneId: "masmak-fort", progress: 1, completed: true),
         Page(regionId: "riyadh", sceneId: "kingdom-tower-skyline", progress: 0.6),
         Page(regionId: "riyadh", sceneId: "ardah-dance", progress: 0.35),
+        // Finished pages in two neighbouring regions show a travelled stretch of the route.
+        Page(regionId: "jeddah", sceneId: "al-balad-rawashin", progress: 1, completed: true),
+        Page(regionId: "jeddah", sceneId: "dhow-sail", progress: 1, completed: true),
+        Page(regionId: "jeddah", sceneId: "red-sea-reef", progress: 0.5),
         Page(regionId: "najran", sceneId: "al-aan-palace", progress: 1, completed: true),
         Page(regionId: "najran", sceneId: "al-ukhdood", progress: 0.55, rainbow: true),
         Page(regionId: "najran", sceneId: "hima-rock-art", progress: 0.4),

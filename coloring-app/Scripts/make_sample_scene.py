@@ -2,8 +2,8 @@
 """Generate the built-in placeholder scene (a simple fort at sunset).
 
 Writes SaudiColoring/Resources/SampleScene/{regions.png,outline.svg,palette.json}
-following the scene asset contract in CLAUDE.md, plus a placeholder AppIcon
-(the scene coloured in) until the real icon is designed. The app falls back to this
+following the scene asset contract in CLAUDE.md. (The app icon is drawn by
+Scripts/make_app_icon.py.) The app falls back to this
 scene for any scene whose approved art is not in the bundle yet, so Fill mode
 is playable before real art exists. Not real content: replace, don't extend.
 
@@ -17,7 +17,6 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "SaudiColoring" / "Resources" / "SampleScene"
-ICON = ROOT / "SaudiColoring" / "Resources" / "Assets.xcassets" / "AppIcon.appiconset" / "AppIcon.png"
 W, H = 2048, 1536
 LINE = 8
 
@@ -109,14 +108,6 @@ def main():
     img.save(OUT / "regions.png", optimize=True)
     (OUT / "outline.svg").write_text("\n".join(svg) + "\n", encoding="utf-8")
     (OUT / "palette.json").write_text(json.dumps(palette, indent=2) + "\n", encoding="utf-8")
-    # Placeholder app icon: the scene coloured with its palette, square crop around the fort.
-    lut = {e["regionId"]: tuple(int(e["color"][i:i + 2], 16) for i in (1, 3, 5)) for e in palette}
-    raw = img.tobytes()
-    coloured = Image.frombytes("RGB", (W, H), b"".join(
-        bytes(lut.get(raw[i] << 16 | raw[i + 1] << 8 | raw[i + 2], (0, 0, 0))) for i in range(0, len(raw), 3)))
-    ICON.parent.mkdir(parents=True, exist_ok=True)
-    coloured.crop((400, 250, 1640, 1490)).resize((1024, 1024), Image.LANCZOS).save(ICON, optimize=True)
-
     hidden = [name for name, rgb in ids.items() if rgb not in present]
     print(f"wrote {len(palette)} regions, {len(number)} colours to {OUT.relative_to(ROOT)}"
           + (f" (fully covered, dropped: {hidden})" if hidden else ""))

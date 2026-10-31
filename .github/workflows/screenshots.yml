@@ -1,6 +1,7 @@
 name: App screenshots
 
-# Runs the Screenshots scheme on an iPad simulator and pushes the PNGs, in coloring-app/docs/screenshots/,
+# Runs the Screenshots scheme on an iPad simulator (landscape) and an iPhone simulator (portrait, files named
+# phone-*.png) and pushes the PNGs, in coloring-app/docs/screenshots/,
 # to the branch screenshots/<branch it ran on>. Copy them into a PR in a commit of your own: a commit made
 # by this workflow on a PR branch leaves the PR's checks waiting for approval.
 # On demand only (Actions > App screenshots > Run workflow, pick the branch): each run is 7+ macOS minutes,
@@ -21,9 +22,9 @@ defaults:
 
 jobs:
   screenshots:
-    name: iPad screenshots
+    name: iPad and iPhone screenshots
     runs-on: macos-15
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - run: brew install xcodegen
@@ -58,25 +59,63 @@ jobs:
             -resultBundlePath Screenshots.xcresult \
             SWIFT_OPTIMIZATION_LEVEL=-O CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild.log | grep -E "error:|Test Case .* (passed|failed)|\*\* (BUILD|TEST)"
-      - name: Take them from the result bundle if the test could not write files
-        if: always() && hashFiles('coloring-app/Screenshots.xcresult/Info.plist') != ''
+      - name: Pick an iPhone simulator (the newest Pro, else the newest iPhone)
+        id: phone
+        if: always()
         run: |
-          ls docs/screenshots/*.png 2>/dev/null && exit 0
-          xcrun xcresulttool export attachments --path Screenshots.xcresult --output-path attachments
-          python3 - <<'PY'
+          udid=$(xcrun simctl list devices available --json | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          phones = [d for runtime, ds in sorted(devices.items()) if "iOS" in runtime for d in ds if d["name"].startswith("iPhone")]
+          best = [d for d in phones if d["name"].endswith(" Pro")] or phones
+          print(best[-1]["name"], file=sys.stderr)
+          print(best[-1]["udid"])')
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+      - name: Boot the iPhone with a clean status bar
+        if: always()
+        run: |
+          xcrun simctl boot "${{ steps.phone.outputs.udid }}" || true
+          xcrun simctl bootstatus "${{ steps.phone.outputs.udid }}" -b
+          xcrun simctl status_bar "${{ steps.phone.outputs.udid }}" override --time "9:41" \
+            --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
+      - name: Take the iPhone screenshots
+        if: always()
+        env:
+          TEST_RUNNER_SCREENSHOTS_DIR: ${{ github.workspace }}/coloring-app/docs/screenshots
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project SaudiColoring.xcodeproj -scheme Screenshots \
+            -destination "id=${{ steps.phone.outputs.udid }}" \
+            -resultBundlePath Screenshots-phone.xcresult \
+            SWIFT_OPTIMIZATION_LEVEL=-O CODE_SIGNING_ALLOWED=NO \
+            | tee xcodebuild-phone.log | grep -E "error:|Test Case .* (passed|failed)|\*\* (BUILD|TEST)"
+      - name: Take them from the result bundle if the test could not write files
+        if: always()
+        run: |
+          for bundle in Screenshots.xcresult Screenshots-phone.xcresult; do
+            [ -f "$bundle/Info.plist" ] || continue
+            prefix=$([ "$bundle" = Screenshots-phone.xcresult ] && echo phone- || echo "")
+            ls docs/screenshots/${prefix}0*.png > /dev/null 2>&1 && continue
+            rm -rf attachments
+            xcrun xcresulttool export attachments --path "$bundle" --output-path attachments
+            python3 - <<'PY'
           import json, re, shutil
           for test in json.load(open("attachments/manifest.json")):
               for a in test.get("attachments", []):
                   name = re.sub(r"_\d+_[0-9A-Fa-f-]{36}(?=\.png$)", "", a["suggestedHumanReadableName"])
                   shutil.copy(f"attachments/{a['exportedFileName']}", f"docs/screenshots/{name}")
           PY
+          done
           ls docs/screenshots
       - name: Turn them the right way up
         if: always()
         run: |
-          # The simulator hands back the portrait framebuffer even when the app is in landscape.
+          # The simulator hands back the portrait framebuffer even when the app is in landscape (iPad only;
+          # the iPhone shots are taken in portrait).
           for f in docs/screenshots/*.png; do
             [ -e "$f" ] || continue
+            case "$(basename "$f")" in phone-*) continue ;; esac
             w=$(sips -g pixelWidth "$f" | awk '/pixelWidth/ {print $2}')
             h=$(sips -g pixelHeight "$f" | awk '/pixelHeight/ {print $2}')
             if [ "$w" -lt "$h" ]; then sips -r 270 "$f" > /dev/null; fi
@@ -88,6 +127,7 @@ jobs:
           path: |
             coloring-app/docs/screenshots
             coloring-app/xcodebuild.log
+            coloring-app/xcodebuild-phone.log
       - name: Push them to screenshots/${{ github.ref_name }}
         if: always()
         run: |

@@ -34,11 +34,13 @@ struct ColorTray: View {
                 ForEach(bonus.filter { !suggested.contains($0) }, id: \.self) { swatch($0) }
                 if let onUnlockBonus {
                     Button(action: onUnlockBonus) {
-                        Label("More colours", systemImage: "lock.fill")
+                        Label("More colors", systemImage: "lock.fill")
                             .font(.headline)
+                            .fontDesign(.rounded)
                             .frame(minWidth: 60, minHeight: 60)
-                            .padding(.horizontal, 12)
-                            .background(.yellow.opacity(0.35), in: Capsule())
+                            .padding(.horizontal, 16)
+                            .background(Color.primary.opacity(0.08), in: Capsule())
+                            .overlay(Capsule().strokeBorder(Color.primary.opacity(0.2), lineWidth: 1.5))
                     }
                     .buttonStyle(.plain)
                 }
@@ -46,7 +48,6 @@ struct ColorTray: View {
             .padding(.horizontal)
             .padding(.vertical, 8)
         }
-        .background(.bar)
     }
 
     private func swatch(_ hex: String) -> some View {
@@ -64,7 +65,7 @@ struct ColorTray: View {
                 .padding(8)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text("Colour \(hex)"))
+        .accessibilityLabel(Text("Color \(hex)"))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
