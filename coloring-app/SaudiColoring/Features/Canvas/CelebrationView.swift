@@ -39,7 +39,7 @@ struct CelebrationView: View {
                     .foregroundStyle(theme.ink)
                 VStack(spacing: 12) {
                     if let onUnlockBonus {
-                        big("Get more colours", systemImage: "paintpalette.fill", fill: theme.accent, text: theme.onAccent, action: onUnlockBonus)
+                        big("Get more colors", systemImage: "paintpalette.fill", fill: theme.accent, text: theme.onAccent, action: onUnlockBonus)
                     }
                     big("Keep coloring", systemImage: "paintbrush.fill", fill: theme.ground, text: .white, action: onKeepColoring)
                     big("More pictures", systemImage: "square.grid.2x2.fill", fill: theme.ink.opacity(0.08), text: theme.ink, action: onMorePictures)

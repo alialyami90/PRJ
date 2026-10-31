@@ -82,7 +82,7 @@ private struct RegionHeader: View {
                 }
             }
             HStack(spacing: 12) {
-                ProgressDiamonds(finished: finished, total: region.scenes.count, size: 18, filled: .white, empty: .white.opacity(0.45))
+                ProgressDiamonds(finished: finished, total: region.scenes.count, size: 18, filled: .white, empty: .white.opacity(0.6))
                 Text("\(finished) of \(region.scenes.count) done")
                     .font(.headline)
                     .foregroundStyle(.white.opacity(0.9))

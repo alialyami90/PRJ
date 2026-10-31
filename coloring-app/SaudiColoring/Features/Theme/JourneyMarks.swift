@@ -6,7 +6,8 @@ struct ProgressDiamonds: View {
     let total: Int
     var size: CGFloat = 10
     var filled: Color = .white
-    var empty: Color = .white.opacity(0.35)
+    /// Outlines for pages still to do; 60% white keeps them above 3:1 on the rail.
+    var empty: Color = .white.opacity(0.6)
 
     var body: some View {
         HStack(spacing: size * 0.45) {
@@ -24,28 +25,41 @@ struct ProgressDiamonds: View {
     }
 }
 
-/// A stop on the journey rail: a gold bead on the route, with a star once every page is finished.
+/// A stop on the journey rail: a hollow bead on the route that fills with gold, like a clock face,
+/// as the region's pages are finished, and shows a star once all of them are.
 struct RouteStop: View {
     var theme: AppTheme = .saudi
-    let complete: Bool
+    /// Finished pages over all pages, 0 to 1.
+    let progress: Double
     let isSelected: Bool
 
     var body: some View {
-        let size: CGFloat = isSelected ? 30 : 24
-        Circle()
-            .fill(theme.accent)
-            .overlay(Circle().strokeBorder(.white, lineWidth: 3))
-            .overlay {
-                if complete {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: size * 0.42, weight: .bold))
-                        .foregroundStyle(theme.onAccent)
-                }
+        let size: CGFloat = isSelected ? 32 : 26
+        let complete = progress >= 1
+        ZStack {
+            Circle().fill(Shell.rail)
+            if complete {
+                Circle().fill(theme.accent)
+            } else if progress > 0 {
+                // A pie wedge: a stroke as wide as the radius, trimmed to the progress.
+                Circle()
+                    .trim(from: 0, to: progress)
+                    .stroke(theme.accent, lineWidth: size / 2)
+                    .rotationEffect(.degrees(-90))
+                    .padding(size / 4)
             }
-            .frame(width: size, height: size)
-            .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
-            .animation(.spring(duration: 0.3), value: isSelected)
-            .accessibilityHidden(true)
+            Circle().strokeBorder(complete || progress > 0 ? theme.accent : .white.opacity(0.85), lineWidth: 3)
+            if complete {
+                Image(systemName: "star.fill")
+                    .font(.system(size: size * 0.42, weight: .bold))
+                    .foregroundStyle(theme.onAccent)
+            }
+        }
+        .overlay(Circle().strokeBorder(.white, lineWidth: isSelected ? 2 : 0).padding(-3))
+        .frame(width: size, height: size)
+        .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
+        .animation(.spring(duration: 0.3), value: isSelected)
+        .accessibilityHidden(true)
     }
 }
 
@@ -78,7 +92,8 @@ struct FinishedStamp: View {
 #Preview {
     HStack(spacing: 24) {
         FinishedStamp()
-        RouteStop(complete: true, isSelected: true)
+        RouteStop(progress: 1, isSelected: true)
+        RouteStop(progress: 0.375, isSelected: false)
         ProgressDiamonds(finished: 3, total: 8, filled: .black, empty: .gray)
     }
     .padding()

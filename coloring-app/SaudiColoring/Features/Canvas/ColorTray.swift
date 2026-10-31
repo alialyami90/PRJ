@@ -34,7 +34,7 @@ struct ColorTray: View {
                 ForEach(bonus.filter { !suggested.contains($0) }, id: \.self) { swatch($0) }
                 if let onUnlockBonus {
                     Button(action: onUnlockBonus) {
-                        Label("More colours", systemImage: "lock.fill")
+                        Label("More colors", systemImage: "lock.fill")
                             .font(.headline)
                             .fontDesign(.rounded)
                             .frame(minWidth: 60, minHeight: 60)
@@ -65,7 +65,7 @@ struct ColorTray: View {
                 .padding(8)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text("Colour \(hex)"))
+        .accessibilityLabel(Text("Color \(hex)"))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }

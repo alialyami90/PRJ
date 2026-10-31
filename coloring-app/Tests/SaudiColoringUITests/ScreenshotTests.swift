@@ -46,7 +46,7 @@ final class ScreenshotTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["You did it!"].waitForExistence(timeout: 20))
         pause(1.5) // the stars spring in
         snapshot("06-finished")
-        app.buttons["Get more colours"].tap()
+        app.buttons["Get more colors"].tap()
         XCTAssertTrue(app.staticTexts["Ask a grown-up"].waitForExistence(timeout: 10))
         pause(1)
         snapshot("07-parental-gate")

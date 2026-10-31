@@ -5,6 +5,7 @@ import SwiftUI
 struct CanvasView: View {
     @Environment(AppEnvironment.self) private var env
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var sizeClass
     let region: Region
     let scene: ColoringScene
 
@@ -22,7 +23,6 @@ struct CanvasView: View {
     @State private var showCelebration = false
     @State private var showGate = false
     @State private var gatePassed = false
-    @State private var confirmReset = false
     /// "Try number 3" after a wrong Paint by Number tap.
     @State private var tryNumber: Int?
     @State private var tryNumberTask: Task<Void, Never>?
@@ -42,7 +42,7 @@ struct CanvasView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ModeSwitch(mode: $mode, theme: theme)
+            controls
                 .padding(.horizontal)
                 .padding(.vertical, 12)
 
@@ -58,16 +58,6 @@ struct CanvasView: View {
         .toolbarBackground(theme.ground, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbar {
-            ToolbarItemGroup(placement: .primaryAction) {
-                Button("Undo", systemImage: "arrow.uturn.backward") { state.dispatch(.undo) }.disabled(!state.canUndo)
-                Button("Redo", systemImage: "arrow.uturn.forward") { state.dispatch(.redo) }.disabled(!state.canRedo)
-                Button("Start again", systemImage: "trash") { confirmReset = true }.disabled(state.document.isEmpty)
-            }
-        }
-        .confirmationDialog("Start this picture again?", isPresented: $confirmReset, titleVisibility: .visible) {
-            Button("Start again", role: .destructive) { state.dispatch(.reset) }
-        }
         .overlay {
             if showCelebration {
                 ZStack {
@@ -99,6 +89,28 @@ struct CanvasView: View {
     // MARK: Views
 
     private var theme: AppTheme { .saudi }
+
+    /// The mode switch and the page actions: side by side on iPad, the actions under the switch on iPhone.
+    @ViewBuilder
+    private var controls: some View {
+        let actions = PageActions(
+            canUndo: state.canUndo, canRedo: state.canRedo, canReset: !state.document.isEmpty,
+            onUndo: { state.dispatch(.undo) }, onRedo: { state.dispatch(.redo) }, onReset: { state.dispatch(.reset) },
+            theme: theme)
+        if sizeClass == .compact {
+            VStack(spacing: 10) {
+                ModeSwitch(mode: $mode, theme: theme)
+                actions
+            }
+        } else {
+            HStack(spacing: 16) {
+                ModeSwitch(mode: $mode, theme: theme)
+                    .frame(maxWidth: 640)
+                actions
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
 
     @ViewBuilder
     private var pageArea: some View {
@@ -148,10 +160,19 @@ struct CanvasView: View {
             case .fill:
                 ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
             case .freestyle:
-                HStack(spacing: 0) {
-                    BrushSizePicker(size: $brushSize, color: color, theme: theme)
-                    Divider().frame(height: 48)
-                    ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
+                // On a phone the brush sizes get their own row, so the colours keep the full width.
+                if sizeClass == .compact {
+                    VStack(spacing: 0) {
+                        BrushSizePicker(size: $brushSize, color: color, theme: theme)
+                            .padding(.top, 6)
+                        ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
+                    }
+                } else {
+                    HStack(spacing: 0) {
+                        BrushSizePicker(size: $brushSize, color: color, theme: theme)
+                        Divider().frame(height: 48)
+                        ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
+                    }
                 }
             case .paintByNumber:
                 NumberTray(swatches: page.assets.palette.swatches,

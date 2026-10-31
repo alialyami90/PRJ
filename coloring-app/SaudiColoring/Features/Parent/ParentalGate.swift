@@ -46,14 +46,15 @@ struct ParentalGate: View {
                 .font(.largeTitle.bold())
             Text("Grown-ups: what is \(question.a) × \(question.b)?")
                 .font(.title2)
-            HStack(spacing: 16) {
+            // Four equal buttons that share the width, so all four fit on the narrowest iPhone.
+            HStack(spacing: 12) {
                 ForEach(question.choices, id: \.self) { choice in
                     Button {
                         answer(choice)
                     } label: {
                         Text("\(choice)")
                             .font(.title.bold())
-                            .frame(minWidth: 72, minHeight: 64)
+                            .frame(maxWidth: .infinity, minHeight: 64)
                     }
                     .buttonStyle(.bordered)
                 }
@@ -64,7 +65,9 @@ struct ParentalGate: View {
                 .font(.title3)
                 .padding(.top, 8)
         }
-        .padding(40)
+        .padding(.horizontal, 24)
+        .padding(.vertical, 32)
+        .frame(maxWidth: 560)
         .presentationDetents([.medium])
     }
 

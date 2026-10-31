@@ -9,7 +9,7 @@ related_targets: ["SaudiColoring/Features/Home","SaudiColoring/Features/RegionGa
 
 Scope: every child-facing screen of Saudi Colors (iPad first, iPhone too). Mode: Operate. A child picks a region, picks a page, colours it. Grown-up screens (parental gate) stay quiet and neutral.
 
-Constraints: native SwiftUI controls and navigation (NavigationSplitView, stack push, sheet); 60pt targets; icon plus label; RTL-safe; Dynamic Type for adult-read text; Reduce Motion honoured. Accessibility labels used by the screenshot UI test must keep their words (region names, scene titles, Fill / Paint / Numbers, You did it!, Get more colours, Ask a grown-up).
+Constraints: native SwiftUI controls and navigation (NavigationSplitView, stack push, sheet); 60pt targets; icon plus label; RTL-safe; Dynamic Type for adult-read text; Reduce Motion honoured. Accessibility labels used by the screenshot UI test must keep their words (region names, scene titles, Fill / Paint / Numbers, You did it!, Get more colors, Ask a grown-up).
 
 Decisions: owner chose one unified Saudi look for every region (no per-region palettes or ornaments). Owner chose the Rihla route direction. Arabic app name undecided.
 

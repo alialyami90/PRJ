@@ -209,7 +209,7 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 - **Selected Stop Green** (rail-selected): the rounded trailing pill behind the selected region row on the rail. White text 7.48:1.
 
 ### Secondary
-- **Date Gold** (date-gold, dark appearance date-gold-dark): the dotted caravan route, the route stops, the stitched ring of the seal, and the "Get more colours" button. Dark ink (on-gold) sits on it at 8.32:1 (9.17:1 in dark). Gold on the rail green is 5.89:1.
+- **Date Gold** (date-gold, dark appearance date-gold-dark): the dotted caravan route, the route stops, the stitched ring of the seal, and the "Get more colors" button. Dark ink (on-gold) sits on it at 8.32:1 (9.17:1 in dark). Gold on the rail green is 5.89:1.
 
 ### Tertiary
 - **Sadu Red** (sadu-red), **Sadu Wool** (sadu-wool), **Sadu Black** (sadu-black), **Sadu Gold** (sadu-gold): the weave's own colours, used only inside the Sadu band and the app icon's band. They do not change with dark mode.
@@ -242,7 +242,7 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 - **Celebration** (800, 46pt fixed): "You did it!" on the celebration card.
 - **Headline** (700, title2, rounded): celebration buttons and the "Try number N" hint bubble. Paint by Number digits in the number tray use title2 bold in the standard (not rounded) design.
 - **Title** (800, title3, rounded): region names on the rail. The mode switch labels use title3 at 700 (title-mode), minimum scale 0.7.
-- **Card title** (600, headline, rounded): scene titles under the cards (two lines reserved) and the "More colours" lock button.
+- **Card title** (600, headline, rounded): scene titles under the cards (two lines reserved) and the "More colors" lock button.
 - **Body strong** (600, title3 or headline, standard design): the area name under the header title and the "N of 8 done" count.
 - **Label** (600, subheadline): the rail subtitle "Najd · الرياض".
 
@@ -255,9 +255,9 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 
 iPad landscape first. The root is a `NavigationSplitView`: the journey rail is the leading sidebar column (minimum 300pt, ideal 350pt, maximum 420pt) and the selected region's gallery is the detail column with its own `NavigationStack`, which pushes the canvas. On iPhone the rail comes first and a region opens over it.
 
-- **Rail:** each stop row is a 48pt route column (the dotted line plus the stop bead) followed by a 100 by 75pt cover with its Sadu strip, then the name, subtitle and diamonds, with 14pt between cover and text and 13pt vertical padding. The route line is hidden above the first stop and below the last.
+- **Rail:** each stop row is a 48pt route column (the dotted line plus the stop bead) followed by a 100 by 75pt cover with its Sadu strip, then the name, subtitle and diamonds, with 14pt between cover and text and 13pt vertical padding. The route line is hidden above the first stop and below the last. The rail scrolls to keep the selected stop in view. When the area and the Arabic name do not fit on one line, they go on two lines rather than wrapping mid-phrase.
 - **Gallery:** the header band spans the width with 28pt side padding; the Sadu band (30pt) hangs below it. The page grid is adaptive with a 240pt minimum column, 28pt column gap, 32pt row gap, 28pt side and top padding and 40pt bottom padding. An ad banner, when available, sits in a 50pt bottom safe-area inset on the bar material, never over the canvas.
-- **Canvas:** a vertical stack of the mode switch (max width 720pt, 12pt vertical padding), the page filling the remaining space, and the tray (Sadu strip, then a horizontal scroller of swatches). Undo, Redo and Start again live in the navigation bar.
+- **Canvas:** a vertical stack of the controls (12pt vertical padding), the page filling the remaining space, and the tray (Sadu strip, then a horizontal scroller of swatches). On iPad the controls are the mode switch (max width 640pt) with the page actions beside it; on iPhone the page actions sit under the switch, the switch puts each icon above its word, and in Paint the brush sizes take their own row above the colours.
 - **Celebration:** a centred card at max 460pt over a 25% black scrim: a 210pt green top with the seal and the Sadu band, then the title and three full-width buttons with 12pt between them, 36pt side padding.
 - **Spacing rhythm:** 4 / 8 / 12 / 14 / 22 / 28 / 32 / 36pt, with 28pt as the gallery gutter. Every child target is at least 60pt (swatches, brush sizes, the lock button) or 56pt tall inside a 66pt mode track; celebration buttons are 64pt.
 - **RTL:** layout uses leading and trailing only; the selected rail row's rounded corners are declared as trailing radii, so the whole shell mirrors for Arabic.
@@ -287,15 +287,15 @@ Generous continuous-curve (squircle) corners on everything that holds content, a
 ### Buttons
 Big, rounded and unmistakable: every child button is an SF Symbol plus a short label on a full capsule.
 - **Shape:** full capsule ({rounded.full}).
-- **Gold (Get more colours):** date gold fill, on-gold text, 64pt tall, full width in the celebration card. Shown only while bonus colours are locked.
+- **Gold (Get more colors):** date gold fill, on-gold text, 64pt tall, full width in the celebration card. Shown only while bonus colours are locked.
 - **Green (Keep coloring):** palm green fill, white text, 64pt.
 - **Quiet (More pictures):** ink wash fill, palm ink text, 64pt.
 - **Press:** scales to 0.96 with a 0.15s ease out. Gallery cards press to 0.96 with a bouncy 0.25s spring; rail rows press to 0.97.
-- **Navigation bar actions:** standard SF Symbol bar buttons (Undo, Redo, Start again), white on the green bar, disabled when there is nothing to do. Start again confirms with a system destructive dialog.
+- **Page actions:** Undo, Redo and Start again as 76 by 60pt buttons, icon above a bold caption word, on a white rounded rectangle (18pt corners) with a hairline ink outline. At 40% opacity and disabled when there is nothing to do. Start again confirms with a system destructive dialog.
 
 ### Chips (if used)
 - **Mode switch:** a white system-background capsule track (5pt padding, 1pt ink hairline at 12%) holding Fill, Paint and Numbers with their symbols. The selected segment is a palm green capsule with white text that slides between options (matched geometry, 0.3s spring); with Reduce Motion it jumps without animation.
-- **More colours (locked):** headline rounded label with a lock symbol on a capsule of primary at 8% with a 1.5pt primary outline at 20%, 60pt minimum.
+- **More colors (locked):** headline rounded label with a lock symbol on a capsule of primary at 8% with a 1.5pt primary outline at 20%, 60pt minimum.
 
 ### Cards / Containers
 - **Scene card:** white paper at 4:3, 18pt continuous corners, 2.5pt palm ink outline at 80%, card lift shadow; title below in rounded headline, two lines reserved. A finished page wears the seal (60pt) on its top trailing corner, turned -12 degrees and hanging off the edge.
@@ -308,7 +308,7 @@ Big, rounded and unmistakable: every child button is an SF Symbol plus a short l
 - **Brush size:** three 60pt tiles showing a dot of the current colour at 12, 22 and 36pt; the selected tile fills sage ground with a 2.5pt palm green outline and 16pt corners.
 
 ### Navigation
-- **Journey rail:** deep rail green column under a dark navigation bar titled "Saudi Colors". Each region is a stop on a 4pt dotted gold route (round caps, dash 1 on 10). The selected row gets the rail-selected trailing pill, a bigger stop (30pt instead of 24pt) and a solid white cover outline. Region name in rounded title heavy, subtitle "area · Arabic name" at 72% white, then eight 11pt diamonds.
+- **Journey rail:** deep rail green column under a dark navigation bar titled "Saudi Colors". Each region is a stop on a 4pt dotted gold route (round caps, dash 1 on 10). The stretch between two regions that both have finished pages is drawn as a solid 5pt gold line, road already travelled. A stop is a hollow rail-green bead with a white ring until a page is finished; then it fills with a gold wedge in proportion to the pages finished, like a clock face, behind a gold ring, and turns solid gold with a star when all eight are done. The selected row gets the rail-selected trailing pill, a bigger stop (32pt instead of 26pt) with an outer white ring, and a solid white cover outline. Region name in rounded title heavy, subtitle "area · Arabic name" at 72% white, then eight 14pt diamonds whose empty outlines are 60% white (above 3:1 on the rail).
 - **Gallery and canvas bars:** palm green, forced dark appearance; the gallery bar shows no title because the header band below carries the name.
 
 ### Al-Sadu Band (signature)

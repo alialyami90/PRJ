@@ -37,7 +37,8 @@ struct HomeView: View {
     }
 }
 
-/// The regions as stops on one dashed caravan route down the rail.
+/// The regions as stops on one caravan route down the rail. The stretch between two regions the child
+/// has finished pages in is drawn solid, as road already travelled; the rest stays dotted.
 private struct JourneyRail: View {
     @Environment(AppEnvironment.self) private var env
     let regions: [Region]
@@ -45,25 +46,36 @@ private struct JourneyRail: View {
     let onSelect: (Region) -> Void
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                ForEach(Array(regions.enumerated()), id: \.element.id) { index, region in
-                    Button {
-                        onSelect(region)
-                    } label: {
-                        StopRow(region: region,
-                                finished: env.finishedCount(in: region),
-                                isFirst: index == 0,
-                                isLast: index == regions.count - 1,
-                                isSelected: region.id == selectedId)
+        let finished = regions.map { env.finishedCount(in: $0) }
+        let visited = finished.map { $0 > 0 }
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 0) {
+                    ForEach(Array(regions.enumerated()), id: \.element.id) { index, region in
+                        Button {
+                            onSelect(region)
+                        } label: {
+                            StopRow(region: region,
+                                    finished: finished[index],
+                                    lineAbove: index == 0 ? nil : (visited[index - 1] && visited[index]),
+                                    lineBelow: index == regions.count - 1 ? nil : (visited[index] && visited[index + 1]),
+                                    isSelected: region.id == selectedId)
+                        }
+                        .buttonStyle(StopButtonStyle())
+                        .id(region.id)
+                        .accessibilityLabel(Text(region.shortName))
+                        .accessibilityValue(Text("\(finished[index]) of \(region.scenes.count) pictures finished"))
+                        .accessibilityAddTraits(region.id == selectedId ? .isSelected : [])
                     }
-                    .buttonStyle(StopButtonStyle())
-                    .accessibilityLabel(Text(region.shortName))
-                    .accessibilityValue(Text("\(env.finishedCount(in: region)) of \(region.scenes.count) pictures finished"))
-                    .accessibilityAddTraits(region.id == selectedId ? .isSelected : [])
                 }
+                .padding(.vertical, 8)
             }
-            .padding(.vertical, 8)
+            // Keep the child's current stop in view.
+            .onAppear { if let selectedId { proxy.scrollTo(selectedId) } }
+            .onChange(of: selectedId) { _, id in
+                guard let id else { return }
+                withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(id) }
+            }
         }
         .background(Shell.rail.ignoresSafeArea())
     }
@@ -81,8 +93,9 @@ private struct StopButtonStyle: ButtonStyle {
 private struct StopRow: View {
     let region: Region
     let finished: Int
-    let isFirst: Bool
-    let isLast: Bool
+    /// The route into and out of this stop: nil at the ends, true where it is already travelled.
+    let lineAbove: Bool?
+    let lineBelow: Bool?
     let isSelected: Bool
 
     var body: some View {
@@ -90,10 +103,11 @@ private struct StopRow: View {
         HStack(spacing: 0) {
             ZStack {
                 VStack(spacing: 0) {
-                    RouteLine().opacity(isFirst ? 0 : 1)
-                    RouteLine().opacity(isLast ? 0 : 1)
+                    RouteLine(travelled: lineAbove ?? false).opacity(lineAbove == nil ? 0 : 1)
+                    RouteLine(travelled: lineBelow ?? false).opacity(lineBelow == nil ? 0 : 1)
                 }
-                RouteStop(complete: finished == region.scenes.count && finished > 0, isSelected: isSelected)
+                RouteStop(progress: region.scenes.isEmpty ? 0 : Double(finished) / Double(region.scenes.count),
+                          isSelected: isSelected)
             }
             .frame(width: 48)
             .frame(maxHeight: .infinity)
@@ -105,12 +119,10 @@ private struct StopRow: View {
                         .font(.title3.weight(.heavy))
                         .fontDesign(.rounded)
                         .foregroundStyle(Shell.railText)
-                    if !region.nameAr.isEmpty || region.area != nil {
-                        Text(subtitle)
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(Shell.railSecondary)
-                    }
-                    ProgressDiamonds(finished: finished, total: region.scenes.count, size: 11)
+                    subtitle
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Shell.railSecondary)
+                    ProgressDiamonds(finished: finished, total: region.scenes.count, size: 14)
                         .padding(.top, 5)
                 }
                 .lineLimit(2)
@@ -132,9 +144,24 @@ private struct StopRow: View {
         .contentShape(Rectangle())
     }
 
-    /// "Najd · الرياض": the area in brackets, then the Arabic name.
-    private var subtitle: String {
-        [region.area, region.nameAr.isEmpty ? nil : region.shortNameAr].compactMap { $0 }.joined(separator: " · ")
+    /// "Najd · الرياض": the area in brackets, then the Arabic name; on two lines when one is too narrow,
+    /// so the Arabic name never wraps on its own.
+    @ViewBuilder
+    private var subtitle: some View {
+        let arabic = region.nameAr.isEmpty ? nil : region.shortNameAr
+        switch (region.area, arabic) {
+        case let (area?, arabic?):
+            ViewThatFits(in: .horizontal) {
+                Text("\(area) · \(arabic)").lineLimit(1)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(area)
+                    Text(arabic)
+                }
+            }
+        case let (area?, nil): Text(area)
+        case let (nil, arabic?): Text(arabic)
+        case (nil, nil): EmptyView()
+        }
     }
 
     private func cover(_ theme: AppTheme) -> some View {
@@ -156,11 +183,15 @@ private struct StopRow: View {
     }
 }
 
-/// One stretch of the dashed caravan route, top to bottom of its frame.
+/// One stretch of the caravan route, top to bottom of its frame: solid once travelled, dotted ahead.
 private struct RouteLine: View {
+    let travelled: Bool
+
     var body: some View {
         VerticalLine()
-            .stroke(Shell.route, style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: [1, 10]))
+            .stroke(Shell.route, style: travelled
+                ? StrokeStyle(lineWidth: 5, lineCap: .butt)
+                : StrokeStyle(lineWidth: 4, lineCap: .round, dash: [1, 10]))
             .frame(maxHeight: .infinity)
     }
 }

@@ -6,6 +6,8 @@ struct ModeSwitch: View {
     var theme: AppTheme = .saudi
     @Namespace private var selection
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// On a phone the icon sits above the word, so "Numbers" fits and the three parts stay equal.
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         HStack(spacing: 4) {
@@ -14,13 +16,12 @@ struct ModeSwitch: View {
                 Button {
                     withAnimation(reduceMotion ? nil : .spring(duration: 0.3, bounce: 0.2)) { mode = option }
                 } label: {
-                    Label(option.title, systemImage: option.symbol)
-                        .font(.title3.weight(.bold))
+                    label(option)
                         .fontDesign(.rounded)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                         .foregroundStyle(isSelected ? Color.white : theme.ink)
-                        .frame(maxWidth: .infinity, minHeight: 56)
+                        .frame(maxWidth: .infinity, minHeight: 60)
                         .background {
                             if isSelected {
                                 Capsule()
@@ -38,7 +39,20 @@ struct ModeSwitch: View {
         .padding(5)
         .background(Color(uiColor: .systemBackground), in: Capsule())
         .overlay(Capsule().strokeBorder(theme.ink.opacity(0.12), lineWidth: 1))
-        .frame(maxWidth: 720)
+    }
+
+    @ViewBuilder
+    private func label(_ option: ColoringMode) -> some View {
+        if sizeClass == .compact {
+            VStack(spacing: 2) {
+                Image(systemName: option.symbol).font(.title3.weight(.bold))
+                Text(option.title).font(.subheadline.weight(.bold))
+            }
+            .padding(.vertical, 4)
+        } else {
+            Label(option.title, systemImage: option.symbol)
+                .font(.title3.weight(.bold))
+        }
     }
 }
 
