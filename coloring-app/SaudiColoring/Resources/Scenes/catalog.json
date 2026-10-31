@@ -49,7 +49,7 @@
       },
       {
         "id": "hofuf-train",
-        "title": "Old Hofuf railway station with a steam train arriving",
+        "title": "Hofuf railway station with a modern passenger train arriving",
         "titleAr": "",
         "difficulty": "easy"
       }
@@ -171,7 +171,7 @@
     "id": "hail",
     "name": "Hail",
     "nameAr": "حائل",
-    "order": 7,
+    "order": 6,
     "scenes": [
       {
         "id": "jubbah-rock-art",
@@ -227,7 +227,7 @@
     "id": "jazan",
     "name": "Jazan & Farasan",
     "nameAr": "جازان وفرسان",
-    "order": 6,
+    "order": 5,
     "scenes": [
       {
         "id": "farasan-islands",
@@ -339,7 +339,7 @@
     "id": "najran",
     "name": "Najran",
     "nameAr": "نجران",
-    "order": 8,
+    "order": 7,
     "scenes": [
       {
         "id": "al-aan-palace",
@@ -399,105 +399,49 @@
     "scenes": [
       {
         "id": "masmak-fort",
-        "title": "Boys on camels racing past Masmak Fort at sunset",
+        "title": "Three boys riding camels past Masmak Fort",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "kingdom-tower-skyline",
-        "title": "Kids flying kites over the Riyadh skyline with Kingdom Tower",
+        "title": "Children flying kites beside the Riyadh skyline",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "ardah-dance",
-        "title": "Ardah sword-dance celebration with drummers and flags",
+        "title": "Ardah sword-dance celebration with two drummers",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "diriyah-mudbrick",
-        "title": "Family walking through the mud-brick alleys of Diriyah",
+        "title": "A family visiting the adobe alleys of Diriyah",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "riyadh-season-fair",
-        "title": "Ferris wheel and fireworks at a Riyadh Season fair",
+        "title": "Children with cotton candy at a Riyadh Season funfair",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "desert-picnic",
-        "title": "Desert picnic with tents, a campfire and a falcon",
+        "title": "Falconry and a family picnic at a desert camp",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "date-market",
-        "title": "Busy date souq with baskets and a friendly shopkeeper",
+        "title": "A date-market merchant and children with bowls of dates",
         "titleAr": "",
         "difficulty": "easy"
       },
       {
         "id": "camel-festival",
-        "title": "Decorated camels at a camel beauty festival",
-        "titleAr": "",
-        "difficulty": "easy"
-      }
-    ]
-  },
-  {
-    "id": "tabuk",
-    "name": "Tabuk & NEOM coast",
-    "nameAr": "تبوك وساحل نيوم",
-    "order": 5,
-    "scenes": [
-      {
-        "id": "hisma-arches",
-        "title": "Rock arches of the Hisma desert with hikers",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "red-sea-islands",
-        "title": "Turtles and dolphins near the Red Sea islands",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "hejaz-railway",
-        "title": "Old Hejaz Railway station and locomotive",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "tabuk-castle",
-        "title": "Tabuk Castle with pilgrims and their camels",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "wadi-disah",
-        "title": "Wadi Al-Disah canyon with palms and a river",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "snow-mountain",
-        "title": "Rare snow day on Jabal Al-Lawz with kids making a snowman",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "flower-fields",
-        "title": "Spring flower fields with a shepherd girl",
-        "titleAr": "",
-        "difficulty": "easy"
-      },
-      {
-        "id": "neom-future",
-        "title": "Futuristic coastal city with flying taxis",
+        "title": "Children meeting a decorated camel and its handler",
         "titleAr": "",
         "difficulty": "easy"
       }

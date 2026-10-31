@@ -6,7 +6,7 @@
   "scenes": [
     {
       "id": "masmak-fort",
-      "title": "Boys on camels racing past Masmak Fort at sunset",
+      "title": "Three boys riding camels past Masmak Fort",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -18,12 +18,12 @@
       "era": "traditional",
       "character": {
         "type": "person",
-        "description": "A young Najdi boy in a white thobe, red-and-white shemagh and brown bisht racing on a decorated camel"
+        "description": "Three Najdi boys in white thobes and red shemaghs riding decorated camels"
       }
     },
     {
       "id": "kingdom-tower-skyline",
-      "title": "Kids flying kites over the Riyadh skyline with Kingdom Tower",
+      "title": "Children flying kites beside the Riyadh skyline",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -35,12 +35,12 @@
       "era": "modern",
       "character": {
         "type": "person",
-        "description": "A girl in a modern abaya with a colorful backpack flying a kite"
+        "description": "Two girls in hijabs and a boy flying colourful kites below Kingdom Tower"
       }
     },
     {
       "id": "ardah-dance",
-      "title": "Ardah sword-dance celebration with drummers and flags",
+      "title": "Ardah sword-dance celebration with two drummers",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -52,12 +52,12 @@
       "era": "traditional",
       "character": {
         "type": "person",
-        "description": "Ardah dancers in white thobes, gold-trimmed bishts and shemaghs holding swords and drums"
+        "description": "An Ardah dancer in a white thobe, brown gold-trimmed bisht and red shemagh holding a sword, with two drummers"
       }
     },
     {
       "id": "diriyah-mudbrick",
-      "title": "Family walking through the mud-brick alleys of Diriyah",
+      "title": "A family visiting the adobe alleys of Diriyah",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -69,12 +69,12 @@
       "era": "traditional",
       "character": {
         "type": "person",
-        "description": "A father in a thobe and ghutra walking with a girl in an embroidered Najdi dress"
+        "description": "A father in a thobe and red shemagh walking with a girl in a red embroidered Najdi dress and her mother"
       }
     },
     {
       "id": "riyadh-season-fair",
-      "title": "Ferris wheel and fireworks at a Riyadh Season fair",
+      "title": "Children with cotton candy at a Riyadh Season funfair",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -86,12 +86,12 @@
       "era": "modern",
       "character": {
         "type": "person",
-        "description": "Teen cousins in jeans and hoodies holding cotton candy"
+        "description": "Kids in hoodies holding cotton candy in front of a Ferris wheel"
       }
     },
     {
       "id": "desert-picnic",
-      "title": "Desert picnic with tents, a campfire and a falcon",
+      "title": "Falconry and a family picnic at a desert camp",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -103,12 +103,12 @@
       "era": "traditional",
       "character": {
         "type": "animal",
-        "description": "A hooded saker falcon on its handler's gloved arm; the handler wears a thobe and shemagh"
+        "description": "A hooded falcon on a father's gloved arm beside a Bedouin tent, a campfire and his children"
       }
     },
     {
       "id": "date-market",
-      "title": "Busy date souq with baskets and a friendly shopkeeper",
+      "title": "A date-market merchant and children with bowls of dates",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -120,12 +120,12 @@
       "era": "traditional",
       "character": {
         "type": "person",
-        "description": "A smiling old shopkeeper in a white thobe, taqiyah cap and ghutra weighing dates"
+        "description": "A white-bearded merchant in a red shemagh handing dates to two children"
       }
     },
     {
       "id": "camel-festival",
-      "title": "Decorated camels at a camel beauty festival",
+      "title": "Children meeting a decorated camel and its handler",
       "titleAr": "",
       "difficulty": "easy",
       "status": "vectorized",
@@ -137,7 +137,7 @@
       "era": "traditional",
       "character": {
         "type": "animal",
-        "description": "A prize camel with embroidered saddle blankets and tassels, led by a Bedouin in a bisht"
+        "description": "A camel handler in a brown bisht and red shemagh showing a decorated camel to two children"
       }
     }
   ]

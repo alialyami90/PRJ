@@ -1,4 +1,4 @@
-# Content Plan: 9 regions × 8 scenes
+# Content Plan: 8 regions × 8 scenes
 
 Every scene is a full *scene* (place + people/animals + activity), never an isolated object. Target age 4–9. Keep lines bold and regions large enough for small fingers; 20–60 fill regions per scene.
 
@@ -12,14 +12,14 @@ Status per scene lives in `Content/Regions/<region>/region.json` (`todo` → `sk
 
 | # | Scene | Era | Character |
 |---|---|---|---|
-| 1 | **masmak-fort**: Boys on camels racing past Masmak Fort at sunset | traditional | 🧕 A young Najdi boy in a white thobe, red-and-white shemagh and brown bisht racing on a decorated camel |
-| 2 | **kingdom-tower-skyline**: Kids flying kites over the Riyadh skyline with Kingdom Tower | modern | 🧕 A girl in a modern abaya with a colorful backpack flying a kite |
-| 3 | **ardah-dance**: Ardah sword-dance celebration with drummers and flags | traditional | 🧕 Ardah dancers in white thobes, gold-trimmed bishts and shemaghs holding swords and drums |
-| 4 | **diriyah-mudbrick**: Family walking through the mud-brick alleys of Diriyah | traditional | 🧕 A father in a thobe and ghutra walking with a girl in an embroidered Najdi dress |
-| 5 | **riyadh-season-fair**: Ferris wheel and fireworks at a Riyadh Season fair | modern | 🧕 Teen cousins in jeans and hoodies holding cotton candy |
-| 6 | **desert-picnic**: Desert picnic with tents, a campfire and a falcon | traditional | 🐪 A hooded saker falcon on its handler's gloved arm; the handler wears a thobe and shemagh |
-| 7 | **date-market**: Busy date souq with baskets and a friendly shopkeeper | traditional | 🧕 A smiling old shopkeeper in a white thobe, taqiyah cap and ghutra weighing dates |
-| 8 | **camel-festival**: Decorated camels at a camel beauty festival | traditional | 🐪 A prize camel with embroidered saddle blankets and tassels, led by a Bedouin in a bisht |
+| 1 | **masmak-fort**: Three boys riding camels past Masmak Fort | traditional | 🧕 Three Najdi boys in white thobes and red shemaghs riding decorated camels |
+| 2 | **kingdom-tower-skyline**: Children flying kites beside the Riyadh skyline | modern | 🧕 Two girls in hijabs and a boy flying colourful kites below Kingdom Tower |
+| 3 | **ardah-dance**: Ardah sword-dance celebration with two drummers | traditional | 🧕 An Ardah dancer in a white thobe, brown gold-trimmed bisht and red shemagh holding a sword, with two drummers |
+| 4 | **diriyah-mudbrick**: A family visiting the adobe alleys of Diriyah | traditional | 🧕 A father in a thobe and red shemagh walking with a girl in a red embroidered Najdi dress and her mother |
+| 5 | **riyadh-season-fair**: Children with cotton candy at a Riyadh Season funfair | modern | 🧕 Kids in hoodies holding cotton candy in front of a Ferris wheel |
+| 6 | **desert-picnic**: Falconry and a family picnic at a desert camp | traditional | 🐪 A hooded falcon on a father's gloved arm beside a Bedouin tent, a campfire and his children |
+| 7 | **date-market**: A date-market merchant and children with bowls of dates | traditional | 🧕 A white-bearded merchant in a red shemagh handing dates to two children |
+| 8 | **camel-festival**: Children meeting a decorated camel and its handler | traditional | 🐪 A camel handler in a brown bisht and red shemagh showing a decorated camel to two children |
 
 ## Jeddah (Hijaz) (`jeddah`)
 
@@ -45,7 +45,7 @@ Status per scene lives in `Content/Regions/<region>/region.json` (`todo` → `sk
 | 5 | **bisht-weaving**: Bisht cloak weavers at work with golden thread | traditional | 🧕 A bisht weaver in a white thobe and ghutra at the loom with golden thread |
 | 6 | **yellow-lake**: Birds and reeds at Al-Asfar (Yellow) Lake | modern | 🐪 Flamingos and a heron among the reeds; a boy in a tracksuit with binoculars |
 | 7 | **ibrahim-palace**: Horse riders at Ibrahim Palace | traditional | 🐪 A black Arabian horse with a tasselled bridle ridden by a boy in a thobe and bisht |
-| 8 | **hofuf-train**: Old Hofuf railway station with a steam train arriving | modern | 🧕 A girl in a school uniform with a backpack waving at the train driver |
+| 8 | **hofuf-train**: Hofuf railway station with a modern passenger train arriving | modern | 🧕 A schoolgirl in a white hijab and her mother in an abaya waving to the train driver |
 
 ## Asir (Abha) (`asir`)
 
@@ -72,19 +72,6 @@ Status per scene lives in `Content/Regions/<region>/region.json` (`todo` → `sk
 | 6 | **oasis-walk**: Shaded palm oasis walk with a stream and frogs | modern | 🐪 Frogs and a kingfisher by the stream; kids in casual clothes on the path |
 | 7 | **maraya-mirror**: Maraya mirror building reflecting the desert | modern | 🧕 A girl in a modern dress taking a selfie with her reflection |
 | 8 | **star-gazing**: Astronomer kids with a telescope under the Milky Way | modern | 🐪 A desert fox peeking at kids in sweaters with a telescope |
-
-## Tabuk & NEOM coast (`tabuk`)
-
-| # | Scene | Era | Character |
-|---|---|---|---|
-| 1 | **hisma-arches**: Rock arches of the Hisma desert with hikers | modern | 🧕 Hikers in backpacks and caps waving from under a rock arch |
-| 2 | **red-sea-islands**: Turtles and dolphins near the Red Sea islands | modern | 🐪 Dolphins jumping beside a boat; a dugong below |
-| 3 | **hejaz-railway**: Old Hejaz Railway station and locomotive | traditional | 🧕 A station master in a thobe, shemagh and old-fashioned cap beside the steam engine |
-| 4 | **tabuk-castle**: Tabuk Castle with pilgrims and their camels | traditional | 🐪 Pilgrims' camels resting by the castle; a guide in a bisht pouring coffee |
-| 5 | **wadi-disah**: Wadi Al-Disah canyon with palms and a river | traditional | 🧕 A boy in a thobe and headwrap wading in the stream with a goat |
-| 6 | **snow-mountain**: Rare snow day on Jabal Al-Lawz with kids making a snowman | modern | 🧕 Kids in puffer jackets and beanies building a snowman |
-| 7 | **flower-fields**: Spring flower fields with a shepherd girl | traditional | 🧕 A shepherd girl in a long embroidered dress and headscarf with lambs |
-| 8 | **neom-future**: Futuristic coastal city with flying taxis | modern | 🧕 A girl in a futuristic jumpsuit next to a friendly robot |
 
 ## Jazan & Farasan (`jazan`)
 
@@ -134,7 +121,6 @@ Status per scene lives in `Content/Regions/<region>/region.json` (`todo` → `sk
 | Al-Ahsa (Eastern Province) | 5 | 3 |
 | Asir (Abha) | 6 | 2 |
 | AlUla | 3 | 5 |
-| Tabuk & NEOM coast | 4 | 4 |
 | Jazan & Farasan | 4 | 4 |
 | Hail | 4 | 4 |
 | Najran | 6 | 2 |
