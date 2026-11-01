@@ -99,9 +99,11 @@ struct CelebrationView: View {
 }
 
 private struct CelebrationButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.96 : 1)
             .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
     }
 }

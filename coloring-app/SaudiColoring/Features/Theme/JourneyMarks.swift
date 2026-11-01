@@ -32,6 +32,7 @@ struct RouteStop: View {
     /// Finished pages over all pages, 0 to 1.
     let progress: Double
     let isSelected: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         let size: CGFloat = isSelected ? 32 : 26
@@ -58,7 +59,7 @@ struct RouteStop: View {
         .overlay(Circle().strokeBorder(.white, lineWidth: isSelected ? 2 : 0).padding(-3))
         .frame(width: size, height: size)
         .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
-        .animation(.spring(duration: 0.3), value: isSelected)
+        .animation(reduceMotion ? nil : .spring(duration: 0.3), value: isSelected)
         .accessibilityHidden(true)
     }
 }

@@ -81,7 +81,7 @@
         "displayName": "Date Gold",
         "canonical": "#E2A63B",
         "oklch": "oklch(76.4% 0.138 78.0)",
-        "purpose": "Caravan route, stops, seal ring, Get more colours. Dark appearance: date-gold-dark.",
+        "purpose": "Caravan route, stops, seal ring, finishing hint glow. Dark appearance: date-gold-dark.",
         "tonalRamp": [
           "#120900",
           "#332100",
@@ -313,7 +313,7 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "SwiftUI .title2 bold rounded: celebration buttons and the Try number bubble."
+        "purpose": "SwiftUI .title2 bold rounded: celebration buttons."
       },
       "title": {
         "displayName": "Title",
@@ -321,7 +321,7 @@
       },
       "title-mode": {
         "displayName": "Title (mode)",
-        "purpose": "SwiftUI .title3 bold rounded: Fill / Paint / Numbers labels."
+        "purpose": "SwiftUI .title3 bold rounded: Fill / Paint labels."
       },
       "card-title": {
         "displayName": "Card title",
@@ -368,12 +368,6 @@
         "purpose": "Finished seal."
       },
       {
-        "name": "bubble",
-        "value": "0 4px 16px rgba(0,0,0,0.2)",
-        "swiftui": "black 20%, radius 8, y 4",
-        "purpose": "Try number hint bubble."
-      },
-      {
         "name": "dialog",
         "value": "0 14px 60px rgba(0,0,0,0.25)",
         "swiftui": "black 25%, radius 30, y 14",
@@ -409,7 +403,7 @@
       {
         "name": "swatch-select",
         "value": "spring(duration: 0.2), scale 1.1",
-        "purpose": "Colour and number swatch selection. Not yet gated on Reduce Motion."
+        "purpose": "Colour swatch selection. Off with Reduce Motion."
       },
       {
         "name": "stop-select",
@@ -420,11 +414,6 @@
         "name": "celebration-in",
         "value": "spring(duration: 0.4), opacity + scale from 0.9",
         "purpose": "Celebration overlay appears. Not yet gated on Reduce Motion."
-      },
-      {
-        "name": "hint-in",
-        "value": "spring(duration: 0.3), move from top + opacity, auto-hide after 1.5s",
-        "purpose": "Try number bubble. Not yet gated on Reduce Motion."
       }
     ],
     "breakpoints": [
@@ -455,8 +444,6 @@
       }
     ],
     "openItems": [
-      "Paint by Number: the selected number drawn on the page is system blue and the other numbers are 40% grey (`PageView.swift`), and the shapes still waiting for the selected number are tinted light blue (`CanvasRenderer.hint`, 0xCFE6FF). Neither belongs to the Rihla palette yet; palm green or date gold are the natural replacements.",
-      "Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, the \"Try number\" bubble slide, the celebration overlay scale-in, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.",
       "Dark appearance: palm green on the dark sage ground is about 2.1:1. It matters only where green is a line or icon on the ground (the selected brush tile outline, the placeholder icon for a missing thumbnail).",
       "The parental gate is the stock system sheet on purpose; its person icon and bordered answer buttons take the app tint (rail green) from the environment."
     ]
@@ -490,17 +477,9 @@
       "name": "Mode Switch",
       "kind": "chip",
       "refersTo": "mode-switch-segment-selected",
-      "description": "Fill / Paint / Numbers as one capsule track; the chosen mode fills palm green.",
-      "html": "<div class=\"ds-modes\" role=\"tablist\"><button class=\"ds-mode on\" role=\"tab\" aria-selected=\"true\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M12 2.5S5 10.2 5 14.6a7 7 0 0 0 14 0C19 10.2 12 2.5 12 2.5z\" fill=\"currentColor\"/></svg>Fill</button><button class=\"ds-mode\" role=\"tab\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M20.7 3.3a1 1 0 0 0-1.4 0l-9 9 2.4 2.4 9-9a1 1 0 0 0 0-1.4zM8.8 13.6c-2 0-3.3 1.4-3.3 3.3 0 1.2-.8 2.1-2 2.6 1.1.9 2.6 1.5 4.2 1.5 2.6 0 4.5-1.9 4.5-4.4z\" fill=\"currentColor\"/></svg>Paint</button><button class=\"ds-mode\" role=\"tab\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4\" fill=\"currentColor\"/><text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"800\" fill=\"#fff\">#</text></svg>Numbers</button></div>",
+      "description": "Fill / Paint as one capsule track; the chosen mode fills palm green.",
+      "html": "<div class=\"ds-modes\" role=\"tablist\"><button class=\"ds-mode on\" role=\"tab\" aria-selected=\"true\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M12 2.5S5 10.2 5 14.6a7 7 0 0 0 14 0C19 10.2 12 2.5 12 2.5z\" fill=\"currentColor\"/></svg>Fill</button><button class=\"ds-mode\" role=\"tab\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M20.7 3.3a1 1 0 0 0-1.4 0l-9 9 2.4 2.4 9-9a1 1 0 0 0 0-1.4zM8.8 13.6c-2 0-3.3 1.4-3.3 3.3 0 1.2-.8 2.1-2 2.6 1.1.9 2.6 1.5 4.2 1.5 2.6 0 4.5-1.9 4.5-4.4z\" fill=\"currentColor\"/></svg>Paint</button></div>",
       "css": ".ds-modes{display:flex;gap:4px;padding:5px;background:#fff;border-radius:9999px;box-shadow:inset 0 0 0 1px rgba(19,38,30,.12);max-width:720px}.ds-mode{all:unset;cursor:pointer;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border-radius:9999px;font:700 20px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;color:#13261E;transition:background .3s,color .3s}.ds-mode:hover{background:rgba(19,38,30,.05)}.ds-mode:focus-visible{outline:3px solid #E2A63B;outline-offset:2px}.ds-mode.on{background:#11563F;color:#fff;box-shadow:0 3px 12px rgba(17,86,63,.35)}"
-    },
-    {
-      "name": "Gold Button",
-      "kind": "button",
-      "refersTo": "button-gold",
-      "description": "Get more colours on the celebration card; shown only while bonus colours are locked.",
-      "html": "<button class=\"ds-btn ds-btn-gold\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><path d=\"M12 3a9 9 0 0 0 0 18c1.1 0 1.7-.7 1.7-1.6 0-.5-.2-.8-.5-1.2-.3-.3-.5-.7-.5-1.1 0-.9.8-1.6 1.7-1.6h2A4.6 4.6 0 0 0 21 11c0-4.4-4-8-9-8zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z\" fill=\"currentColor\"/></svg>Get more colours</button>",
-      "css": ".ds-btn{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border-radius:9999px;font:700 22px ui-rounded,'SF Pro Rounded',system-ui,sans-serif;transition:transform .15s ease-out}.ds-btn:active{transform:scale(.96)}.ds-btn:focus-visible{outline:3px solid #11563F;outline-offset:3px}.ds-btn-gold{background:#E2A63B;color:#1E1513}.ds-btn-gold:hover{background:#D49929}"
     },
     {
       "name": "Green Button",
@@ -537,9 +516,9 @@
   ],
   "narrative": {
     "northStar": "Rihla, one caravan route across the Kingdom",
-    "overview": "Saudi Colors is a trip with nine stops. The whole app speaks one Saudi design language, chosen by the owner for every region alike: a deep palm green shell, a dotted date-gold caravan route with gold stops, and a calm sage-white ground behind the pages. Regions do not get their own palettes or ornaments. Their character lives in their pictures and their names, in English and Arabic; the chrome around them stays the same so that moving from Najd to Jazan feels like travel through one country, not a jump between apps.\n\nThe system has exactly one ornament: a strip of Al-Sadu weaving (red ground, black teeth, a chain of cream and gold diamonds), drawn in code so it stays sharp at any size. It sits where a woven edge would sit: along the bottom of every green header, along the top of the colour tray, at the foot of the celebration card, and as a thin selvedge on each region cover in the rail. Progress is told without reading: eight diamonds per region, gold stops that earn a star when a region is complete, and a green seal with a gold stitched ring pressed onto each finished page.\n\nThis is a native iPadOS / iOS 17+ SwiftUI app, iPad-first in landscape, used by children aged 4 to 9 who often cannot read. Density is low and targets are large (60pt minimum). Every child control pairs an SF Symbol with a short label. Display type is SF Rounded at heavy weight; everything else uses the system text styles so Dynamic Type and Arabic shaping come for free. The illustrated scene is always the hero: chrome frames it, the tray sits on plain paper so paint reads true, and nothing decorative is laid over the artwork. Grown-up surfaces (the parental gate) deliberately stay in the stock system sheet style, quiet and separate from play.",
+    "overview": "Saudi Colors is a trip with eight stops. The whole app speaks one Saudi design language, chosen by the owner for every region alike: a deep palm green shell, a dotted date-gold caravan route with gold stops, and a calm sage-white ground behind the pages. Regions do not get their own palettes or ornaments. Their character lives in their pictures and their names, in English and Arabic; the chrome around them stays the same so that moving from Najd to Jazan feels like travel through one country, not a jump between apps.\n\nThe system has exactly one ornament: a strip of Al-Sadu weaving (red ground, black teeth, a chain of cream and gold diamonds), drawn in code so it stays sharp at any size. It sits where a woven edge would sit: along the bottom of every green header, along the top of the colour tray, along the top of the celebration card, and as a thin selvedge on each region cover in the rail. Progress is told without reading: eight diamonds per region, gold stops that earn a star when a region is complete, and a green seal with a gold stitched ring pressed onto each finished page.\n\nThis is a native iPadOS / iOS 17+ SwiftUI app, iPad-first in landscape, used by children aged 4 to 9 who often cannot read. Density is low and targets are large (60pt minimum). Every child control pairs an SF Symbol with a short label. Display type is SF Rounded at heavy weight; everything else uses the system text styles so Dynamic Type and Arabic shaping come for free. The illustrated scene is always the hero: chrome frames it, the tray sits on plain paper so paint reads true, and nothing decorative is laid over the artwork. Grown-up surfaces (the parental gate) deliberately stay in the stock system sheet style, quiet and separate from play.",
     "keyCharacteristics": [
-      "One unified Saudi look for all nine regions; variety comes from the scene art.",
+      "One unified Saudi look for all eight regions; variety comes from the scene art.",
       "Deep green rail with a dotted gold route and gold stops (the journey).",
       "Palm green header bands on a sage-white ground.",
       "One ornament only: the Al-Sadu woven band.",
@@ -560,7 +539,7 @@
       },
       {
         "name": "The Paper Tray Rule",
-        "body": "Anything the child picks paint from (colour tray, number tray, brush sizes) sits on plain system background, never on green or sage, so the swatches look like the paint they will lay down.",
+        "body": "Anything the child picks paint from (colour tray, brush sizes) sits on plain system background, never on green or sage, so the swatches look like the paint they will lay down.",
         "section": "colors"
       },
       {
