@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "hegra-tombs",
-      "title": "Camel caravan passing the carved tombs of Hegra",
-      "titleAr": "",
+      "title": "Hegra Caravan",
+      "titleAr": "قافلة الحِجر",
+      "brief": "Camel caravan passing the carved tombs of Hegra",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "elephant-rock",
-      "title": "Family picnic under Elephant Rock at night with stars",
-      "titleAr": "",
+      "title": "Elephant Rock Picnic",
+      "titleAr": "نزهة جبل الفيل",
+      "brief": "Family picnic under Elephant Rock at night with stars",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "old-town-alula",
-      "title": "Old Town mud houses and the hilltop castle",
-      "titleAr": "",
+      "title": "AlUla Old Town",
+      "titleAr": "بلدة العلا القديمة",
+      "brief": "Old Town mud houses and the hilltop castle",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "hot-air-balloons",
-      "title": "Hot-air balloons floating over sandstone canyons",
-      "titleAr": "",
+      "title": "Hot-Air Balloons",
+      "titleAr": "المناطيد",
+      "brief": "Hot-air balloons floating over sandstone canyons",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "dadan-lion-tombs",
-      "title": "Explorers looking up at the Dadan lion tombs",
-      "titleAr": "",
+      "title": "Dadan Lion Tombs",
+      "titleAr": "مقابر الأسود في دادان",
+      "brief": "Explorers looking up at the Dadan lion tombs",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "oasis-walk",
-      "title": "Shaded palm oasis walk with a stream and frogs",
-      "titleAr": "",
+      "title": "Oasis Walk",
+      "titleAr": "نزهة في الواحة",
+      "brief": "Shaded palm oasis walk with a stream and frogs",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "maraya-mirror",
-      "title": "Maraya mirror building reflecting the desert",
-      "titleAr": "",
+      "title": "Maraya",
+      "titleAr": "مرايا",
+      "brief": "Maraya mirror building reflecting the desert",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "star-gazing",
-      "title": "Astronomer kids with a telescope under the Milky Way",
-      "titleAr": "",
+      "title": "Stargazing",
+      "titleAr": "رصد النجوم",
+      "brief": "Astronomer kids with a telescope under the Milky Way",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

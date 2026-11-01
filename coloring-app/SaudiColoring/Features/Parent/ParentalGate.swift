@@ -50,7 +50,8 @@ struct ParentalGate: View {
                 .accessibilityHidden(true)
             Text("Ask a grown-up")
                 .font(.largeTitle.bold())
-            Text("Grown-ups: what is \(question.a) × \(question.b)?")
+            // Western digits, to match the number pad.
+            Text("Grown-ups: what is \(String(question.a)) × \(String(question.b))?")
                 .font(.title2)
                 .multilineTextAlignment(.center)
             Text(typed.isEmpty ? " " : typed)
@@ -104,7 +105,7 @@ struct ParentalGate: View {
 
     private func digit(_ n: Int) -> some View {
         key {
-            Text("\(n)")
+            Text(verbatim: String(n))
         } action: {
             if typed.count < ParentalGateQuestion.maxDigits { typed.append(String(n)) }
         }

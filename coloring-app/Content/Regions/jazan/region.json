@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "farasan-islands",
-      "title": "Fishing boats and flamingos at the Farasan Islands",
-      "titleAr": "",
+      "title": "Farasan Flamingos",
+      "titleAr": "فلامنغو فرسان",
+      "brief": "Fishing boats and flamingos at the Farasan Islands",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "fifa-mountains",
-      "title": "Terraced Fifa Mountains with a village on the peak",
-      "titleAr": "",
+      "title": "Fifa Mountains",
+      "titleAr": "جبال فيفاء",
+      "brief": "Terraced Fifa Mountains with a village on the peak",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "mango-harvest",
-      "title": "Mango harvest at a Jazan farm",
-      "titleAr": "",
+      "title": "Mango Harvest",
+      "titleAr": "قطف المانجو",
+      "brief": "Mango harvest at a Jazan farm",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "coffee-terraces",
-      "title": "Coffee farmers picking beans on mountain terraces",
-      "titleAr": "",
+      "title": "Coffee Terraces",
+      "titleAr": "مدرجات البن",
+      "brief": "Coffee farmers picking beans on mountain terraces",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "heritage-village",
-      "title": "Jazan heritage village with straw-roofed huts",
-      "titleAr": "",
+      "title": "Heritage Village",
+      "titleAr": "القرية التراثية",
+      "brief": "Jazan heritage village with straw-roofed huts",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "jazan-port",
-      "title": "Jazan port with cargo ships and cranes",
-      "titleAr": "",
+      "title": "Jazan Port",
+      "titleAr": "ميناء جازان",
+      "brief": "Jazan port with cargo ships and cranes",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "sabya-market",
-      "title": "Market day with jasmine garlands and fuul pots",
-      "titleAr": "",
+      "title": "Sabya Market",
+      "titleAr": "سوق صبيا",
+      "brief": "Market day with jasmine garlands and fuul pots",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "mangroves",
-      "title": "Kayaking through the mangrove forests",
-      "titleAr": "",
+      "title": "Mangrove Kayaks",
+      "titleAr": "قوارب بين أشجار المانجروف",
+      "brief": "Kayaking through the mangrove forests",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "al-aan-palace",
-      "title": "Al-Aan Palace above the palm-filled valley",
-      "titleAr": "",
+      "title": "Al-Aan Palace",
+      "titleAr": "قصر العان",
+      "brief": "Al-Aan Palace above the palm-filled valley",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "palm-basket-workshop",
-      "title": "Palm-leaf basket workshop in Aba Al-Saud souq",
-      "titleAr": "",
+      "title": "Palm Baskets",
+      "titleAr": "سلال الخوص",
+      "brief": "Palm-leaf basket workshop in Aba Al-Saud souq",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "al-ukhdood",
-      "title": "Young explorers at Al-Ukhdood archaeological site",
-      "titleAr": "",
+      "title": "Al-Ukhdood Explorers",
+      "titleAr": "مستكشفو الأخدود",
+      "brief": "Young explorers at Al-Ukhdood archaeological site",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "hima-rock-art",
-      "title": "Hima rock-art discovery",
-      "titleAr": "",
+      "title": "Hima Rock Art",
+      "titleAr": "نقوش حمى",
+      "brief": "Hima rock-art discovery",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "najrani-pottery",
-      "title": "Potter making a traditional Najrani coffee pot",
-      "titleAr": "",
+      "title": "Najran Pottery",
+      "titleAr": "فخار نجران",
+      "brief": "Potter making a traditional Najrani coffee pot",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "najran-dam",
-      "title": "Family outing at the Najran dam overlook",
-      "titleAr": "",
+      "title": "Najran Dam",
+      "titleAr": "سد نجران",
+      "brief": "Family outing at the Najran dam overlook",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "tower-houses-harvest",
-      "title": "Date harvest among Najran mudbrick tower houses",
-      "titleAr": "",
+      "title": "Tower House Harvest",
+      "titleAr": "الحصاد بين البيوت الطينية",
+      "brief": "Date harvest among Najran mudbrick tower houses",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "courtyard-bread",
-      "title": "Traditional bread and hospitality in a Najrani courtyard",
-      "titleAr": "",
+      "title": "Courtyard Bread",
+      "titleAr": "خبز وضيافة",
+      "brief": "Traditional bread and hospitality in a Najrani courtyard",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

@@ -70,9 +70,29 @@ extension Region {
     }
 
     /// "Riyadh (Najd)" → "Najd"; nil when the name has no brackets.
-    var area: String? {
-        guard let open = name.range(of: " ("), name.hasSuffix(")") else { return nil }
-        return String(name[open.upperBound..<name.index(before: name.endIndex)])
+    var area: String? { Self.bracketed(in: name) }
+
+    /// "الرياض (نجد)" → "نجد"; nil when the Arabic name has no brackets.
+    var areaAr: String? { Self.bracketed(in: nameAr) }
+
+    /// The name in the app's language, the area in that language, and the name in the other one.
+    func displayName(arabic: Bool = AppLanguage.isArabic) -> String {
+        arabic && !nameAr.isEmpty ? shortNameAr : shortName
+    }
+
+    func displayArea(arabic: Bool = AppLanguage.isArabic) -> String? {
+        arabic && !nameAr.isEmpty ? areaAr : area
+    }
+
+    /// The name in the other language, shown smaller beside or under the main one; nil when there is none.
+    func otherName(arabic: Bool = AppLanguage.isArabic) -> String? {
+        if arabic { return nameAr.isEmpty ? nil : shortName }
+        return nameAr.isEmpty ? nil : shortNameAr
+    }
+
+    private static func bracketed(in text: String) -> String? {
+        guard let open = text.range(of: " ("), text.hasSuffix(")") else { return nil }
+        return String(text[open.upperBound..<text.index(before: text.endIndex)])
     }
 }
 

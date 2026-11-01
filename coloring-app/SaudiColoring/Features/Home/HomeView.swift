@@ -63,7 +63,7 @@ private struct JourneyRail: View {
                         }
                         .buttonStyle(StopButtonStyle())
                         .id(region.id)
-                        .accessibilityLabel(Text(region.shortName))
+                        .accessibilityLabel(Text(verbatim: region.displayName()))
                         .accessibilityValue(Text("\(finished[index]) of \(region.scenes.count) pictures finished"))
                         .accessibilityAddTraits(region.id == selectedId ? .isSelected : [])
                     }
@@ -115,7 +115,7 @@ private struct StopRow: View {
             HStack(spacing: 14) {
                 cover(theme)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(region.shortName)
+                    Text(verbatim: region.displayName())
                         .font(.title3.weight(.heavy))
                         .fontDesign(.rounded)
                         .foregroundStyle(Shell.railText)
@@ -144,22 +144,21 @@ private struct StopRow: View {
         .contentShape(Rectangle())
     }
 
-    /// "Najd · الرياض": the area in brackets, then the Arabic name; on two lines when one is too narrow,
-    /// so the Arabic name never wraps on its own.
+    /// "Najd · الرياض" (in Arabic, "نجد · Riyadh"): the area, then the name in the other language; on two
+    /// lines when one is too narrow, so neither name wraps on its own.
     @ViewBuilder
     private var subtitle: some View {
-        let arabic = region.nameAr.isEmpty ? nil : region.shortNameAr
-        switch (region.area, arabic) {
-        case let (area?, arabic?):
+        switch (region.displayArea(), region.otherName()) {
+        case let (area?, other?):
             ViewThatFits(in: .horizontal) {
-                Text("\(area) · \(arabic)").lineLimit(1)
+                Text(verbatim: "\(area) · \(other)").lineLimit(1)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(area)
-                    Text(arabic)
+                    Text(verbatim: area)
+                    Text(verbatim: other)
                 }
             }
-        case let (area?, nil): Text(area)
-        case let (nil, arabic?): Text(arabic)
+        case let (area?, nil): Text(verbatim: area)
+        case let (nil, other?): Text(verbatim: other)
         case (nil, nil): EmptyView()
         }
     }

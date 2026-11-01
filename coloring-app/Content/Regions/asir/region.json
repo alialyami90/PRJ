@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "flower-men",
-      "title": "Flower-men of Rijal Almaa wearing herb crowns on a mountain path",
-      "titleAr": "",
+      "title": "Flower Men",
+      "titleAr": "رجال الورد",
+      "brief": "Flower-men of Rijal Almaa wearing herb crowns on a mountain path",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "al-qatt-houses",
-      "title": "Painting colorful Al-Qatt Al-Asiri patterns on a house",
-      "titleAr": "",
+      "title": "Al-Qatt Painting",
+      "titleAr": "نقش القط العسيري",
+      "brief": "Painting colorful Al-Qatt Al-Asiri patterns on a house",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "abha-fog",
-      "title": "Foggy terraces of Abha with sheep and a shepherd",
-      "titleAr": "",
+      "title": "Foggy Abha",
+      "titleAr": "ضباب أبها",
+      "brief": "Foggy terraces of Abha with sheep and a shepherd",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "cable-car",
-      "title": "Cable car over green mountains to Al-Souda",
-      "titleAr": "",
+      "title": "Al-Souda Cable Car",
+      "titleAr": "تلفريك السودة",
+      "brief": "Cable car over green mountains to Al-Souda",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "baboons-road",
-      "title": "Baboons watching cars on the mountain road",
-      "titleAr": "",
+      "title": "Mountain Baboons",
+      "titleAr": "قرود الجبل",
+      "brief": "Baboons watching cars on the mountain road",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "honey-bees",
-      "title": "Beekeeper collecting Sidr honey in the mountains",
-      "titleAr": "",
+      "title": "Sidr Honey",
+      "titleAr": "عسل السدر",
+      "brief": "Beekeeper collecting Sidr honey in the mountains",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "stone-village",
-      "title": "Stone tower houses of Rijal Almaa village",
-      "titleAr": "",
+      "title": "Rijal Almaa Village",
+      "titleAr": "قرية رجال ألمع",
+      "brief": "Stone tower houses of Rijal Almaa village",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "asir-market",
-      "title": "Tuesday market with pottery, baskets and spices",
-      "titleAr": "",
+      "title": "Tuesday Market",
+      "titleAr": "سوق الثلاثاء",
+      "brief": "Tuesday market with pottery, baskets and spices",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

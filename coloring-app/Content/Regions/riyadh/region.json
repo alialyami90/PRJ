@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "masmak-fort",
-      "title": "Three boys riding camels past Masmak Fort",
-      "titleAr": "",
+      "title": "Masmak Fort",
+      "titleAr": "قصر المصمك",
+      "brief": "Three boys riding camels past Masmak Fort",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "kingdom-tower-skyline",
-      "title": "Children flying kites beside the Riyadh skyline",
-      "titleAr": "",
+      "title": "Kites over Riyadh",
+      "titleAr": "طائرات ورقية في الرياض",
+      "brief": "Children flying kites beside the Riyadh skyline",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "ardah-dance",
-      "title": "Ardah sword-dance celebration with two drummers",
-      "titleAr": "",
+      "title": "Ardah Dance",
+      "titleAr": "العرضة",
+      "brief": "Ardah sword-dance celebration with two drummers",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "diriyah-mudbrick",
-      "title": "A family visiting the adobe alleys of Diriyah",
-      "titleAr": "",
+      "title": "Diriyah Alleys",
+      "titleAr": "أزقة الدرعية",
+      "brief": "A family visiting the adobe alleys of Diriyah",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "riyadh-season-fair",
-      "title": "Children with cotton candy at a Riyadh Season funfair",
-      "titleAr": "",
+      "title": "Riyadh Season Fair",
+      "titleAr": "ملاهي موسم الرياض",
+      "brief": "Children with cotton candy at a Riyadh Season funfair",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "desert-picnic",
-      "title": "Falconry and a family picnic at a desert camp",
-      "titleAr": "",
+      "title": "Desert Camp",
+      "titleAr": "مخيم البر",
+      "brief": "Falconry and a family picnic at a desert camp",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "date-market",
-      "title": "A date-market merchant and children with bowls of dates",
-      "titleAr": "",
+      "title": "Date Market",
+      "titleAr": "سوق التمور",
+      "brief": "A date-market merchant and children with bowls of dates",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "camel-festival",
-      "title": "Children meeting a decorated camel and its handler",
-      "titleAr": "",
+      "title": "Camel Festival",
+      "titleAr": "مهرجان الإبل",
+      "brief": "Children meeting a decorated camel and its handler",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

@@ -73,7 +73,7 @@ Final scene art comes from an illustrator (brief: the "Saudi Colors Illustration
 
 Until a scene's art arrives it shows a placeholder sketch: its `scene.py` lists shapes in painter's order using `Scripts/scene_kit.py` (plus that region's own `_figures.py`) and writes `outline.svg`, `regions.png`, `palette.json` and `preview.png`. A scene with `art/` ignores its `scene.py`. `Scripts/build_scenes.py` rebuilds both kinds.
 
-`Content/Regions/<region>/region.json` lists the 8 scenes, their titles (en/ar), an `era` (`traditional` | `modern`), a `character` (`type`: person in the region's own dress, or a local animal; plus a `description`), and production `status` (`todo` → `sketched` → `vectorized` → `approved`). A scene is `vectorized` once its real art is imported and `approved` once the owner has checked it in the app (see `docs/ART_REVIEW.md`). `Scripts/sync_scenes.py` copies `vectorized` and `approved` scenes into `Resources/Scenes/` (`--approved-only` for a release build): `regions.png`, `palette.json`, a 512×384 line-art `thumb.png` for the gallery, and each region's `cover.png`. The synced files are committed so any checkout builds with the real pages; CI fails if they drift from `Content/`.
+`Content/Regions/<region>/region.json` lists the 8 scenes, their short titles (`title` and `titleAr`, at most 4 and 5 words, what the child sees on the card and the canvas), a longer `brief` describing the picture for the illustrator, an `era` (`traditional` | `modern`), a `character` (`type`: person in the region's own dress, or a local animal; plus a `description`), and production `status` (`todo` → `sketched` → `vectorized` → `approved`). A scene is `vectorized` once its real art is imported and `approved` once the owner has checked it in the app (see `docs/ART_REVIEW.md`). `Scripts/sync_scenes.py` copies `vectorized` and `approved` scenes into `Resources/Scenes/` (`--approved-only` for a release build): `regions.png`, `palette.json`, a 512×384 line-art `thumb.png` for the gallery, and each region's `cover.png`. The synced files are committed so any checkout builds with the real pages; CI fails if they drift from `Content/`.
 
 ### Engine (`Engine/`)
 
@@ -100,7 +100,7 @@ This app is for kids, so on the App Store it must go in the **Kids Category** an
 
 ### Localization
 
-Arabic is a first-class language: all strings go through `Localizable.xcstrings`, layout must be RTL-safe (use leading/trailing, never left/right), and region/scene names carry `nameAr`/`titleAr` in the manifests.
+Arabic is a first-class language: all strings go through `Localizable.xcstrings`, layout must be RTL-safe (use leading/trailing, never left/right), and region/scene names carry `nameAr`/`titleAr` in the manifests. The app picks a region or scene name by `AppLanguage.isArabic` (the first of the app's localizations the device prefers): in Arabic the Arabic name leads and the English one is the smaller second name, and the other way round in English.
 
 CI (`.github/workflows/coloring-app.yml`) runs the content checks on Linux and `xcodebuild test` on a macOS runner's iPad simulator for every PR that touches `coloring-app/`.
 `.github/workflows/testflight.yml` archives with Xcode 26 and uploads to TestFlight (cloud signing via an App Store Connect API key in repo secrets) on every push to `main` that touches the app, or on demand; setup in `docs/TESTFLIGHT.md`.

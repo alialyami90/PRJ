@@ -61,7 +61,7 @@ struct CanvasView: View {
             tray
         }
         .background(theme.tint.ignoresSafeArea())
-        .navigationTitle(scene.title)
+        .navigationTitle(scene.displayTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(theme.ground, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
@@ -128,7 +128,7 @@ struct CanvasView: View {
             )
             .padding([.horizontal, .bottom])
         } else if loadFailed {
-            ContentUnavailableView(scene.title, systemImage: "exclamationmark.triangle", description: Text("This picture could not be opened."))
+            ContentUnavailableView(scene.displayTitle, systemImage: "exclamationmark.triangle", description: Text("This picture could not be opened."))
         } else {
             ProgressView().controlSize(.large)
         }
