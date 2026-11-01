@@ -9,7 +9,7 @@ struct ColoringDocument: Codable {
     var fills: [UInt32: String] = [:]
     var strokes: [Stroke] = []
     var updatedAt: Date = .now
-    /// Set the first time the page is finished (every region coloured).
+    /// Set the first time the page is finished (see PageProgress). Earned for good: undo and Start again keep it.
     var completedAt: Date?
 
     var isEmpty: Bool { fills.isEmpty && strokes.isEmpty }

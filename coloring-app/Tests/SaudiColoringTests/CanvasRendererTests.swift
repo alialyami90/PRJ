@@ -60,6 +60,30 @@ final class CanvasRendererTests: XCTestCase {
         ])
     }
 
+    func testRegionAreasCountEachRegionsPixels() {
+        let map = RegionMap(width: 4, height: 1, pixels: [0xFF0000, 0xFF0000, 0x000000, RegionMap.paper])
+        XCTAssertEqual(CanvasRenderer(map: map).regionAreas, [0xFF0000: 2])
+    }
+
+    func testPaintedCountsBrushColourInUnfilledRegionsOnly() {
+        var doc = document()
+        doc.fills[0x0000FF] = "#12AB34"
+        doc.strokes = [Stroke(color: "#00FF00", width: 10, points: [.init(x: -5, y: 1), .init(x: 8, y: 1)])]
+        XCTAssertEqual(CanvasRenderer(map: map).renderPage(doc).painted, [0xFF0000: 2])
+    }
+
+    func testNoStrokesMeansNothingPainted() {
+        var doc = document()
+        doc.fills[0xFF0000] = "#12AB34"
+        XCTAssertTrue(CanvasRenderer(map: map).renderPage(doc).painted.isEmpty)
+    }
+
+    func testHighlightShowsOnlyTheGivenRegions() throws {
+        let image = try XCTUnwrap(CanvasRenderer(map: map).highlight([0x0000FF], color: 0xE2A63B))
+        XCTAssertEqual(image.alphaPixels(), [0, 0, 0xFF, 0, 0, 0xFF])
+        XCTAssertEqual(image.rgbPixels()[2], 0xE2A63B)
+    }
+
     func testThumbnailIsAPNGAtMostTheRequestedWidth() throws {
         let assets = try SceneAssets.load(regionId: "riyadh", sceneId: "masmak-fort")
         let image = try XCTUnwrap(CanvasRenderer(map: assets.map).render(document()))
@@ -95,6 +119,25 @@ extension CGImage {
                 let p = raw + y * ctx.bytesPerRow + x * 4
                 out.append(UInt32(p[0]) << 16 | UInt32(p[1]) << 8 | UInt32(p[2]))
             }
+        }
+        return out
+    }
+}
+
+extension CGImage {
+    /// Alpha per pixel, row-major from the top-left.
+    func alphaPixels() -> [UInt8] {
+        let ctx = CGContext(
+            data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0,
+            space: CGColorSpace(name: CGColorSpace.sRGB)!,
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        )!
+        ctx.clear(CGRect(x: 0, y: 0, width: width, height: height))
+        ctx.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+        let raw = ctx.data!.bindMemory(to: UInt8.self, capacity: ctx.bytesPerRow * height)
+        var out: [UInt8] = []
+        for y in 0..<height {
+            for x in 0..<width { out.append((raw + y * ctx.bytesPerRow + x * 4)[3]) }
         }
         return out
     }

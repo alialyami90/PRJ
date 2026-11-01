@@ -11,6 +11,8 @@ struct PageView: UIViewRepresentable {
     var brushColor = "#000000"
     /// In image pixels.
     var brushWidth: Double = 24
+    /// The shapes still to colour, glowing over the page for a moment (see CanvasView's finishing hint).
+    var hint: CGImage?
     var onTap: (_ point: CGPoint, _ tolerance: Int) -> Void = { _, _ in }
     var onStroke: (_ points: [CGPoint]) -> Void = { _ in }
 
@@ -23,6 +25,7 @@ struct PageView: UIViewRepresentable {
         view.brushWidth = brushWidth
         view.isDrawing = isDrawing
         view.setImage(image)
+        view.setHint(hint)
     }
 }
 
@@ -39,6 +42,9 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
     private let touchSlop: CGFloat = 12
     private let page = UIView()
     private let imageView = UIImageView()
+    /// The finishing hint: the white shapes in gold, faded in and out over the page.
+    private let hintLayer = CALayer()
+    private var hintImage: CGImage?
     private var imageSize: CGSize = .zero
     private var fitted = false
     /// The stroke under the finger.
@@ -67,6 +73,11 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
         page.layer.shadowRadius = 12
         page.layer.shadowOffset = CGSize(width: 0, height: 6)
         page.addSubview(imageView)
+        hintLayer.opacity = 0
+        hintLayer.cornerRadius = 16
+        hintLayer.masksToBounds = true
+        hintLayer.minificationFilter = .trilinear
+        page.layer.addSublayer(hintLayer)
         style(liveStroke)
         page.layer.addSublayer(liveStroke)
         addSubview(page)
@@ -97,11 +108,37 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
         zoomScale = 1
         page.frame = CGRect(origin: .zero, size: size)
         imageView.frame = page.bounds
+        hintLayer.frame = page.bounds
         page.layer.shadowPath = UIBezierPath(roundedRect: page.bounds, cornerRadius: 16).cgPath
         liveStroke.frame = page.bounds
         contentSize = size
         fitted = false
         setNeedsLayout()
+    }
+
+    /// Fades the hint in and out once; nil hides it at once.
+    func setHint(_ image: CGImage?) {
+        guard image !== hintImage else { return }
+        hintImage = image
+        hintLayer.removeAnimation(forKey: "hint")
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        hintLayer.contents = image
+        CATransaction.commit()
+        guard image != nil else { return }
+        // The layer's own opacity stays 0, so it is hidden again when the animation ends.
+        let glow = CAKeyframeAnimation(keyPath: "opacity")
+        if UIAccessibility.isReduceMotionEnabled {
+            // One calm fade in and out instead of a pulse.
+            glow.values = [0, 0.6, 0.6, 0]
+            glow.keyTimes = [0, 0.2, 0.8, 1]
+        } else {
+            glow.values = [0, 0.7, 0.2, 0.7, 0]
+            glow.keyTimes = [0, 0.25, 0.5, 0.75, 1]
+        }
+        glow.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        glow.duration = 2.4
+        hintLayer.add(glow, forKey: "hint")
     }
 
     // MARK: Zoom
