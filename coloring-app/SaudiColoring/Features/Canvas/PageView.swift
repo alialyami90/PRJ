@@ -2,20 +2,11 @@ import SwiftUI
 import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
-/// A number written on the page in Paint by Number mode.
-struct PageNumber: Equatable {
-    let regionId: UInt32
-    let number: Int
-    let label: RegionLabel
-    let isSelected: Bool
-}
-
 /// The page itself: the rendered scene in a zoomable scroll view. Pinch to zoom; pan with one finger
-/// in Fill and Paint by Number, with two in Freestyle, where one finger draws.
+/// in Fill, with two in Freestyle, where one finger draws.
 /// Every point handed back is in image pixels.
 struct PageView: UIViewRepresentable {
     let image: CGImage
-    var numbers: [PageNumber] = []
     var isDrawing = false
     var brushColor = "#000000"
     /// In image pixels.
@@ -32,7 +23,6 @@ struct PageView: UIViewRepresentable {
         view.brushWidth = brushWidth
         view.isDrawing = isDrawing
         view.setImage(image)
-        view.setNumbers(numbers)
     }
 }
 
@@ -49,9 +39,6 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
     private let touchSlop: CGFloat = 12
     private let page = UIView()
     private let imageView = UIImageView()
-    private let numbersLayer = CALayer()
-    private var numberLayers: [UInt32: CATextLayer] = [:]
-    private var currentNumbers: [PageNumber] = []
     private var imageSize: CGSize = .zero
     private var fitted = false
     /// The stroke under the finger.
@@ -82,7 +69,6 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
         page.addSubview(imageView)
         style(liveStroke)
         page.layer.addSublayer(liveStroke)
-        page.layer.addSublayer(numbersLayer)
         addSubview(page)
 
         tap.delegate = gestureDelegate
@@ -112,63 +98,10 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
         page.frame = CGRect(origin: .zero, size: size)
         imageView.frame = page.bounds
         page.layer.shadowPath = UIBezierPath(roundedRect: page.bounds, cornerRadius: 16).cgPath
-        numbersLayer.frame = page.bounds
         liveStroke.frame = page.bounds
         contentSize = size
         fitted = false
         setNeedsLayout()
-    }
-
-    func setNumbers(_ numbers: [PageNumber]) {
-        guard numbers != currentNumbers else { return }
-        currentNumbers = numbers
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        var keep = Set<UInt32>()
-        for number in numbers {
-            keep.insert(number.regionId)
-            if let layer = numberLayers[number.regionId] {
-                style(layer, for: number)
-            } else {
-                let layer = CATextLayer()
-                layer.alignmentMode = .center
-                numbersLayer.addSublayer(layer)
-                numberLayers[number.regionId] = layer
-                style(layer, for: number)
-            }
-        }
-        for (id, layer) in numberLayers where !keep.contains(id) {
-            layer.removeFromSuperlayer()
-            numberLayers[id] = nil
-        }
-        CATransaction.commit()
-    }
-
-    private func style(_ layer: CATextLayer, for number: PageNumber) {
-        // Bigger regions get bigger numbers, within what is readable once zoomed in.
-        let size = CGFloat(min(max(number.label.radius * 1.1, 18), 72))
-        layer.string = "\(number.number)"
-        layer.font = UIFont.systemFont(ofSize: size, weight: number.isSelected ? .heavy : .semibold)
-        layer.fontSize = size
-        layer.foregroundColor = (number.isSelected ? UIColor.systemBlue : UIColor(white: 0.4, alpha: 1)).cgColor
-        layer.contentsScale = textScale
-        let width = size * 2.2, height = size * 1.25
-        layer.frame = CGRect(x: number.label.point.x - width / 2, y: number.label.point.y - height / 2,
-                             width: width, height: height)
-    }
-
-    /// Text is rasterised per layer: keep it sharp at the current zoom.
-    private var textScale: CGFloat {
-        let screen = traitCollection.displayScale > 0 ? traitCollection.displayScale : 2
-        return min(screen * max(zoomScale, 0.25), 16)
-    }
-
-    private func updateTextScale() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        let scale = textScale
-        numberLayers.values.forEach { $0.contentsScale = scale }
-        CATransaction.commit()
     }
 
     // MARK: Zoom
@@ -183,7 +116,6 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
             maximumZoomScale = fit * 6
             if wasFitted { zoomScale = fit }
             fitted = true
-            updateTextScale()
         }
         centerPage()
     }
@@ -198,9 +130,6 @@ final class PageScrollView: UIScrollView, UIScrollViewDelegate {
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? { page }
     func scrollViewDidZoom(_ scrollView: UIScrollView) { centerPage() }
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        updateTextScale()
-    }
 
     // MARK: Touches
 

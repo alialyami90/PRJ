@@ -1,12 +1,12 @@
 import SwiftUI
 
-/// The three ways to colour, as one segmented row sized for small fingers. The chosen one fills green.
+/// The two ways to colour, as one segmented row sized for small fingers. The chosen one fills green.
 struct ModeSwitch: View {
     @Binding var mode: ColoringMode
     var theme: AppTheme = .saudi
     @Namespace private var selection
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    /// On a phone the icon sits above the word, so "Numbers" fits and the three parts stay equal.
+    /// On a phone the icon sits above the word, like the page actions below it.
     @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
@@ -61,7 +61,6 @@ extension ColoringMode {
         switch self {
         case .fill: "Fill"
         case .freestyle: "Paint"
-        case .paintByNumber: "Numbers"
         }
     }
 
@@ -69,7 +68,6 @@ extension ColoringMode {
         switch self {
         case .fill: "drop.fill"
         case .freestyle: "paintbrush.pointed.fill"
-        case .paintByNumber: "number.square.fill"
         }
     }
 }

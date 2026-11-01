@@ -926,43 +926,43 @@
   },
   {
     "regionId": 1078810,
+    "number": 7,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 2076811,
+    "number": 7,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 3074812,
     "number": 8,
     "color": "#E89D41"
   },
   {
-    "regionId": 2076811,
+    "regionId": 4072813,
     "number": 12,
     "color": "#E04D45"
   },
   {
-    "regionId": 3074812,
+    "regionId": 5070814,
     "number": 9,
     "color": "#FFCF40"
-  },
-  {
-    "regionId": 4072813,
-    "number": 8,
-    "color": "#E89D41"
-  },
-  {
-    "regionId": 5070814,
-    "number": 8,
-    "color": "#E89D41"
   },
   {
     "regionId": 6068815,
-    "number": 9,
-    "color": "#FFCF40"
+    "number": 8,
+    "color": "#E89D41"
   },
   {
     "regionId": 7066816,
-    "number": 9,
-    "color": "#FFCF40"
+    "number": 8,
+    "color": "#E89D41"
   },
   {
     "regionId": 8064817,
-    "number": 8,
-    "color": "#E89D41"
+    "number": 9,
+    "color": "#FFCF40"
   },
   {
     "regionId": 9062818,
@@ -971,18 +971,18 @@
   },
   {
     "regionId": 10060819,
+    "number": 8,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 11058820,
     "number": 9,
     "color": "#FFCF40"
   },
   {
-    "regionId": 11058820,
-    "number": 8,
-    "color": "#E89D41"
-  },
-  {
     "regionId": 12056821,
-    "number": 8,
-    "color": "#E89D41"
+    "number": 9,
+    "color": "#FFCF40"
   },
   {
     "regionId": 13054822,
@@ -1006,21 +1006,31 @@
   },
   {
     "regionId": 269610,
+    "number": 8,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 1267611,
+    "number": 8,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 2265612,
     "number": 5,
     "color": "#BA7549"
   },
   {
-    "regionId": 1267611,
-    "number": 7,
-    "color": "#F5BF89"
-  },
-  {
-    "regionId": 2265612,
-    "number": 7,
-    "color": "#F5BF89"
-  },
-  {
     "regionId": 3263613,
+    "number": 7,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 4261614,
+    "number": 7,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 5259615,
     "number": 15,
     "color": "#B8C3CD"
   }

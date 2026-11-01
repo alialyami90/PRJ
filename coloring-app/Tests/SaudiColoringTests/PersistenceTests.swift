@@ -29,6 +29,15 @@ final class PersistenceTests: XCTestCase {
         let doc = try JSONDecoder().decode(ColoringDocument.self, from: Data(json.utf8))
         XCTAssertNil(doc.completedAt)
     }
+
+    func testPagesSavedInPaintByNumberOpenInFill() throws {
+        let json = ##"{"regionId":"riyadh","sceneId":"masmak-fort","mode":"paintByNumber","fills":[255,"#123456"],"strokes":[],"updatedAt":0}"##
+        let doc = try JSONDecoder().decode(ColoringDocument.self, from: Data(json.utf8))
+        XCTAssertEqual(doc.mode, .fill)
+        XCTAssertEqual(doc.fills, [255: "#123456"])
+        let encoded = try JSONEncoder().encode(doc)
+        XCTAssertEqual(try JSONDecoder().decode(ColoringDocument.self, from: encoded).mode, .fill)
+    }
 }
 
 final class SceneColorTests: XCTestCase {

@@ -681,26 +681,46 @@
   },
   {
     "regionId": 2508409,
+    "number": 8,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 3506410,
+    "number": 8,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 4504411,
+    "number": 8,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 5502412,
+    "number": 8,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 6500413,
     "number": 12,
     "color": "#D9A066"
   },
   {
-    "regionId": 3506410,
+    "regionId": 7498414,
     "number": 11,
     "color": "#B8A99A"
   },
   {
-    "regionId": 4504411,
+    "regionId": 8496415,
     "number": 11,
     "color": "#B8A99A"
   },
   {
-    "regionId": 5502412,
+    "regionId": 9494416,
     "number": 11,
     "color": "#B8A99A"
   },
   {
-    "regionId": 6500413,
+    "regionId": 10492417,
     "number": 11,
     "color": "#B8A99A"
   }

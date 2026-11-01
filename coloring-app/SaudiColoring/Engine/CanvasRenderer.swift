@@ -12,8 +12,6 @@ struct CanvasRenderer {
     var paper: UInt32 = 0xFFFFFF
     /// Colour of the outline pixels (region id 0x000000 in the map).
     var ink: UInt32 = 0x000000
-    /// Tint for unfilled regions Paint by Number is pointing at (the selected number's regions).
-    var hint: UInt32 = 0xCFE6FF
 
     /// Per pixel: 0 for outline, 1 + the index of its region in `regionIds`, or 1 + regionIds.count for paper.
     /// Precomputed once so a re-render is a table lookup per pixel.
@@ -30,8 +28,7 @@ struct CanvasRenderer {
         pixelSlots = map.pixels.map { slotFor[$0] ?? 0 }
     }
 
-    /// - Parameter highlight: regions to tint with `hint` while they are still unfilled.
-    func render(_ document: ColoringDocument, highlight: Set<UInt32> = []) -> CGImage? {
+    func render(_ document: ColoringDocument) -> CGImage? {
         let w = map.width, h = map.height
         guard let ctx = CGContext(
             data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: 0,
@@ -44,8 +41,6 @@ struct CanvasRenderer {
         for (i, id) in regionIds.enumerated() {
             if let hex = document.fills[id], let rgb = SceneColor.rgb(fromHex: hex) {
                 palette[i + 1] = rgb
-            } else if highlight.contains(id) {
-                palette[i + 1] = hint
             }
         }
 

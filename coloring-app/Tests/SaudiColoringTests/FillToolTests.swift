@@ -49,10 +49,10 @@ final class FillToolTests: XCTestCase {
 
     func testModeAndCompletionAreNotUndoSteps() {
         let state = makeState()
-        state.setMode(.paintByNumber)
+        state.setMode(.freestyle)
         state.markCompleted(at: Date(timeIntervalSince1970: 1))
         state.markCompleted(at: Date(timeIntervalSince1970: 2))
-        XCTAssertEqual(state.document.mode, .paintByNumber)
+        XCTAssertEqual(state.document.mode, .freestyle)
         XCTAssertEqual(state.document.completedAt, Date(timeIntervalSince1970: 1))
         XCTAssertFalse(state.canUndo)
     }

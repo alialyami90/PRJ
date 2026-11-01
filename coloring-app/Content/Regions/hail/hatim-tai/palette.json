@@ -691,28 +691,28 @@
   },
   {
     "regionId": 4504411,
-    "number": 3,
-    "color": "#E04D45"
-  },
-  {
-    "regionId": 5502412,
-    "number": 8,
-    "color": "#BA7549"
-  },
-  {
-    "regionId": 6500413,
-    "number": 7,
-    "color": "#E89D41"
-  },
-  {
-    "regionId": 7498414,
     "number": 12,
     "color": "#F5BF89"
   },
   {
-    "regionId": 8496415,
+    "regionId": 5502412,
     "number": 3,
     "color": "#E04D45"
+  },
+  {
+    "regionId": 6500413,
+    "number": 8,
+    "color": "#BA7549"
+  },
+  {
+    "regionId": 7498414,
+    "number": 7,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 8496415,
+    "number": 12,
+    "color": "#F5BF89"
   },
   {
     "regionId": 9494416,

@@ -1,7 +1,6 @@
 import SwiftUI
 
-/// One page with its three modes over one ColoringState: Fill (tap a shape), Freestyle (brush)
-/// and Paint by Number (each shape takes only the colour of its number).
+/// One page with its two modes over one ColoringState: Fill (tap a shape) and Freestyle (brush).
 struct CanvasView: View {
     @Environment(AppEnvironment.self) private var env
     @Environment(\.dismiss) private var dismiss
@@ -13,19 +12,13 @@ struct CanvasView: View {
     @State private var mode: ColoringMode = .fill
     @State private var color = ColorTray.crayons[0]
     @State private var brushSize: BrushSize = .medium
-    @State private var selectedNumber = 1
     @State private var page: LoadedPage?
-    @State private var labels: [UInt32: RegionLabel]?
-    @State private var computingLabels = false
     @State private var image: CGImage?
     @State private var loadFailed = false
     @State private var renderTask: Task<Void, Never>?
     @State private var showCelebration = false
     @State private var showGate = false
     @State private var gatePassed = false
-    /// "Try number 3" after a wrong Paint by Number tap.
-    @State private var tryNumber: Int?
-    @State private var tryNumberTask: Task<Void, Never>?
 
     /// Everything decoded once per page.
     private struct LoadedPage {
@@ -48,7 +41,6 @@ struct CanvasView: View {
 
             pageArea
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .overlay(alignment: .top) { tryNumberBubble }
 
             tray
         }
@@ -82,7 +74,6 @@ struct CanvasView: View {
         .task { await load() }
         .onChange(of: state.document.updatedAt) { documentChanged() }
         .onChange(of: mode) { modeChanged() }
-        .onChange(of: selectedNumber) { if mode == .paintByNumber { rerender() } }
         .onDisappear { saveOnLeave() }
     }
 
@@ -117,7 +108,6 @@ struct CanvasView: View {
         if let image, let page {
             PageView(
                 image: image,
-                numbers: mode == .paintByNumber ? pageNumbers(page) : [],
                 isDrawing: mode == .freestyle,
                 brushColor: color,
                 brushWidth: brushSize.rawValue,
@@ -125,11 +115,6 @@ struct CanvasView: View {
                 onStroke: { points in stroke(points) }
             )
             .padding([.horizontal, .bottom])
-            .overlay {
-                if mode == .paintByNumber, labels == nil {
-                    ProgressView().controlSize(.large)
-                }
-            }
         } else if loadFailed {
             ContentUnavailableView(scene.title, systemImage: "exclamationmark.triangle", description: Text("This picture could not be opened."))
         } else {
@@ -174,10 +159,6 @@ struct CanvasView: View {
                         ColorTray(suggested: suggested, selection: $color, bonus: bonus, onUnlockBonus: unlockBonus)
                     }
                 }
-            case .paintByNumber:
-                NumberTray(swatches: page.assets.palette.swatches,
-                           finished: numbersTool(page).finishedNumbers(state),
-                           selection: $selectedNumber)
             }
         }
     }
@@ -196,50 +177,12 @@ struct CanvasView: View {
         }
     }
 
-    @ViewBuilder
-    private var tryNumberBubble: some View {
-        if let tryNumber {
-            Label("Try number \(tryNumber)", systemImage: "hand.point.up.left.fill")
-                .font(.title2.bold())
-                .fontDesign(.rounded)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 22)
-                .padding(.vertical, 12)
-                .background(theme.ground, in: Capsule())
-                .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
-                .padding(.top, 12)
-                .transition(.move(edge: .top).combined(with: .opacity))
-        }
-    }
-
     // MARK: Touches
-
-    private func numbersTool(_ page: LoadedPage, tolerance: Int = 0) -> PaintByNumberTool {
-        PaintByNumberTool(map: page.assets.map, palette: page.assets.palette, selectedNumber: selectedNumber, tolerance: tolerance)
-    }
-
-    /// Numbers still to paint, at the deepest point of their shape.
-    private func pageNumbers(_ page: LoadedPage) -> [PageNumber] {
-        guard let labels else { return [] }
-        return page.assets.palette.entries.compactMap { entry in
-            guard state.document.fills[entry.regionId] != entry.color, let label = labels[entry.regionId] else { return nil }
-            return PageNumber(regionId: entry.regionId, number: entry.number, label: label, isSelected: entry.number == selectedNumber)
-        }
-    }
 
     private func tap(at point: CGPoint, tolerance: Int, page: LoadedPage) {
         switch mode {
         case .fill:
             FillTool(map: page.assets.map, color: color, tolerance: tolerance).began(at: point, state: state)
-        case .paintByNumber:
-            switch numbersTool(page, tolerance: tolerance).tap(at: point, state: state) {
-            case .correct:
-                moveToUnfinishedNumber(page)
-            case let .wrong(expected):
-                showTryNumber(expected)
-            case .ignored:
-                break
-            }
         case .freestyle:
             break
         }
@@ -253,26 +196,6 @@ struct CanvasView: View {
         brush.ended(at: points.last ?? first, state: state)
     }
 
-    /// When the selected number is all painted, jump to the next one that is not.
-    private func moveToUnfinishedNumber(_ page: LoadedPage) {
-        let finished = numbersTool(page).finishedNumbers(state)
-        guard finished.contains(selectedNumber) else { return }
-        let numbers = page.assets.palette.swatches.map(\.number).filter { !finished.contains($0) }
-        if let next = numbers.first(where: { $0 > selectedNumber }) ?? numbers.first {
-            selectedNumber = next
-        }
-    }
-
-    private func showTryNumber(_ number: Int) {
-        withAnimation(.spring(duration: 0.3)) { tryNumber = number }
-        tryNumberTask?.cancel()
-        tryNumberTask = Task {
-            try? await Task.sleep(for: .seconds(1.5))
-            guard !Task.isCancelled else { return }
-            withAnimation { tryNumber = nil }
-        }
-    }
-
     // MARK: Document
 
     private func documentChanged() {
@@ -283,11 +206,6 @@ struct CanvasView: View {
 
     private func modeChanged() {
         state.setMode(mode)
-        if mode == .paintByNumber, let page {
-            computeLabels(page)
-            moveToUnfinishedNumber(page)
-        }
-        rerender()
     }
 
     private func checkCompletion() {
@@ -295,7 +213,6 @@ struct CanvasView: View {
         let finished: Bool
         switch mode {
         case .fill: finished = FillTool.isComplete(regionIds: page.regionIds, document: state.document)
-        case .paintByNumber: finished = numbersTool(page).isComplete(state)
         case .freestyle: finished = false
         }
         guard finished else { return }
@@ -331,25 +248,13 @@ struct CanvasView: View {
         }
         if let first = loaded.assets.palette.swatches.first {
             color = first.color
-            selectedNumber = first.number
         }
         page = loaded
         if let saved = env.persistence.load(regionId: regionId, sceneId: sceneId) {
             state = ColoringState(document: saved)
-            mode = saved.mode // onChange(of: mode) prepares Paint by Number if needed
+            mode = saved.mode
         }
         rerender()
-    }
-
-    /// Where each number goes; one pass over the map, done once and only if Paint by Number is used.
-    private func computeLabels(_ page: LoadedPage) {
-        guard labels == nil, !computingLabels else { return }
-        computingLabels = true
-        let map = page.assets.map
-        Task {
-            labels = await Task.detached(priority: .userInitiated) { map.labels() }.value
-            computingLabels = false
-        }
     }
 
     /// Renders the current document off the main thread; a newer edit cancels an older render.
@@ -357,19 +262,15 @@ struct CanvasView: View {
         guard let page else { return }
         let renderer = page.renderer
         let document = state.document
-        // Paint by Number tints the shapes still waiting for the selected number.
-        let highlight: Set<UInt32> = mode == .paintByNumber
-            ? Set(numbersTool(page).remaining(number: selectedNumber, state).map(\.regionId))
-            : []
         renderTask?.cancel()
         renderTask = Task {
-            let rendered = await Task.detached(priority: .userInitiated) { renderer.render(document, highlight: highlight) }.value
+            let rendered = await Task.detached(priority: .userInitiated) { renderer.render(document) }.value
             guard !Task.isCancelled else { return }
             image = rendered
         }
     }
 
-    /// Saves progress and a gallery thumbnail of the page as it is now (without the number hints).
+    /// Saves progress and a gallery thumbnail of the page as it is now.
     private func saveOnLeave() {
         // Only after load: saving earlier would overwrite saved progress with a blank page.
         guard let page else { return }

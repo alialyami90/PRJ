@@ -1,6 +1,6 @@
 # Saudi Colors
 
-A coloring book for kids (iPad first, iPhone too) built around the cities and cultures of Saudi Arabia: 8 regions, 8 scenes each, with Fill, Freestyle and Paint-by-Number modes. Ad-supported.
+A coloring book for kids (iPad first, iPhone too) built around the cities and cultures of Saudi Arabia: 8 regions, 8 scenes each, with two ways to colour: Fill (tap a shape) and Paint (a brush). Ad-supported.
 
 - `CLAUDE.md` — how the code is organised and how to build/test.
 - `docs/CONTENT_PLAN.md` — the 64 scenes.
@@ -18,8 +18,7 @@ Taken on iPad (landscape) and iPhone (portrait, `phone-*.png`) simulators by `.g
 |---|---|
 | ![Home](docs/screenshots/01-home.png) | ![Najran pages](docs/screenshots/02-gallery.png) |
 | ![Fill](docs/screenshots/03-fill.png) | ![Paint](docs/screenshots/04-paint.png) |
-| ![Numbers](docs/screenshots/05-numbers.png) | ![You did it!](docs/screenshots/06-finished.png) |
-| ![Ask a grown-up](docs/screenshots/07-parental-gate.png) | |
+| ![You did it!](docs/screenshots/06-finished.png) | ![Ask a grown-up](docs/screenshots/07-parental-gate.png) |
 
 On iPhone:
 

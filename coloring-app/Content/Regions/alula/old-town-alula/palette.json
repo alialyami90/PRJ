@@ -558,5 +558,10 @@
     "regionId": 11112816,
     "number": 4,
     "color": "#4BB4E9"
+  },
+  {
+    "regionId": 12110817,
+    "number": 3,
+    "color": "#FFFFFF"
   }
 ]
