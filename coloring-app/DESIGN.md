@@ -1,6 +1,6 @@
 ---
 name: Saudi Colors
-description: A coloring book of the Kingdom, framed as one journey (Rihla) across nine Saudi regions.
+description: A coloring book of the Kingdom, framed as one journey (Rihla) across eight Saudi regions.
 colors:
   palm-green: "#11563F"
   rail-green: "#0B3A2C"
@@ -164,12 +164,6 @@ components:
     typography: "{typography.headline}"
     rounded: "{rounded.full}"
     height: "64px"
-  hint-bubble:
-    backgroundColor: "{colors.palm-green}"
-    textColor: "{colors.white}"
-    typography: "{typography.headline}"
-    rounded: "{rounded.full}"
-    padding: "12px 22px"
 ---
 
 # Design System: Saudi Colors
@@ -178,27 +172,27 @@ components:
 
 **Creative North Star: "Rihla, one caravan route across the Kingdom"**
 
-Saudi Colors is a trip with nine stops. The whole app speaks one Saudi design language, chosen by the owner for every region alike: a deep palm green shell, a dotted date-gold caravan route with gold stops, and a calm sage-white ground behind the pages. Regions do not get their own palettes or ornaments. Their character lives in their pictures and their names, in English and Arabic; the chrome around them stays the same so that moving from Najd to Jazan feels like travel through one country, not a jump between apps.
+Saudi Colors is a trip with eight stops. The whole app speaks one Saudi design language, chosen by the owner for every region alike: a deep palm green shell, a dotted date-gold caravan route with gold stops, and a calm sage-white ground behind the pages. Regions do not get their own palettes or ornaments. Their character lives in their pictures and their names, in English and Arabic; the chrome around them stays the same so that moving from Najd to Jazan feels like travel through one country, not a jump between apps.
 
 The system has exactly one ornament: a strip of Al-Sadu weaving (red ground, black teeth, a chain of cream and gold diamonds), drawn in code so it stays sharp at any size. It sits where a woven edge would sit: along the bottom of every green header, along the top of the colour tray, along the top of the celebration card, and as a thin selvedge on each region cover in the rail. Progress is told without reading: eight diamonds per region, gold stops that earn a star when a region is complete, and a green seal with a gold stitched ring pressed onto each finished page.
 
 This is a native iPadOS / iOS 17+ SwiftUI app, iPad-first in landscape, used by children aged 4 to 9 who often cannot read. Density is low and targets are large (60pt minimum). Every child control pairs an SF Symbol with a short label. Display type is SF Rounded at heavy weight; everything else uses the system text styles so Dynamic Type and Arabic shaping come for free. The illustrated scene is always the hero: chrome frames it, the tray sits on plain paper so paint reads true, and nothing decorative is laid over the artwork. Grown-up surfaces (the parental gate) deliberately stay in the stock system sheet style, quiet and separate from play.
 
 **Key Characteristics:**
-- One unified Saudi look for all nine regions; variety comes from the scene art.
+- One unified Saudi look for all eight regions; variety comes from the scene art.
 - Deep green rail with a dotted gold route and gold stops (the journey).
 - Palm green header bands on a sage-white ground.
 - One ornament only: the Al-Sadu woven band.
 - Green seal with a gold stitched ring for finished pages.
 - SF Rounded heavy for display, system text styles elsewhere.
-- 60pt minimum child targets, icon plus label, RTL safe, Reduce Motion honoured on the large moves.
+- 60pt minimum child targets, icon plus label, RTL safe, Reduce Motion honoured on every move (the press scales and small springs included).
 
 ## Colors
 
 A two-green shell with one warm gold, set on a pale sage ground, plus the fixed four colours of the Sadu weave.
 
 ### Primary
-- **Palm Green** (palm-green): the header band behind each region's name, the navigation bar on the gallery and canvas, the selected mode segment, the "Keep coloring" button, the hint bubble, and the body of the finished seal. White text sits on it at 8.65:1. It is the same value in light and dark appearance (see The One Green Bar Rule).
+- **Palm Green** (palm-green): the header band behind each region's name, the navigation bar on the gallery and canvas, the selected mode segment, the "Keep coloring" button, and the body of the finished seal. White text sits on it at 8.65:1. It is the same value in light and dark appearance (see The One Green Bar Rule).
 - **Deep Rail Green** (rail-green): the journey rail and its navigation bar, a step darker than the headers so the rail reads as the land the route crosses. Same value in both appearances. Also the app-wide control tint.
 - **Selected Stop Green** (rail-selected): the rounded trailing pill behind the selected region row on the rail. White text 7.48:1.
 
@@ -251,7 +245,7 @@ iPad landscape first. The root is a `NavigationSplitView`: the journey rail is t
 
 - **Rail:** each stop row is a 48pt route column (the dotted line plus the stop bead) followed by a 100 by 75pt cover with its Sadu strip, then the name, subtitle and diamonds, with 14pt between cover and text and 13pt vertical padding. The route line is hidden above the first stop and below the last. The rail scrolls to keep the selected stop in view. When the area and the other-language name do not fit on one line, they go on two lines rather than wrapping mid-phrase.
 - **Gallery:** the header band spans the width with 28pt side padding; the Sadu band (30pt) hangs below it. The page grid is adaptive with a 240pt minimum column, 28pt column gap, 32pt row gap, 28pt side and top padding and 40pt bottom padding. An ad banner, when available, sits in a 50pt bottom safe-area inset on the bar material, never over the canvas.
-- **Canvas:** a vertical stack of the controls (12pt vertical padding), the page filling the remaining space, and the tray (Sadu strip, then a horizontal scroller of swatches). On iPad the controls are the mode switch (max width 640pt) with the page actions beside it; on iPhone the page actions sit under the switch, the switch puts each icon above its word, and in Paint the brush sizes take their own row above the colours.
+- **Canvas:** the rail steps aside (the split view goes to detail only) while a page is open and comes back with the gallery, so the page gets the whole width and a stray tap on another region cannot close it. VoiceOver reads the page as one direct-touch element named for the picture, with how much is coloured as its value. The canvas is a vertical stack of the controls (12pt vertical padding), the page filling the remaining space, and the tray (Sadu strip, then a horizontal scroller of swatches). On iPad the controls are the mode switch (max width 640pt) with the page actions beside it; on iPhone the page actions sit under the switch, the switch puts each icon above its word, and in Paint the brush sizes take their own row above the colours.
 - **Celebration:** a card anchored to the bottom of the canvas with no scrim, so the finished picture stays in full view above it. On iPad (max 760pt) the 118pt seal sits leading, with the title over two buttons side by side; on iPhone the 84pt seal sits beside the title over two stacked buttons. A 16pt Sadu band runs along its top edge. It slides up from the bottom (a fade with Reduce Motion), and any new paint on the page puts it away like Keep coloring.
 - **Spacing rhythm:** 4 / 8 / 12 / 14 / 22 / 28 / 32 / 36pt, with 28pt as the gallery gutter. Every child target is at least 60pt (swatches, brush sizes, the lock button) or 56pt tall inside a 66pt mode track; celebration buttons are 64pt.
 - **RTL:** layout uses leading and trailing only; the selected rail row's rounded corners are declared as trailing radii, so the whole shell mirrors for Arabic.
@@ -283,7 +277,7 @@ Big, rounded and unmistakable: every child button is an SF Symbol plus a short l
 - **Green (Keep coloring):** palm green fill, white text, 64pt.
 - **Quiet (More pictures):** ink wash fill, palm ink text, 64pt.
 - **Press:** scales to 0.96 with a 0.15s ease out. Gallery cards press to 0.96 with a bouncy 0.25s spring; rail rows press to 0.97.
-- **Page actions:** Undo, Redo and Start again as 76 by 60pt buttons, icon above a bold caption word, on a white rounded rectangle (18pt corners) with a hairline ink outline. At 40% opacity and disabled when there is nothing to do. Start again confirms with a system destructive dialog.
+- **Page actions:** Pictures (back to the region's pages, set a little apart), Undo, Redo and Start again (a circular arrow, not a bin) as buttons of at least 76 by 60pt, icon above a bold caption word, on a white rounded rectangle (18pt corners) with a hairline ink outline. They grow with Dynamic Type instead of shrinking the words. At 40% opacity and disabled when there is nothing to do. Start again confirms with a system destructive dialog.
 
 ### Chips (if used)
 - **Mode switch:** a white system-background capsule track (5pt padding, 1pt ink hairline at 12%) holding Fill and Paint with their symbols. The selected segment is a palm green capsule with white text that slides between options (matched geometry, 0.3s spring); with Reduce Motion it jumps without animation.
@@ -295,8 +289,7 @@ Big, rounded and unmistakable: every child button is an SF Symbol plus a short l
 - **Header band:** palm green, white text, the region's name in both languages on one line, then the progress diamonds (18pt) and "N of 8 done"; the 30pt Sadu band hangs from its bottom edge.
 
 ### Inputs / Fields
-- **Colour swatch:** a 60pt circle of the paint with a 2pt black hairline at 25%. Selected: grows to 1.1 and gains a 5pt primary ring 8pt outside the circle. Order: the scene's suggested colours, a divider, the 13-crayon box, a divider, then the bonus colours or the lock button.
-- **Number swatch:** the same 60pt circle with its number in title2 bold, digits dark on light paint and light on dark (luminance threshold 150). A finished number shows a checkmark and fades to 50% unless selected.
+- **Colour swatch:** a 60pt circle of the paint with a 2pt black hairline at 25%. Selected: grows to 1.1 and gains a 5pt primary ring 8pt outside the circle. Order: the scene's suggested colours, a divider, the 13-crayon box, a divider, then the bonus colours or the lock button. VoiceOver names each swatch by a plain colour name in the app's language ("light blue", "أزرق فاتح"), never a hex code (`Engine/ColorName.swift`).
 - **Brush size:** three 60pt tiles showing a dot of the current colour at 12, 22 and 36pt; the selected tile fills sage ground with a 2.5pt palm green outline and 16pt corners.
 
 ### Navigation
@@ -333,7 +326,7 @@ Intentionally the stock system look: a large-detent sheet, standard design type,
 - **Do** use SF Rounded heavy for display and child-facing labels, and system text styles with a weight everywhere else.
 - **Do** keep paint pickers on plain system background so colours read true.
 - **Do** use leading and trailing (never left and right) and check every screen in Arabic RTL.
-- **Do** gate the large motion (mode slide, seal drop) on Reduce Motion.
+- **Do** gate every motion on Reduce Motion: the large moves become fades, the press scales and small springs stop.
 
 ### Don't:
 - **Don't** give a region its own palette, header colour or ornament; the variety lives in the pages.
@@ -347,6 +340,5 @@ Intentionally the stock system look: a large-detent sheet, standard design type,
 
 ### Open items (build state, not system rules)
 These are visible in the build today. They are recorded so future work closes them, not so they spread.
-- Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.
 - Dark appearance: palm green on the dark sage ground is about 2.1:1. It matters only where green is a line or icon on the ground (the selected brush tile outline, the placeholder icon for a missing thumbnail).
 - The parental gate is the stock system sheet on purpose; its person icon and number pad take the app tint (rail green) from the environment.

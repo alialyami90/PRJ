@@ -26,6 +26,8 @@ struct CanvasView: View {
     @State private var celebratedThisVisit = false
     /// The white shapes in gold, shown over the page when the child pauses near the end.
     @State private var hint: CGImage?
+    /// Share of the page with colour, for VoiceOver.
+    @State private var covered = 0.0
     @State private var hintTask: Task<Void, Never>?
 
     /// Everything decoded once per page.
@@ -96,6 +98,7 @@ struct CanvasView: View {
     @ViewBuilder
     private var controls: some View {
         let actions = PageActions(
+            onPictures: { dismiss() },
             canUndo: state.canUndo, canRedo: state.canRedo, canReset: !state.document.isEmpty,
             onUndo: { state.dispatch(.undo) }, onRedo: { state.dispatch(.redo) }, onReset: { state.dispatch(.reset) },
             theme: theme)
@@ -126,6 +129,12 @@ struct CanvasView: View {
                 onTap: { point, tolerance in tap(at: point, tolerance: tolerance, page: page) },
                 onStroke: { points in stroke(points) }
             )
+            // VoiceOver: the picture's name and how much has colour; direct touch colours it as usual.
+            .accessibilityElement()
+            .accessibilityLabel(Text(verbatim: scene.displayTitle))
+            .accessibilityValue(Text(covered.formatted(.percent.precision(.fractionLength(0)))))
+            .accessibilityHint(Text("Touch the picture to color it."))
+            .accessibilityAddTraits(.allowsDirectInteraction)
             .padding([.horizontal, .bottom])
         } else if loadFailed {
             ContentUnavailableView(scene.displayTitle, systemImage: "exclamationmark.triangle", description: Text("This picture could not be opened."))
@@ -220,6 +229,7 @@ struct CanvasView: View {
     /// Called after each render, with what the brush coloured, in Fill and in Paint alike.
     private func pageRendered(_ rendered: CanvasRenderer.Rendered, document: ColoringDocument, page: LoadedPage) {
         let progress = PageProgress(areas: page.renderer.regionAreas, fills: document.fills, painted: rendered.painted)
+        covered = progress.covered
         checkCompletion(progress)
         scheduleHint(progress, page: page)
     }

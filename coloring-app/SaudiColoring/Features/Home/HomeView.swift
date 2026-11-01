@@ -4,16 +4,23 @@ import SwiftUI
 /// On iPhone the rail comes first and a region opens over it.
 struct HomeView: View {
     @Environment(AppEnvironment.self) private var env
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var selectedRegionId: String?
     @State private var compactColumn = NavigationSplitViewColumn.sidebar
+    /// The rail steps aside while a page is open, so the picture gets the whole width and a stray tap on
+    /// another region cannot close it.
+    @State private var columnVisibility = NavigationSplitViewVisibility.all
+    /// The page open in the detail column, if any.
+    @State private var pagePath: [ColoringScene] = []
 
     private var currentRegion: Region? {
         env.catalog.regions.first { $0.id == selectedRegionId } ?? env.catalog.regions.first
     }
 
     var body: some View {
-        NavigationSplitView(preferredCompactColumn: $compactColumn) {
+        NavigationSplitView(columnVisibility: $columnVisibility, preferredCompactColumn: $compactColumn) {
             JourneyRail(regions: env.catalog.regions, selectedId: currentRegion?.id) { region in
+                pagePath = []
                 selectedRegionId = region.id
                 compactColumn = .detail
             }
@@ -25,7 +32,7 @@ struct HomeView: View {
         } detail: {
             if let region = currentRegion {
                 // The gallery pushes the canvas, so the detail column needs its own stack.
-                NavigationStack {
+                NavigationStack(path: $pagePath) {
                     RegionGalleryView(region: region)
                 }
                 .id(region.id)
@@ -34,6 +41,11 @@ struct HomeView: View {
             }
         }
         .tint(Shell.rail)
+        .onChange(of: pagePath.isEmpty) { _, galleryShown in
+            withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.3)) {
+                columnVisibility = galleryShown ? .all : .detailOnly
+            }
+        }
     }
 }
 
@@ -41,6 +53,7 @@ struct HomeView: View {
 /// has finished pages in is drawn solid, as road already travelled; the rest stays dotted.
 private struct JourneyRail: View {
     @Environment(AppEnvironment.self) private var env
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let regions: [Region]
     let selectedId: String?
     let onSelect: (Region) -> Void
@@ -74,7 +87,7 @@ private struct JourneyRail: View {
             .onAppear { if let selectedId { proxy.scrollTo(selectedId) } }
             .onChange(of: selectedId) { _, id in
                 guard let id else { return }
-                withAnimation(.easeInOut(duration: 0.3)) { proxy.scrollTo(id) }
+                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.3)) { proxy.scrollTo(id) }
             }
         }
         .background(Shell.rail.ignoresSafeArea())
@@ -83,9 +96,11 @@ private struct JourneyRail: View {
 
 /// Presses in slightly, so a small finger sees the tap land.
 private struct StopButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
             .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
     }
 }

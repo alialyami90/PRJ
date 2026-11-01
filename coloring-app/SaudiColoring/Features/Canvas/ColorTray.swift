@@ -8,6 +8,7 @@ struct ColorTray: View {
     var bonus: [String] = []
     /// Shown instead of the bonus colours while they are locked.
     var onUnlockBonus: (() -> Void)?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     static let crayons = [
         "#E53935", "#FB8C00", "#FDD835", "#43A047", "#00897B", "#1E88E5",
@@ -61,11 +62,12 @@ struct ColorTray: View {
                 .overlay(Circle().strokeBorder(.primary, lineWidth: isSelected ? 5 : 0).padding(-8))
                 .frame(width: 60, height: 60)
                 .scaleEffect(isSelected ? 1.1 : 1)
-                .animation(.spring(duration: 0.2), value: isSelected)
+                .animation(reduceMotion ? nil : .spring(duration: 0.2), value: isSelected)
                 .padding(8)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text("Color \(hex)"))
+        // VoiceOver says "Light blue", never a hex code.
+        .accessibilityLabel(Text(ColorName(hex: hex).spoken))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
@@ -83,4 +85,29 @@ extension Color {
 
 #Preview {
     ColorTray(suggested: ["#7EC8E3", "#FFC93C"], selection: .constant("#FFC93C"))
+}
+
+extension ColorName {
+    /// What VoiceOver says for a swatch, in the app's language.
+    var spoken: String {
+        let base: String = switch hue {
+        case .red: String(localized: "red")
+        case .orange: String(localized: "orange")
+        case .yellow: String(localized: "yellow")
+        case .green: String(localized: "green")
+        case .teal: String(localized: "teal")
+        case .blue: String(localized: "blue")
+        case .purple: String(localized: "purple")
+        case .pink: String(localized: "pink")
+        case .brown: String(localized: "brown")
+        case .gray: String(localized: "gray")
+        case .black: String(localized: "black")
+        case .white: String(localized: "white")
+        }
+        return switch shade {
+        case .light: String(localized: "light \(base)")
+        case .plain: base
+        case .dark: String(localized: "dark \(base)")
+        }
+    }
 }

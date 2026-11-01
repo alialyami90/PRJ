@@ -41,12 +41,42 @@
         }
       }
     },
-    "Color %@" : {
+    "black" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "لون %@"
+            "value" : "أسود"
+          }
+        }
+      }
+    },
+    "blue" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أزرق"
+          }
+        }
+      }
+    },
+    "brown" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بني"
+          }
+        }
+      }
+    },
+    "dark %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ غامق"
           }
         }
       }
@@ -81,6 +111,26 @@
         }
       }
     },
+    "gray" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رمادي"
+          }
+        }
+      }
+    },
+    "green" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أخضر"
+          }
+        }
+      }
+    },
     "Grown-ups: what is %@ × %@?" : {
       "localizations" : {
         "ar" : {
@@ -97,6 +147,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "واصل التلوين"
+          }
+        }
+      }
+    },
+    "light %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ فاتح"
           }
         }
       }
@@ -151,12 +211,72 @@
         }
       }
     },
+    "orange" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "برتقالي"
+          }
+        }
+      }
+    },
     "Paint" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "رسم"
+          }
+        }
+      }
+    },
+    "Pick a place" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر مكانًا"
+          }
+        }
+      }
+    },
+    "Pictures" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصور"
+          }
+        }
+      }
+    },
+    "pink" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وردي"
+          }
+        }
+      }
+    },
+    "purple" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بنفسجي"
+          }
+        }
+      }
+    },
+    "red" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحمر"
           }
         }
       }
@@ -201,6 +321,16 @@
         }
       }
     },
+    "teal" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فيروزي"
+          }
+        }
+      }
+    },
     "Thick brush" : {
       "localizations" : {
         "ar" : {
@@ -231,12 +361,42 @@
         }
       }
     },
+    "Touch the picture to color it." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المس الصورة لتلوينها."
+          }
+        }
+      }
+    },
     "Undo" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "تراجع"
+          }
+        }
+      }
+    },
+    "white" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أبيض"
+          }
+        }
+      }
+    },
+    "yellow" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أصفر"
           }
         }
       }

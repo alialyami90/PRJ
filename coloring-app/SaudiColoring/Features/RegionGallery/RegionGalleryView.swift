@@ -107,10 +107,12 @@ private struct RegionHeader: View {
 
 /// Lifts a little under the finger.
 private struct CardButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(.spring(duration: 0.25, bounce: 0.4), value: configuration.isPressed)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.96 : 1)
+            .animation(reduceMotion ? nil : .spring(duration: 0.25, bounce: 0.4), value: configuration.isPressed)
     }
 }
 
