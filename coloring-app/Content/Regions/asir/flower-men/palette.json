@@ -1016,18 +1016,18 @@
   },
   {
     "regionId": 2265612,
+    "number": 4,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 3263613,
     "number": 11,
     "color": "#F5BF89"
   },
   {
-    "regionId": 3263613,
+    "regionId": 4261614,
     "number": 5,
     "color": "#D8C3A5"
-  },
-  {
-    "regionId": 4261614,
-    "number": 2,
-    "color": "#BA7549"
   },
   {
     "regionId": 5259615,
@@ -1036,13 +1036,13 @@
   },
   {
     "regionId": 6257616,
-    "number": 7,
-    "color": "#E04D45"
+    "number": 2,
+    "color": "#BA7549"
   },
   {
     "regionId": 7255617,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 7,
+    "color": "#E04D45"
   },
   {
     "regionId": 8253618,
@@ -1056,68 +1056,68 @@
   },
   {
     "regionId": 10249620,
+    "number": 4,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 11247621,
     "number": 2,
     "color": "#BA7549"
   },
   {
-    "regionId": 11247621,
+    "regionId": 12245622,
     "number": 13,
     "color": "#A86B3C"
   },
   {
-    "regionId": 12245622,
+    "regionId": 13243623,
     "number": 1,
     "color": "#54A563"
   },
   {
-    "regionId": 13243623,
+    "regionId": 14241624,
     "number": 4,
     "color": "#FFFFFF"
   },
   {
-    "regionId": 14241624,
+    "regionId": 15239625,
     "number": 8,
     "color": "#D9A066"
   },
   {
-    "regionId": 15239625,
+    "regionId": 16237626,
     "number": 13,
     "color": "#A86B3C"
   },
   {
-    "regionId": 16237626,
+    "regionId": 458411,
     "number": 2,
     "color": "#BA7549"
   },
   {
-    "regionId": 458411,
+    "regionId": 1456412,
     "number": 4,
     "color": "#FFFFFF"
   },
   {
-    "regionId": 1456412,
+    "regionId": 2454413,
     "number": 8,
     "color": "#D9A066"
   },
   {
-    "regionId": 2454413,
+    "regionId": 3452414,
     "number": 2,
     "color": "#BA7549"
   },
   {
-    "regionId": 3452414,
+    "regionId": 4450415,
     "number": 8,
     "color": "#D9A066"
   },
   {
-    "regionId": 4450415,
+    "regionId": 5448416,
     "number": 14,
     "color": "#754A32"
-  },
-  {
-    "regionId": 5448416,
-    "number": 9,
-    "color": "#4A4645"
   },
   {
     "regionId": 6446417,
@@ -1126,13 +1126,13 @@
   },
   {
     "regionId": 7444418,
-    "number": 8,
-    "color": "#D9A066"
+    "number": 9,
+    "color": "#4A4645"
   },
   {
     "regionId": 8442419,
-    "number": 1,
-    "color": "#54A563"
+    "number": 8,
+    "color": "#D9A066"
   },
   {
     "regionId": 9440420,
@@ -1146,13 +1146,13 @@
   },
   {
     "regionId": 11436422,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 1,
+    "color": "#54A563"
   },
   {
     "regionId": 12434423,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 1,
+    "color": "#54A563"
   },
   {
     "regionId": 13432424,
@@ -1166,23 +1166,23 @@
   },
   {
     "regionId": 15428426,
-    "number": 11,
-    "color": "#F5BF89"
+    "number": 1,
+    "color": "#54A563"
   },
   {
     "regionId": 16426427,
-    "number": 1,
-    "color": "#54A563"
+    "number": 4,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 647212,
-    "number": 10,
-    "color": "#FFCF40"
+    "number": 2,
+    "color": "#BA7549"
   },
   {
     "regionId": 1645213,
-    "number": 1,
-    "color": "#54A563"
+    "number": 4,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 2643214,
@@ -1191,8 +1191,8 @@
   },
   {
     "regionId": 3641215,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 2,
+    "color": "#BA7549"
   },
   {
     "regionId": 4639216,
@@ -1201,13 +1201,13 @@
   },
   {
     "regionId": 5637217,
-    "number": 5,
-    "color": "#D8C3A5"
+    "number": 1,
+    "color": "#54A563"
   },
   {
     "regionId": 6635218,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 11,
+    "color": "#F5BF89"
   },
   {
     "regionId": 7633219,
@@ -1216,86 +1216,341 @@
   },
   {
     "regionId": 8631220,
-    "number": 15,
-    "color": "#E89D41"
+    "number": 1,
+    "color": "#54A563"
   },
   {
     "regionId": 9629221,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 10627222,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 11625223,
+    "number": 10,
+    "color": "#FFCF40"
+  },
+  {
+    "regionId": 12623224,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 13621225,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 14619226,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 15617227,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 16615228,
+    "number": 4,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 836013,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 1834014,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 2832015,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 3830016,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 4828017,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 5826018,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 6824019,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 7822020,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 8820021,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 9818022,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 10816023,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 11814024,
     "number": 11,
     "color": "#F5BF89"
   },
   {
-    "regionId": 10627222,
-    "number": 7,
-    "color": "#E04D45"
+    "regionId": 12812025,
+    "number": 5,
+    "color": "#D8C3A5"
   },
   {
-    "regionId": 11625223,
+    "regionId": 13810026,
+    "number": 4,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 14808027,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 15806028,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 26813,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 1024814,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 2022815,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 3020816,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 4018817,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 5016818,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 6014819,
     "number": 2,
     "color": "#BA7549"
   },
   {
-    "regionId": 12623224,
-    "number": 7,
-    "color": "#E04D45"
+    "regionId": 7012820,
+    "number": 1,
+    "color": "#54A563"
   },
   {
-    "regionId": 13621225,
-    "number": 7,
-    "color": "#E04D45"
-  },
-  {
-    "regionId": 14619226,
-    "number": 7,
-    "color": "#E04D45"
-  },
-  {
-    "regionId": 15617227,
-    "number": 10,
-    "color": "#FFCF40"
-  },
-  {
-    "regionId": 16615228,
-    "number": 10,
-    "color": "#FFCF40"
-  },
-  {
-    "regionId": 836013,
+    "regionId": 8010821,
     "number": 15,
     "color": "#E89D41"
   },
   {
-    "regionId": 1834014,
-    "number": 15,
-    "color": "#E89D41"
-  },
-  {
-    "regionId": 2832015,
-    "number": 10,
-    "color": "#FFCF40"
-  },
-  {
-    "regionId": 3830016,
-    "number": 10,
-    "color": "#FFCF40"
-  },
-  {
-    "regionId": 4828017,
+    "regionId": 9008822,
     "number": 11,
     "color": "#F5BF89"
   },
   {
-    "regionId": 5826018,
+    "regionId": 10006823,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 11004824,
+    "number": 2,
+    "color": "#BA7549"
+  },
+  {
+    "regionId": 12002825,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 13000826,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 13998827,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 14996828,
+    "number": 7,
+    "color": "#E04D45"
+  },
+  {
+    "regionId": 15994829,
+    "number": 2,
+    "color": "#BA7549"
+  },
+  {
+    "regionId": 215614,
+    "number": 7,
+    "color": "#E04D45"
+  },
+  {
+    "regionId": 1213615,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 2211616,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 3209617,
+    "number": 2,
+    "color": "#BA7549"
+  },
+  {
+    "regionId": 4207618,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 5205619,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 6203620,
+    "number": 7,
+    "color": "#E04D45"
+  },
+  {
+    "regionId": 7201621,
+    "number": 7,
+    "color": "#E04D45"
+  },
+  {
+    "regionId": 8199622,
+    "number": 1,
+    "color": "#54A563"
+  },
+  {
+    "regionId": 9197623,
+    "number": 7,
+    "color": "#E04D45"
+  },
+  {
+    "regionId": 10195624,
+    "number": 2,
+    "color": "#BA7549"
+  },
+  {
+    "regionId": 11193625,
+    "number": 10,
+    "color": "#FFCF40"
+  },
+  {
+    "regionId": 12191626,
+    "number": 10,
+    "color": "#FFCF40"
+  },
+  {
+    "regionId": 13189627,
+    "number": 15,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 14187628,
+    "number": 15,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 15185629,
+    "number": 10,
+    "color": "#FFCF40"
+  },
+  {
+    "regionId": 16183630,
+    "number": 10,
+    "color": "#FFCF40"
+  },
+  {
+    "regionId": 404415,
+    "number": 11,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 1402416,
+    "number": 11,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 2400417,
+    "number": 11,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 3398418,
+    "number": 11,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 4396419,
+    "number": 11,
+    "color": "#F5BF89"
+  },
+  {
+    "regionId": 5394420,
     "number": 13,
     "color": "#A86B3C"
   },
   {
-    "regionId": 6824019,
+    "regionId": 6392421,
+    "number": 5,
+    "color": "#D8C3A5"
+  },
+  {
+    "regionId": 7390422,
     "number": 13,
     "color": "#A86B3C"
   },
   {
-    "regionId": 7822020,
+    "regionId": 8388423,
     "number": 13,
     "color": "#A86B3C"
   }

@@ -6,10 +6,11 @@
 Reads <scene>/art/line.png (black lines on white) and <scene>/art/color.png (the same
 lines with every shape filled one flat colour), both 2048x1536, and writes next to them:
 
-- regions.png   every closed white area of the line art as one region, a unique RGB each;
-                0xFFFFFF (paper: stays white, never coloured) for light shapes too small to tap, for
-                eye whites and for eye highlights, 0x000000 for the lines and for dark shapes too small
-                or filled black in color.png
+- regions.png   every closed white area of the line art as one region, a unique RGB each (a shape
+                closed but for a crack in the lines is closed; a shape big enough to see is never part
+                of a neighbour across a line); 0xFFFFFF (paper: stays white, never coloured) for light
+                shapes too small to see, for eye whites and for eye highlights, 0x000000 for the lines
+                and for dark shapes too small or filled black in color.png
 - palette.json  each region's colour = the most common colour inside it in color.png
 - outline.png   the line art, with the 0x000000 shapes burned in black
 - preview.png   1024x768 coloured preview
@@ -31,16 +32,20 @@ from scene_kit import H, MAX_COLOURS, MAX_REGIONS, MIN_REGION_PX, W  # noqa: E40
 
 INK_LEVEL = 128        # line art pixels darker than this are outline
 DARK_FILL = 40         # a shape filled (near) black in color.png is drawn as solid ink
-MERGE_PX = 30          # a shape too small to tap joins a region of its own colour this close (a bit of leaf),
+MERGE_PX = 30          # a shape too small to see joins a region of its own colour this close (a bit of leaf),
 DARK_SMALL = 100       # ...or else is solid ink when darker than this (hair, shoes), paper white when lighter
                        # (teeth, the shine in an eye)
+GAP_PX = 6             # a crack in the lines up to 2x this wide still closes a shape: two full-size shapes joined
+                       # only through one are two regions (a tower's rungs, a sleeve and its cuff)
 SAME_COLOUR = 12       # colours closer than this (sum of RGB differences) are one paint (export drift)
 MIXED_SHARE = 0.15     # a second colour this big inside one region means a gap in the lines,
 MIXED_PX = 4 * MIN_REGION_PX  # ...as does any second colour this many px (a gap into a huge sky)
 PAPER = 0xFFFFFF       # regions.png id of white the child cannot colour (same value in RegionMap.swift)
 SOLID_INK = 7          # ink at least 2x this thick is a solid black area (pupil, hair, mouth), not a line
-HIGHLIGHT_GAP = 4      # a white gap up to 2x this wide running along solid black is a highlight
-OWN_PX = 300           # a small shape that joins nothing but is painted a clear colour stays its own region
+HIGHLIGHT_GAP = 4      # a white gap up to 2x this wide cut into solid black is a highlight...
+HIGHLIGHT_WALL = 0.75  # ...when this share of its walls is that solid black (the rest is its mouth, if open)
+OWN_PX = 300           # a small shape at least this big and painted a clear colour is a region of its own, never
+                       # part of a neighbour across a line (filling one window must not fill the next)
 NEAR_WHITE = 235       # ...unless it is painted (near) white: then it stays paper (teeth, eye whites)
 PUPIL_CORE = (150, 2500)  # a pupil: solid black whose core (SOLID_INK px in from its edge) is this many px,
 PUPIL_FILL = (0.55, 0.88) # ...roughly oval (share of its bounding box; a window or block is ~1, a mouth or hair less)
@@ -109,11 +114,72 @@ def shrink(mask, times):
 
 
 def highlights(ink):
-    """White gaps narrower than 2 * HIGHLIGHT_GAP px that run along solid black: the shine on a pupil,
-    a strand of hair. The line art often leaves them open to the face, so they would take its colour."""
-    solid = grow(shrink(ink, SOLID_INK), SOLID_INK + 6)  # within 6 px of black at least 15 px thick
-    narrow = shrink(grow(ink, HIGHLIGHT_GAP), HIGHLIGHT_GAP)  # gaps closed by thickening the lines
-    return solid & narrow & ~ink
+    """White gaps narrower than 2 * HIGHLIGHT_GAP px cut into solid black: the shine on a pupil, a
+    strand of hair. The line art often leaves them open to the face, so they would take its colour.
+    Each gap is judged by its walls: a highlight is walled by the solid black itself (HIGHLIGHT_WALL of
+    its edge, the rest being its mouth). A strip of face between an eye's outline and the edge of the
+    face is as narrow and as close to the pupil, but its walls are lines, and it is face."""
+    thick = grow(shrink(ink, SOLID_INK), SOLID_INK + 1)  # black at least 15 px thick, and its soft edge
+    narrow = shrink(grow(ink, HIGHLIGHT_GAP), HIGHLIGHT_GAP) & ~ink  # gaps closed by thickening the lines
+    gaps, count = label(narrow)
+    if not count:
+        return narrow
+    wall = np.zeros(count + 1, np.int64)
+    solid_wall = np.zeros(count + 1, np.int64)
+    for dy, dx in DIRS:
+        beside = shifted(gaps, dy, dx, 0)  # the gap, if any, on that side of each pixel
+        edge = (gaps == 0) & (beside > 0)
+        wall += np.bincount(beside[edge], minlength=count + 1)
+        solid_wall += np.bincount(beside[edge & thick], minlength=count + 1)
+    ok = solid_wall >= HIGHLIGHT_WALL * wall
+    ok[0] = False
+    return ok[gaps]
+
+
+def split_at_gaps(labels, n):
+    """Splits every shape that is two or more full-size shapes joined only through cracks in the lines
+    narrower than 2 * GAP_PX px: a line that stops just short of another closes the shape to the eye,
+    so it must close it to the fill too. The crack and the shape's thin parts go with the nearest piece.
+    Returns (labels, count)."""
+    flat = labels.ravel()
+    areas = np.bincount(flat, minlength=n + 1)
+    order = np.argsort(flat, kind="stable")
+    starts = np.searchsorted(flat[order], np.arange(n + 2))
+    w = labels.shape[1]
+    for lab in np.nonzero(areas >= 2 * MIN_REGION_PX)[0]:
+        if lab == 0:
+            continue
+        px = order[starts[lab]:starts[lab + 1]]
+        ys, xs = px // w, px % w
+        y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
+        window = labels[y0:y1, x0:x1]
+        shape = window == lab
+        pieces, count = label(shrink(shape, GAP_PX))
+        sizes = np.bincount(pieces.ravel(), minlength=count + 1)
+        big = [p for p in range(1, count + 1) if sizes[p] >= MIN_REGION_PX]
+        if len(big) < 2:
+            continue
+        # Grow the pieces back, 1 px at a time, until every pixel of the shape belongs to one of them.
+        piece_of = np.where(np.isin(pieces, big), pieces, 0)
+        while True:
+            left = shape & (piece_of == 0)
+            if not left.any():
+                break
+            ly, lx = np.nonzero(left)
+            sy, ey = max(ly.min() - 1, 0), min(ly.max() + 2, piece_of.shape[0])
+            sx, ex = max(lx.min() - 1, 0), min(lx.max() + 2, piece_of.shape[1])
+            part = piece_of[sy:ey, sx:ex]
+            grown = part.copy()
+            for dy, dx in DIRS:
+                neighbour = shifted(part, dy, dx, 0)
+                grown = np.where((grown == 0) & left[sy:ey, sx:ex], neighbour, grown)
+            if (grown == part).all():
+                break  # cannot happen for a connected shape; never loop forever on one
+            piece_of[sy:ey, sx:ex] = grown
+        for p in big[1:]:
+            n += 1
+            window[piece_of == p] = n
+    return labels, n
 
 
 def pupils(ink):
@@ -157,6 +223,11 @@ def hexcolour(c):
     return "#%06X" % c
 
 
+def is_region(rid):
+    """True for a fillable region id in regions.png: not the outline, not paper."""
+    return rid != 0 and rid != PAPER
+
+
 def import_scene(scene_dir):
     scene_dir = Path(scene_dir).resolve()
     art = scene_dir / "art"
@@ -175,6 +246,7 @@ def import_scene(scene_dir):
     ink[:, :4] = ink[:, -4:] = True
 
     labels, n = label(~ink)
+    labels, n = split_at_gaps(labels, n)
     flat = labels.ravel()
     areas = np.bincount(flat, minlength=n + 1)
 
@@ -263,8 +335,10 @@ def import_scene(scene_dir):
         colour_of[lab] = paint_of(best[lab][0])
     order = [col for _, col in paints]
 
-    # Shapes too small to tap: join the region of the same paint they sit next to, so they colour with it;
-    # failing that, its own small region if painted a clear colour and at least OWN_PX, else solid ink if dark and paper if light.
+    # Shapes too small to be full regions. Painted a clear colour and at least OWN_PX, a shape is a region of
+    # its own: a tower's rungs or a row of windows are the same colour, and filling one must fill only one.
+    # Smaller than that, or dark or near-white, it joins the region of the same paint it sits next to, so it
+    # colours with it; failing that, it is solid ink if dark and paper if light.
     by_label = np.argsort(flat, kind="stable")
     starts = np.searchsorted(flat[by_label], np.arange(n + 2))
     unmerged = 0
@@ -282,6 +356,9 @@ def import_scene(scene_dir):
         if lab in maybe_eyes and luma >= DARK_SMALL:
             # Perhaps an eye white: never part of the face, even when painted like it.
             (promoted if areas[lab] >= OWN_PX else paper).append(lab)
+            continue
+        if areas[lab] >= OWN_PX and luma >= DARK_SMALL and min(col >> 16, col >> 8 & 0xFF, col & 0xFF) < NEAR_WHITE:
+            promoted.append(lab)  # big enough to see and tap: its own region
             continue
         cands, hits = np.unique(window[near], return_counts=True)
         same = [(h, c) for c, h in zip(cands.tolist(), hits.tolist()) if region_id[c] and colour_of[c] == paint]

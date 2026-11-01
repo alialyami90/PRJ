@@ -421,58 +421,58 @@
   },
   {
     "regionId": 944005,
+    "number": 3,
+    "color": "#F2D9A8"
+  },
+  {
+    "regionId": 1942006,
     "number": 14,
     "color": "#4F7FD0"
   },
   {
-    "regionId": 1942006,
-    "number": 9,
-    "color": "#4E342E"
-  },
-  {
     "regionId": 2940007,
-    "number": 9,
-    "color": "#4E342E"
+    "number": 14,
+    "color": "#4F7FD0"
   },
   {
     "regionId": 3938008,
+    "number": 9,
+    "color": "#4E342E"
+  },
+  {
+    "regionId": 4936009,
+    "number": 9,
+    "color": "#4E342E"
+  },
+  {
+    "regionId": 5934010,
     "number": 2,
     "color": "#4CAF50"
   },
   {
-    "regionId": 4936009,
-    "number": 4,
-    "color": "#FFFFFF"
-  },
-  {
-    "regionId": 5934010,
-    "number": 4,
-    "color": "#FFFFFF"
-  },
-  {
     "regionId": 6932011,
-    "number": 9,
-    "color": "#4E342E"
+    "number": 4,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 7930012,
+    "number": 4,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 8928013,
     "number": 9,
     "color": "#4E342E"
   },
   {
-    "regionId": 8928013,
-    "number": 7,
-    "color": "#1F7A55"
-  },
-  {
     "regionId": 9926014,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 9,
+    "color": "#4E342E"
   },
   {
     "regionId": 10924015,
-    "number": 4,
-    "color": "#FFFFFF"
+    "number": 7,
+    "color": "#1F7A55"
   },
   {
     "regionId": 11922016,
@@ -496,13 +496,13 @@
   },
   {
     "regionId": 15914020,
-    "number": 10,
-    "color": "#A0703C"
+    "number": 4,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 134805,
-    "number": 10,
-    "color": "#A0703C"
+    "number": 4,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 1132806,
@@ -516,12 +516,27 @@
   },
   {
     "regionId": 3128808,
+    "number": 10,
+    "color": "#A0703C"
+  },
+  {
+    "regionId": 4126809,
+    "number": 10,
+    "color": "#A0703C"
+  },
+  {
+    "regionId": 5124810,
     "number": 12,
     "color": "#A86B3C"
   },
   {
-    "regionId": 4126809,
+    "regionId": 6122811,
     "number": 2,
     "color": "#4CAF50"
+  },
+  {
+    "regionId": 7120812,
+    "number": 17,
+    "color": "#F49BB5"
   }
 ]
