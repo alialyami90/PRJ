@@ -31,7 +31,7 @@ TEST_RUNNER_SCREENSHOTS_DIR=$PWD/docs/screenshots xcodebuild -project SaudiColor
 
 # Content checks (no Xcode needed)
 python3 Scripts/validate_content.py   # 8 regions, every region.json has 8 scenes, asset paths exist for non-todo scenes
-python3 -I Scripts/test_import_illustration.py  # the importer's fill rules on synthetic pages (needs Pillow + numpy)
+python3 Scripts/test_import_illustration.py  # the importer's fill rules on synthetic pages (needs Pillow + numpy)
 python3 Scripts/sync_scenes.py        # copies vectorized + approved scenes from Content/ into Resources/Scenes/ (needs Pillow)
 python3 Scripts/sync_scenes.py --approved-only  # release builds: approved scenes only
 python3 Scripts/build_scenes.py [region...]  # rebuilds every scene's art: illustrator art/ if present, else its scene.py sketch (needs Pillow + numpy)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Tests for import_illustration.py on small synthetic pages.
 
-    python3 -I Scripts/test_import_illustration.py
+    python3 Scripts/test_import_illustration.py
 
 Every case is a fill fault seen on a real page: a tap that coloured more than the shape under
 the finger, or a shape that could not be coloured at all. Needs Pillow + numpy.
