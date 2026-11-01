@@ -26,11 +26,6 @@ struct FillTool: ColoringTool {
     }
     func moved(to point: CGPoint, state: ColoringState) {}
     func ended(at point: CGPoint, state: ColoringState) {}
-
-    /// Every region has some colour. Pass the map's region ids, computed once per scene.
-    static func isComplete(regionIds: Set<UInt32>, document: ColoringDocument) -> Bool {
-        regionIds.allSatisfy { document.fills[$0] != nil }
-    }
 }
 
 /// Freehand brush; accumulates points and commits one Stroke on touch end.

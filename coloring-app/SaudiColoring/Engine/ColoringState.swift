@@ -29,11 +29,11 @@ final class ColoringState {
         case .undo:
             guard let previous = undoStack.popLast() else { return }
             redoStack.append(document)
-            document = previous
+            restore(previous)
         case .redo:
             guard let next = redoStack.popLast() else { return }
             undoStack.append(document)
-            document = next
+            restore(next)
         default:
             undoStack.append(document)
             redoStack.removeAll()
@@ -47,10 +47,19 @@ final class ColoringState {
         document.mode = mode
     }
 
-    /// Records that the page was finished, once; not an undo step.
+    /// Records that the page was finished, once; not an undo step. A finished page stays earned:
+    /// undo, redo and Start again never take the mark away.
     func markCompleted(at date: Date = .now) {
         guard document.completedAt == nil else { return }
         document.completedAt = date
+    }
+
+    /// Undo and redo step through the drawing only; the mode and the finished mark stay as they are now.
+    private func restore(_ snapshot: ColoringDocument) {
+        var restored = snapshot
+        restored.mode = document.mode
+        restored.completedAt = document.completedAt ?? snapshot.completedAt
+        document = restored
     }
 
     private func apply(_ action: ColoringAction) {
@@ -59,9 +68,9 @@ final class ColoringState {
         case let .stroke(stroke): document.strokes.append(stroke)
         case let .clearRegion(regionId): document.fills.removeValue(forKey: regionId)
         case .reset:
+            // Start again clears the picture, not the seal the child earned for it.
             document.fills.removeAll()
             document.strokes.removeAll()
-            document.completedAt = nil
         case .undo, .redo: break
         }
     }

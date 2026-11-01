@@ -19,13 +19,28 @@ struct CanvasView: View {
     @State private var showCelebration = false
     @State private var showGate = false
     @State private var gatePassed = false
+    /// Whether the page counted as finished at the last render; nil until the first one.
+    @State private var wasFinished: Bool?
+    /// "You did it!" shows at most once per visit, so undoing and redoing the last shape cannot replay it.
+    @State private var celebratedThisVisit = false
+    /// The white shapes in gold, shown over the page when the child pauses near the end.
+    @State private var hint: CGImage?
+    @State private var hintTask: Task<Void, Never>?
 
     /// Everything decoded once per page.
     private struct LoadedPage {
         let assets: SceneAssets
         let renderer: CanvasRenderer
-        let regionIds: Set<UInt32>
     }
+
+    /// The finishing hint waits for this long without a change.
+    private static let hintDelay: Duration = .seconds(5)
+    /// It shows only once this much of the page has colour, to guide the finish rather than the start.
+    private static let hintFrom = 0.7
+    /// It points at this many of the biggest white shapes at a time.
+    private static let hintShapes = 8
+    /// Date gold (AppTheme.saudi.accent).
+    private static let hintColor: UInt32 = 0xE2A63B
 
     init(region: Region, scene: ColoringScene) {
         self.region = region
@@ -111,6 +126,7 @@ struct CanvasView: View {
                 isDrawing: mode == .freestyle,
                 brushColor: color,
                 brushWidth: brushSize.rawValue,
+                hint: hint,
                 onTap: { point, tolerance in tap(at: point, tolerance: tolerance, page: page) },
                 onStroke: { points in stroke(points) }
             )
@@ -200,7 +216,6 @@ struct CanvasView: View {
 
     private func documentChanged() {
         rerender()
-        checkCompletion()
         try? env.persistence.save(state.document)
     }
 
@@ -208,17 +223,55 @@ struct CanvasView: View {
         state.setMode(mode)
     }
 
-    private func checkCompletion() {
-        guard let page, state.document.completedAt == nil else { return }
-        let finished: Bool
-        switch mode {
-        case .fill: finished = FillTool.isComplete(regionIds: page.regionIds, document: state.document)
-        case .freestyle: finished = false
-        }
-        guard finished else { return }
+    /// Called after each render, with what the brush coloured, in Fill and in Paint alike.
+    private func pageRendered(_ rendered: CanvasRenderer.Rendered, document: ColoringDocument, page: LoadedPage) {
+        let progress = PageProgress(areas: page.renderer.regionAreas, fills: document.fills, painted: rendered.painted)
+        checkCompletion(progress)
+        scheduleHint(progress, page: page)
+    }
+
+    /// Celebrates when the page becomes finished. A page never finished before also celebrates when it
+    /// opens already finished (coloured before this rule, or nearly to the end).
+    private func checkCompletion(_ progress: PageProgress) {
+        let previously = wasFinished
+        wasFinished = progress.isFinished
+        guard progress.isFinished, !celebratedThisVisit else { return }
+        // A page finished on an earlier visit celebrates again only when it is coloured to the end again.
+        guard state.document.completedAt == nil || previously == false else { return }
+        celebratedThisVisit = true
+        hideHint()
         state.markCompleted()
         try? env.persistence.save(state.document)
         withAnimation(.spring(duration: 0.4)) { showCelebration = true }
+    }
+
+    /// After a pause near the end, the biggest white shapes glow gold a few times. Any change starts over.
+    private func scheduleHint(_ progress: PageProgress, page: LoadedPage) {
+        hideHint()
+        guard !progress.isFinished, progress.covered >= Self.hintFrom, !progress.whiteShapes.isEmpty else { return }
+        let shapes = Set(progress.whiteShapes.prefix(Self.hintShapes))
+        let renderer = page.renderer
+        hintTask = Task {
+            try? await Task.sleep(for: Self.hintDelay)
+            guard !Task.isCancelled else { return }
+            let color = Self.hintColor
+            let image = await Task.detached(priority: .utility) { renderer.highlight(shapes, color: color) }.value
+            guard let image else { return }
+            for _ in 0..<3 {
+                guard !Task.isCancelled, !showCelebration else { return }
+                hint = image
+                try? await Task.sleep(for: .seconds(2.6))
+                guard !Task.isCancelled else { return }
+                hint = nil
+                try? await Task.sleep(for: .seconds(8))
+            }
+        }
+    }
+
+    private func hideHint() {
+        hintTask?.cancel()
+        hintTask = nil
+        hint = nil
     }
 
     private func unlockBonusIfPassed() {
@@ -240,7 +293,7 @@ struct CanvasView: View {
         let regionId = region.id, sceneId = scene.id
         let loaded = await Task.detached(priority: .userInitiated) { () -> LoadedPage? in
             guard let assets = try? SceneAssets.load(regionId: regionId, sceneId: sceneId) else { return nil }
-            return LoadedPage(assets: assets, renderer: CanvasRenderer(map: assets.map), regionIds: assets.map.regionIds)
+            return LoadedPage(assets: assets, renderer: CanvasRenderer(map: assets.map))
         }.value
         guard let loaded else {
             loadFailed = true
@@ -264,14 +317,16 @@ struct CanvasView: View {
         let document = state.document
         renderTask?.cancel()
         renderTask = Task {
-            let rendered = await Task.detached(priority: .userInitiated) { renderer.render(document) }.value
+            let rendered = await Task.detached(priority: .userInitiated) { renderer.renderPage(document) }.value
             guard !Task.isCancelled else { return }
-            image = rendered
+            image = rendered.image
+            pageRendered(rendered, document: document, page: page)
         }
     }
 
     /// Saves progress and a gallery thumbnail of the page as it is now.
     private func saveOnLeave() {
+        hideHint()
         // Only after load: saving earlier would overwrite saved progress with a blank page.
         guard let page else { return }
         let document = state.document
@@ -280,7 +335,8 @@ struct CanvasView: View {
         try? persistence.save(document)
         let renderer = page.renderer
         Task.detached(priority: .utility) {
-            if document.isEmpty {
+            // A blank page that was finished before keeps its file: the seal is still earned.
+            if document.isEmpty, document.completedAt == nil {
                 persistence.delete(regionId: document.regionId, sceneId: document.sceneId)
             } else if let image = renderer.render(document), let png = CanvasRenderer.thumbnailPNG(of: image) {
                 try? persistence.saveThumbnail(png, regionId: document.regionId, sceneId: document.sceneId)

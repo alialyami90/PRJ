@@ -43,4 +43,37 @@ final class ColoringStateTests: XCTestCase {
         brush.ended(at: CGPoint(x: 1, y: 1), state: state)
         XCTAssertEqual(state.document.strokes.count, 2)
     }
+
+    func testUndoAfterFinishingKeepsTheFinishedMark() {
+        let state = makeState()
+        state.dispatch(.fill(regionId: 1, color: "#FF0000"))
+        state.markCompleted(at: Date(timeIntervalSince1970: 1))
+        state.dispatch(.undo)
+        XCTAssertTrue(state.document.fills.isEmpty)
+        XCTAssertEqual(state.document.completedAt, Date(timeIntervalSince1970: 1))
+        state.dispatch(.redo)
+        XCTAssertEqual(state.document.fills[1], "#FF0000")
+        XCTAssertEqual(state.document.completedAt, Date(timeIntervalSince1970: 1))
+    }
+
+    func testStartAgainClearsThePictureButKeepsTheFinishedMark() {
+        let state = makeState()
+        state.dispatch(.fill(regionId: 1, color: "#FF0000"))
+        state.dispatch(.stroke(Stroke(color: "#00FF00", width: 4, points: [.init(x: 0, y: 0), .init(x: 1, y: 1)])))
+        state.markCompleted(at: Date(timeIntervalSince1970: 1))
+        state.dispatch(.reset)
+        XCTAssertTrue(state.document.isEmpty)
+        XCTAssertEqual(state.document.completedAt, Date(timeIntervalSince1970: 1))
+        state.dispatch(.undo)
+        XCTAssertEqual(state.document.fills[1], "#FF0000")
+        XCTAssertEqual(state.document.completedAt, Date(timeIntervalSince1970: 1))
+    }
+
+    func testUndoKeepsTheModeTheChildIsIn() {
+        let state = makeState()
+        state.dispatch(.fill(regionId: 1, color: "#FF0000"))
+        state.setMode(.freestyle)
+        state.dispatch(.undo)
+        XCTAssertEqual(state.document.mode, .freestyle)
+    }
 }

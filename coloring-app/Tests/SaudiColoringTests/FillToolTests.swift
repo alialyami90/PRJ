@@ -38,15 +38,6 @@ final class FillToolTests: XCTestCase {
         XCTAssertFalse(state.canUndo)
     }
 
-    func testPageIsCompleteWhenEveryRegionHasAColour() {
-        let state = makeState()
-        let tool = FillTool(map: map, color: "#00FF00")
-        tool.began(at: CGPoint(x: 0, y: 0), state: state)
-        XCTAssertFalse(FillTool.isComplete(regionIds: map.regionIds, document: state.document))
-        tool.began(at: CGPoint(x: 4, y: 0), state: state)
-        XCTAssertTrue(FillTool.isComplete(regionIds: map.regionIds, document: state.document))
-    }
-
     func testModeAndCompletionAreNotUndoSteps() {
         let state = makeState()
         state.setMode(.freestyle)

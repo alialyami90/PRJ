@@ -78,7 +78,7 @@ struct RegionMap {
         return best?.id
     }
 
-    /// All distinct region ids, for the "every region coloured" completion check.
+    /// All distinct region ids.
     var regionIds: Set<UInt32> {
         Set(pixels).subtracting([Self.outline, Self.paper])
     }
