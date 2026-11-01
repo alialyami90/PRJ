@@ -123,7 +123,7 @@ components:
   finished-seal-celebration:
     backgroundColor: "{colors.palm-green}"
     rounded: "{rounded.full}"
-    size: "132px"
+    size: "118px"
   mode-switch:
     backgroundColor: "{colors.white}"
     rounded: "{rounded.full}"
@@ -151,13 +151,7 @@ components:
     backgroundColor: "{colors.sage-ground}"
     textColor: "{colors.palm-ink}"
     rounded: "{rounded.dialog}"
-    width: "460px"
-  button-gold:
-    backgroundColor: "{colors.date-gold}"
-    textColor: "{colors.on-gold}"
-    typography: "{typography.headline}"
-    rounded: "{rounded.full}"
-    height: "64px"
+    width: "760px"
   button-green:
     backgroundColor: "{colors.palm-green}"
     textColor: "{colors.white}"
@@ -186,7 +180,7 @@ components:
 
 Saudi Colors is a trip with nine stops. The whole app speaks one Saudi design language, chosen by the owner for every region alike: a deep palm green shell, a dotted date-gold caravan route with gold stops, and a calm sage-white ground behind the pages. Regions do not get their own palettes or ornaments. Their character lives in their pictures and their names, in English and Arabic; the chrome around them stays the same so that moving from Najd to Jazan feels like travel through one country, not a jump between apps.
 
-The system has exactly one ornament: a strip of Al-Sadu weaving (red ground, black teeth, a chain of cream and gold diamonds), drawn in code so it stays sharp at any size. It sits where a woven edge would sit: along the bottom of every green header, along the top of the colour tray, at the foot of the celebration card, and as a thin selvedge on each region cover in the rail. Progress is told without reading: eight diamonds per region, gold stops that earn a star when a region is complete, and a green seal with a gold stitched ring pressed onto each finished page.
+The system has exactly one ornament: a strip of Al-Sadu weaving (red ground, black teeth, a chain of cream and gold diamonds), drawn in code so it stays sharp at any size. It sits where a woven edge would sit: along the bottom of every green header, along the top of the colour tray, along the top of the celebration card, and as a thin selvedge on each region cover in the rail. Progress is told without reading: eight diamonds per region, gold stops that earn a star when a region is complete, and a green seal with a gold stitched ring pressed onto each finished page.
 
 This is a native iPadOS / iOS 17+ SwiftUI app, iPad-first in landscape, used by children aged 4 to 9 who often cannot read. Density is low and targets are large (60pt minimum). Every child control pairs an SF Symbol with a short label. Display type is SF Rounded at heavy weight; everything else uses the system text styles so Dynamic Type and Arabic shaping come for free. The illustrated scene is always the hero: chrome frames it, the tray sits on plain paper so paint reads true, and nothing decorative is laid over the artwork. Grown-up surfaces (the parental gate) deliberately stay in the stock system sheet style, quiet and separate from play.
 
@@ -209,7 +203,7 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 - **Selected Stop Green** (rail-selected): the rounded trailing pill behind the selected region row on the rail. White text 7.48:1.
 
 ### Secondary
-- **Date Gold** (date-gold, dark appearance date-gold-dark): the dotted caravan route, the route stops, the stitched ring of the seal, and the "Get more colors" button. Dark ink (on-gold) sits on it at 8.32:1 (9.17:1 in dark). Gold on the rail green is 5.89:1.
+- **Date Gold** (date-gold, dark appearance date-gold-dark): the dotted caravan route, the route stops, and the stitched ring of the seal. Dark ink (on-gold) sits on it at 8.32:1 (9.17:1 in dark). Gold on the rail green is 5.89:1.
 
 ### Tertiary
 - **Sadu Red** (sadu-red), **Sadu Wool** (sadu-wool), **Sadu Black** (sadu-black), **Sadu Gold** (sadu-gold): the weave's own colours, used only inside the Sadu band and the app icon's band. They do not change with dark mode.
@@ -239,7 +233,7 @@ A two-green shell with one warm gold, set on a pale sage ground, plus the fixed 
 
 ### Hierarchy
 - **Display** (800, 50pt scaled with largeTitle, minimum scale 0.6, one line): the region's English name on the header band. Its Arabic name sits trailing at 0.82 of that size, weight 700 (display-arabic), minimum scale 0.5.
-- **Celebration** (800, 46pt fixed): "You did it!" on the celebration card.
+- **Celebration** (800, 46pt on iPad, 36pt on iPhone, minimum scale 0.6): "You did it!" on the celebration card.
 - **Headline** (700, title2, rounded): celebration buttons.
 - **Title** (800, title3, rounded): region names on the rail. The mode switch labels use title3 at 700 (title-mode), minimum scale 0.7.
 - **Card title** (600, headline, rounded): scene titles under the cards (two lines reserved) and the "More colors" lock button.
@@ -258,7 +252,7 @@ iPad landscape first. The root is a `NavigationSplitView`: the journey rail is t
 - **Rail:** each stop row is a 48pt route column (the dotted line plus the stop bead) followed by a 100 by 75pt cover with its Sadu strip, then the name, subtitle and diamonds, with 14pt between cover and text and 13pt vertical padding. The route line is hidden above the first stop and below the last. The rail scrolls to keep the selected stop in view. When the area and the Arabic name do not fit on one line, they go on two lines rather than wrapping mid-phrase.
 - **Gallery:** the header band spans the width with 28pt side padding; the Sadu band (30pt) hangs below it. The page grid is adaptive with a 240pt minimum column, 28pt column gap, 32pt row gap, 28pt side and top padding and 40pt bottom padding. An ad banner, when available, sits in a 50pt bottom safe-area inset on the bar material, never over the canvas.
 - **Canvas:** a vertical stack of the controls (12pt vertical padding), the page filling the remaining space, and the tray (Sadu strip, then a horizontal scroller of swatches). On iPad the controls are the mode switch (max width 640pt) with the page actions beside it; on iPhone the page actions sit under the switch, the switch puts each icon above its word, and in Paint the brush sizes take their own row above the colours.
-- **Celebration:** a centred card at max 460pt over a 25% black scrim: a 210pt green top with the seal and the Sadu band, then the title and three full-width buttons with 12pt between them, 36pt side padding.
+- **Celebration:** a card anchored to the bottom of the canvas with no scrim, so the finished picture stays in full view above it. On iPad (max 760pt) the 118pt seal sits leading, with the title over two buttons side by side; on iPhone the 84pt seal sits beside the title over two stacked buttons. A 16pt Sadu band runs along its top edge. It slides up from the bottom (a fade with Reduce Motion), and any new paint on the page puts it away like Keep coloring.
 - **Spacing rhythm:** 4 / 8 / 12 / 14 / 22 / 28 / 32 / 36pt, with 28pt as the gallery gutter. Every child target is at least 60pt (swatches, brush sizes, the lock button) or 56pt tall inside a 66pt mode track; celebration buttons are 64pt.
 - **RTL:** layout uses leading and trailing only; the selected rail row's rounded corners are declared as trailing radii, so the whole shell mirrors for Arabic.
 
@@ -286,7 +280,6 @@ Generous continuous-curve (squircle) corners on everything that holds content, a
 ### Buttons
 Big, rounded and unmistakable: every child button is an SF Symbol plus a short label on a full capsule.
 - **Shape:** full capsule ({rounded.full}).
-- **Gold (Get more colors):** date gold fill, on-gold text, 64pt tall, full width in the celebration card. Shown only while bonus colours are locked.
 - **Green (Keep coloring):** palm green fill, white text, 64pt.
 - **Quiet (More pictures):** ink wash fill, palm ink text, 64pt.
 - **Press:** scales to 0.96 with a 0.15s ease out. Gallery cards press to 0.96 with a bouncy 0.25s spring; rail rows press to 0.97.
@@ -298,7 +291,7 @@ Big, rounded and unmistakable: every child button is an SF Symbol plus a short l
 
 ### Cards / Containers
 - **Scene card:** white paper at 4:3, 18pt continuous corners, 2.5pt palm ink outline at 80%, card lift shadow; title below in rounded headline, two lines reserved. A finished page wears the seal (60pt) on its top trailing corner, turned -12 degrees and hanging off the edge.
-- **Celebration card:** sage ground, 34pt corners, dialog shadow, max 460pt; green top block with the Sadu band (34pt) at its foot and the 132pt seal in the middle.
+- **Celebration card:** sage ground, 34pt corners, dialog shadow, at the foot of the canvas (see Layout). Exactly two choices, Keep coloring and More pictures; nothing on it sells or unlocks anything, and More pictures goes straight back to the gallery with no ad.
 - **Header band:** palm green, white text, region name and Arabic name on one line, then the progress diamonds (18pt) and "N of 8 done"; the 30pt Sadu band hangs from its bottom edge.
 
 ### Inputs / Fields
@@ -311,7 +304,7 @@ Big, rounded and unmistakable: every child button is an SF Symbol plus a short l
 - **Gallery and canvas bars:** palm green, forced dark appearance; the gallery bar shows no title because the header band below carries the name.
 
 ### Al-Sadu Band (signature)
-A horizontally repeating strip drawn with `Canvas`: sadu red ground, cream selvedge lines on both edges (9% of height, minimum 1.5pt), black teeth pointing in from each edge (tooth width 22% of height), and a centre chain of diamonds alternating wool and gold, each with a black eye. Height sets the scale: 10pt on rail covers, 12pt on the tray, 30pt under headers, 34pt on the celebration card. Hidden from VoiceOver. Its colours never change with appearance.
+A horizontally repeating strip drawn with `Canvas`: sadu red ground, cream selvedge lines on both edges (9% of height, minimum 1.5pt), black teeth pointing in from each edge (tooth width 22% of height), and a centre chain of diamonds alternating wool and gold, each with a black eye. Height sets the scale: 10pt on rail covers, 12pt on the tray, 30pt under headers, 16pt on the celebration card. Hidden from VoiceOver. Its colours never change with appearance.
 
 ### Route Stop and Progress Diamonds (signature)
 A stop is a date gold bead with a 3pt white ring and the bead shadow; once every page in the region is finished it carries a star in on-gold. Progress diamonds are one per page, filled for each finished page and outlined when not; white on green surfaces (empty at 35% on the rail, 45% on the header). VoiceOver reads "N of 8 pictures finished".
@@ -328,13 +321,13 @@ A page is finished when at most 10% of its colourable area is still white and no
 Generated by `Scripts/make_app_icon.py`: a date palm on a white page disc, half coloured and half still line art, on palm green, over a full-width Sadu band using the same proportions as `SaduBand`. Opaque and square; iOS rounds the corners.
 
 ### Parental Gate
-Intentionally the stock system look: a medium-detent sheet, standard design type, bordered system buttons for the four answers, a shake on a wrong answer, and a "Not now" button. It is grown-up territory and stays visually apart from the Rihla world.
+Intentionally the stock system look: a large-detent sheet, standard design type, a sum of a two-digit and a one-digit number (12 to 19 times 3 to 9) answered on a bordered system number pad with Delete and a prominent OK, the typed answer in a quaternary field, a shake on a wrong answer (none with Reduce Motion), a new sum after each miss, and the sheet closing itself after three misses. A "Not now" button closes it. The pad always reads left to right. It is grown-up territory and stays visually apart from the Rihla world.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** use palm green for every header band and its navigation bar, and rail green for the rail, with the same values in light and dark appearance.
-- **Do** put the Al-Sadu band only at a woven edge: header bottoms (30pt), the tray top (12pt), the celebration card (34pt) and rail covers (10pt).
+- **Do** put the Al-Sadu band only at a woven edge: header bottoms (30pt), the tray top (12pt), the celebration card (16pt) and rail covers (10pt).
 - **Do** show progress with shapes a pre-reader can count: eight diamonds per region, a starred gold stop, and the green seal on finished pages.
 - **Do** pair every child control with an SF Symbol and a short label, and keep child targets at 60pt or more.
 - **Do** use SF Rounded heavy for display and child-facing labels, and system text styles with a weight everywhere else.
@@ -354,6 +347,6 @@ Intentionally the stock system look: a medium-detent sheet, standard design type
 
 ### Open items (build state, not system rules)
 These are visible in the build today. They are recorded so future work closes them, not so they spread.
-- Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, the celebration overlay scale-in, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.
+- Small springs are not gated on Reduce Motion: the swatch select scale, the route stop size change, and the press scales on cards and buttons. The two large moves (mode slide, seal drop) are gated.
 - Dark appearance: palm green on the dark sage ground is about 2.1:1. It matters only where green is a line or icon on the ground (the selected brush tile outline, the placeholder icon for a missing thumbnail).
-- The parental gate is the stock system sheet on purpose; its person icon and bordered answer buttons take the app tint (rail green) from the environment.
+- The parental gate is the stock system sheet on purpose; its person icon and number pad take the app tint (rail green) from the environment.

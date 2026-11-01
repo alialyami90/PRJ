@@ -41,9 +41,17 @@ final class ScreenshotTests: XCTestCase {
         let app = launch()
         open(Titles.dam, region: "Najran", in: app)
         XCTAssertTrue(app.staticTexts["You did it!"].waitForExistence(timeout: 20))
-        pause(1.5) // the stars spring in
+        pause(1.5) // the seal presses down
         snapshot("06-finished")
-        app.buttons["Get more colors"].tap()
+        app.buttons["Keep coloring"].tap()
+        // The bonus colours sit behind the grown-up lock at the end of the colour tray.
+        let lock = app.buttons["More colors"].firstMatch
+        let window = app.windows.firstMatch
+        for _ in 0..<8 where !(lock.exists && lock.isHittable) {
+            window.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.95))
+                .press(forDuration: 0.05, thenDragTo: window.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.95)))
+        }
+        lock.tap()
         XCTAssertTrue(app.staticTexts["Ask a grown-up"].waitForExistence(timeout: 10))
         pause(1)
         snapshot("07-parental-gate")

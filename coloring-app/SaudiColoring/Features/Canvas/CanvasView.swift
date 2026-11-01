@@ -5,6 +5,7 @@ struct CanvasView: View {
     @Environment(AppEnvironment.self) private var env
     @Environment(\.dismiss) private var dismiss
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let region: Region
     let scene: ColoringScene
 
@@ -65,21 +66,16 @@ struct CanvasView: View {
         .toolbarBackground(theme.ground, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .overlay {
+        // No scrim: the finished picture stays in full view above the card.
+        .overlay(alignment: .bottom) {
             if showCelebration {
-                ZStack {
-                    Color.black.opacity(0.25).ignoresSafeArea()
-                    CelebrationView(
-                        theme: theme,
-                        onUnlockBonus: celebrationUnlock,
-                        onKeepColoring: { showCelebration = false },
-                        onMorePictures: {
-                            env.ads.showInterstitialIfEligible()
-                            dismiss()
-                        }
-                    )
-                }
-                .transition(.opacity.combined(with: .scale(scale: 0.9)))
+                CelebrationView(
+                    theme: theme,
+                    onKeepColoring: { setCelebration(false) },
+                    // Straight back to the pictures: never an ad after a finished page.
+                    onMorePictures: { dismiss() }
+                )
+                .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
             }
         }
         .sheet(isPresented: $showGate, onDismiss: unlockBonusIfPassed) {
@@ -185,12 +181,8 @@ struct CanvasView: View {
         return { showGate = true }
     }
 
-    private var celebrationUnlock: (() -> Void)? {
-        guard !env.rewards.bonusColorsUnlocked else { return nil }
-        return {
-            showCelebration = false
-            showGate = true
-        }
+    private func setCelebration(_ shown: Bool) {
+        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .spring(duration: 0.4)) { showCelebration = shown }
     }
 
     // MARK: Touches
@@ -215,6 +207,8 @@ struct CanvasView: View {
     // MARK: Document
 
     private func documentChanged() {
+        // Colouring on after "You did it!" puts the card away, like tapping Keep coloring.
+        if showCelebration { setCelebration(false) }
         rerender()
         try? env.persistence.save(state.document)
     }
@@ -242,7 +236,8 @@ struct CanvasView: View {
         hideHint()
         state.markCompleted()
         try? env.persistence.save(state.document)
-        withAnimation(.spring(duration: 0.4)) { showCelebration = true }
+        env.ads.pageFinished()
+        setCelebration(true)
     }
 
     /// After a pause near the end, the biggest white shapes glow gold a few times. Any change starts over.
@@ -290,6 +285,8 @@ struct CanvasView: View {
     /// Decodes the scene off the main thread, restores saved progress, then draws.
     private func load() async {
         guard page == nil else { return }
+        // The only interstitial slot: between pages, as a new one opens, never after a finish.
+        env.ads.showInterstitialIfEligible()
         let regionId = region.id, sceneId = scene.id
         let loaded = await Task.detached(priority: .userInitiated) { () -> LoadedPage? in
             guard let assets = try? SceneAssets.load(regionId: regionId, sceneId: sceneId) else { return nil }

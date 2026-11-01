@@ -1,55 +1,51 @@
 import SwiftUI
 
-/// Shown once when a page is finished: the stamp presses down onto the card, then three big choices.
+/// Shown when a page is finished. It sits at the foot of the canvas with no scrim, so the child's own
+/// picture stays in full view: the seal presses down beside "You did it!", then two big choices.
+/// Nothing here sells anything; bonus colours live behind the grown-up lock in the colour tray.
 struct CelebrationView: View {
     let theme: AppTheme
-    /// Nil once the bonus colours are unlocked.
-    let onUnlockBonus: (() -> Void)?
     let onKeepColoring: () -> Void
     let onMorePictures: () -> Void
     @State private var stamped = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
-    init(theme: AppTheme = .saudi, onUnlockBonus: (() -> Void)?, onKeepColoring: @escaping () -> Void, onMorePictures: @escaping () -> Void) {
+    init(theme: AppTheme = .saudi, onKeepColoring: @escaping () -> Void, onMorePictures: @escaping () -> Void) {
         self.theme = theme
-        self.onUnlockBonus = onUnlockBonus
         self.onKeepColoring = onKeepColoring
         self.onMorePictures = onMorePictures
     }
 
+    private var wide: Bool { sizeClass != .compact }
+
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                theme.ground
-                VStack(spacing: 0) {
-                    Spacer(minLength: 0)
-                    SaduBand().frame(height: 34)
-                }
-                FinishedStamp(theme: theme, size: 132)
-                    .rotationEffect(.degrees(stamped ? -10 : -30))
-                    .scaleEffect(stamped ? 1 : (reduceMotion ? 1 : 1.9))
-                    .opacity(stamped ? 1 : 0)
-                    .offset(y: -10)
-            }
-            .frame(height: 210)
-
-            VStack(spacing: 22) {
-                Text("You did it!")
-                    .font(.system(size: 46, weight: .heavy, design: .rounded))
-                    .foregroundStyle(theme.ink)
-                VStack(spacing: 12) {
-                    if let onUnlockBonus {
-                        big("Get more colors", systemImage: "paintpalette.fill", fill: theme.accent, text: theme.onAccent, action: onUnlockBonus)
+            SaduBand().frame(height: 16)
+            Group {
+                if wide {
+                    HStack(spacing: 28) {
+                        seal(size: 118)
+                        VStack(alignment: .leading, spacing: 16) {
+                            title
+                            HStack(spacing: 12) { buttons }
+                        }
                     }
-                    big("Keep coloring", systemImage: "paintbrush.fill", fill: theme.ground, text: .white, action: onKeepColoring)
-                    big("More pictures", systemImage: "square.grid.2x2.fill", fill: theme.ink.opacity(0.08), text: theme.ink, action: onMorePictures)
+                } else {
+                    VStack(spacing: 16) {
+                        HStack(spacing: 16) {
+                            seal(size: 84)
+                            title
+                        }
+                        VStack(spacing: 12) { buttons }
+                    }
                 }
             }
-            .padding(.horizontal, 36)
-            .padding(.top, 26)
-            .padding(.bottom, 34)
+            .padding(.horizontal, wide ? 32 : 20)
+            .padding(.top, 20)
+            .padding(.bottom, 24)
         }
-        .frame(maxWidth: 460)
+        .frame(maxWidth: wide ? 760 : .infinity)
         .background(theme.tint)
         .clipShape(RoundedRectangle(cornerRadius: 34, style: .continuous))
         .shadow(color: .black.opacity(0.25), radius: 30, y: 14)
@@ -62,12 +58,38 @@ struct CelebrationView: View {
         .sensoryFeedback(.success, trigger: stamped)
     }
 
+    private func seal(size: CGFloat) -> some View {
+        FinishedStamp(theme: theme, size: size)
+            .rotationEffect(.degrees(stamped ? -10 : -30))
+            .scaleEffect(stamped ? 1 : (reduceMotion ? 1 : 1.9))
+            .opacity(stamped ? 1 : 0)
+            .accessibilityHidden(true)
+    }
+
+    private var title: some View {
+        Text("You did it!")
+            .font(.system(size: wide ? 46 : 36, weight: .heavy, design: .rounded))
+            .foregroundStyle(theme.ink)
+            .lineLimit(1)
+            .minimumScaleFactor(0.6)
+            .accessibilityAddTraits(.isHeader)
+    }
+
+    @ViewBuilder
+    private var buttons: some View {
+        big("Keep coloring", systemImage: "paintbrush.fill", fill: theme.ground, text: .white, action: onKeepColoring)
+        big("More pictures", systemImage: "square.grid.2x2.fill", fill: theme.ink.opacity(0.08), text: theme.ink, action: onMorePictures)
+    }
+
     private func big(_ title: LocalizedStringKey, systemImage: String, fill: Color, text: Color, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Label(title, systemImage: systemImage)
                 .font(.title2.bold())
                 .fontDesign(.rounded)
                 .foregroundStyle(text)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .padding(.horizontal, 20)
                 .frame(maxWidth: .infinity, minHeight: 64)
                 .background(fill, in: Capsule())
                 .contentShape(Capsule())
@@ -85,5 +107,5 @@ private struct CelebrationButtonStyle: ButtonStyle {
 }
 
 #Preview {
-    CelebrationView(onUnlockBonus: {}, onKeepColoring: {}, onMorePictures: {})
+    CelebrationView(onKeepColoring: {}, onMorePictures: {})
 }

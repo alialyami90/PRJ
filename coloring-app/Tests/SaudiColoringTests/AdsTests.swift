@@ -15,15 +15,17 @@ final class AdsTests: XCTestCase {
         XCTAssertFalse(policy.shouldShow(at: start.addingTimeInterval(600)))
     }
 
-    func testParentalGateAlwaysOffersTheAnswerAmongFourChoices() {
+    func testParentalGateAsksAGrownUpSumAndChecksTheTypedAnswer() {
         var rng = SystemRandomNumberGenerator()
         for _ in 0..<200 {
             let q = ParentalGateQuestion.random(using: &rng)
-            XCTAssertEqual(q.choices.count, 4)
-            XCTAssertEqual(Set(q.choices).count, 4)
-            XCTAssertTrue(q.choices.contains(q.answer))
-            XCTAssertTrue(q.choices.allSatisfy { $0 > 0 })
-            XCTAssertGreaterThanOrEqual(q.answer, 16, "too easy for a grown-up-only gate")
+            XCTAssertTrue((12...19).contains(q.a))
+            XCTAssertTrue((3...9).contains(q.b))
+            XCTAssertGreaterThanOrEqual(q.answer, 36, "too easy for a grown-up-only gate")
+            XCTAssertLessThanOrEqual(String(q.answer).count, ParentalGateQuestion.maxDigits)
+            XCTAssertTrue(q.isRight(String(q.answer)))
+            XCTAssertFalse(q.isRight(String(q.answer + 1)))
+            XCTAssertFalse(q.isRight(""))
         }
     }
 
@@ -41,6 +43,8 @@ final class AdsTests: XCTestCase {
         var rewarded = false
         ads.showRewarded { rewarded = true }
         XCTAssertTrue(rewarded)
+        ads.pageFinished()
+        ads.showInterstitialIfEligible()
         XCTAssertFalse(ads.isBannerAvailable)
         XCTAssertNil(ads.makeBannerView())
     }
