@@ -24,7 +24,9 @@ final class ScreenshotTests: XCTestCase {
         let app = launch()
         snapshot("01-home")
         showRegion("Najran", in: app)
-        XCTAssertTrue(app.staticTexts[Titles.ukhdood].waitForExistence(timeout: 10))
+        // The header's "3 of 8 done" line; the cards further down are built only once scrolled to on iPhone.
+        let progress = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", " done")).firstMatch
+        XCTAssertTrue(progress.waitForExistence(timeout: 10))
         snapshot("02-gallery")
     }
 
@@ -45,15 +47,9 @@ final class ScreenshotTests: XCTestCase {
         snapshot("06-finished")
         app.buttons["Keep coloring"].tap()
         // The bonus colours sit behind the grown-up lock at the end of the colour tray.
-        // It starts off screen, where asking whether it is hittable fails the test, so swipe the tray
-        // until its frame is inside the window.
         let lock = app.buttons["More colors"].firstMatch
         XCTAssertTrue(lock.waitForExistence(timeout: 10))
-        let tray = app.scrollViews.containing(NSPredicate(format: "label == %@", "More colors")).firstMatch
-        let window = app.windows.firstMatch
-        for _ in 0..<8 where !window.frame.contains(lock.frame) {
-            tray.swipeLeft()
-        }
+        bringOnScreen(lock, labelled: "More colors", in: app) { $0.swipeLeft() }
         lock.tap()
         XCTAssertTrue(app.staticTexts["Ask a grown-up"].waitForExistence(timeout: 10))
         pause(1)
@@ -72,10 +68,24 @@ final class ScreenshotTests: XCTestCase {
         return app
     }
 
-    /// Taps the region's stop on the journey rail.
+    /// Taps the region's stop on the journey rail, scrolling the rail first if the stop is below the
+    /// screen (on iPhone the later regions are).
     private func showRegion(_ name: String, in app: XCUIApplication) {
-        app.buttons[name].firstMatch.tap()
+        let stop = app.buttons[name].firstMatch
+        bringOnScreen(stop, labelled: name, in: app) { $0.swipeUp() }
+        stop.tap()
         pause(2)
+    }
+
+    /// Swipes the scroll view holding `element` until the element sits wholly inside the window.
+    /// Asking an off-screen SwiftUI element whether it is hittable fails the test, so this goes by frames.
+    private func bringOnScreen(_ element: XCUIElement, labelled label: String, in app: XCUIApplication,
+                               swipe: (XCUIElement) -> Void) {
+        let scroller = app.scrollViews.containing(NSPredicate(format: "label == %@", label)).firstMatch
+        let window = app.windows.firstMatch
+        for _ in 0..<8 where !window.frame.contains(element.frame) {
+            swipe(scroller)
+        }
     }
 
     /// Opens a page from its region's gallery and waits for it to be drawn.
@@ -84,7 +94,7 @@ final class ScreenshotTests: XCTestCase {
         let card = app.staticTexts[title].firstMatch
         // Drag on the trailing side of the window, where the gallery is on iPad and the whole screen is on iPhone.
         let window = app.windows.firstMatch
-        for _ in 0..<8 where !(card.exists && card.isHittable) {
+        for _ in 0..<8 where !(card.exists && window.frame.contains(card.frame)) {
             window.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0.75))
                 .press(forDuration: 0.05, thenDragTo: window.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0.35)))
         }
