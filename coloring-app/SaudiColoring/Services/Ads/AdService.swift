@@ -9,7 +9,10 @@ protocol AdService: AnyObject {
     var isBannerAvailable: Bool { get }
     /// A fresh banner for the gallery, or nil when there is none to show.
     func makeBannerView() -> UIView?
-    /// Call when the child leaves a finished page; the service applies `InterstitialPolicy`.
+    /// Call each time the child finishes a page; it counts towards `InterstitialPolicy`.
+    func pageFinished()
+    /// Call as a new page opens (between pages, never right after a finish); the service applies
+    /// `InterstitialPolicy`.
     func showInterstitialIfEligible()
     /// Whether a rewarded ad is ready. When false, rewards are simply given (see `RewardStore`).
     var isRewardedAvailable: Bool { get }
@@ -22,12 +25,13 @@ final class NoOpAdService: AdService {
     func start() {}
     var isBannerAvailable: Bool { false }
     func makeBannerView() -> UIView? { nil }
+    func pageFinished() {}
     func showInterstitialIfEligible() {}
     var isRewardedAvailable: Bool { false }
     func showRewarded(onReward: @escaping () -> Void) { onReward() }
 }
 
-/// When an interstitial may interrupt: only between pages, at most one per `pagesBetweenAds`
+/// When an interstitial may interrupt: only as a new page opens, at most one per `pagesBetweenAds`
 /// finished pages, and never in the first `minimumSessionAge` seconds of a session.
 struct InterstitialPolicy {
     var sessionStart: Date

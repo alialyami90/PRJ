@@ -21,7 +21,7 @@ Networks known to work in the Kids Category when configured correctly:
 
 1. **Gallery banner** (adaptive banner at the bottom of region/scene pickers). Never on the canvas.
 2. **Interstitial between scenes**, capped (e.g. at most 1 per 3 completed scenes, never within the first 2 minutes of a session).
-3. **Rewarded video** (optional, parental gate first): unlock a bonus palette or sticker set after finishing a scene.
+3. **Rewarded video** (optional, parental gate first): unlock a bonus palette from the lock in the colour tray.
 
 Measuring revenue: eCPM and fill come from the network dashboard; the app only reports impressions/clicks through `AdService` for debugging. Expect Saudi kids-category eCPMs well below general-audience rates; plan for an optional "Remove ads" IAP behind a parental gate as a second revenue line.
 
@@ -33,9 +33,9 @@ Everything ad-related goes through `Services/Ads/AdService` (a protocol). Featur
 
 - `AdService` protocol with `NoOpAdService` (no ads; rewards are free) and `AdMobAdService` (compiled only when the GoogleMobileAds package is present). The live app picks AdMob automatically once the package is added.
 - `AdMobAdService` sets `tagForChildDirectedTreatment`, `tagForUnderAgeOfConsent` and `maxAdContentRating = .general` before the SDK starts, and uses Google's public test ad units until real ones are set.
-- `InterstitialPolicy`: at most one interstitial per 3 finished pages, never in the first 2 minutes, and only when the child taps "More pictures" on the "You did it!" screen, never mid-page.
+- `InterstitialPolicy`: at most one interstitial per 3 finished pages, never in the first 2 minutes, and only as a new page opens from the gallery. Never mid-page, and never straight after a finish: "More pictures" on the "You did it!" card goes back to the gallery with no ad, so the child's proudest moment is never followed by one.
 - Gallery banner (`Features/Ads/AdBannerView.swift`) at the bottom of each region's page grid, never on the canvas.
-- Rewarded "Get more colors": after the parental gate (`Features/Parent/ParentalGate.swift`, a times-table sum), a rewarded ad unlocks 10 bonus crayons for good (`RewardStore`).
+- Rewarded "More colors": the lock at the end of the colour tray opens the parental gate (`Features/Parent/ParentalGate.swift`: a two-digit times one-digit sum typed on a number pad, closing after three misses); a rewarded ad then unlocks 10 bonus crayons for good (`RewardStore`). The "You did it!" card no longer offers it.
 
 ## Turning AdMob on
 

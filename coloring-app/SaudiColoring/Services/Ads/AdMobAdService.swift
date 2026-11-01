@@ -54,8 +54,9 @@ final class AdMobAdService: NSObject, AdService {
         return banner
     }
 
+    func pageFinished() { policy.pageFinished() }
+
     func showInterstitialIfEligible() {
-        policy.pageFinished()
         guard policy.shouldShow(), let ad = interstitial, let root = UIApplication.shared.topViewController else { return }
         policy.didShow()
         interstitial = nil
