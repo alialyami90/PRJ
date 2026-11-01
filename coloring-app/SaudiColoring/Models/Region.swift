@@ -12,9 +12,25 @@ struct ColoringScene: Identifiable, Codable, Hashable {
     enum Difficulty: String, Codable { case easy, medium, hard }
 
     let id: String
+    /// A short name, two to four words, in English and Arabic.
     let title: String
     let titleAr: String
     let difficulty: Difficulty
+
+    /// The title in the app's language: Arabic when the app runs in Arabic and the scene has one.
+    var displayTitle: String {
+        AppLanguage.isArabic && !titleAr.isEmpty ? titleAr : title
+    }
+}
+
+/// Which of the app's two languages it is running in (the first of the app's own localizations the
+/// device prefers), for content that carries both names rather than going through the string catalog.
+enum AppLanguage {
+    static var isArabic: Bool { isArabic(Bundle.main.preferredLocalizations) }
+
+    static func isArabic(_ preferred: [String]) -> Bool {
+        preferred.first?.lowercased().hasPrefix("ar") == true
+    }
 }
 
 /// Loaded from Resources/Scenes/catalog.json (written by Scripts/sync_scenes.py).

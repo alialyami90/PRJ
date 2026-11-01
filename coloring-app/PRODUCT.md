@@ -34,7 +34,7 @@ Used in short sessions, landscape iPad by default, by small fingers. Fill is tap
 ## Evidence on Hand
 - 72 scenes of real line art and region cover images in `SaudiColoring/Resources/Scenes/`.
 - Current screenshots in `docs/screenshots/` (stock iOS look, to be replaced).
-- Arabic region names are in every `region.json` (added October 2026); Arabic scene titles are still empty.
+- Arabic region names and short Arabic scene titles are in every `region.json` (region names October 2026, scene titles November 2026). The app's strings have Arabic in `Resources/Localization/Localizable.xcstrings`; the Arabic app name is still undecided (the rail title uses "ألوان السعودية" until it is).
 - No testimonials, ratings, press, or usage numbers exist. Do not invent them.
 
 ## Product Principles

@@ -7,8 +7,8 @@ import XCTest
 /// Run with the Screenshots scheme; CI does it in .github/workflows/screenshots.yml.
 final class ScreenshotTests: XCTestCase {
     private enum Titles {
-        static let ukhdood = "Young explorers at Al-Ukhdood archaeological site"
-        static let dam = "Family outing at the Najran dam overlook"
+        static let ukhdood = "Al-Ukhdood Explorers"
+        static let dam = "Najran Dam"
     }
 
     /// iPad in landscape, iPhone in portrait: how each is mostly held.

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Validate Content/Regions/*/region.json manifests.
 
-Checks: exactly 8 regions, 8 scenes per region, unique ids, and that every
-scene whose status is not "todo" has its asset files on disk.
+Checks: exactly 8 regions, 8 scenes per region, unique ids, a short title in English and
+Arabic for every scene (at most 4 and 5 words), and that every scene whose status is not
+"todo" has its asset files on disk.
 """
 import json
 import sys
@@ -35,6 +36,11 @@ for rdir in regions:
         if sid in seen_scene_ids:
             errors.append(f"{rdir.name}/{sid}: duplicate scene id")
         seen_scene_ids.add(sid)
+        title, title_ar = s.get("title", ""), s.get("titleAr", "")
+        if not title or len(title.split()) > 4:
+            errors.append(f"{rdir.name}/{sid}: title must be 1 to 4 words ({title!r})")
+        if not title_ar or len(title_ar.split()) > 5:
+            errors.append(f"{rdir.name}/{sid}: titleAr must be 1 to 5 words ({title_ar!r})")
         if s.get("status") not in STATUSES:
             errors.append(f"{rdir.name}/{sid}: bad status {s.get('status')!r}")
         if s.get("era") not in ERAS:

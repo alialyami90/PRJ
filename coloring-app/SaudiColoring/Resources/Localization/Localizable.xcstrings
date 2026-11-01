@@ -1,0 +1,256 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld of %lld done" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنجزت %1$lld من %2$lld"
+          }
+        }
+      }
+    },
+    "%lld of %lld pictures finished" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اكتملت %1$lld من %2$lld صور"
+          }
+        }
+      }
+    },
+    "Answer" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإجابة"
+          }
+        }
+      }
+    },
+    "Ask a grown-up" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسأل أحد الكبار"
+          }
+        }
+      }
+    },
+    "Color %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لون %@"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف"
+          }
+        }
+      }
+    },
+    "Fill" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعبئة"
+          }
+        }
+      }
+    },
+    "Finished" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مكتملة"
+          }
+        }
+      }
+    },
+    "Grown-ups: what is %@ × %@?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "للكبار: كم يساوي %1$@ × %2$@؟"
+          }
+        }
+      }
+    },
+    "Keep coloring" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "واصل التلوين"
+          }
+        }
+      }
+    },
+    "Medium brush" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فرشاة متوسطة"
+          }
+        }
+      }
+    },
+    "More colors" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ألوان أكثر"
+          }
+        }
+      }
+    },
+    "More pictures" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صور أخرى"
+          }
+        }
+      }
+    },
+    "Not now" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليس الآن"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم"
+          }
+        }
+      }
+    },
+    "Paint" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رسم"
+          }
+        }
+      }
+    },
+    "Redo" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة"
+          }
+        }
+      }
+    },
+    "Saudi Colors" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ألوان السعودية"
+          }
+        }
+      }
+    },
+    "Start again" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من جديد"
+          }
+        }
+      }
+    },
+    "Start this picture again?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نبدأ هذه الصورة من جديد؟"
+          }
+        }
+      }
+    },
+    "Thick brush" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فرشاة عريضة"
+          }
+        }
+      }
+    },
+    "Thin brush" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فرشاة رفيعة"
+          }
+        }
+      }
+    },
+    "This picture could not be opened." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعذّر فتح هذه الصورة."
+          }
+        }
+      }
+    },
+    "Undo" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تراجع"
+          }
+        }
+      }
+    },
+    "You did it!" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحسنت!"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

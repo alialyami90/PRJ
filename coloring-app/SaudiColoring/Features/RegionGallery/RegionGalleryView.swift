@@ -29,7 +29,7 @@ struct RegionGalleryView: View {
             }
         }
         .background(theme.tint.ignoresSafeArea())
-        .navigationTitle(region.shortName)
+        .navigationTitle(region.displayName())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             // The header below carries the name; the bar stays a plain band of the region's colour.
@@ -63,19 +63,19 @@ private struct RegionHeader: View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 20) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(region.shortName)
+                    Text(verbatim: region.displayName())
                         .font(.system(size: titleSize, weight: .heavy, design: .rounded))
                         .lineLimit(1)
                         .minimumScaleFactor(0.6)
-                    if let area = region.area {
-                        Text(area)
+                    if let area = region.displayArea() {
+                        Text(verbatim: area)
                             .font(.title3.weight(.semibold))
                             .foregroundStyle(.white.opacity(0.82))
                     }
                 }
                 Spacer(minLength: 12)
-                if !region.nameAr.isEmpty {
-                    Text(region.shortNameAr)
+                if let other = region.otherName() {
+                    Text(verbatim: other)
                         .font(.system(size: titleSize * 0.82, weight: .bold, design: .rounded))
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
@@ -139,7 +139,7 @@ private struct SceneCard: View {
                             .offset(x: 12, y: -14)
                     }
                 }
-            Text(scene.title)
+            Text(verbatim: scene.displayTitle)
                 .font(.headline)
                 .fontDesign(.rounded)
                 .foregroundStyle(theme.ink)

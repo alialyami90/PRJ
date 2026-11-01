@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "palm-oasis",
-      "title": "Date harvest in the world's largest palm oasis",
-      "titleAr": "",
+      "title": "Palm Oasis Harvest",
+      "titleAr": "حصاد واحة النخيل",
+      "brief": "Date harvest in the world's largest palm oasis",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "qaisariah-souq",
-      "title": "Lantern-lit Qaisariah Souq with cloth and spice stalls",
-      "titleAr": "",
+      "title": "Qaisariah Souq",
+      "titleAr": "سوق القيصرية",
+      "brief": "Lantern-lit Qaisariah Souq with cloth and spice stalls",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "jabal-qarah-caves",
-      "title": "Kids exploring the cool caves of Jabal Al-Qarah",
-      "titleAr": "",
+      "title": "Al-Qarah Caves",
+      "titleAr": "كهوف جبل القارة",
+      "brief": "Kids exploring the cool caves of Jabal Al-Qarah",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "al-ahsa-pottery",
-      "title": "Potter's workshop with children shaping clay jars",
-      "titleAr": "",
+      "title": "Pottery Workshop",
+      "titleAr": "ورشة الفخار",
+      "brief": "Potter's workshop with children shaping clay jars",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "bisht-weaving",
-      "title": "Bisht cloak weavers at work with golden thread",
-      "titleAr": "",
+      "title": "Bisht Weavers",
+      "titleAr": "حياكة البشت",
+      "brief": "Bisht cloak weavers at work with golden thread",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "yellow-lake",
-      "title": "Birds and reeds at Al-Asfar (Yellow) Lake",
-      "titleAr": "",
+      "title": "Yellow Lake Birds",
+      "titleAr": "طيور البحيرة الصفراء",
+      "brief": "Birds and reeds at Al-Asfar (Yellow) Lake",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "ibrahim-palace",
-      "title": "Horse riders at Ibrahim Palace",
-      "titleAr": "",
+      "title": "Ibrahim Palace",
+      "titleAr": "قصر إبراهيم",
+      "brief": "Horse riders at Ibrahim Palace",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "hofuf-train",
-      "title": "Hofuf railway station with a modern passenger train arriving",
-      "titleAr": "",
+      "title": "Hofuf Train",
+      "titleAr": "قطار الهفوف",
+      "brief": "Hofuf railway station with a modern passenger train arriving",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

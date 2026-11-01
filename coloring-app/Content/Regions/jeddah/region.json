@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "al-balad-rawashin",
-      "title": "Old Jeddah street with wooden rawashin balconies and cats",
-      "titleAr": "",
+      "title": "Al-Balad Balconies",
+      "titleAr": "رواشين البلد",
+      "brief": "Old Jeddah street with wooden rawashin balconies and cats",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "corniche-fountain",
-      "title": "Kids on the Corniche watching King Fahd's Fountain and boats",
-      "titleAr": "",
+      "title": "King Fahd's Fountain",
+      "titleAr": "نافورة الملك فهد",
+      "brief": "Kids on the Corniche watching King Fahd's Fountain and boats",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "red-sea-reef",
-      "title": "Snorkelers above a Red Sea coral reef full of fish",
-      "titleAr": "",
+      "title": "Red Sea Reef",
+      "titleAr": "شعاب البحر الأحمر",
+      "brief": "Snorkelers above a Red Sea coral reef full of fish",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "fish-market",
-      "title": "Morning fish market with fishermen and seagulls",
-      "titleAr": "",
+      "title": "Fish Market",
+      "titleAr": "سوق السمك",
+      "brief": "Morning fish market with fishermen and seagulls",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "jeddah-sculptures",
-      "title": "Playing among the giant sculptures of the Corniche",
-      "titleAr": "",
+      "title": "Corniche Sculptures",
+      "titleAr": "مجسمات الكورنيش",
+      "brief": "Playing among the giant sculptures of the Corniche",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "dhow-sail",
-      "title": "Traditional dhow sailing past the city at sunset",
-      "titleAr": "",
+      "title": "Dhow at Sunset",
+      "titleAr": "المركب الشراعي",
+      "brief": "Traditional dhow sailing past the city at sunset",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "hijazi-wedding",
-      "title": "Hijazi wedding with mizmar dancers and lanterns",
-      "titleAr": "",
+      "title": "Hijazi Wedding",
+      "titleAr": "عرس حجازي",
+      "brief": "Hijazi wedding with mizmar dancers and lanterns",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "floating-mosque",
-      "title": "Floating Mosque by the sea with pelicans",
-      "titleAr": "",
+      "title": "Floating Mosque",
+      "titleAr": "المسجد العائم",
+      "brief": "Floating Mosque by the sea with pelicans",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {

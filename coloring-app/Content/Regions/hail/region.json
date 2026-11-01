@@ -6,8 +6,9 @@
   "scenes": [
     {
       "id": "jubbah-rock-art",
-      "title": "Children discovering ancient rock carvings at Jubbah",
-      "titleAr": "",
+      "title": "Jubbah Rock Art",
+      "titleAr": "نقوش جبة",
+      "brief": "Children discovering ancient rock carvings at Jubbah",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -23,8 +24,9 @@
     },
     {
       "id": "aarif-fort",
-      "title": "Aarif Fort on the hill above the old town",
-      "titleAr": "",
+      "title": "Aarif Fort",
+      "titleAr": "قلعة أعيرف",
+      "brief": "Aarif Fort on the hill above the old town",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -40,8 +42,9 @@
     },
     {
       "id": "hail-rally",
-      "title": "Desert rally cars and buggies jumping over dunes",
-      "titleAr": "",
+      "title": "Desert Rally",
+      "titleAr": "رالي حائل",
+      "brief": "Desert rally cars and buggies jumping over dunes",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -57,8 +60,9 @@
     },
     {
       "id": "nafud-dunes",
-      "title": "Sandboarding down the red Nafud dunes",
-      "titleAr": "",
+      "title": "Nafud Sandboarding",
+      "titleAr": "التزلج على رمال النفود",
+      "brief": "Sandboarding down the red Nafud dunes",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -74,8 +78,9 @@
     },
     {
       "id": "hatim-tai",
-      "title": "Hatim Al-Tai welcoming guests with a feast of generosity",
-      "titleAr": "",
+      "title": "Hatim's Feast",
+      "titleAr": "كرم حاتم الطائي",
+      "brief": "Hatim Al-Tai welcoming guests with a feast of generosity",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -91,8 +96,9 @@
     },
     {
       "id": "qishlah-palace",
-      "title": "Horse parade in front of Al-Qishlah Palace",
-      "titleAr": "",
+      "title": "Qishlah Palace",
+      "titleAr": "قصر القشلة",
+      "brief": "Horse parade in front of Al-Qishlah Palace",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -108,8 +114,9 @@
     },
     {
       "id": "hail-farm",
-      "title": "Wheat and peach farms with tractors",
-      "titleAr": "",
+      "title": "Hail Farms",
+      "titleAr": "مزارع حائل",
+      "brief": "Wheat and peach farms with tractors",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
@@ -125,8 +132,9 @@
     },
     {
       "id": "falconry",
-      "title": "Falconer and his falcon at dawn",
-      "titleAr": "",
+      "title": "Falconer at Dawn",
+      "titleAr": "الصقّار عند الفجر",
+      "brief": "Falconer and his falcon at dawn",
       "difficulty": "easy",
       "status": "vectorized",
       "assets": {
