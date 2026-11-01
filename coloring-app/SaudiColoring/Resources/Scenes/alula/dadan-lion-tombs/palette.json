@@ -211,63 +211,63 @@
   },
   {
     "regionId": 9359611,
+    "number": 1,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 10357612,
     "number": 5,
     "color": "#BA7549"
   },
   {
-    "regionId": 10357612,
+    "regionId": 11355613,
     "number": 9,
     "color": "#FFCF40"
-  },
-  {
-    "regionId": 11355613,
-    "number": 2,
-    "color": "#FFFFFF"
   },
   {
     "regionId": 12353614,
-    "number": 1,
-    "color": "#E89D41"
-  },
-  {
-    "regionId": 13351615,
     "number": 2,
     "color": "#FFFFFF"
   },
   {
-    "regionId": 14349616,
-    "number": 9,
-    "color": "#FFCF40"
-  },
-  {
-    "regionId": 15347617,
+    "regionId": 13351615,
     "number": 1,
     "color": "#E89D41"
   },
   {
+    "regionId": 14349616,
+    "number": 2,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 15347617,
+    "number": 9,
+    "color": "#FFCF40"
+  },
+  {
     "regionId": 16345618,
+    "number": 1,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 566403,
     "number": 4,
     "color": "#754A32"
   },
   {
-    "regionId": 566403,
+    "regionId": 1564404,
     "number": 7,
     "color": "#54A563"
   },
   {
-    "regionId": 1564404,
+    "regionId": 2562405,
     "number": 13,
     "color": "#4E342E"
   },
   {
-    "regionId": 2562405,
+    "regionId": 3560406,
     "number": 1,
     "color": "#E89D41"
-  },
-  {
-    "regionId": 3560406,
-    "number": 2,
-    "color": "#FFFFFF"
   },
   {
     "regionId": 4558407,
@@ -276,18 +276,18 @@
   },
   {
     "regionId": 5556408,
+    "number": 2,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 6554409,
     "number": 12,
     "color": "#E04D45"
   },
   {
-    "regionId": 6554409,
+    "regionId": 7552410,
     "number": 11,
     "color": "#D9A066"
-  },
-  {
-    "regionId": 7552410,
-    "number": 1,
-    "color": "#E89D41"
   },
   {
     "regionId": 8550411,
@@ -296,8 +296,8 @@
   },
   {
     "regionId": 9548412,
-    "number": 11,
-    "color": "#D9A066"
+    "number": 12,
+    "color": "#E04D45"
   },
   {
     "regionId": 10546413,
@@ -306,43 +306,43 @@
   },
   {
     "regionId": 11544414,
+    "number": 11,
+    "color": "#D9A066"
+  },
+  {
+    "regionId": 12542415,
+    "number": 1,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 13540416,
     "number": 10,
     "color": "#A86B3C"
   },
   {
-    "regionId": 12542415,
+    "regionId": 14538417,
     "number": 6,
     "color": "#F6D78B"
   },
   {
-    "regionId": 13540416,
+    "regionId": 15536418,
     "number": 9,
     "color": "#FFCF40"
   },
   {
-    "regionId": 14538417,
+    "regionId": 16534419,
     "number": 7,
     "color": "#54A563"
   },
   {
-    "regionId": 15536418,
+    "regionId": 755204,
     "number": 6,
     "color": "#F6D78B"
   },
   {
-    "regionId": 16534419,
-    "number": 2,
-    "color": "#FFFFFF"
-  },
-  {
-    "regionId": 755204,
-    "number": 2,
-    "color": "#FFFFFF"
-  },
-  {
     "regionId": 1753205,
-    "number": 4,
-    "color": "#754A32"
+    "number": 2,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 2751206,
@@ -351,101 +351,141 @@
   },
   {
     "regionId": 3749207,
+    "number": 4,
+    "color": "#754A32"
+  },
+  {
+    "regionId": 4747208,
+    "number": 2,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 5745209,
     "number": 9,
     "color": "#FFCF40"
   },
   {
-    "regionId": 4747208,
+    "regionId": 6743210,
     "number": 1,
     "color": "#E89D41"
-  },
-  {
-    "regionId": 5745209,
-    "number": 6,
-    "color": "#F6D78B"
-  },
-  {
-    "regionId": 6743210,
-    "number": 2,
-    "color": "#FFFFFF"
   },
   {
     "regionId": 7741211,
-    "number": 11,
-    "color": "#D9A066"
+    "number": 6,
+    "color": "#F6D78B"
   },
   {
     "regionId": 8739212,
-    "number": 11,
-    "color": "#D9A066"
+    "number": 2,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 9737213,
-    "number": 6,
-    "color": "#F6D78B"
-  },
-  {
-    "regionId": 10735214,
-    "number": 6,
-    "color": "#F6D78B"
-  },
-  {
-    "regionId": 11733215,
     "number": 2,
     "color": "#FFFFFF"
   },
   {
-    "regionId": 12731216,
-    "number": 1,
-    "color": "#E89D41"
-  },
-  {
-    "regionId": 13729217,
+    "regionId": 10735214,
     "number": 11,
     "color": "#D9A066"
   },
   {
-    "regionId": 14727218,
+    "regionId": 11733215,
+    "number": 11,
+    "color": "#D9A066"
+  },
+  {
+    "regionId": 12731216,
     "number": 6,
     "color": "#F6D78B"
+  },
+  {
+    "regionId": 13729217,
+    "number": 6,
+    "color": "#F6D78B"
+  },
+  {
+    "regionId": 14727218,
+    "number": 2,
+    "color": "#FFFFFF"
   },
   {
     "regionId": 15725219,
-    "number": 6,
-    "color": "#F6D78B"
-  },
-  {
-    "regionId": 16723220,
-    "number": 6,
-    "color": "#F6D78B"
-  },
-  {
-    "regionId": 944005,
     "number": 1,
     "color": "#E89D41"
   },
   {
+    "regionId": 16723220,
+    "number": 11,
+    "color": "#D9A066"
+  },
+  {
+    "regionId": 944005,
+    "number": 6,
+    "color": "#F6D78B"
+  },
+  {
     "regionId": 1942006,
-    "number": 2,
-    "color": "#FFFFFF"
+    "number": 6,
+    "color": "#F6D78B"
   },
   {
     "regionId": 2940007,
-    "number": 2,
-    "color": "#FFFFFF"
+    "number": 6,
+    "color": "#F6D78B"
   },
   {
     "regionId": 3938008,
-    "number": 2,
-    "color": "#FFFFFF"
+    "number": 1,
+    "color": "#E89D41"
   },
   {
     "regionId": 4936009,
+    "number": 6,
+    "color": "#F6D78B"
+  },
+  {
+    "regionId": 5934010,
     "number": 2,
     "color": "#FFFFFF"
   },
   {
-    "regionId": 5934010,
+    "regionId": 6932011,
+    "number": 2,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 7930012,
+    "number": 2,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 8928013,
+    "number": 2,
+    "color": "#FFFFFF"
+  },
+  {
+    "regionId": 9926014,
+    "number": 1,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 10924015,
+    "number": 1,
+    "color": "#E89D41"
+  },
+  {
+    "regionId": 11922016,
+    "number": 10,
+    "color": "#A86B3C"
+  },
+  {
+    "regionId": 12920017,
+    "number": 10,
+    "color": "#A86B3C"
+  },
+  {
+    "regionId": 13918018,
     "number": 11,
     "color": "#D9A066"
   }
