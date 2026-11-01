@@ -45,11 +45,14 @@ final class ScreenshotTests: XCTestCase {
         snapshot("06-finished")
         app.buttons["Keep coloring"].tap()
         // The bonus colours sit behind the grown-up lock at the end of the colour tray.
+        // It starts off screen, where asking whether it is hittable fails the test, so swipe the tray
+        // until its frame is inside the window.
         let lock = app.buttons["More colors"].firstMatch
+        XCTAssertTrue(lock.waitForExistence(timeout: 10))
+        let tray = app.scrollViews.containing(NSPredicate(format: "label == %@", "More colors")).firstMatch
         let window = app.windows.firstMatch
-        for _ in 0..<8 where !(lock.exists && lock.isHittable) {
-            window.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.95))
-                .press(forDuration: 0.05, thenDragTo: window.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.95)))
+        for _ in 0..<8 where !window.frame.contains(lock.frame) {
+            tray.swipeLeft()
         }
         lock.tap()
         XCTAssertTrue(app.staticTexts["Ask a grown-up"].waitForExistence(timeout: 10))
